@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpineFlow · Programas premium de rehabilitación</title>
+  <meta name="description" content="SpineFlow: plataforma premium de rehabilitación con módulos por patología, rutinas por etapa y estructura lista para publicar en Vercel." />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html"><span class="brand-orb"></span><span>SPINEFLOW</span></a>
+      <div class="nav-links">
+        <a href="#mapa">Mapa corporal</a>
+        <a href="#catalogo">Módulos</a>
+        <a href="#planes">Planes</a>
+        <a href="login.html">Login</a>
+        <a class="btn" href="#planes">Empezar a vender</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <section class="hero">
+      <div>
+        <span class="badge">Listo para publicar, vender y escalar</span>
+        <h1>Convertí tu experiencia clínica en una web app premium de rehabilitación con rutas por patología, rutinas por etapa y diseño tipo AVA</h1>
+        <p class="sub">SpineFlow ya viene armado para mostrar valor desde la home, captar pacientes, vender programas digitales y escalar a seguimiento premium. Tenés módulos por patología, subpáginas por rutina, copy clínico y una estructura estática compatible con Vercel sin build ni dependencias.</p>
+        <div class="ctaRow">
+          <a class="btn" href="#catalogo">Ver módulos listos</a>
+          <a class="btn secondary" href="pages/postoperatorio-artrodesis-lumbar.html">Ver postoperatorio</a>
+          <a class="btn secondary" href="#planes">Ver planes de venta</a>
+        </div>
+        <div class="heroStats">
+          <div class="stat"><b>8</b><span class="muted">módulos monetizables</span></div>
+          <div class="stat"><b>29</b><span class="muted">subpáginas reales</span></div>
+          <div class="stat"><b>3</b><span class="muted">niveles de ticket</span></div>
+          <div class="stat"><b>Vercel</b><span class="muted">deploy inmediato</span></div>
+        </div>
+        <div class="sales-band">
+          <div class="sales-pill"><strong>Captación</strong><span>Home clara para explicar, filtrar y llevar a un CTA.</span></div>
+          <div class="sales-pill"><strong>Conversión</strong><span>Planes Starter, Premium, Pro y Signature ya maquetados.</span></div>
+          <div class="sales-pill"><strong>Escalado</strong><span>Podés sumar pagos, login real y analytics cuando quieras.</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="avaCard">
+          <div class="avaLabel">Guía visual</div>
+          <div class="avaTitle">Valen · SpineFlow</div>
+          <img src="assets/images/valen.png" alt="Valen" />
+          <p class="avaDesc">El proyecto toma la estética premium del archivo base que subiste y la transforma en una estructura lista para comercializar programas por patología y etapas.</p>
+          <div class="avaHook">Ideal para lanzar una primera versión en Vercel hoy y luego conectar Stripe, Mercado Pago, Supabase o Firebase.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="kpiRow">
+        <div class="kpi"><span>Columna</span><b>5 módulos</b></div>
+        <div class="kpi"><span>Especiales</span><b>3 módulos</b></div>
+        <div class="kpi"><span>Rutas premium</span><b>Postoperatorio + Espalda de Acero</b></div>
+        <div class="kpi"><span>Formato</span><b>AVA-like multiarchivo</b></div>
+        <div class="kpi"><span>Publicación</span><b>Static deploy</b></div>
+      </div>
+    </section>
+
+    <section id="mapa">
+      <h2>Mapa corporal interactivo</h2>
+      <div class="map-wrap">
+        <div class="map-card">
+          <div class="badge">Táctil / clickeable</div>
+          <p class="map-help">Tocá una zona del cuerpo para ver los módulos vinculados. Esto funciona como entrada rápida tipo atlas anatómico premium.</p>
+          <div class="map-panels" style="margin-top:16px">
+            <svg class="body-svg" viewBox="0 0 260 520" aria-label="Vista frontal">
+              <circle cx="130" cy="46" r="28" class="zone" data-region="cervical"></circle>
+              <rect x="100" y="82" width="60" height="28" rx="12" class="zone" data-region="cervical"></rect>
+              <rect x="68" y="112" width="46" height="50" rx="16" class="zone" data-region="shoulder"></rect>
+              <rect x="146" y="112" width="46" height="50" rx="16" class="zone" data-region="shoulder"></rect>
+              <rect x="94" y="112" width="72" height="96" rx="18" class="zone" data-region="lumbar"></rect>
+              <rect x="92" y="210" width="76" height="52" rx="18" class="zone" data-region="hip"></rect>
+              <rect x="88" y="264" width="34" height="86" rx="16" class="zone" data-region="knee"></rect>
+              <rect x="138" y="264" width="34" height="86" rx="16" class="zone" data-region="knee"></rect>
+              <rect x="82" y="354" width="28" height="86" rx="14" class="zone" data-region="ankle"></rect>
+              <rect x="150" y="354" width="28" height="86" rx="14" class="zone" data-region="ankle"></rect>
+              <rect x="30" y="170" width="28" height="92" rx="14" class="zone" data-region="elbow"></rect>
+              <rect x="202" y="170" width="28" height="92" rx="14" class="zone" data-region="elbow"></rect>
+              <rect x="18" y="266" width="28" height="92" rx="14" class="zone" data-region="wrist"></rect>
+              <rect x="214" y="266" width="28" height="92" rx="14" class="zone" data-region="wrist"></rect>
+            </svg>
+            <svg class="body-svg" viewBox="0 0 260 520" aria-label="Vista posterior">
+              <circle cx="130" cy="46" r="28" class="zone" data-region="cervical"></circle>
+              <rect x="100" y="82" width="60" height="28" rx="12" class="zone" data-region="cervical"></rect>
+              <rect x="68" y="112" width="46" height="50" rx="16" class="zone" data-region="shoulder"></rect>
+              <rect x="146" y="112" width="46" height="50" rx="16" class="zone" data-region="shoulder"></rect>
+              <rect x="94" y="112" width="72" height="96" rx="18" class="zone" data-region="lumbar"></rect>
+              <rect x="92" y="210" width="76" height="52" rx="18" class="zone" data-region="hip"></rect>
+              <rect x="88" y="264" width="34" height="86" rx="16" class="zone" data-region="knee"></rect>
+              <rect x="138" y="264" width="34" height="86" rx="16" class="zone" data-region="knee"></rect>
+              <rect x="82" y="354" width="28" height="86" rx="14" class="zone" data-region="ankle"></rect>
+              <rect x="150" y="354" width="28" height="86" rx="14" class="zone" data-region="ankle"></rect>
+              <rect x="30" y="170" width="28" height="92" rx="14" class="zone" data-region="elbow"></rect>
+              <rect x="202" y="170" width="28" height="92" rx="14" class="zone" data-region="elbow"></rect>
+              <rect x="18" y="266" width="28" height="92" rx="14" class="zone" data-region="wrist"></rect>
+              <rect x="214" y="266" width="28" height="92" rx="14" class="zone" data-region="wrist"></rect>
+            </svg>
+          </div>
+        </div>
+        <div class="map-card">
+          <div class="badge">Módulos relacionados</div>
+          <h3 style="margin-top:12px">Resultados por zona</h3>
+          <p class="map-help">Seleccioná una zona para abrir el módulo correcto y empujar al paciente al programa indicado.</p>
+          <div id="map-results" class="map-results"><div class="map-placeholder">← Tocá una zona del cuerpo</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalogo">
+      <h2>Catálogo clínico</h2>
+      <div class="toolbar">
+        <input id="search" type="text" placeholder="Buscar patología o programa..." />
+        <select id="segmentFilter">
+          <option value="">Todos los segmentos</option>
+          <option value="Columna">Columna</option>
+          <option value="Cervical">Cervical</option>
+          <option value="Postoperatorio">Postoperatorio</option>
+          <option value="Programa especial">Programa especial</option>
+        </select>
+        <select id="goalFilter">
+          <option value="">Todos los objetivos</option>
+          <option value="Dolor">Dolor</option>
+          <option value="Movilidad">Movilidad</option>
+          <option value="Fuerza">Fuerza</option>
+          <option value="Estabilidad">Estabilidad</option>
+          <option value="Seguridad">Seguridad</option>
+        </select>
+        <select id="planFilter">
+          <option value="">Todos los planes</option>
+          <option value="Starter">Starter</option>
+          <option value="Premium">Premium</option>
+          <option value="Pro">Pro</option>
+        </select>
+      </div>
+      <div id="cards" class="grid" style="margin-top:18px"></div>
+    </section>
+
+    <section id="planes">
+      <h2>Planes para vender desde el día 1</h2>
+      <div class="pricing">
+        <div class="plan">
+          <h3>Starter</h3><p class="muted">Entrada para captar volumen</p>
+          <div class="price">US$19</div>
+          <ul class="list"><li>1 módulo completo</li><li>Rutina base</li><li>Ideal para lead magnet pago</li><li>Perfecto para prueba inicial</li></ul>
+        </div>
+        <div class="plan featured">
+          <h3>Premium</h3><p class="muted">Tu core product</p>
+          <div class="price">US$49</div>
+          <ul class="list"><li>Programas 21–30 días</li><li>Más subpáginas y progresión</li><li>Upsell natural a consulta</li><li>Excelente relación valor / ticket</li></ul>
+        </div>
+        <div class="plan">
+          <h3>Pro</h3><p class="muted">Ticket más alto</p>
+          <div class="price">US$119</div>
+          <ul class="list"><li>Programas largos</li><li>Postoperatorio</li><li>Mayor seguimiento</li><li>Más retención del paciente</li></ul>
+        </div>
+        <div class="plan">
+          <h3>Signature</h3><p class="muted">Servicio premium</p>
+          <div class="price">US$249</div>
+          <ul class="list"><li>Ruta personalizada</li><li>Consulta + protocolo</li><li>Adaptaciones periódicas</li><li>Ideal para posicionamiento alto</li></ul>
+        </div>
+      </div>
+      <div class="note">La estructura comercial ya está maquetada. Solo falta conectar tu medio de pago, el login real y el seguimiento que decidas ofrecer.</div>
+    </section>
+
+    <section class="section-card">
+      <div class="cta-strip">
+        <div class="cta-panel">
+          <span class="badge">Lanzamiento rápido</span>
+          <h2>Publicalo en Vercel hoy y seguí editando mañana</h2>
+          <p>No necesitás build ni dependencias. Este proyecto es HTML + CSS + JS estático, así que Vercel lo despliega directo. Podés lanzar una versión comercial ya mismo y luego sumar pagos, analytics y automatizaciones.</p>
+          <div class="ctaRow" style="margin-top:14px">
+            <a class="btn" href="login.html">Ver acceso demo</a>
+            <a class="btn secondary" href="pages/postoperatorio-artrodesis-lumbar.html">Ver módulo estrella</a>
+          </div>
+        </div>
+        <div class="cta-panel">
+          <h3>Checklist Vercel</h3>
+          <div class="vercel-box">
+            1. Subí la carpeta o el zip.<br>
+            2. Elegí <code>Other / Static</code>.<br>
+            3. Dejá vacío <code>Build Command</code>.<br>
+            4. Dejá vacío <code>Output Directory</code>.<br>
+            5. Deploy.
+          </div>
+          <div class="price-box">
+            <span class="price-chip">Static deploy</span>
+            <span class="price-chip">Clean URLs</span>
+            <span class="price-chip">Assets cacheados</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h2>Módulos incluidos</h2>
+      <div class="module-list">
+        <a class="module-link" href="pages/cervicalgia.html"><strong>Cervicalgia</strong><div class="mini-note">Programa para dolor cervical mecánico, rigidez y sobrecarga postural, con foco en control profundo cervical, movilidad y escápula.</div></a>
+        <a class="module-link" href="pages/lumbalgia.html"><strong>Lumbalgia</strong><div class="mini-note">Ruta lumbar activa con progresión por tolerancia: movilidad, estabilidad del core y fuerza funcional sin depender del reposo.</div></a>
+        <a class="module-link" href="pages/hernia-de-disco.html"><strong>Hernia de disco</strong><div class="mini-note">Bloque lumbar con lógica de centralización del dolor, control del tronco y progresión segura hacia fuerza funcional.</div></a>
+        <a class="module-link" href="pages/ciatica.html"><strong>Ciática</strong><div class="mini-note">Ruta orientada a bajar irritación neural, mejorar marcha y recuperar movimiento sin reactivar la pierna dolorosa.</div></a>
+        <a class="module-link" href="pages/escoliosis.html"><strong>Escoliosis</strong><div class="mini-note">Módulo ordenado de rutina inicial a avanzada final, con énfasis en control postural, elongación y fuerza funcional.</div></a>
+        <a class="module-link" href="pages/desfiladero-toracico.html"><strong>Síndrome del desfiladero torácico</strong><div class="mini-note">Módulo educativo y terapéutico centrado en movilidad neural, movilidad cervical/torácica, postura y control escapular.</div></a>
+        <a class="module-link" href="pages/mayores-de-70.html"><strong>Mayores de 70</strong><div class="mini-note">Programa especial para personas mayores, con rutinas sentado, 30 y 60 minutos, usando lenguaje simple y ejercicios adaptados.</div></a>
+        <a class="module-link" href="pages/postoperatorio-artrodesis-lumbar.html"><strong>Si te operaron de la columna, hacé esto</strong><div class="mini-note">Protocolo paciente‑amigable para artrodesis lumbar: fase protectora, transición a lumbar suave y arranque posterior de Espalda de Acero.</div></a>
+      </div>
+    </section>
+
+    <div class="footer">SpineFlow · reconstruido sobre la base visual premium del archivo cargado por el usuario y preparado para Vercel</div>
+  </div>
+
+  <script src="assets/data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
