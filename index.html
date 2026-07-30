@@ -4,11 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0EA5E9">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>SpineFlow · Rehabilitación Digital de Columna</title>
-<meta name="description" content="SpineFlow: rehabilitación digital para columna vertebral. Cervical, dorsal y lumbar. Desarrollado por un equipo médico especializado en columna vertebral.">
+<meta name="description" content="SpineFlow: rehabilitación digital para columna vertebral. Cervical, dorsal y lumbar. Desarrollado por un equipo médico especializado.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦴</text></svg>">
 <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
   html, body { margin:0; padding:0; height:100%; }
   body { background:#EEF2F6; font-family:'Helvetica Neue', Arial, sans-serif; }
@@ -23,8 +26,249 @@
 <script>
 (function(){
   function start(){
-    if (!window.React || !window.ReactDOM) { setTimeout(start, 50); return; }
+    if (!window.React || !window.ReactDOM || !window.supabase) { setTimeout(start, 100); return; }
     const { useState, useEffect, useRef } = React;
+// ─── SUPABASE CLIENT ──────────────────────────────────────────────────────────
+
+const SUPABASE_URL = "https://atefklvwshuwrmeasrnq.supabase.co";
+const SUPABASE_KEY = "sb_publishable_QFbwN6DQNY5idxUntqDSqg_EdF7TcSp";
+let _supabase = null;
+function getSupabase() {
+  if (!_supabase && window.supabase) {
+    _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  }
+  return _supabase;
+}
+
+// ─── AUTH SCREEN ──────────────────────────────────────────────────────────────
+
+const AuthScreen = ({
+  onAuth
+}) => {
+  const [mode, setMode] = useState("login");
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const handleSubmit = async () => {
+    setError("");
+    setLoading(true);
+    const sb = getSupabase();
+    if (!sb) {
+      setError("Error de conexión. Recargá la página.");
+      setLoading(false);
+      return;
+    }
+    try {
+      let result;
+      if (mode === "login") {
+        result = await sb.auth.signInWithPassword({
+          email,
+          password: pass
+        });
+      } else {
+        result = await sb.auth.signUp({
+          email,
+          password: pass
+        });
+      }
+      if (result.error) {
+        const msg = result.error.message;
+        if (msg.includes("Invalid login")) setError("Email o contraseña incorrectos.");else if (msg.includes("already registered")) setError("Este email ya está registrado. Intentá iniciar sesión.");else if (msg.includes("Password should")) setError("La contraseña debe tener al menos 6 caracteres.");else setError(msg);
+      } else if (result.data?.user) {
+        onAuth(result.data.user);
+      }
+    } catch (e) {
+      setError("Error de conexión. Intentá de nuevo.");
+    }
+    setLoading(false);
+  };
+  return React.createElement("div", {
+    style: {
+      height: "100%",
+      display: "flex",
+      flexDirection: "column",
+      background: "white"
+    }
+  }, React.createElement("div", {
+    style: {
+      flex: 1,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "32px 24px"
+    }
+  }, React.createElement("div", {
+    style: {
+      width: 70,
+      height: 70,
+      borderRadius: 18,
+      background: "linear-gradient(135deg,#0EA5E9,#6366F1)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      boxShadow: "0 8px 32px rgba(14,165,233,0.35)",
+      marginBottom: 20
+    }
+  }, React.createElement("span", {
+    style: {
+      fontSize: 32
+    }
+  }, "🦴")), React.createElement("div", {
+    style: {
+      fontFamily: "'Georgia',serif",
+      fontSize: 26,
+      fontWeight: 700,
+      color: "#0F172A",
+      marginBottom: 4
+    }
+  }, "SpineFlow"), React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "#64748B",
+      marginBottom: 28,
+      letterSpacing: 1,
+      textTransform: "uppercase"
+    }
+  }, "Rehabilitación Digital"), React.createElement("div", {
+    style: {
+      width: "100%",
+      maxWidth: 340
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      marginBottom: 24,
+      background: "#F1F5F9",
+      borderRadius: 12,
+      padding: 4
+    }
+  }, React.createElement("button", {
+    onClick: () => {
+      setMode("login");
+      setError("");
+    },
+    style: {
+      flex: 1,
+      padding: "10px",
+      border: "none",
+      borderRadius: 10,
+      background: mode === "login" ? "white" : "transparent",
+      color: mode === "login" ? "#0F172A" : "#94A3B8",
+      fontSize: 14,
+      fontWeight: 600,
+      cursor: "pointer",
+      boxShadow: mode === "login" ? "0 1px 4px rgba(0,0,0,0.1)" : "none"
+    }
+  }, "Iniciar sesión"), React.createElement("button", {
+    onClick: () => {
+      setMode("register");
+      setError("");
+    },
+    style: {
+      flex: 1,
+      padding: "10px",
+      border: "none",
+      borderRadius: 10,
+      background: mode === "register" ? "white" : "transparent",
+      color: mode === "register" ? "#0F172A" : "#94A3B8",
+      fontSize: 14,
+      fontWeight: 600,
+      cursor: "pointer",
+      boxShadow: mode === "register" ? "0 1px 4px rgba(0,0,0,0.1)" : "none"
+    }
+  }, "Registrarse")), React.createElement("div", {
+    style: {
+      marginBottom: 14
+    }
+  }, React.createElement("label", {
+    style: {
+      fontSize: 12,
+      fontWeight: 600,
+      color: "#64748B",
+      display: "block",
+      marginBottom: 6
+    }
+  }, "Email"), React.createElement("input", {
+    type: "email",
+    value: email,
+    onChange: e => setEmail(e.target.value),
+    placeholder: "tu@email.com",
+    style: {
+      width: "100%",
+      padding: "14px 16px",
+      border: "1.5px solid #E2E8F0",
+      borderRadius: 12,
+      fontSize: 15,
+      outline: "none",
+      boxSizing: "border-box",
+      background: "#F8FAFC"
+    }
+  })), React.createElement("div", {
+    style: {
+      marginBottom: 20
+    }
+  }, React.createElement("label", {
+    style: {
+      fontSize: 12,
+      fontWeight: 600,
+      color: "#64748B",
+      display: "block",
+      marginBottom: 6
+    }
+  }, "Contraseña"), React.createElement("input", {
+    type: "password",
+    value: pass,
+    onChange: e => setPass(e.target.value),
+    placeholder: mode === "register" ? "Mínimo 6 caracteres" : "Tu contraseña",
+    onKeyDown: e => e.key === "Enter" && handleSubmit(),
+    style: {
+      width: "100%",
+      padding: "14px 16px",
+      border: "1.5px solid #E2E8F0",
+      borderRadius: 12,
+      fontSize: 15,
+      outline: "none",
+      boxSizing: "border-box",
+      background: "#F8FAFC"
+    }
+  })), error && React.createElement("div", {
+    style: {
+      padding: "10px 14px",
+      background: "#FEF2F2",
+      border: "1px solid #FECACA",
+      borderRadius: 10,
+      marginBottom: 16,
+      fontSize: 13,
+      color: "#DC2626"
+    }
+  }, error), React.createElement("button", {
+    onClick: handleSubmit,
+    disabled: loading || !email || !pass,
+    style: {
+      width: "100%",
+      padding: "16px",
+      background: loading ? "#94A3B8" : "linear-gradient(135deg, #0EA5E9, #6366F1)",
+      color: "white",
+      border: "none",
+      borderRadius: 14,
+      fontSize: 16,
+      fontWeight: 700,
+      cursor: loading ? "wait" : "pointer",
+      boxShadow: loading ? "none" : "0 4px 20px rgba(14,165,233,0.4)"
+    }
+  }, loading ? "Cargando..." : mode === "login" ? "Entrar" : "Crear cuenta")), React.createElement("div", {
+    style: {
+      marginTop: 28,
+      fontSize: 11,
+      color: "#94A3B8",
+      textAlign: "center",
+      lineHeight: 1.6
+    }
+  }, "Desarrollado por un equipo médico", React.createElement("br"), "especializado en columna vertebral")));
+};
+
 // ─── EXERCISE POOL (48 originales + 4 nuevos basados en literatura) ────────────
 
 const EXERCISES = {
@@ -3047,7 +3291,8 @@ const Paywall = ({
   }, "Desarrollado por un equipo médico especializado en columna vertebral.", /*#__PURE__*/React.createElement("br", null), "SpineFlow no reemplaza la consulta médica profesional.")));
 };
 const Progress = ({
-  onBack
+  onBack,
+  user
 }) => {
   const days = ["L", "M", "X", "J", "V", "S", "D"];
   const data = [3, 5, 2, 7, 4, 6, 1];
@@ -3246,7 +3491,9 @@ const Home = ({
   onChange,
   onPlan,
   onProgress,
-  onPaywall
+  onPaywall,
+  user,
+  onLogout
 }) => /*#__PURE__*/React.createElement("div", {
   style: {
     height: "100%",
@@ -3300,7 +3547,30 @@ const Home = ({
     fontWeight: 600,
     cursor: "pointer"
   }
-}, "Ir a Premium"))), /*#__PURE__*/React.createElement("div", {
+}, "Ir a Premium")), user && /*#__PURE__*/React.createElement("div", {
+  style: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 8,
+    padding: "0 2px"
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  style: {
+    fontSize: 11,
+    color: "#94A3B8"
+  }
+}, user.email), /*#__PURE__*/React.createElement("button", {
+  onClick: onLogout,
+  style: {
+    fontSize: 11,
+    color: "#EF4444",
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    fontWeight: 600
+  }
+}, "Cerrar sesión"))), /*#__PURE__*/React.createElement("div", {
   style: {
     padding: "0 20px"
   }
@@ -3560,6 +3830,83 @@ function SpineFlow() {
   const [activeExId, setActiveExId] = useState(null);
   const [isPro, setIsPro] = useState(false);
   const [navActive, setNavActive] = useState("home");
+  const [user, setUser] = useState(null);
+  const [authChecked, setAuthChecked] = useState(false);
+
+  // Check auth on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      const sb = getSupabase();
+      if (!sb) {
+        setAuthChecked(true);
+        return;
+      }
+      const {
+        data
+      } = await sb.auth.getSession();
+      if (data?.session?.user) {
+        setUser(data.session.user);
+        // Check premium status
+        const {
+          data: profile
+        } = await sb.from("profiles").select("is_premium, selected_region, selected_pathology").eq("id", data.session.user.id).single();
+        if (profile?.is_premium) setIsPro(true);
+      }
+      setAuthChecked(true);
+    };
+    const t = setTimeout(checkAuth, 2200); // after splash
+    return () => clearTimeout(t);
+  }, []);
+  const handleAuth = async u => {
+    setUser(u);
+    // Check premium
+    const sb = getSupabase();
+    if (sb) {
+      const {
+        data: profile
+      } = await sb.from("profiles").select("is_premium").eq("id", u.id).single();
+      if (profile?.is_premium) setIsPro(true);
+    }
+    setScreen("region");
+  };
+  const handleLogout = async () => {
+    const sb = getSupabase();
+    if (sb) await sb.auth.signOut();
+    setUser(null);
+    setPathology(null);
+    setRegion(null);
+    setIsPro(false);
+    setScreen("auth");
+  };
+
+  // Save exercise completion to DB
+  const saveProgress = async (exerciseId, pathologyId, duration) => {
+    if (!user) return;
+    const sb = getSupabase();
+    if (!sb) return;
+    try {
+      await sb.from("exercise_progress").insert({
+        user_id: user.id,
+        exercise_id: exerciseId,
+        pathology_id: pathologyId,
+        duration_seconds: duration
+      });
+    } catch (e) {}
+  };
+
+  // Save selected pathology to profile
+  const saveSelection = async (regionId, pathologyId) => {
+    if (!user) return;
+    const sb = getSupabase();
+    if (!sb) return;
+    try {
+      await sb.from("profiles").update({
+        selected_region: regionId,
+        selected_pathology: pathologyId,
+        updated_at: new Date().toISOString()
+      }).eq("id", user.id);
+    } catch (e) {}
+  };
   const goHome = () => {
     setScreen("home");
     setNavActive("home");
@@ -3579,6 +3926,10 @@ function SpineFlow() {
   const sessionList = pathology ? isPro ? pathology.ex : pathology.ex.filter(id => isFree(pathology, id)) : [];
   const activeIdx = sessionList.indexOf(activeExId);
   const nextExercise = () => {
+    // Save progress for completed exercise
+    if (activeExId && pathology) {
+      saveProgress(activeExId, pathology.id, 0);
+    }
     if (activeIdx < sessionList.length - 1) setActiveExId(sessionList[activeIdx + 1]);else goPlan();
   };
   return /*#__PURE__*/React.createElement("div", {
@@ -3593,14 +3944,23 @@ function SpineFlow() {
       position: "relative",
       overflow: "hidden"
     }
-  }, /*#__PURE__*/React.createElement("style", null, `* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; } @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} } button { -webkit-appearance: none; } ::-webkit-scrollbar { display: none; }`), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("style", null, `* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; } @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} } button { -webkit-appearance: none; } ::-webkit-scrollbar { display: none; } input:focus { border-color: #0EA5E9 !important; }`), /*#__PURE__*/React.createElement("div", {
     style: {
       flex: 1,
       overflowY: "auto",
       background: "white"
     }
   }, screen === "splash" && /*#__PURE__*/React.createElement(Splash, {
-    onNext: () => setScreen("region")
+    onNext: () => {
+      if (!authChecked) {
+        setScreen("splash");
+        setTimeout(() => setScreen(user ? "region" : "auth"), 500);
+      } else {
+        setScreen(user ? "region" : "auth");
+      }
+    }
+  }), screen === "auth" && /*#__PURE__*/React.createElement(AuthScreen, {
+    onAuth: handleAuth
   }), screen === "region" && /*#__PURE__*/React.createElement(RegionSelect, {
     onSelect: r => {
       setRegion(r);
@@ -3610,6 +3970,7 @@ function SpineFlow() {
     region: region,
     onSelect: p => {
       setPathology(p);
+      saveSelection(region.id, p.id);
       goHome();
     },
     onBack: () => setScreen("region")
@@ -3619,7 +3980,9 @@ function SpineFlow() {
     onChange: () => setScreen("region"),
     onPlan: goPlan,
     onProgress: goProgress,
-    onPaywall: () => setScreen("paywall")
+    onPaywall: () => setScreen("paywall"),
+    user: user,
+    onLogout: handleLogout
   }), screen === "plan" && pathology && /*#__PURE__*/React.createElement(PlanScreen, {
     pathology: pathology,
     isPro: isPro,
@@ -3634,7 +3997,8 @@ function SpineFlow() {
     onNext: nextExercise,
     onBack: goPlan
   }), screen === "progress" && /*#__PURE__*/React.createElement(Progress, {
-    onBack: goHome
+    onBack: goHome,
+    user: user
   }), screen === "paywall" && /*#__PURE__*/React.createElement(Paywall, {
     onBack: goHome,
     onUnlock: () => {
