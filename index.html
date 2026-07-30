@@ -1,223 +1,672 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SpineFlow · Programas premium de rehabilitación</title>
-  <meta name="description" content="SpineFlow: plataforma premium de rehabilitación con módulos por patología, rutinas por etapa y estructura lista para publicar en Vercel." />
-  <link rel="stylesheet" href="assets/styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0EA5E9">
+<title>SpineFlow · Rehabilitación Digital de Columna</title>
+<meta name="description" content="SpineFlow: rehabilitación digital para columna vertebral. Cervical, dorsal y lumbar. Desarrollado por un equipo médico especializado en columna vertebral.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦴</text></svg>">
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+  html, body { margin:0; padding:0; height:100%; }
+  body { background:#EEF2F6; font-family:'Helvetica Neue', Arial, sans-serif; }
+  #root { height:100vh; }
+  #loader { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; gap:14px; color:#94A3B8; font-size:13px; }
+  .spin { width:34px; height:34px; border:3px solid #E2E8F0; border-top-color:#0EA5E9; border-radius:50%; animation:sp 0.8s linear infinite; }
+  @keyframes sp { to { transform:rotate(360deg); } }
+</style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="index.html"><span class="brand-orb"></span><span>SPINEFLOW</span></a>
-      <div class="nav-links">
-        <a href="#mapa">Mapa corporal</a>
-        <a href="#catalogo">Módulos</a>
-        <a href="#planes">Planes</a>
-        <a href="login.html">Login</a>
-        <a class="btn" href="#planes">Empezar a vender</a>
+<div id="root"><div id="loader"><div class="spin"></div><div>Cargando SpineFlow…</div></div></div>
+<script type="text/babel" data-presets="react">
+const { useState, useEffect, useRef } = React;
+
+
+// ─── EXERCISE POOL (48 originales + 4 nuevos basados en literatura) ────────────
+
+const EXERCISES = {
+  c1: { name: "Retracción cervical", level: "Inicial", reps: "10 repeticiones",
+    warning: "No forzar el movimiento si sentís dolor agudo.",
+    steps: ["Sentate derecho/a con los hombros relajados.", "Lleva el mentón hacia atrás suavemente, como formando una 'doble papada'.", "Mantené la posición 3 segundos.", "Volvé lentamente a la posición inicial.", "Repetí 10 veces de manera controlada."],
+    muscles: "Flexores profundos del cuello" },
+  c2: { name: "Estiramiento lateral del cuello", level: "Inicial", reps: "30 seg c/lado",
+    warning: "Nunca hagas rotaciones bruscas. Movimiento suave y progresivo.",
+    steps: ["De pie o sentado/a, relajá los hombros.", "Incliná la cabeza hacia la derecha, acercando la oreja al hombro.", "Con la mano derecha aplicá presión suave sobre la sien izquierda.", "Mantené 30 segundos. Sentirás el estiramiento del lado izquierdo.", "Cambiá de lado y repetí."],
+    muscles: "Esternocleidomastoideo, escalenos" },
+  c3: { name: "Rotación cervical activa", level: "Inicial", reps: "8 rep c/lado",
+    warning: "Detenete si sentís mareos o dolor que baja por el brazo.",
+    steps: ["Sentate con la columna erguida.", "Girá la cabeza lentamente hacia la derecha hasta donde llegues sin dolor.", "Mantené 2 segundos.", "Volvé al centro y repetí hacia la izquierda.", "Realizá 8 repeticiones por lado."],
+    muscles: "Musculatura rotadora cervical" },
+  c4: { name: "Flexión-extensión cervical suave", level: "Inicial", reps: "10 repeticiones",
+    warning: "Evitá la hiperextensión. La extensión debe ser moderada.",
+    steps: ["Sentate con la espalda derecha.", "Bajá el mentón hacia el pecho lentamente (flexión).", "Mantené 2 segundos.", "Elevá suavemente la vista hacia el techo (extensión moderada).", "Mantené 2 segundos y volvé al centro."],
+    muscles: "Flexores y extensores cervicales" },
+  c5: { name: "Fortalecimiento isométrico anterior", level: "Intermedio", reps: "10 rep, 5 seg c/u",
+    warning: "No empujar con fuerza excesiva. El objetivo es activación, no movimiento.",
+    steps: ["Colocá la mano en la frente.", "Empujá la cabeza hacia adelante contra la mano, sin mover el cuello.", "Mantené la tensión 5 segundos.", "Relajá completamente.", "Repetí 10 veces."],
+    muscles: "Flexores profundos cervicales" },
+  c6: { name: "Estiramiento del trapecio superior", level: "Inicial", reps: "30 seg c/lado",
+    warning: "Si sentís hormigueo en el brazo, suspendé el ejercicio.",
+    steps: ["Sentate en una silla, sujetá el borde con la mano del lado a estirar.", "Incliná la cabeza hacia el lado opuesto.", "Rotá levemente el mentón hacia arriba.", "Aplicá presión suave con la mano libre sobre la cabeza.", "Mantené 30 segundos por lado."],
+    muscles: "Trapecio superior, elevador de la escápula" },
+  c7: { name: "Movilización escapular en círculos", level: "Inicial", reps: "10 círculos c/dirección",
+    warning: "Realizá el movimiento lentamente y con control.",
+    steps: ["De pie o sentado/a, relajá completamente los brazos.", "Realizá círculos lentos con los hombros hacia adelante.", "10 círculos hacia adelante.", "10 círculos hacia atrás.", "Respirá con naturalidad durante todo el ejercicio."],
+    muscles: "Trapecios, romboides, serratos" },
+  c8: { name: "Chin tuck con banda elástica", level: "Avanzado", reps: "12 repeticiones",
+    warning: "Nivel avanzado. Consultá con tu fisioterapeuta antes de comenzar.",
+    steps: ["Colocá una banda elástica alrededor de la parte posterior de la cabeza.", "Sujetá los extremos con ambas manos frente a la cara.", "Realizá la retracción cervical contra la resistencia de la banda.", "Mantené 3 segundos.", "Volvé lentamente. Repetí 12 veces."],
+    muscles: "Flexores profundos cervicales, suboccipitales" },
+  l1: { name: "Rodilla al pecho", level: "Inicial", reps: "10 rep c/pierna",
+    warning: "Si el dolor se irradia hacia la pierna, consultá antes de continuar.",
+    steps: ["Acostado/a boca arriba con las rodillas flexionadas.", "Llevá una rodilla hacia el pecho con ambas manos.", "Mantené el estiramiento 20 segundos.", "Bajá la pierna lentamente.", "Repetí con la otra pierna. 10 repeticiones por lado."],
+    muscles: "Glúteo mayor, piramidal, zona lumbar" },
+  l2: { name: "Puente de glúteos", level: "Inicial", reps: "12 repeticiones",
+    warning: "No arquees excesivamente la zona lumbar al subir.",
+    steps: ["Acostado/a boca arriba, rodillas flexionadas, pies planos.", "Activá el core contrayendo ligeramente el abdomen.", "Elevá la cadera despegando las vértebras de abajo hacia arriba.", "Mantené 3 segundos arriba.", "Bajá lentamente. Repetí 12 veces."],
+    muscles: "Glúteo mayor, isquiotibiales, core" },
+  l4: { name: "Gato-camello (Cat-Cow)", level: "Inicial", reps: "10 ciclos",
+    warning: "Movimiento suave y fluido. Sin rebotes ni movimientos bruscos.",
+    steps: ["En cuatro apoyos: manos bajo hombros, rodillas bajo caderas.", "Inspirá y dejá caer el vientre hacia el suelo (camello).", "Espirá y arquea la espalda hacia el techo (gato).", "Coordina el movimiento con la respiración.", "10 ciclos completos."],
+    muscles: "Extensores lumbares, abdominales" },
+  l6: { name: "Estiramiento de isquiotibiales en decúbito", level: "Inicial", reps: "30 seg c/pierna",
+    warning: "Rodilla levemente flexionada si sentís tensión excesiva.",
+    steps: ["Acostado/a boca arriba.", "Elevá una pierna con ambas manos sujetando el muslo.", "Extendé la rodilla lentamente hasta sentir tensión posterior.", "Mantené 30 segundos.", "Cambiá de pierna."],
+    muscles: "Isquiotibiales, zona posterior del muslo" },
+  l7: { name: "Rotación lumbar en decúbito", level: "Inicial", reps: "10 rep c/lado",
+    warning: "El movimiento debe ser indoloro. No forzar la rotación.",
+    steps: ["Acostado/a boca arriba, rodillas juntas y flexionadas.", "Llevá ambas rodillas lentamente hacia un lado, hombros fijos.", "Llegá hasta donde no haya dolor.", "Mantené 5 segundos.", "Volvé al centro y repetí del otro lado."],
+    muscles: "Rotadores lumbares, cuadrado lumbar" },
+  s1: { name: "Estiramiento piriforme en decúbito", level: "Inicial", reps: "30 seg c/lado",
+    warning: "Suspendé si el dolor se intensifica o baja por la pierna con más fuerza.",
+    steps: ["Acostado/a boca arriba, rodillas flexionadas.", "Cruzá el tobillo derecho sobre la rodilla izquierda (posición de '4').", "Entrelazá los dedos detrás del muslo izquierdo.", "Acercá ambas piernas al pecho suavemente.", "Mantené 30 segundos. Cambiá de lado."],
+    muscles: "Piriforme, glúteo medio" },
+  s2: { name: "Deslizamiento neural del nervio ciático", level: "Intermedio", reps: "10 rep c/pierna",
+    warning: "Moviliza el nervio: tensión leve, nunca dolor severo. El nervio desliza, no se estira a la fuerza.",
+    steps: ["Sentado/a al borde de una silla.", "Estirá una pierna al frente con el tobillo en flexión (punta arriba).", "Simultáneamente inclina el cuello hacia adelante.", "Volvé al inicio alternando: pierna extendida + cuello neutro.", "10 repeticiones cada pierna."],
+    muscles: "Nervio ciático, isquiotibiales" },
+  s3: { name: "Extensiones lumbares (McKenzie)", level: "Intermedio", reps: "10 repeticiones",
+    warning: "Indicado para hernias discales. No usar si la extensión aumenta el dolor irradiado.",
+    steps: ["Acostado/a boca abajo con las manos bajo los hombros.", "Elevá el tórax con los brazos, dejando la cadera en el piso.", "Llegá hasta donde sea cómodo.", "Mantené 3 segundos.", "Bajá lentamente. 10 repeticiones."],
+    muscles: "Extensores lumbares, discos intervertebrales" },
+  s4: { name: "Estiramiento isquiotibial suave", level: "Inicial", reps: "30 seg c/pierna",
+    warning: "Rodilla levemente flexionada si la tensión es muy intensa.",
+    steps: ["Acostado/a boca arriba.", "Elevá una pierna con las manos detrás del muslo.", "Extendé lentamente la rodilla hasta sentir tensión suave.", "Respirá profundo y relajate dentro del estiramiento.", "30 segundos por pierna."],
+    muscles: "Isquiotibiales, nervio ciático" },
+  s5: { name: "Fortalecimiento glúteo en decúbito lateral", level: "Inicial", reps: "15 rep c/lado",
+    warning: "Movimiento lento y controlado. Evitá compensar con el tronco.",
+    steps: ["Acostado/a de costado, piernas estiradas.", "Elevá la pierna de arriba a 45° con la punta del pie al frente.", "Mantené 2 segundos arriba.", "Bajá lentamente sin tocar la otra pierna.", "15 repeticiones por lado."],
+    muscles: "Glúteo medio, glúteo menor" },
+  s6: { name: "Posición de descompresión 90-90", level: "Inicial", reps: "5-10 minutos",
+    warning: "Posición pasiva de descanso. Ideal para aliviar la presión discal.",
+    steps: ["Acostado/a boca arriba.", "Colocá las piernas sobre una silla con rodillas y caderas a 90°.", "Relajá completamente los brazos a los costados.", "Respirá profundo, expandiendo el abdomen.", "Mantené 5-10 minutos. Es de alivio, no de esfuerzo."],
+    muscles: "Descompresión lumbar y sacroilíaca" },
+  s7: { name: "Caminata controlada con postura", level: "Inicial", reps: "10-15 minutos",
+    warning: "Caminar es terapéutico. Pero detenete si el dolor aumenta.",
+    steps: ["Usá calzado con buena amortiguación.", "Caminá con pasos medianos, no largos.", "Espalda erguida y abdomen levemente activo.", "Los brazos balancean naturalmente.", "Empezá con 10 minutos y aumentá progresivamente."],
+    muscles: "Glúteos, core, cadena posterior" },
+  s8: { name: "Estiramiento de cadera en figura 4 (silla)", level: "Inicial", reps: "45 seg c/lado",
+    warning: "No inclinarse hacia adelante si duele la espalda al hacerlo.",
+    steps: ["Sentado/a en una silla firme.", "Cruzá el tobillo derecho sobre la rodilla izquierda.", "Mantenete recto/a o inclinate levemente desde las caderas.", "Sentirás el estiramiento en la cadera y glúteo cruzado.", "45 segundos por lado."],
+    muscles: "Piriforme, glúteo mayor, rotadores externos" },
+  k1: { name: "Activación del transverso abdominal", level: "Inicial", reps: "10 rep, 10 seg c/u",
+    warning: "No aguantar la respiración. Activación suave, no al 100%.",
+    steps: ["Acostado/a boca arriba, rodillas flexionadas.", "Inhalá. Al exhalar, 'meté el ombligo hacia la columna' suavemente.", "Solo el 30% de la fuerza máxima.", "Mantené 10 segundos respirando normal.", "Relajá. Repetí 10 veces."],
+    muscles: "Transverso abdominal (core profundo)" },
+  k3: { name: "Dead bug (insecto muerto)", level: "Intermedio", reps: "8 rep por lado",
+    warning: "La zona lumbar debe quedar pegada al suelo todo el ejercicio.",
+    steps: ["Boca arriba. Brazos hacia el techo, rodillas a 90°.", "Activá el core achatando la lumbar contra el suelo.", "Extendé brazo derecho y pierna izquierda sin tocar el suelo.", "Volvé al inicio controladamente.", "Alterná lados: 8 repeticiones por lado."],
+    muscles: "Transverso, multífidos, oblicuos" },
+  k4: { name: "Bird dog (perro pájaro)", level: "Intermedio", reps: "10 rep por lado",
+    warning: "La cadera no debe rotar. Mantené la pelvis estable.",
+    steps: ["En cuatro apoyos: manos bajo hombros, rodillas bajo caderas.", "Activá el core.", "Extendé brazo derecho y pierna izquierda a la vez.", "Mantené 3 segundos en horizontal.", "Volvé al centro. 10 repeticiones por lado."],
+    muscles: "Multífidos, glúteos, erectores de columna" },
+  k5: { name: "Plancha lateral sobre rodilla", level: "Intermedio", reps: "20 seg c/lado",
+    warning: "La cadera no debe caer. Reducí el tiempo si no la mantenés.",
+    steps: ["De costado, apoyado/a sobre un antebrazo y la rodilla inferior.", "Alineá el cuerpo en línea recta.", "Elevá la cadera del suelo.", "Activá el core y los glúteos.", "Mantené 20 segundos por lado. 2-3 series."],
+    muscles: "Oblicuo externo, cuadrado lumbar, glúteo medio" },
+  k8: { name: "Respiración diafragmática con activación", level: "Inicial", reps: "10 respiraciones",
+    warning: "Ejercicio base. Ideal para comenzar cualquier sesión.",
+    steps: ["Acostado/a o sentado/a, una mano en el pecho y otra en el abdomen.", "Inhalá expandiendo el abdomen (sube la mano abdominal, no la del pecho).", "Al exhalar, sentí cómo el abdomen se activa naturalmente.", "Al final de la exhalación, contraé levemente el transverso.", "10 respiraciones lentas y profundas."],
+    muscles: "Diafragma, suelo pélvico, transverso" },
+  p1: { name: "Bombeo de tobillos en decúbito", level: "Inicial", reps: "20 repeticiones",
+    warning: "Fase temprana post-cirugía. Solo bajo autorización médica.",
+    steps: ["Acostado/a boca arriba, piernas estiradas.", "Flexionás y extendés los tobillos alternadamente.", "Movimiento de 'acelerar y frenar'.", "20 repeticiones lentas.", "Activa la circulación y previene trombosis."],
+    muscles: "Gemelos, tibial anterior, circulación venosa" },
+  p2: { name: "Respiración profunda post-operatoria", level: "Inicial", reps: "10 respiraciones",
+    warning: "Fundamental los primeros días. Previene complicaciones pulmonares.",
+    steps: ["Acostado/a o semisentado/a.", "Inhalá lentamente por la nariz 4 segundos.", "Retené el aire 2 segundos.", "Exhalá suavemente por la boca 6 segundos.", "Repetí 10 veces cada 2 horas."],
+    muscles: "Diafragma, músculos respiratorios" },
+  p3: { name: "Activación de cuádriceps en cama", level: "Inicial", reps: "15 rep c/pierna",
+    warning: "No levantar la pierna si hay indicación de reposo absoluto.",
+    steps: ["Boca arriba, pierna estirada.", "Contraé el cuádriceps apretando la rodilla contra la cama.", "Mantené la contracción 5 segundos.", "Relajá completamente.", "15 repeticiones por pierna."],
+    muscles: "Cuádriceps" },
+  p4: { name: "Técnica para incorporarse de la cama", level: "Inicial", reps: "Técnica de movimiento",
+    warning: "Usarla SIEMPRE al levantarse para proteger la columna.",
+    steps: ["Boca arriba, llevá las rodillas al pecho.", "Girá hacia un lado en bloque (como un tronco), sin torcer la columna.", "Apoyá los pies en el borde de la cama.", "Con los brazos empujá el cuerpo hacia arriba mientras los pies bajan.", "Quedás sentado/a al borde de la cama."],
+    muscles: "Técnica de protección espinal" },
+  p5: { name: "Marcha controlada en plano", level: "Inicial", reps: "5-10 minutos",
+    warning: "Solo cuando el médico autorice deambulación. Calzado adecuado.",
+    steps: ["De pie, con apoyo si es necesario.", "Pasos cortos y controlados.", "Espalda erguida, mirada al frente.", "La calidad del paso es prioritaria.", "Empezá con 5 minutos y aumentá cada 3-5 días."],
+    muscles: "Cadena cinética completa, core" },
+  p6: { name: "Puente de glúteos progresivo", level: "Intermedio", reps: "10 repeticiones",
+    warning: "Solo en fase subaguda y con autorización de tu cirujano.",
+    steps: ["Boca arriba, rodillas flexionadas.", "Activá levemente el core.", "Elevá la cadera lentamente vértebra a vértebra.", "Mantené 5 segundos arriba.", "Descendé lentamente. 10 repeticiones."],
+    muscles: "Glúteos, isquiotibiales, core" },
+  p7: { name: "Estiramiento neural suave en sedestación", level: "Intermedio", reps: "10 rep c/pierna",
+    warning: "Solo si el cirujano autoriza movilización neural. Tensión leve, no dolor.",
+    steps: ["Sentado/a en una silla, espalda derecha.", "Extendé lentamente una pierna con el tobillo en flexión.", "Al sentir tensión suave, doblá el cuello hacia adelante.", "Mantené 3 segundos.", "Volvé al inicio. 10 repeticiones por pierna."],
+    muscles: "Nervio ciático, isquiotibiales" },
+  p8: { name: "Estabilización lumbar en bipedestación", level: "Avanzado", reps: "3 series de 30 seg",
+    warning: "Fase avanzada. Confirmá con tu equipo médico.",
+    steps: ["De pie, pies a ancho de hombros.", "Activá el core al 30%.", "Mantené la postura erguida con conciencia corporal.", "Podés agregar movimiento de brazos para desafiar la estabilidad.", "3 series de 30 segundos."],
+    muscles: "Core completo, cadena posterior" },
+  g2: { name: "Estiramiento de hombros y cuello", level: "Inicial", reps: "5 rep c/movimiento",
+    warning: "Movimientos lentos y sin forzar. Nunca con dolor.",
+    steps: ["Sentado/a derecho/a en una silla.", "Círculos lentos con los hombros hacia atrás (5 veces).", "Inclina la cabeza hacia cada hombro (5 veces por lado).", "Rotaciones suaves del cuello (5 veces por lado).", "Estirá los brazos hacia el techo y bajá lentamente."],
+    muscles: "Trapecio, cuello, hombros" },
+  g3: { name: "Extensión de espalda en silla", level: "Inicial", reps: "10 repeticiones",
+    warning: "El respaldo sirve de apoyo. Sin forzar.",
+    steps: ["Sentado/a al borde de una silla con respaldo.", "Colocá las manos detrás de la cabeza.", "Extiende suavemente la espalda sobre el respaldo.", "Sentirás el estiramiento en la zona media.", "Volvé al inicio. 10 repeticiones lentas."],
+    muscles: "Extensores dorsales, intercostales" },
+  g6: { name: "Balanceo de brazos y movilidad de tronco", level: "Inicial", reps: "10 repeticiones",
+    warning: "Movilidad suave. Sin impacto, ideal para adultos mayores.",
+    steps: ["De pie, pies a ancho de hombros.", "Deja los brazos colgando y gira el tronco de lado a lado.", "Los brazos se balancean naturalmente.", "Ritmo cómodo y suave.", "10 oscilaciones completas."],
+    muscles: "Rotadores del tronco, hombros, columna dorsal" },
+  g8: { name: "Relajación progresiva en decúbito", level: "Inicial", reps: "10-15 minutos",
+    warning: "Técnica de relajación. Ideal para el final de la sesión.",
+    steps: ["Boca arriba en posición cómoda.", "Tensá y relajá cada parte del cuerpo: pies, piernas, abdomen, brazos, cara.", "Respirá profundo durante todo el proceso.", "Con cada exhalación, sentí cómo el cuerpo se hunde.", "Finalizá con 3 respiraciones profundas."],
+    muscles: "Relajación del sistema nervioso, alivio del dolor" },
+  n1: { name: "Auto-liberación suboccipital", level: "Inicial", reps: "60-90 seg",
+    warning: "Presión suave y sostenida. Si aparece mareo o dolor irradiado, suspendé.",
+    steps: ["Acostado/a boca arriba, rodillas flexionadas.", "Colocá dos pelotas de tenis dentro de una media, o los dedos, en la base del cráneo.", "Apoyá el peso de la cabeza sobre ese punto (justo debajo del hueso occipital).", "Respirá profundo y dejá que los músculos cedan con el peso.", "Mantené 60-90 segundos. Podés hacer pequeños 'sí' y 'no' muy lentos."],
+    muscles: "Suboccipitales, base del cráneo (alivia occipital y espasmo)" },
+  n2: { name: "Estiramiento pectoral en marco de puerta", level: "Inicial", reps: "20-30 seg x3",
+    warning: "Detené si aumentan hormigueos o adormecimiento en el brazo.",
+    steps: ["Parate en el marco de una puerta.", "Apoyá los antebrazos en cada lado del marco, codos a la altura de los hombros.", "Adelantá un pie y dejá caer el peso suavemente hacia adelante.", "Sentirás el estiramiento en el pecho y el frente de los hombros.", "Mantené 20-30 segundos. Repetí 3 veces."],
+    muscles: "Pectoral mayor y menor (abre el desfiladero torácico)" },
+  n3: { name: "Deslizamiento del nervio mediano", level: "Intermedio", reps: "10 rep suaves",
+    warning: "El nervio DESLIZA, no se estira a la fuerza. Si hay más síntomas, pará de inmediato.",
+    steps: ["Sentado/a o de pie, brazo al costado con el codo doblado.", "Extendé el brazo hacia el lado con la palma hacia adelante, dedos hacia el piso.", "Cuando sientas leve tensión, inclina la cabeza HACIA ese brazo (no en contra).", "Volvé al inicio suavemente. El movimiento es fluido, tipo 'vaivén'.", "10 repeticiones suaves, sin llegar nunca al dolor."],
+    muscles: "Nervio mediano (desfiladero torácico neurogénico)" },
+  n4: { name: "Auto-liberación de piriforme con pelota", level: "Inicial", reps: "60-90 seg c/lado",
+    warning: "Presión tolerable, no dolor punzante. Evitá presionar directamente sobre el nervio si sentís calambre.",
+    steps: ["Sentado/a en el suelo, colocá una pelota de tenis bajo un glúteo.", "Cruzá ese tobillo sobre la rodilla contraria (posición de '4').", "Rodá lentamente sobre la pelota buscando el punto tenso.", "Cuando encontrés el punto, mantené la presión y respirá.", "60-90 segundos por lado."],
+    muscles: "Piriforme, glúteo profundo (síndrome piramidal)" },
+};
+
+// ─── REGIONES → PATOLOGÍAS ─────────────────────────────────────────────────────
+
+const REGIONS = [
+  {
+    id: "cervical", label: "Cervical", icon: "🔵", color: "#0EA5E9", light: "#E0F2FE",
+    subtitle: "Cuello y base del cráneo",
+    pathologies: [
+      { id: "hernia_cervical", title: "Hernia de disco cervical", desc: "Dolor cervical con posible irradiación al brazo", ex: ["c1","c5","c4","c3","c8","c2"] },
+      { id: "occipital", title: "Síndrome occipital (Arnold)", desc: "Neuralgia occipital / dolor en la base del cráneo", ex: ["n1","c6","c1","c2","c7","g8"] },
+      { id: "cervicalgia_espasmo", title: "Cervicalgia por espasmo", desc: "Contractura y rigidez cervical", ex: ["n1","c6","c2","c7","c1","g2"] },
+      { id: "desfiladero", title: "Síndrome del desfiladero torácico", desc: "Compresión neurovascular hombro-cuello", ex: ["n2","n3","c7","c1","k8","c6"] },
+    ]
+  },
+  {
+    id: "dorsal", label: "Dorsal", icon: "🟢", color: "#10B981", light: "#D1FAE5",
+    subtitle: "Espalda media y torácica",
+    pathologies: [
+      { id: "espasmo_dorsal", title: "Espasmo dorsal", desc: "Contractura de la musculatura dorsal", ex: ["l4","c7","g6","g3","g2","k8"] },
+      { id: "escoliosis", title: "Escoliosis", desc: "Programa de soporte, fuerza y movilidad", ex: ["k1","k4","k3","k8","k5","g6"], note: "La corrección específica de la curva (métodos Schroth/SEAS) requiere evaluación profesional previa. Este programa es de soporte general: fortalece y da movilidad, pero no reemplaza el diagnóstico del patrón de tu columna." },
+      { id: "dorsalgia", title: "Dorsalgia", desc: "Dolor de espalda media", ex: ["g3","l4","g2","c7","k8","g6"] },
+    ]
+  },
+  {
+    id: "lumbar", label: "Lumbar", icon: "🟠", color: "#F59E0B", light: "#FEF3C7",
+    subtitle: "Zona baja de la espalda",
+    pathologies: [
+      { id: "hernia_lumbar", title: "Hernia lumbar con ciatalgia", desc: "Dolor irradiado hacia la pierna", ex: ["s3","s6","s2","l1","s7","s4"] },
+      { id: "lumbalgia", title: "Lumbalgia mecánica", desc: "Dolor lumbar por sobrecarga o mala postura", ex: ["l2","l4","l1","l7","k1","l6"] },
+      { id: "piramidal", title: "Síndrome piramidal (falsa ciática)", desc: "Dolor glúteo por el músculo piriforme", ex: ["s1","s8","n4","s5","s2","s7"] },
+      { id: "facetario", title: "Síndrome facetario", desc: "Dolor de las articulaciones vertebrales", ex: ["l1","l4","l7","l2","k1","l6"] },
+      { id: "postcirugia", title: "Rehabilitación post cirugía de columna", desc: "Recuperación progresiva post-quirúrgica", ex: ["p1","p2","p3","p4","p5","p6","p7","p8"] },
+    ]
+  }
+];
+
+// helper: los primeros 2 ejercicios de cada patología son gratuitos
+const isFree = (pathology, exId) => pathology.ex.indexOf(exId) < 2;
+
+// ─── AVATAR ────────────────────────────────────────────────────────────────────
+
+const AvatarSVG = ({ mood = "default", size = 120 }) => {
+  const expr = {
+    default: { mouth: "M 45 68 Q 50 73 55 68" },
+    encouraging: { mouth: "M 42 66 Q 50 75 58 66" },
+    explaining: { mouth: "M 44 68 L 56 68" },
+  }[mood] || { mouth: "M 45 68 Q 50 73 55 68" };
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="82" width="60" height="38" rx="8" fill="#F8FAFC" stroke="#E2E8F0" strokeWidth="1"/>
+      <rect x="20" y="82" width="18" height="38" fill="#DBEAFE"/>
+      <rect x="62" y="82" width="18" height="38" fill="#DBEAFE"/>
+      <rect x="44" y="90" width="12" height="6" rx="2" fill="#EF4444" opacity="0.3"/>
+      <rect x="43" y="74" width="14" height="12" rx="4" fill="#D4A896"/>
+      <ellipse cx="50" cy="52" rx="24" ry="26" fill="#D4A896"/>
+      <ellipse cx="50" cy="30" rx="24" ry="14" fill="#F0C040"/>
+      <path d="M 26 34 Q 20 50 24 64" stroke="#F0C040" strokeWidth="8" strokeLinecap="round" fill="none"/>
+      <path d="M 74 34 Q 80 50 76 64" stroke="#F0C040" strokeWidth="8" strokeLinecap="round" fill="none"/>
+      <path d="M 26 28 Q 50 18 74 28 Q 74 16 50 12 Q 26 16 26 28Z" fill="#E8B520"/>
+      <ellipse cx="40" cy="54" rx="5" ry="5.5" fill="white"/>
+      <ellipse cx="60" cy="54" rx="5" ry="5.5" fill="white"/>
+      <circle cx="40" cy="54.5" r="3.5" fill="#60A5FA"/>
+      <circle cx="60" cy="54.5" r="3.5" fill="#60A5FA"/>
+      <circle cx="40" cy="54.5" r="2" fill="#1E40AF"/>
+      <circle cx="60" cy="54.5" r="2" fill="#1E40AF"/>
+      <circle cx="41.5" cy="53" r="0.8" fill="white"/>
+      <circle cx="61.5" cy="53" r="0.8" fill="white"/>
+      <path d="M 35 48 Q 40 46 45 48" stroke="#8B6914" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+      <path d="M 55 48 Q 60 46 65 48" stroke="#8B6914" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+      <ellipse cx="50" cy="60" rx="2" ry="1.5" fill="#C49080"/>
+      <path d="M 47 61 Q 50 63 53 61" stroke="#C49080" strokeWidth="1" fill="none"/>
+      <path d={expr.mouth} stroke="#B06060" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+      <path d="M 35 88 Q 30 92 32 98 Q 34 104 40 102 Q 46 100 44 94" stroke="#94A3B8" strokeWidth="2" fill="none"/>
+      <circle cx="44" cy="94" r="3" fill="#64748B"/>
+    </svg>
+  );
+};
+
+// ─── SCREENS ──────────────────────────────────────────────────────────────────
+
+const Splash = ({ onNext }) => {
+  useEffect(() => { const t = setTimeout(onNext, 2000); return () => clearTimeout(t); }, []);
+  return (
+    <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", height:"100%", background:"white", gap:20 }}>
+      <div style={{ width:80, height:80, borderRadius:20, background:"linear-gradient(135deg,#0EA5E9,#6366F1)", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 8px 32px rgba(14,165,233,0.35)" }}>
+        <span style={{ fontSize:36 }}>🦴</span>
+      </div>
+      <div style={{ textAlign:"center" }}>
+        <div style={{ fontFamily:"'Georgia',serif", fontSize:28, fontWeight:700, color:"#0F172A", letterSpacing:-0.5 }}>SpineFlow</div>
+        <div style={{ fontSize:12, color:"#64748B", marginTop:4, letterSpacing:1, textTransform:"uppercase" }}>Rehabilitación Digital</div>
+      </div>
+      <div style={{ width:40, height:3, borderRadius:2, background:"linear-gradient(90deg,#0EA5E9,#6366F1)", marginTop:8 }}/>
+      <div style={{ fontSize:11, color:"#94A3B8", marginTop:16, textAlign:"center", maxWidth:230 }}>Desarrollado por un equipo médico especializado en columna vertebral</div>
+    </div>
+  );
+};
+
+const RegionSelect = ({ onSelect }) => (
+  <div style={{ padding:"32px 20px 20px", height:"100%", overflowY:"auto" }}>
+    <div style={{ marginBottom:24 }}>
+      <AvatarSVG mood="encouraging" size={80}/>
+      <div style={{ fontFamily:"'Georgia',serif", fontSize:22, fontWeight:700, color:"#0F172A", marginTop:12, lineHeight:1.3 }}>¿Dónde sentís dolor?</div>
+      <div style={{ fontSize:14, color:"#64748B", marginTop:6 }}>Elegí la región de tu columna</div>
+    </div>
+    <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
+      {REGIONS.map(r => (
+        <button key={r.id} onClick={() => onSelect(r)} style={{ display:"flex", alignItems:"center", gap:16, padding:"20px 18px", border:`1.5px solid ${r.color}22`, borderRadius:18, background:"white", cursor:"pointer", boxShadow:"0 2px 14px rgba(0,0,0,0.06)", textAlign:"left", transition:"all 0.2s" }}
+          onMouseEnter={e => { e.currentTarget.style.background = r.light; e.currentTarget.style.transform="translateX(4px)"; }}
+          onMouseLeave={e => { e.currentTarget.style.background = "white"; e.currentTarget.style.transform="translateX(0)"; }}>
+          <div style={{ width:52, height:52, borderRadius:14, background:r.light, display:"flex", alignItems:"center", justifyContent:"center", fontSize:24, flexShrink:0 }}>{r.icon}</div>
+          <div style={{ flex:1 }}>
+            <div style={{ fontSize:17, fontWeight:700, color:"#0F172A" }}>{r.label}</div>
+            <div style={{ fontSize:12, color:"#64748B", marginTop:2 }}>{r.subtitle}</div>
+            <div style={{ fontSize:11, color:r.color, marginTop:4, fontWeight:600 }}>{r.pathologies.length} patologías</div>
+          </div>
+          <div style={{ color:r.color, fontSize:20 }}>›</div>
+        </button>
+      ))}
+    </div>
+    <div style={{ textAlign:"center", marginTop:24, fontSize:11, color:"#94A3B8", paddingBottom:20 }}>🔒 Tus datos son privados y seguros</div>
+  </div>
+);
+
+const PathologySelect = ({ region, onSelect, onBack }) => (
+  <div style={{ height:"100%", overflowY:"auto" }}>
+    <div style={{ padding:"24px 20px 20px", background:`linear-gradient(135deg, ${region.color}18, white)` }}>
+      <button onClick={onBack} style={{ background:"none", border:"none", fontSize:22, cursor:"pointer", color:"#64748B", padding:0, marginBottom:8 }}>‹</button>
+      <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+        <div style={{ width:48, height:48, borderRadius:14, background:region.light, display:"flex", alignItems:"center", justifyContent:"center", fontSize:24 }}>{region.icon}</div>
+        <div>
+          <div style={{ fontFamily:"'Georgia',serif", fontSize:20, fontWeight:700, color:"#0F172A" }}>Región {region.label}</div>
+          <div style={{ fontSize:12, color:"#64748B" }}>Elegí tu patología específica</div>
+        </div>
       </div>
     </div>
-  </nav>
-
-  <div class="container">
-    <section class="hero">
-      <div>
-        <span class="badge">Listo para publicar, vender y escalar</span>
-        <h1>Convertí tu experiencia clínica en una web app premium de rehabilitación con rutas por patología, rutinas por etapa y diseño tipo AVA</h1>
-        <p class="sub">SpineFlow ya viene armado para mostrar valor desde la home, captar pacientes, vender programas digitales y escalar a seguimiento premium. Tenés módulos por patología, subpáginas por rutina, copy clínico y una estructura estática compatible con Vercel sin build ni dependencias.</p>
-        <div class="ctaRow">
-          <a class="btn" href="#catalogo">Ver módulos listos</a>
-          <a class="btn secondary" href="pages/postoperatorio-artrodesis-lumbar.html">Ver postoperatorio</a>
-          <a class="btn secondary" href="#planes">Ver planes de venta</a>
-        </div>
-        <div class="heroStats">
-          <div class="stat"><b>8</b><span class="muted">módulos monetizables</span></div>
-          <div class="stat"><b>29</b><span class="muted">subpáginas reales</span></div>
-          <div class="stat"><b>3</b><span class="muted">niveles de ticket</span></div>
-          <div class="stat"><b>Vercel</b><span class="muted">deploy inmediato</span></div>
-        </div>
-        <div class="sales-band">
-          <div class="sales-pill"><strong>Captación</strong><span>Home clara para explicar, filtrar y llevar a un CTA.</span></div>
-          <div class="sales-pill"><strong>Conversión</strong><span>Planes Starter, Premium, Pro y Signature ya maquetados.</span></div>
-          <div class="sales-pill"><strong>Escalado</strong><span>Podés sumar pagos, login real y analytics cuando quieras.</span></div>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="avaCard">
-          <div class="avaLabel">Guía visual</div>
-          <div class="avaTitle">Valen · SpineFlow</div>
-          <img src="assets/images/valen.png" alt="Valen" />
-          <p class="avaDesc">El proyecto toma la estética premium del archivo base que subiste y la transforma en una estructura lista para comercializar programas por patología y etapas.</p>
-          <div class="avaHook">Ideal para lanzar una primera versión en Vercel hoy y luego conectar Stripe, Mercado Pago, Supabase o Firebase.</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-card">
-      <div class="kpiRow">
-        <div class="kpi"><span>Columna</span><b>5 módulos</b></div>
-        <div class="kpi"><span>Especiales</span><b>3 módulos</b></div>
-        <div class="kpi"><span>Rutas premium</span><b>Postoperatorio + Espalda de Acero</b></div>
-        <div class="kpi"><span>Formato</span><b>AVA-like multiarchivo</b></div>
-        <div class="kpi"><span>Publicación</span><b>Static deploy</b></div>
-      </div>
-    </section>
-
-    <section id="mapa">
-      <h2>Mapa corporal interactivo</h2>
-      <div class="map-wrap">
-        <div class="map-card">
-          <div class="badge">Táctil / clickeable</div>
-          <p class="map-help">Tocá una zona del cuerpo para ver los módulos vinculados. Esto funciona como entrada rápida tipo atlas anatómico premium.</p>
-          <div class="map-panels" style="margin-top:16px">
-            <svg class="body-svg" viewBox="0 0 260 520" aria-label="Vista frontal">
-              <circle cx="130" cy="46" r="28" class="zone" data-region="cervical"></circle>
-              <rect x="100" y="82" width="60" height="28" rx="12" class="zone" data-region="cervical"></rect>
-              <rect x="68" y="112" width="46" height="50" rx="16" class="zone" data-region="shoulder"></rect>
-              <rect x="146" y="112" width="46" height="50" rx="16" class="zone" data-region="shoulder"></rect>
-              <rect x="94" y="112" width="72" height="96" rx="18" class="zone" data-region="lumbar"></rect>
-              <rect x="92" y="210" width="76" height="52" rx="18" class="zone" data-region="hip"></rect>
-              <rect x="88" y="264" width="34" height="86" rx="16" class="zone" data-region="knee"></rect>
-              <rect x="138" y="264" width="34" height="86" rx="16" class="zone" data-region="knee"></rect>
-              <rect x="82" y="354" width="28" height="86" rx="14" class="zone" data-region="ankle"></rect>
-              <rect x="150" y="354" width="28" height="86" rx="14" class="zone" data-region="ankle"></rect>
-              <rect x="30" y="170" width="28" height="92" rx="14" class="zone" data-region="elbow"></rect>
-              <rect x="202" y="170" width="28" height="92" rx="14" class="zone" data-region="elbow"></rect>
-              <rect x="18" y="266" width="28" height="92" rx="14" class="zone" data-region="wrist"></rect>
-              <rect x="214" y="266" width="28" height="92" rx="14" class="zone" data-region="wrist"></rect>
-            </svg>
-            <svg class="body-svg" viewBox="0 0 260 520" aria-label="Vista posterior">
-              <circle cx="130" cy="46" r="28" class="zone" data-region="cervical"></circle>
-              <rect x="100" y="82" width="60" height="28" rx="12" class="zone" data-region="cervical"></rect>
-              <rect x="68" y="112" width="46" height="50" rx="16" class="zone" data-region="shoulder"></rect>
-              <rect x="146" y="112" width="46" height="50" rx="16" class="zone" data-region="shoulder"></rect>
-              <rect x="94" y="112" width="72" height="96" rx="18" class="zone" data-region="lumbar"></rect>
-              <rect x="92" y="210" width="76" height="52" rx="18" class="zone" data-region="hip"></rect>
-              <rect x="88" y="264" width="34" height="86" rx="16" class="zone" data-region="knee"></rect>
-              <rect x="138" y="264" width="34" height="86" rx="16" class="zone" data-region="knee"></rect>
-              <rect x="82" y="354" width="28" height="86" rx="14" class="zone" data-region="ankle"></rect>
-              <rect x="150" y="354" width="28" height="86" rx="14" class="zone" data-region="ankle"></rect>
-              <rect x="30" y="170" width="28" height="92" rx="14" class="zone" data-region="elbow"></rect>
-              <rect x="202" y="170" width="28" height="92" rx="14" class="zone" data-region="elbow"></rect>
-              <rect x="18" y="266" width="28" height="92" rx="14" class="zone" data-region="wrist"></rect>
-              <rect x="214" y="266" width="28" height="92" rx="14" class="zone" data-region="wrist"></rect>
-            </svg>
+    <div style={{ padding:"18px 20px", display:"flex", flexDirection:"column", gap:12 }}>
+      {region.pathologies.map((p, i) => (
+        <button key={p.id} onClick={() => onSelect({ ...p, color:region.color, light:region.light, icon:region.icon, region:region.label })} style={{ display:"flex", alignItems:"center", gap:14, padding:"16px", border:"1.5px solid #F1F5F9", borderRadius:16, background:"white", cursor:"pointer", boxShadow:"0 1px 10px rgba(0,0,0,0.05)", textAlign:"left", transition:"all 0.2s" }}
+          onMouseEnter={e => (e.currentTarget.style.borderColor = region.color+"44")}
+          onMouseLeave={e => (e.currentTarget.style.borderColor = "#F1F5F9")}>
+          <div style={{ width:36, height:36, borderRadius:10, background:region.light, display:"flex", alignItems:"center", justifyContent:"center", fontSize:14, fontWeight:700, color:region.color, flexShrink:0 }}>{i+1}</div>
+          <div style={{ flex:1 }}>
+            <div style={{ fontSize:14, fontWeight:600, color:"#0F172A", lineHeight:1.3 }}>{p.title}</div>
+            <div style={{ fontSize:12, color:"#94A3B8", marginTop:3 }}>{p.desc}</div>
           </div>
-        </div>
-        <div class="map-card">
-          <div class="badge">Módulos relacionados</div>
-          <h3 style="margin-top:12px">Resultados por zona</h3>
-          <p class="map-help">Seleccioná una zona para abrir el módulo correcto y empujar al paciente al programa indicado.</p>
-          <div id="map-results" class="map-results"><div class="map-placeholder">← Tocá una zona del cuerpo</div></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="catalogo">
-      <h2>Catálogo clínico</h2>
-      <div class="toolbar">
-        <input id="search" type="text" placeholder="Buscar patología o programa..." />
-        <select id="segmentFilter">
-          <option value="">Todos los segmentos</option>
-          <option value="Columna">Columna</option>
-          <option value="Cervical">Cervical</option>
-          <option value="Postoperatorio">Postoperatorio</option>
-          <option value="Programa especial">Programa especial</option>
-        </select>
-        <select id="goalFilter">
-          <option value="">Todos los objetivos</option>
-          <option value="Dolor">Dolor</option>
-          <option value="Movilidad">Movilidad</option>
-          <option value="Fuerza">Fuerza</option>
-          <option value="Estabilidad">Estabilidad</option>
-          <option value="Seguridad">Seguridad</option>
-        </select>
-        <select id="planFilter">
-          <option value="">Todos los planes</option>
-          <option value="Starter">Starter</option>
-          <option value="Premium">Premium</option>
-          <option value="Pro">Pro</option>
-        </select>
-      </div>
-      <div id="cards" class="grid" style="margin-top:18px"></div>
-    </section>
-
-    <section id="planes">
-      <h2>Planes para vender desde el día 1</h2>
-      <div class="pricing">
-        <div class="plan">
-          <h3>Starter</h3><p class="muted">Entrada para captar volumen</p>
-          <div class="price">US$19</div>
-          <ul class="list"><li>1 módulo completo</li><li>Rutina base</li><li>Ideal para lead magnet pago</li><li>Perfecto para prueba inicial</li></ul>
-        </div>
-        <div class="plan featured">
-          <h3>Premium</h3><p class="muted">Tu core product</p>
-          <div class="price">US$49</div>
-          <ul class="list"><li>Programas 21–30 días</li><li>Más subpáginas y progresión</li><li>Upsell natural a consulta</li><li>Excelente relación valor / ticket</li></ul>
-        </div>
-        <div class="plan">
-          <h3>Pro</h3><p class="muted">Ticket más alto</p>
-          <div class="price">US$119</div>
-          <ul class="list"><li>Programas largos</li><li>Postoperatorio</li><li>Mayor seguimiento</li><li>Más retención del paciente</li></ul>
-        </div>
-        <div class="plan">
-          <h3>Signature</h3><p class="muted">Servicio premium</p>
-          <div class="price">US$249</div>
-          <ul class="list"><li>Ruta personalizada</li><li>Consulta + protocolo</li><li>Adaptaciones periódicas</li><li>Ideal para posicionamiento alto</li></ul>
-        </div>
-      </div>
-      <div class="note">La estructura comercial ya está maquetada. Solo falta conectar tu medio de pago, el login real y el seguimiento que decidas ofrecer.</div>
-    </section>
-
-    <section class="section-card">
-      <div class="cta-strip">
-        <div class="cta-panel">
-          <span class="badge">Lanzamiento rápido</span>
-          <h2>Publicalo en Vercel hoy y seguí editando mañana</h2>
-          <p>No necesitás build ni dependencias. Este proyecto es HTML + CSS + JS estático, así que Vercel lo despliega directo. Podés lanzar una versión comercial ya mismo y luego sumar pagos, analytics y automatizaciones.</p>
-          <div class="ctaRow" style="margin-top:14px">
-            <a class="btn" href="login.html">Ver acceso demo</a>
-            <a class="btn secondary" href="pages/postoperatorio-artrodesis-lumbar.html">Ver módulo estrella</a>
-          </div>
-        </div>
-        <div class="cta-panel">
-          <h3>Checklist Vercel</h3>
-          <div class="vercel-box">
-            1. Subí la carpeta o el zip.<br>
-            2. Elegí <code>Other / Static</code>.<br>
-            3. Dejá vacío <code>Build Command</code>.<br>
-            4. Dejá vacío <code>Output Directory</code>.<br>
-            5. Deploy.
-          </div>
-          <div class="price-box">
-            <span class="price-chip">Static deploy</span>
-            <span class="price-chip">Clean URLs</span>
-            <span class="price-chip">Assets cacheados</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-card">
-      <h2>Módulos incluidos</h2>
-      <div class="module-list">
-        <a class="module-link" href="pages/cervicalgia.html"><strong>Cervicalgia</strong><div class="mini-note">Programa para dolor cervical mecánico, rigidez y sobrecarga postural, con foco en control profundo cervical, movilidad y escápula.</div></a>
-        <a class="module-link" href="pages/lumbalgia.html"><strong>Lumbalgia</strong><div class="mini-note">Ruta lumbar activa con progresión por tolerancia: movilidad, estabilidad del core y fuerza funcional sin depender del reposo.</div></a>
-        <a class="module-link" href="pages/hernia-de-disco.html"><strong>Hernia de disco</strong><div class="mini-note">Bloque lumbar con lógica de centralización del dolor, control del tronco y progresión segura hacia fuerza funcional.</div></a>
-        <a class="module-link" href="pages/ciatica.html"><strong>Ciática</strong><div class="mini-note">Ruta orientada a bajar irritación neural, mejorar marcha y recuperar movimiento sin reactivar la pierna dolorosa.</div></a>
-        <a class="module-link" href="pages/escoliosis.html"><strong>Escoliosis</strong><div class="mini-note">Módulo ordenado de rutina inicial a avanzada final, con énfasis en control postural, elongación y fuerza funcional.</div></a>
-        <a class="module-link" href="pages/desfiladero-toracico.html"><strong>Síndrome del desfiladero torácico</strong><div class="mini-note">Módulo educativo y terapéutico centrado en movilidad neural, movilidad cervical/torácica, postura y control escapular.</div></a>
-        <a class="module-link" href="pages/mayores-de-70.html"><strong>Mayores de 70</strong><div class="mini-note">Programa especial para personas mayores, con rutinas sentado, 30 y 60 minutos, usando lenguaje simple y ejercicios adaptados.</div></a>
-        <a class="module-link" href="pages/postoperatorio-artrodesis-lumbar.html"><strong>Si te operaron de la columna, hacé esto</strong><div class="mini-note">Protocolo paciente‑amigable para artrodesis lumbar: fase protectora, transición a lumbar suave y arranque posterior de Espalda de Acero.</div></a>
-      </div>
-    </section>
-
-    <div class="footer">SpineFlow · reconstruido sobre la base visual premium del archivo cargado por el usuario y preparado para Vercel</div>
+          <div style={{ fontSize:18, color:region.color }}>›</div>
+        </button>
+      ))}
+    </div>
   </div>
+);
 
-  <script src="assets/data.js"></script>
-  <script src="assets/app.js"></script>
+const PlanScreen = ({ pathology, isPro, onStartExercise, onPaywall, onBack }) => {
+  const free = pathology.ex.filter(id => isFree(pathology, id));
+  const pro = pathology.ex.filter(id => !isFree(pathology, id));
+  return (
+    <div style={{ height:"100%", overflowY:"auto" }}>
+      <div style={{ padding:"24px 20px 20px", background:`linear-gradient(135deg, ${pathology.color}18, white)`, borderBottom:"1px solid #F1F5F9" }}>
+        <button onClick={onBack} style={{ background:"none", border:"none", fontSize:22, cursor:"pointer", color:"#64748B", padding:0, marginBottom:8 }}>‹</button>
+        <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+          <div style={{ width:48, height:48, borderRadius:14, background:pathology.light, display:"flex", alignItems:"center", justifyContent:"center", fontSize:24 }}>{pathology.icon}</div>
+          <div>
+            <div style={{ fontFamily:"'Georgia',serif", fontSize:17, fontWeight:700, color:"#0F172A", lineHeight:1.2 }}>{pathology.title}</div>
+            <div style={{ fontSize:12, color:"#64748B" }}>{pathology.region} · {pathology.ex.length} ejercicios</div>
+          </div>
+        </div>
+      </div>
+
+      <div style={{ margin:"16px 20px 0", padding:"14px 16px", background:"#F0F9FF", borderRadius:14, display:"flex", gap:12, alignItems:"flex-start" }}>
+        <AvatarSVG size={52} mood="explaining"/>
+        <div>
+          <div style={{ fontSize:13, fontWeight:600, color:"#0369A1" }}>Tu fisioterapeuta dice:</div>
+          <div style={{ fontSize:12, color:"#0369A1", marginTop:4, lineHeight:1.5 }}>Empezá con los ejercicios de nivel Inicial de manera progresiva. Detené si sentís dolor agudo o síntomas que bajan por el brazo o la pierna.</div>
+        </div>
+      </div>
+
+      {pathology.note && (
+        <div style={{ margin:"12px 20px 0", padding:"12px 14px", background:"#FFF7ED", border:"1px solid #FED7AA", borderRadius:12 }}>
+          <div style={{ fontSize:12, color:"#92400E", lineHeight:1.5 }}>ℹ️ <strong>Nota clínica:</strong> {pathology.note}</div>
+        </div>
+      )}
+
+      <div style={{ padding:"20px 20px 0" }}>
+        <div style={{ fontSize:12, fontWeight:600, color:pathology.color, textTransform:"uppercase", letterSpacing:1, marginBottom:12 }}>✓ Incluido en versión gratuita</div>
+        {free.map((id, i) => <ExerciseCard key={id} ex={EXERCISES[id]} pathology={pathology} index={i} onStart={() => onStartExercise(id)} locked={false}/>)}
+      </div>
+
+      <div style={{ padding:"16px 20px 20px" }}>
+        <div style={{ fontSize:12, fontWeight:600, color:"#94A3B8", textTransform:"uppercase", letterSpacing:1, marginBottom:12 }}>🔒 Versión Premium</div>
+        {pro.map((id, i) => <ExerciseCard key={id} ex={EXERCISES[id]} pathology={pathology} index={free.length+i} onStart={() => isPro ? onStartExercise(id) : onPaywall()} locked={!isPro}/>)}
+      </div>
+
+      {!isPro && (
+        <div style={{ margin:"0 20px 28px" }}>
+          <button onClick={onPaywall} style={{ width:"100%", padding:"16px", background:`linear-gradient(135deg, ${pathology.color}, #6366F1)`, color:"white", border:"none", borderRadius:16, fontSize:15, fontWeight:700, cursor:"pointer", boxShadow:`0 4px 20px ${pathology.color}40` }}>🚀 Desbloquear plan completo</button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const ExerciseCard = ({ ex, pathology, index, onStart, locked }) => (
+  <div onClick={onStart} style={{ display:"flex", alignItems:"center", gap:14, padding:"14px 16px", marginBottom:10, border:"1.5px solid #F1F5F9", borderRadius:14, background:"white", cursor:"pointer", boxShadow:"0 1px 8px rgba(0,0,0,0.05)", opacity: locked ? 0.65 : 1 }}
+    onMouseEnter={e => !locked && (e.currentTarget.style.borderColor = pathology.color+"44")}
+    onMouseLeave={e => (e.currentTarget.style.borderColor = "#F1F5F9")}>
+    <div style={{ width:40, height:40, borderRadius:12, background: locked ? "#F8FAFC" : pathology.light, display:"flex", alignItems:"center", justifyContent:"center", fontSize:16, fontWeight:700, color: locked ? "#94A3B8" : pathology.color, flexShrink:0 }}>{locked ? "🔒" : (index+1)}</div>
+    <div style={{ flex:1 }}>
+      <div style={{ fontSize:14, fontWeight:600, color: locked ? "#94A3B8" : "#0F172A" }}>{ex.name}</div>
+      <div style={{ fontSize:11, color:"#94A3B8", marginTop:2 }}>{ex.reps} · {ex.level}</div>
+    </div>
+    <div style={{ fontSize:18, color: locked ? "#CBD5E1" : pathology.color }}>›</div>
+  </div>
+);
+
+const ExerciseSession = ({ exercise, pathology, exerciseIndex, totalExercises, onNext, onBack }) => {
+  const [step, setStep] = useState(0);
+  const [playing, setPlaying] = useState(false);
+  const [elapsed, setElapsed] = useState(0);
+  const intervalRef = useRef(null);
+  useEffect(() => {
+    if (playing) intervalRef.current = setInterval(() => setElapsed(e => e+1), 1000);
+    else clearInterval(intervalRef.current);
+    return () => clearInterval(intervalRef.current);
+  }, [playing]);
+  const fmt = s => `${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`;
+  return (
+    <div style={{ height:"100%", display:"flex", flexDirection:"column", background:"white" }}>
+      <div style={{ padding:"16px 20px 12px", display:"flex", alignItems:"center", gap:12, borderBottom:"1px solid #F1F5F9" }}>
+        <button onClick={onBack} style={{ background:"none", border:"none", fontSize:22, cursor:"pointer", color:"#64748B", padding:0 }}>‹</button>
+        <div style={{ flex:1 }}>
+          <div style={{ fontSize:11, color:"#94A3B8", textTransform:"uppercase", letterSpacing:1 }}>Ejercicio {exerciseIndex+1} de {totalExercises}</div>
+          <div style={{ fontSize:15, fontWeight:700, color:"#0F172A" }}>{exercise.name}</div>
+        </div>
+        <div style={{ padding:"4px 10px", background:pathology.light, borderRadius:20, fontSize:11, color:pathology.color, fontWeight:600 }}>{exercise.level}</div>
+      </div>
+      <div style={{ height:3, background:"#F1F5F9" }}>
+        <div style={{ height:"100%", width:`${((exerciseIndex+1)/totalExercises)*100}%`, background:`linear-gradient(90deg, ${pathology.color}, #6366F1)`, transition:"width 0.5s" }}/>
+      </div>
+      <div style={{ flex:1, overflowY:"auto", padding:"20px" }}>
+        <div style={{ display:"flex", justifyContent:"center", marginBottom:20 }}>
+          <div style={{ position:"relative" }}>
+            <div style={{ width:110, height:110, borderRadius:999, background:`linear-gradient(135deg, ${pathology.light}, #F0F9FF)`, display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 24px rgba(0,0,0,0.1)" }}>
+              <AvatarSVG size={96} mood={playing ? "encouraging" : "explaining"}/>
+            </div>
+            {playing && <div style={{ position:"absolute", bottom:2, right:2, width:22, height:22, borderRadius:"50%", background:"#10B981", border:"2px solid white", display:"flex", alignItems:"center", justifyContent:"center" }}><div style={{ width:6, height:6, borderRadius:"50%", background:"white", animation:"pulse 1s infinite" }}/></div>}
+          </div>
+        </div>
+        <div style={{ textAlign:"center", marginBottom:20 }}>
+          <div style={{ fontFamily:"monospace", fontSize:28, fontWeight:700, color:"#0F172A" }}>{fmt(elapsed)}</div>
+          <div style={{ fontSize:12, color:"#94A3B8" }}>{exercise.reps}</div>
+        </div>
+        <div style={{ marginBottom:18 }}>
+          <div style={{ fontSize:13, fontWeight:600, color:"#64748B", marginBottom:10, textTransform:"uppercase", letterSpacing:0.8 }}>Pasos del ejercicio</div>
+          {exercise.steps.map((s, i) => (
+            <div key={i} onClick={() => setStep(i)} style={{ display:"flex", gap:12, padding:"12px 14px", borderRadius:12, marginBottom:8, background: step===i ? pathology.light : "#F8FAFC", border:`1.5px solid ${step===i ? pathology.color+"44" : "transparent"}`, cursor:"pointer", transition:"all 0.2s" }}>
+              <div style={{ width:24, height:24, borderRadius:"50%", background: step===i ? pathology.color : "#E2E8F0", color: step===i ? "white" : "#94A3B8", display:"flex", alignItems:"center", justifyContent:"center", fontSize:11, fontWeight:700, flexShrink:0, marginTop:1 }}>{i+1}</div>
+              <div style={{ fontSize:13, color: step===i ? "#0F172A" : "#64748B", lineHeight:1.5 }}>{s}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ padding:"12px 14px", background:"#FFF7ED", border:"1px solid #FED7AA", borderRadius:12, marginBottom:20 }}>
+          <div style={{ fontSize:12, color:"#92400E" }}>⚠️ <strong>Precaución:</strong> {exercise.warning}</div>
+        </div>
+        <div style={{ padding:"10px 14px", background:"#F0F9FF", borderRadius:12 }}>
+          <div style={{ fontSize:11, color:"#0369A1", fontWeight:600 }}>💪 Músculos trabajados</div>
+          <div style={{ fontSize:12, color:"#0369A1", marginTop:4 }}>{exercise.muscles}</div>
+        </div>
+      </div>
+      <div style={{ padding:"16px 20px", borderTop:"1px solid #F1F5F9", display:"flex", gap:12 }}>
+        <button onClick={() => setPlaying(p => !p)} style={{ flex:1, padding:"14px", background: playing ? "#FEF3C7" : `linear-gradient(135deg, ${pathology.color}, #6366F1)`, color: playing ? "#92400E" : "white", border:"none", borderRadius:14, fontSize:15, fontWeight:700, cursor:"pointer", boxShadow: playing ? "none" : `0 4px 16px ${pathology.color}40` }}>{playing ? "⏸ Pausar" : "▶ Iniciar"}</button>
+        <button onClick={onNext} style={{ padding:"14px 20px", background:"#F1F5F9", color:"#64748B", border:"none", borderRadius:14, fontSize:14, fontWeight:600, cursor:"pointer" }}>Siguiente ›</button>
+      </div>
+    </div>
+  );
+};
+
+const Paywall = ({ onBack, onUnlock }) => {
+  const [selected, setSelected] = useState("annual");
+  const plans = [
+    { id:"annual", label:"Plan Anual", price:"$4.99", period:"/mes", total:"Facturado $59.99/año", save:"Ahorrá 42%" },
+    { id:"monthly", label:"Plan Mensual", price:"$8.99", period:"/mes", total:"Facturado mensualmente", save:null }
+  ];
+  return (
+    <div style={{ height:"100%", overflowY:"auto", background:"white" }}>
+      <div style={{ padding:"24px 20px 20px", background:"linear-gradient(135deg, #0F172A, #1E3A5F)", color:"white", textAlign:"center" }}>
+        <button onClick={onBack} style={{ background:"none", border:"none", color:"rgba(255,255,255,0.6)", fontSize:22, cursor:"pointer", float:"left", marginTop:-4 }}>‹</button>
+        <AvatarSVG size={70} mood="encouraging"/>
+        <div style={{ fontFamily:"'Georgia',serif", fontSize:22, fontWeight:700, marginTop:8 }}>SpineFlow Premium</div>
+        <div style={{ fontSize:13, color:"rgba(255,255,255,0.7)", marginTop:4 }}>Acceso completo a tu clínica digital</div>
+      </div>
+      <div style={{ padding:"20px", background:"#F8FAFC", borderBottom:"1px solid #E2E8F0" }}>
+        {["✅ Las 12 patologías completas de columna","✅ +50 ejercicios guiados paso a paso","✅ Seguimiento diario de tu progreso","✅ Rutinas personalizadas por patología","✅ Sin límites de sesiones","✅ Contenido basado en evidencia clínica"].map((b,i) => <div key={i} style={{ fontSize:13, color:"#0F172A", marginBottom:8, lineHeight:1.4 }}>{b}</div>)}
+      </div>
+      <div style={{ padding:"20px" }}>
+        <div style={{ fontSize:14, fontWeight:700, color:"#0F172A", marginBottom:14 }}>Elegí tu plan:</div>
+        {plans.map(p => (
+          <div key={p.id} onClick={() => setSelected(p.id)} style={{ padding:"16px", border:`2px solid ${selected===p.id ? "#0EA5E9" : "#E2E8F0"}`, borderRadius:16, marginBottom:12, cursor:"pointer", background: selected===p.id ? "#F0F9FF" : "white", transition:"all 0.2s", position:"relative" }}>
+            {p.save && <div style={{ position:"absolute", top:-10, right:14, background:"#10B981", color:"white", fontSize:11, fontWeight:700, padding:"2px 10px", borderRadius:20 }}>{p.save}</div>}
+            <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+              <div>
+                <div style={{ fontSize:14, fontWeight:700, color:"#0F172A" }}>{p.label}</div>
+                <div style={{ fontSize:11, color:"#94A3B8", marginTop:2 }}>{p.total}</div>
+              </div>
+              <div style={{ textAlign:"right" }}>
+                <span style={{ fontSize:22, fontWeight:800, color:selected===p.id ? "#0EA5E9" : "#0F172A" }}>{p.price}</span>
+                <span style={{ fontSize:12, color:"#94A3B8" }}>{p.period}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+        <button onClick={onUnlock} style={{ width:"100%", padding:"16px", background:"linear-gradient(135deg, #0EA5E9, #6366F1)", color:"white", border:"none", borderRadius:16, fontSize:16, fontWeight:700, cursor:"pointer", boxShadow:"0 4px 20px rgba(14,165,233,0.4)", marginTop:4 }}>Comenzar mi rehabilitación →</button>
+        <div style={{ textAlign:"center", marginTop:12, fontSize:11, color:"#94A3B8" }}>7 días de prueba gratuita · Cancelá cuando quieras</div>
+        <div style={{ textAlign:"center", marginTop:20, fontSize:11, color:"#94A3B8", lineHeight:1.6, padding:"0 10px" }}>Desarrollado por un equipo médico especializado en columna vertebral.<br/>SpineFlow no reemplaza la consulta médica profesional.</div>
+      </div>
+    </div>
+  );
+};
+
+const Progress = ({ onBack }) => {
+  const days = ["L","M","X","J","V","S","D"];
+  const data = [3,5,2,7,4,6,1];
+  return (
+    <div style={{ height:"100%", overflowY:"auto", padding:"24px 20px" }}>
+      <button onClick={onBack} style={{ background:"none", border:"none", fontSize:22, cursor:"pointer", color:"#64748B", padding:0, marginBottom:16 }}>‹</button>
+      <div style={{ fontFamily:"'Georgia',serif", fontSize:22, fontWeight:700, color:"#0F172A", marginBottom:4 }}>Mi progreso</div>
+      <div style={{ fontSize:13, color:"#64748B", marginBottom:24 }}>Esta semana en SpineFlow</div>
+      <div style={{ background:"white", borderRadius:20, padding:"20px", boxShadow:"0 2px 20px rgba(0,0,0,0.06)", marginBottom:20 }}>
+        <div style={{ fontSize:13, fontWeight:600, color:"#0F172A", marginBottom:16 }}>Actividad semanal</div>
+        <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"space-between", height:80, gap:6 }}>
+          {days.map((d,i) => (
+            <div key={d} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:6 }}>
+              <div style={{ width:"100%", borderRadius:6, background:"linear-gradient(180deg, #0EA5E9, #6366F1)", height:`${(data[i]/7)*70}px`, transition:"height 0.5s" }}/>
+              <div style={{ fontSize:11, color:"#94A3B8" }}>{d}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12, marginBottom:20 }}>
+        {[{l:"Sesiones completadas",v:"12",i:"✅"},{l:"Días consecutivos",v:"5",i:"🔥"},{l:"Minutos activos",v:"148",i:"⏱"},{l:"Ejercicios totales",v:"36",i:"💪"}].map(s => (
+          <div key={s.l} style={{ background:"white", borderRadius:16, padding:"16px", boxShadow:"0 2px 12px rgba(0,0,0,0.06)", textAlign:"center" }}>
+            <div style={{ fontSize:24 }}>{s.i}</div>
+            <div style={{ fontSize:22, fontWeight:800, color:"#0F172A", marginTop:4 }}>{s.v}</div>
+            <div style={{ fontSize:11, color:"#94A3B8", marginTop:2 }}>{s.l}</div>
+          </div>
+        ))}
+      </div>
+      <div style={{ background:"white", borderRadius:20, padding:"20px", boxShadow:"0 2px 20px rgba(0,0,0,0.06)" }}>
+        <div style={{ fontSize:13, fontWeight:600, color:"#0F172A", marginBottom:14 }}>📅 Rutina de hoy</div>
+        {[REGIONS[0].pathologies[2], REGIONS[2].pathologies[1], REGIONS[1].pathologies[0]].map((p, i) => (
+          <div key={p.id} style={{ display:"flex", alignItems:"center", gap:12, padding:"10px 0", borderBottom: i<2 ? "1px solid #F1F5F9" : "none" }}>
+            <div style={{ width:36, height:36, borderRadius:10, background:"#F0F9FF", display:"flex", alignItems:"center", justifyContent:"center", fontSize:16, fontWeight:700, color:"#0EA5E9" }}>{p.title[0]}</div>
+            <div style={{ flex:1 }}>
+              <div style={{ fontSize:13, fontWeight:600, color:"#0F172A" }}>{p.title}</div>
+              <div style={{ fontSize:11, color:"#94A3B8" }}>{p.ex.length} ejercicios · 15 min</div>
+            </div>
+            <div style={{ width:24, height:24, borderRadius:"50%", background:"#DCFCE7", display:"flex", alignItems:"center", justifyContent:"center", fontSize:12 }}>✓</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const Home = ({ pathology, isPro, onChange, onPlan, onProgress, onPaywall }) => (
+  <div style={{ height:"100%", overflowY:"auto" }}>
+    <div style={{ padding:"28px 20px 20px", background:`linear-gradient(135deg, ${pathology.color}18, white)` }}>
+      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start" }}>
+        <div>
+          <div style={{ fontSize:12, color:"#94A3B8", textTransform:"uppercase", letterSpacing:1 }}>Buenos días</div>
+          <div style={{ fontFamily:"'Georgia',serif", fontSize:22, fontWeight:700, color:"#0F172A", marginTop:2 }}>SpineFlow</div>
+        </div>
+        {isPro ? <div style={{ padding:"4px 12px", background:"linear-gradient(90deg,#0EA5E9,#6366F1)", color:"white", borderRadius:20, fontSize:11, fontWeight:700, height:"fit-content" }}>✨ PREMIUM</div>
+          : <button onClick={onPaywall} style={{ padding:"4px 12px", background:"#F1F5F9", color:"#64748B", border:"none", borderRadius:20, fontSize:11, fontWeight:600, cursor:"pointer" }}>Ir a Premium</button>}
+      </div>
+    </div>
+    <div style={{ padding:"0 20px" }}>
+      <div style={{ background:`linear-gradient(135deg, ${pathology.color}, #6366F1)`, borderRadius:20, padding:"20px", color:"white", marginBottom:16, boxShadow:`0 6px 24px ${pathology.color}40`, position:"relative", overflow:"hidden" }}>
+        <div style={{ position:"absolute", right:-10, top:-10, opacity:0.15, fontSize:80 }}>{pathology.icon}</div>
+        <div style={{ fontSize:12, opacity:0.8, textTransform:"uppercase", letterSpacing:1 }}>Programa activo · {pathology.region}</div>
+        <div style={{ fontSize:18, fontWeight:700, marginTop:4, lineHeight:1.2 }}>{pathology.title}</div>
+        <div style={{ fontSize:13, opacity:0.85, marginTop:4 }}>{pathology.ex.length} ejercicios · Plan personalizado</div>
+        <div style={{ display:"flex", gap:10, marginTop:16 }}>
+          <button onClick={onPlan} style={{ flex:1, padding:"12px", background:"white", color:pathology.color, border:"none", borderRadius:12, fontSize:13, fontWeight:700, cursor:"pointer" }}>Ver plan →</button>
+          <button onClick={onChange} style={{ padding:"12px 14px", background:"rgba(255,255,255,0.2)", color:"white", border:"none", borderRadius:12, fontSize:13, fontWeight:600, cursor:"pointer" }}>Cambiar</button>
+        </div>
+      </div>
+      <div style={{ background:"white", borderRadius:20, padding:"16px", boxShadow:"0 2px 20px rgba(0,0,0,0.06)", marginBottom:16, display:"flex", gap:14, alignItems:"center" }}>
+        <AvatarSVG size={64} mood="encouraging"/>
+        <div>
+          <div style={{ fontSize:13, fontWeight:700, color:"#0F172A" }}>Dra. Ana García</div>
+          <div style={{ fontSize:11, color:"#64748B", marginTop:2 }}>Fisioterapeuta especialista en columna</div>
+          <div style={{ fontSize:12, color:"#0EA5E9", marginTop:6, lineHeight:1.4 }}>¡Hoy es un buen día para tu rehabilitación! 💙</div>
+        </div>
+      </div>
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12, marginBottom:16 }}>
+        <button onClick={onPlan} style={{ padding:"16px", background:"white", border:"none", borderRadius:16, boxShadow:"0 2px 12px rgba(0,0,0,0.06)", cursor:"pointer", textAlign:"left" }}>
+          <div style={{ fontSize:22, marginBottom:8 }}>🏃</div>
+          <div style={{ fontSize:13, fontWeight:700, color:"#0F172A" }}>Iniciar sesión</div>
+          <div style={{ fontSize:11, color:"#94A3B8", marginTop:2 }}>Plan de hoy</div>
+        </button>
+        <button onClick={onProgress} style={{ padding:"16px", background:"white", border:"none", borderRadius:16, boxShadow:"0 2px 12px rgba(0,0,0,0.06)", cursor:"pointer", textAlign:"left" }}>
+          <div style={{ fontSize:22, marginBottom:8 }}>📊</div>
+          <div style={{ fontSize:13, fontWeight:700, color:"#0F172A" }}>Mi progreso</div>
+          <div style={{ fontSize:11, color:"#94A3B8", marginTop:2 }}>Ver estadísticas</div>
+        </button>
+      </div>
+      <div style={{ padding:"14px 16px", background:"#F0F9FF", borderRadius:16, display:"flex", gap:10, alignItems:"center", marginBottom:24 }}>
+        <div style={{ fontSize:24 }}>🏥</div>
+        <div style={{ fontSize:11, color:"#0369A1", lineHeight:1.5, fontWeight:500 }}>Desarrollado por un equipo médico especializado en columna vertebral. Ejercicios seguros, progresivos y basados en evidencia clínica.</div>
+      </div>
+    </div>
+  </div>
+);
+
+const NavBar = ({ active, onHome, onPlan, onProgress }) => (
+  <div style={{ display:"flex", borderTop:"1px solid #F1F5F9", background:"white" }}>
+    {[{id:"home",icon:"🏠",label:"Inicio",fn:onHome},{id:"plan",icon:"📋",label:"Plan",fn:onPlan},{id:"progress",icon:"📊",label:"Progreso",fn:onProgress}].map(n => (
+      <button key={n.id} onClick={n.fn} style={{ flex:1, padding:"12px 8px 10px", background:"none", border:"none", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", gap:3 }}>
+        <span style={{ fontSize:20 }}>{n.icon}</span>
+        <span style={{ fontSize:10, color: active===n.id ? "#0EA5E9" : "#94A3B8", fontWeight: active===n.id ? 700 : 400 }}>{n.label}</span>
+        {active===n.id && <div style={{ width:16, height:2, borderRadius:1, background:"#0EA5E9" }}/>}
+      </button>
+    ))}
+  </div>
+);
+
+// ─── APP ──────────────────────────────────────────────────────────────────────
+
+function SpineFlow() {
+  const [screen, setScreen] = useState("splash");
+  const [region, setRegion] = useState(null);
+  const [pathology, setPathology] = useState(null);
+  const [activeExId, setActiveExId] = useState(null);
+  const [isPro, setIsPro] = useState(false);
+  const [navActive, setNavActive] = useState("home");
+
+  const goHome = () => { setScreen("home"); setNavActive("home"); };
+  const goPlan = () => { setScreen("plan"); setNavActive("plan"); };
+  const goProgress = () => { setScreen("progress"); setNavActive("progress"); };
+
+  const startExercise = (id) => { setActiveExId(id); setScreen("exercise"); };
+
+  const sessionList = pathology ? (isPro ? pathology.ex : pathology.ex.filter(id => isFree(pathology, id))) : [];
+  const activeIdx = sessionList.indexOf(activeExId);
+
+  const nextExercise = () => {
+    if (activeIdx < sessionList.length - 1) setActiveExId(sessionList[activeIdx+1]);
+    else goPlan();
+  };
+
+  return (
+    <div style={{ maxWidth:390, margin:"0 auto", height:"100vh", display:"flex", flexDirection:"column", fontFamily:"'Helvetica Neue', Arial, sans-serif", background:"#F8FAFC", position:"relative", overflow:"hidden" }}>
+      <style>{`* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; } @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} } button { -webkit-appearance: none; } ::-webkit-scrollbar { display: none; }`}</style>
+      <div style={{ flex:1, overflowY:"auto", background:"white" }}>
+        {screen === "splash" && <Splash onNext={() => setScreen("region")}/>}
+        {screen === "region" && <RegionSelect onSelect={r => { setRegion(r); setScreen("pathology"); }}/>}
+        {screen === "pathology" && region && <PathologySelect region={region} onSelect={p => { setPathology(p); goHome(); }} onBack={() => setScreen("region")}/>}
+        {screen === "home" && pathology && <Home pathology={pathology} isPro={isPro} onChange={() => setScreen("region")} onPlan={goPlan} onProgress={goProgress} onPaywall={() => setScreen("paywall")}/>}
+        {screen === "plan" && pathology && <PlanScreen pathology={pathology} isPro={isPro} onStartExercise={startExercise} onPaywall={() => setScreen("paywall")} onBack={goHome}/>}
+        {screen === "exercise" && activeExId && pathology && <ExerciseSession exercise={EXERCISES[activeExId]} pathology={pathology} exerciseIndex={activeIdx < 0 ? 0 : activeIdx} totalExercises={sessionList.length} onNext={nextExercise} onBack={goPlan}/>}
+        {screen === "progress" && <Progress onBack={goHome}/>}
+        {screen === "paywall" && <Paywall onBack={goHome} onUnlock={() => { setIsPro(true); goHome(); }}/>}
+      </div>
+      {["home","plan","progress"].includes(screen) && pathology && <NavBar active={navActive} onHome={goHome} onPlan={goPlan} onProgress={goProgress}/>}
+    </div>
+  );
+}
+
+
+ReactDOM.createRoot(document.getElementById("root")).render(<SpineFlow />);
+</script>
 </body>
 </html>
