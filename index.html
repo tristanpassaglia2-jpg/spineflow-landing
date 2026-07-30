@@ -29,6 +29,7 @@
 
 const EXERCISES = {
   c1: {
+    pose: "sentado_silla",
     name: "Retracción cervical",
     level: "Inicial",
     reps: "10 repeticiones",
@@ -37,6 +38,7 @@ const EXERCISES = {
     muscles: "Flexores profundos del cuello"
   },
   c2: {
+    pose: "sentado_silla",
     name: "Estiramiento lateral del cuello",
     level: "Inicial",
     reps: "30 seg c/lado",
@@ -45,6 +47,7 @@ const EXERCISES = {
     muscles: "Esternocleidomastoideo, escalenos"
   },
   c3: {
+    pose: "sentado_silla",
     name: "Rotación cervical activa",
     level: "Inicial",
     reps: "8 rep c/lado",
@@ -53,6 +56,7 @@ const EXERCISES = {
     muscles: "Musculatura rotadora cervical"
   },
   c4: {
+    pose: "sentado_silla",
     name: "Flexión-extensión cervical suave",
     level: "Inicial",
     reps: "10 repeticiones",
@@ -61,6 +65,7 @@ const EXERCISES = {
     muscles: "Flexores y extensores cervicales"
   },
   c5: {
+    pose: "sentado_silla",
     name: "Fortalecimiento isométrico anterior",
     level: "Intermedio",
     reps: "10 rep, 5 seg c/u",
@@ -69,6 +74,7 @@ const EXERCISES = {
     muscles: "Flexores profundos cervicales"
   },
   c6: {
+    pose: "sentado_silla",
     name: "Estiramiento del trapecio superior",
     level: "Inicial",
     reps: "30 seg c/lado",
@@ -77,6 +83,7 @@ const EXERCISES = {
     muscles: "Trapecio superior, elevador de la escápula"
   },
   c7: {
+    pose: "de_pie",
     name: "Movilización escapular en círculos",
     level: "Inicial",
     reps: "10 círculos c/dirección",
@@ -85,6 +92,7 @@ const EXERCISES = {
     muscles: "Trapecios, romboides, serratos"
   },
   c8: {
+    pose: "sentado_silla",
     name: "Chin tuck con banda elástica",
     level: "Avanzado",
     reps: "12 repeticiones",
@@ -93,6 +101,7 @@ const EXERCISES = {
     muscles: "Flexores profundos cervicales, suboccipitales"
   },
   l1: {
+    pose: "supino_rodilla",
     name: "Rodilla al pecho",
     level: "Inicial",
     reps: "10 rep c/pierna",
@@ -101,6 +110,7 @@ const EXERCISES = {
     muscles: "Glúteo mayor, piramidal, zona lumbar"
   },
   l2: {
+    pose: "puente",
     name: "Puente de glúteos",
     level: "Inicial",
     reps: "12 repeticiones",
@@ -109,6 +119,7 @@ const EXERCISES = {
     muscles: "Glúteo mayor, isquiotibiales, core"
   },
   l4: {
+    pose: "cuatro_apoyos",
     name: "Gato-camello (Cat-Cow)",
     level: "Inicial",
     reps: "10 ciclos",
@@ -117,6 +128,7 @@ const EXERCISES = {
     muscles: "Extensores lumbares, abdominales"
   },
   l6: {
+    pose: "supino_pierna",
     name: "Estiramiento de isquiotibiales en decúbito",
     level: "Inicial",
     reps: "30 seg c/pierna",
@@ -125,6 +137,7 @@ const EXERCISES = {
     muscles: "Isquiotibiales, zona posterior del muslo"
   },
   l7: {
+    pose: "supino_rotacion",
     name: "Rotación lumbar en decúbito",
     level: "Inicial",
     reps: "10 rep c/lado",
@@ -133,6 +146,7 @@ const EXERCISES = {
     muscles: "Rotadores lumbares, cuadrado lumbar"
   },
   s1: {
+    pose: "supino_figura4",
     name: "Estiramiento piriforme en decúbito",
     level: "Inicial",
     reps: "30 seg c/lado",
@@ -141,6 +155,7 @@ const EXERCISES = {
     muscles: "Piriforme, glúteo medio"
   },
   s2: {
+    pose: "sentado_silla_pierna",
     name: "Deslizamiento neural del nervio ciático",
     level: "Intermedio",
     reps: "10 rep c/pierna",
@@ -149,6 +164,7 @@ const EXERCISES = {
     muscles: "Nervio ciático, isquiotibiales"
   },
   s3: {
+    pose: "prono_cobra",
     name: "Extensiones lumbares (McKenzie)",
     level: "Intermedio",
     reps: "10 repeticiones",
@@ -157,6 +173,7 @@ const EXERCISES = {
     muscles: "Extensores lumbares, discos intervertebrales"
   },
   s4: {
+    pose: "supino_pierna",
     name: "Estiramiento isquiotibial suave",
     level: "Inicial",
     reps: "30 seg c/pierna",
@@ -165,6 +182,7 @@ const EXERCISES = {
     muscles: "Isquiotibiales, nervio ciático"
   },
   s5: {
+    pose: "decubito_lateral",
     name: "Fortalecimiento glúteo en decúbito lateral",
     level: "Inicial",
     reps: "15 rep c/lado",
@@ -173,6 +191,7 @@ const EXERCISES = {
     muscles: "Glúteo medio, glúteo menor"
   },
   s6: {
+    pose: "supino_9090",
     name: "Posición de descompresión 90-90",
     level: "Inicial",
     reps: "5-10 minutos",
@@ -181,6 +200,7 @@ const EXERCISES = {
     muscles: "Descompresión lumbar y sacroilíaca"
   },
   s7: {
+    pose: "de_pie",
     name: "Caminata controlada con postura",
     level: "Inicial",
     reps: "10-15 minutos",
@@ -189,6 +209,7 @@ const EXERCISES = {
     muscles: "Glúteos, core, cadena posterior"
   },
   s8: {
+    pose: "sentado_silla_figura4",
     name: "Estiramiento de cadera en figura 4 (silla)",
     level: "Inicial",
     reps: "45 seg c/lado",
@@ -197,6 +218,7 @@ const EXERCISES = {
     muscles: "Piriforme, glúteo mayor, rotadores externos"
   },
   k1: {
+    pose: "supino_neutro",
     name: "Activación del transverso abdominal",
     level: "Inicial",
     reps: "10 rep, 10 seg c/u",
@@ -205,6 +227,7 @@ const EXERCISES = {
     muscles: "Transverso abdominal (core profundo)"
   },
   k3: {
+    pose: "supino_deadbug",
     name: "Dead bug (insecto muerto)",
     level: "Intermedio",
     reps: "8 rep por lado",
@@ -213,6 +236,7 @@ const EXERCISES = {
     muscles: "Transverso, multífidos, oblicuos"
   },
   k4: {
+    pose: "cuatro_apoyos_extension",
     name: "Bird dog (perro pájaro)",
     level: "Intermedio",
     reps: "10 rep por lado",
@@ -221,6 +245,7 @@ const EXERCISES = {
     muscles: "Multífidos, glúteos, erectores de columna"
   },
   k5: {
+    pose: "plancha_lateral",
     name: "Plancha lateral sobre rodilla",
     level: "Intermedio",
     reps: "20 seg c/lado",
@@ -229,6 +254,7 @@ const EXERCISES = {
     muscles: "Oblicuo externo, cuadrado lumbar, glúteo medio"
   },
   k8: {
+    pose: "supino_neutro",
     name: "Respiración diafragmática con activación",
     level: "Inicial",
     reps: "10 respiraciones",
@@ -237,6 +263,7 @@ const EXERCISES = {
     muscles: "Diafragma, suelo pélvico, transverso"
   },
   p1: {
+    pose: "supino_tobillos",
     name: "Bombeo de tobillos en decúbito",
     level: "Inicial",
     reps: "20 repeticiones",
@@ -245,6 +272,7 @@ const EXERCISES = {
     muscles: "Gemelos, tibial anterior, circulación venosa"
   },
   p2: {
+    pose: "supino_respiracion",
     name: "Respiración profunda post-operatoria",
     level: "Inicial",
     reps: "10 respiraciones",
@@ -253,6 +281,7 @@ const EXERCISES = {
     muscles: "Diafragma, músculos respiratorios"
   },
   p3: {
+    pose: "supino_neutro",
     name: "Activación de cuádriceps en cama",
     level: "Inicial",
     reps: "15 rep c/pierna",
@@ -261,6 +290,7 @@ const EXERCISES = {
     muscles: "Cuádriceps"
   },
   p4: {
+    pose: "supino_rodilla",
     name: "Técnica para incorporarse de la cama",
     level: "Inicial",
     reps: "Técnica de movimiento",
@@ -269,6 +299,7 @@ const EXERCISES = {
     muscles: "Técnica de protección espinal"
   },
   p5: {
+    pose: "de_pie",
     name: "Marcha controlada en plano",
     level: "Inicial",
     reps: "5-10 minutos",
@@ -277,6 +308,7 @@ const EXERCISES = {
     muscles: "Cadena cinética completa, core"
   },
   p6: {
+    pose: "puente",
     name: "Puente de glúteos progresivo",
     level: "Intermedio",
     reps: "10 repeticiones",
@@ -285,6 +317,7 @@ const EXERCISES = {
     muscles: "Glúteos, isquiotibiales, core"
   },
   p7: {
+    pose: "sentado_silla_pierna",
     name: "Estiramiento neural suave en sedestación",
     level: "Intermedio",
     reps: "10 rep c/pierna",
@@ -293,6 +326,7 @@ const EXERCISES = {
     muscles: "Nervio ciático, isquiotibiales"
   },
   p8: {
+    pose: "de_pie",
     name: "Estabilización lumbar en bipedestación",
     level: "Avanzado",
     reps: "3 series de 30 seg",
@@ -301,6 +335,7 @@ const EXERCISES = {
     muscles: "Core completo, cadena posterior"
   },
   g2: {
+    pose: "sentado_silla",
     name: "Estiramiento de hombros y cuello",
     level: "Inicial",
     reps: "5 rep c/movimiento",
@@ -309,6 +344,7 @@ const EXERCISES = {
     muscles: "Trapecio, cuello, hombros"
   },
   g3: {
+    pose: "sentado_silla",
     name: "Extensión de espalda en silla",
     level: "Inicial",
     reps: "10 repeticiones",
@@ -317,6 +353,7 @@ const EXERCISES = {
     muscles: "Extensores dorsales, intercostales"
   },
   g6: {
+    pose: "de_pie",
     name: "Balanceo de brazos y movilidad de tronco",
     level: "Inicial",
     reps: "10 repeticiones",
@@ -325,6 +362,7 @@ const EXERCISES = {
     muscles: "Rotadores del tronco, hombros, columna dorsal"
   },
   g8: {
+    pose: "supino_neutro",
     name: "Relajación progresiva en decúbito",
     level: "Inicial",
     reps: "10-15 minutos",
@@ -333,6 +371,7 @@ const EXERCISES = {
     muscles: "Relajación del sistema nervioso, alivio del dolor"
   },
   n1: {
+    pose: "supino_neutro",
     name: "Auto-liberación suboccipital",
     level: "Inicial",
     reps: "60-90 seg",
@@ -341,6 +380,7 @@ const EXERCISES = {
     muscles: "Suboccipitales, base del cráneo (alivia occipital y espasmo)"
   },
   n2: {
+    pose: "marco_puerta",
     name: "Estiramiento pectoral en marco de puerta",
     level: "Inicial",
     reps: "20-30 seg x3",
@@ -349,6 +389,7 @@ const EXERCISES = {
     muscles: "Pectoral mayor y menor (abre el desfiladero torácico)"
   },
   n3: {
+    pose: "de_pie",
     name: "Deslizamiento del nervio mediano",
     level: "Intermedio",
     reps: "10 rep suaves",
@@ -357,6 +398,7 @@ const EXERCISES = {
     muscles: "Nervio mediano (desfiladero torácico neurogénico)"
   },
   n4: {
+    pose: "sentado_piso",
     name: "Auto-liberación de piriforme con pelota",
     level: "Inicial",
     reps: "60-90 seg c/lado",
@@ -460,6 +502,1418 @@ const isFree = (pathology, exId) => pathology.ex.indexOf(exId) < 2;
 
 // ─── AVATAR ────────────────────────────────────────────────────────────────────
 
+// ─── AVATAR CORPORAL (poses de ejercicio) ─────────────────────────────────────
+// Estilo: figura estilizada, gráfica pero clara, muestra POSICIÓN del ejercicio.
+// Incluye animación sutil de respiración.
+
+const PoseAvatar = ({
+  pose = "de_pie",
+  color = "#0EA5E9",
+  size = 200
+}) => {
+  const skin = "#E8B896";
+  const coat = "#F8FAFC";
+  const coatBorder = "#CBD5E1";
+  const hair = "#F0C040";
+  const floor = "#E2E8F0";
+  const accent = color;
+
+  // Cada pose es una función que devuelve <g>...</g>
+  const poses = {
+    // --- SUPINO (boca arriba) ---
+    supino_neutro: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "180",
+      x2: "380",
+      y2: "180",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "200",
+      cy: "160",
+      rx: "150",
+      ry: "18",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "200",
+      y: "150",
+      width: "130",
+      height: "20",
+      rx: "10",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "335",
+      cy: "160",
+      r: "10",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "60",
+      cy: "160",
+      r: "22",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 40 155 Q 60 130 82 155 Q 82 145 60 138 Q 40 145 40 155Z",
+      fill: hair
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "200",
+      cy: "160",
+      rx: "45",
+      ry: "20",
+      fill: accent,
+      opacity: "0.15"
+    }, /*#__PURE__*/React.createElement("animate", {
+      attributeName: "ry",
+      values: "18;22;18",
+      dur: "4s",
+      repeatCount: "indefinite"
+    }))),
+    supino_rodilla: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "180",
+      x2: "380",
+      y2: "180",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "140",
+      cy: "160",
+      rx: "90",
+      ry: "18",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 200 168 Q 250 100 200 90",
+      stroke: coat,
+      strokeWidth: "20",
+      fill: "none",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 200 168 Q 250 100 200 90",
+      stroke: coatBorder,
+      strokeWidth: "1.5",
+      fill: "none"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "200",
+      y: "160",
+      width: "120",
+      height: "18",
+      rx: "9",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "325",
+      cy: "169",
+      r: "9",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 180 155 Q 190 100 210 88",
+      stroke: skin,
+      strokeWidth: "9",
+      fill: "none",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "60",
+      cy: "160",
+      r: "22",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 40 155 Q 60 130 82 155 Q 82 145 60 138 Q 40 145 40 155Z",
+      fill: hair
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "200",
+      cy: "88",
+      r: "12",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 235 130 L 215 115",
+      stroke: accent,
+      strokeWidth: "2",
+      fill: "none",
+      markerEnd: "url(#arr)"
+    })),
+    supino_pierna: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "180",
+      x2: "380",
+      y2: "180",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "140",
+      cy: "160",
+      rx: "90",
+      ry: "18",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 200 165 L 260 60",
+      stroke: coat,
+      strokeWidth: "20",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 200 165 L 260 60",
+      stroke: coatBorder,
+      strokeWidth: "1.5",
+      fill: "none"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "262",
+      cy: "55",
+      r: "10",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "200",
+      y: "160",
+      width: "120",
+      height: "18",
+      rx: "9",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "325",
+      cy: "169",
+      r: "9",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 175 155 Q 210 110 235 100",
+      stroke: skin,
+      strokeWidth: "8",
+      fill: "none",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "60",
+      cy: "160",
+      r: "22",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 40 155 Q 60 130 82 155 Q 82 145 60 138 Q 40 145 40 155Z",
+      fill: hair
+    })),
+    supino_rotacion: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "180",
+      x2: "380",
+      y2: "180",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "140",
+      cy: "160",
+      rx: "90",
+      ry: "18",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 200 160 Q 250 120 290 100",
+      stroke: coat,
+      strokeWidth: "22",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 200 160 Q 250 120 290 100",
+      stroke: coatBorder,
+      strokeWidth: "1.5",
+      fill: "none"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "50",
+      y: "130",
+      width: "180",
+      height: "10",
+      rx: "5",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "1"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "60",
+      cy: "160",
+      r: "22",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 40 155 Q 60 130 82 155 Q 82 145 60 138 Q 40 145 40 155Z",
+      fill: hair
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 260 145 Q 280 130 270 110",
+      stroke: accent,
+      strokeWidth: "2",
+      fill: "none"
+    })),
+    supino_figura4: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "180",
+      x2: "380",
+      y2: "180",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "140",
+      cy: "160",
+      rx: "90",
+      ry: "18",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 200 165 L 230 100",
+      stroke: coat,
+      strokeWidth: "18",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 230 100 L 280 130",
+      stroke: coat,
+      strokeWidth: "18",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 200 165 L 230 100 L 280 130",
+      stroke: coatBorder,
+      strokeWidth: "1.5",
+      fill: "none"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "280",
+      cy: "130",
+      r: "8",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 200 168 L 260 90",
+      stroke: coat,
+      strokeWidth: "18",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 200 168 L 260 90",
+      stroke: coatBorder,
+      strokeWidth: "1.5",
+      fill: "none"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "260",
+      cy: "88",
+      r: "10",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "60",
+      cy: "160",
+      r: "22",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 40 155 Q 60 130 82 155 Q 82 145 60 138 Q 40 145 40 155Z",
+      fill: hair
+    })),
+    supino_9090: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "180",
+      x2: "380",
+      y2: "180",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "240",
+      y: "80",
+      width: "120",
+      height: "20",
+      rx: "3",
+      fill: "#D1D5DB"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "245",
+      y: "100",
+      width: "8",
+      height: "80",
+      fill: "#9CA3AF"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "347",
+      y: "100",
+      width: "8",
+      height: "80",
+      fill: "#9CA3AF"
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "140",
+      cy: "160",
+      rx: "90",
+      ry: "18",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 200 165 L 260 85",
+      stroke: coat,
+      strokeWidth: "20",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 260 85 L 330 85",
+      stroke: coat,
+      strokeWidth: "18",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 200 165 L 260 85 L 330 85",
+      stroke: coatBorder,
+      strokeWidth: "1.5",
+      fill: "none"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "330",
+      cy: "85",
+      r: "9",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "60",
+      cy: "160",
+      r: "22",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 40 155 Q 60 130 82 155 Q 82 145 60 138 Q 40 145 40 155Z",
+      fill: hair
+    })),
+    supino_deadbug: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "180",
+      x2: "380",
+      y2: "180",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "200",
+      cy: "160",
+      rx: "90",
+      ry: "18",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 210 150 L 210 60",
+      stroke: coat,
+      strokeWidth: "12",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 210 150 L 210 60",
+      stroke: coatBorder,
+      strokeWidth: "1",
+      fill: "none"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "210",
+      cy: "55",
+      r: "7",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 190 165 L 190 90 L 240 90",
+      stroke: coat,
+      strokeWidth: "18",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 190 165 L 190 90 L 240 90",
+      stroke: coatBorder,
+      strokeWidth: "1.5",
+      fill: "none"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "240",
+      cy: "90",
+      r: "8",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 190 155 L 100 80",
+      stroke: coat,
+      strokeWidth: "10",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 210 168 L 340 168",
+      stroke: coat,
+      strokeWidth: "18",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "100",
+      cy: "76",
+      r: "7",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "345",
+      cy: "168",
+      r: "9",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "140",
+      cy: "160",
+      r: "20",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 122 155 Q 140 130 160 155",
+      fill: hair
+    })),
+    supino_tobillos: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "180",
+      x2: "380",
+      y2: "180",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "140",
+      cy: "160",
+      rx: "90",
+      ry: "18",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "200",
+      y: "160",
+      width: "130",
+      height: "18",
+      rx: "9",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 340 170 L 355 155",
+      stroke: skin,
+      strokeWidth: "10",
+      strokeLinecap: "round"
+    }, /*#__PURE__*/React.createElement("animate", {
+      attributeName: "d",
+      values: "M 340 170 L 355 155;M 340 170 L 360 175;M 340 170 L 355 155",
+      dur: "1.5s",
+      repeatCount: "indefinite"
+    })), /*#__PURE__*/React.createElement("circle", {
+      cx: "60",
+      cy: "160",
+      r: "22",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 40 155 Q 60 130 82 155 Q 82 145 60 138 Q 40 145 40 155Z",
+      fill: hair
+    })),
+    supino_respiracion: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "180",
+      x2: "380",
+      y2: "180",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "200",
+      cy: "160",
+      rx: "150",
+      ry: "18",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "230",
+      cy: "150",
+      r: "12",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "150",
+      cy: "158",
+      rx: "35",
+      ry: "20",
+      fill: accent,
+      opacity: "0.2"
+    }, /*#__PURE__*/React.createElement("animate", {
+      attributeName: "ry",
+      values: "15;25;15",
+      dur: "4s",
+      repeatCount: "indefinite"
+    })), /*#__PURE__*/React.createElement("rect", {
+      x: "200",
+      y: "160",
+      width: "120",
+      height: "18",
+      rx: "9",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "60",
+      cy: "160",
+      r: "22",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 40 155 Q 60 130 82 155 Q 82 145 60 138 Q 40 145 40 155Z",
+      fill: hair
+    })),
+    // --- PRONO (boca abajo) ---
+    prono_cobra: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "180",
+      x2: "380",
+      y2: "180",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "270",
+      cy: "170",
+      rx: "110",
+      ry: "12",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 180 170 Q 130 130 90 90",
+      stroke: coat,
+      strokeWidth: "30",
+      fill: "none",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 180 170 Q 130 130 90 90",
+      stroke: coatBorder,
+      strokeWidth: "1.5",
+      fill: "none"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 100 100 L 100 175",
+      stroke: skin,
+      strokeWidth: "10",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 130 115 L 130 175",
+      stroke: skin,
+      strokeWidth: "10",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "85",
+      cy: "85",
+      r: "18",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 68 78 Q 85 60 103 78 Q 103 70 85 65 Q 68 70 68 78Z",
+      fill: hair
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "360",
+      cy: "170",
+      r: "9",
+      fill: skin
+    })),
+    // --- CUATRO APOYOS ---
+    cuatro_apoyos: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "180",
+      x2: "380",
+      y2: "180",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "110",
+      y: "100",
+      width: "180",
+      height: "30",
+      rx: "12",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "115",
+      y: "130",
+      width: "16",
+      height: "45",
+      rx: "8",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "265",
+      y: "130",
+      width: "16",
+      height: "45",
+      rx: "8",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "1"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "290",
+      y: "130",
+      width: "16",
+      height: "45",
+      rx: "8",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "1"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "95",
+      cy: "105",
+      r: "22",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 76 100 Q 95 75 115 100 Q 115 90 95 82 Q 76 90 76 100Z",
+      fill: hair
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 130 100 Q 200 90 270 100",
+      stroke: accent,
+      strokeWidth: "2",
+      fill: "none",
+      opacity: "0.4"
+    }, /*#__PURE__*/React.createElement("animate", {
+      attributeName: "d",
+      values: "M 130 100 Q 200 90 270 100;M 130 100 Q 200 115 270 100;M 130 100 Q 200 90 270 100",
+      dur: "4s",
+      repeatCount: "indefinite"
+    }))),
+    cuatro_apoyos_extension: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "180",
+      x2: "380",
+      y2: "180",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "130",
+      y: "110",
+      width: "150",
+      height: "28",
+      rx: "12",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "135",
+      y: "138",
+      width: "16",
+      height: "40",
+      rx: "8",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 145 115 L 60 65",
+      stroke: coat,
+      strokeWidth: "14",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "55",
+      cy: "60",
+      r: "9",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "255",
+      y: "138",
+      width: "16",
+      height: "40",
+      rx: "8",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "1"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 275 122 L 360 175",
+      stroke: coat,
+      strokeWidth: "16",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "365",
+      cy: "178",
+      r: "10",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "115",
+      cy: "115",
+      r: "20",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 98 110 Q 115 88 133 110 Q 133 100 115 93 Q 98 100 98 110Z",
+      fill: hair
+    })),
+    // --- PLANCHA LATERAL ---
+    plancha_lateral: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "180",
+      x2: "380",
+      y2: "180",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 90 175 L 320 90",
+      stroke: coat,
+      strokeWidth: "34",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 90 175 L 320 90",
+      stroke: coatBorder,
+      strokeWidth: "1.5",
+      fill: "none"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "80",
+      y: "150",
+      width: "12",
+      height: "30",
+      rx: "6",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "325",
+      cy: "88",
+      r: "10",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "340",
+      cy: "75",
+      r: "20",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 322 70 Q 340 50 358 70 Q 358 60 340 55 Q 322 60 322 70Z",
+      fill: hair
+    })),
+    // --- PUENTE DE GLÚTEOS ---
+    puente: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "180",
+      x2: "380",
+      y2: "180",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "80",
+      cy: "160",
+      r: "22",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 60 155 Q 80 130 102 155 Q 102 145 80 138 Q 60 145 60 155Z",
+      fill: hair
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 100 155 Q 180 105 240 130",
+      stroke: coat,
+      strokeWidth: "30",
+      fill: "none",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 100 155 Q 180 105 240 130",
+      stroke: coatBorder,
+      strokeWidth: "1.5",
+      fill: "none"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 245 135 L 285 175",
+      stroke: coat,
+      strokeWidth: "18",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 245 135 L 285 175",
+      stroke: coatBorder,
+      strokeWidth: "1.5",
+      fill: "none"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "290",
+      cy: "175",
+      r: "10",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 180 108 L 180 100",
+      stroke: accent,
+      strokeWidth: "2",
+      fill: "none",
+      markerEnd: "url(#arr)"
+    })),
+    // --- SENTADO EN SILLA ---
+    sentado_silla: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "270",
+      x2: "380",
+      y2: "270",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "130",
+      y: "180",
+      width: "140",
+      height: "12",
+      fill: "#94A3B8"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "130",
+      y: "192",
+      width: "10",
+      height: "80",
+      fill: "#94A3B8"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "260",
+      y: "192",
+      width: "10",
+      height: "80",
+      fill: "#94A3B8"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "130",
+      y: "80",
+      width: "10",
+      height: "100",
+      fill: "#94A3B8"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 175 100 Q 175 145 175 180 L 235 180 Q 235 145 235 100Z",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "175",
+      y: "180",
+      width: "20",
+      height: "80",
+      rx: "6",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "215",
+      y: "180",
+      width: "20",
+      height: "80",
+      rx: "6",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "185",
+      cy: "265",
+      rx: "14",
+      ry: "6",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "225",
+      cy: "265",
+      rx: "14",
+      ry: "6",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "197",
+      y: "80",
+      width: "16",
+      height: "20",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "205",
+      cy: "65",
+      r: "25",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 182 60 Q 205 32 228 60 Q 228 45 205 40 Q 182 45 182 60Z",
+      fill: hair
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "205",
+      cy: "140",
+      rx: "35",
+      ry: "15",
+      fill: accent,
+      opacity: "0.15"
+    }, /*#__PURE__*/React.createElement("animate", {
+      attributeName: "ry",
+      values: "12;18;12",
+      dur: "4s",
+      repeatCount: "indefinite"
+    }))),
+    sentado_silla_pierna: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "270",
+      x2: "380",
+      y2: "270",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "100",
+      y: "180",
+      width: "130",
+      height: "12",
+      fill: "#94A3B8"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "100",
+      y: "192",
+      width: "10",
+      height: "80",
+      fill: "#94A3B8"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "220",
+      y: "192",
+      width: "10",
+      height: "80",
+      fill: "#94A3B8"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "100",
+      y: "80",
+      width: "10",
+      height: "100",
+      fill: "#94A3B8"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 145 100 Q 145 145 145 180 L 205 180 Q 205 145 205 100Z",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "145",
+      y: "180",
+      width: "20",
+      height: "80",
+      rx: "6",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "155",
+      cy: "265",
+      rx: "14",
+      ry: "6",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 185 180 L 340 200",
+      stroke: coat,
+      strokeWidth: "20",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 185 180 L 340 200",
+      stroke: coatBorder,
+      strokeWidth: "1.5",
+      fill: "none"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 340 200 L 350 180",
+      stroke: skin,
+      strokeWidth: "10",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "167",
+      y: "80",
+      width: "16",
+      height: "20",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "175",
+      cy: "65",
+      r: "25",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 152 60 Q 175 32 198 60 Q 198 45 175 40 Q 152 45 152 60Z",
+      fill: hair
+    })),
+    sentado_silla_figura4: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "270",
+      x2: "380",
+      y2: "270",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "130",
+      y: "180",
+      width: "140",
+      height: "12",
+      fill: "#94A3B8"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "130",
+      y: "192",
+      width: "10",
+      height: "80",
+      fill: "#94A3B8"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "260",
+      y: "192",
+      width: "10",
+      height: "80",
+      fill: "#94A3B8"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "130",
+      y: "80",
+      width: "10",
+      height: "100",
+      fill: "#94A3B8"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 175 100 Q 175 145 175 180 L 235 180 Q 235 145 235 100Z",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "175",
+      y: "180",
+      width: "20",
+      height: "80",
+      rx: "6",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "185",
+      cy: "265",
+      rx: "14",
+      ry: "6",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 225 180 L 300 200",
+      stroke: coat,
+      strokeWidth: "18",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 300 200 L 260 240",
+      stroke: coat,
+      strokeWidth: "18",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 225 180 L 300 200 L 260 240",
+      stroke: coatBorder,
+      strokeWidth: "1.5",
+      fill: "none"
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "260",
+      cy: "240",
+      rx: "12",
+      ry: "6",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "197",
+      y: "80",
+      width: "16",
+      height: "20",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "205",
+      cy: "65",
+      r: "25",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 182 60 Q 205 32 228 60 Q 228 45 205 40 Q 182 45 182 60Z",
+      fill: hair
+    })),
+    // --- SENTADO EN PISO ---
+    sentado_piso: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "260",
+      x2: "380",
+      y2: "260",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 180 250 L 260 220 L 230 180",
+      stroke: coat,
+      strokeWidth: "24",
+      strokeLinecap: "round",
+      fill: "none"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "145",
+      y: "90",
+      width: "70",
+      height: "90",
+      rx: "15",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "180",
+      cy: "65",
+      r: "25",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 157 60 Q 180 32 203 60 Q 203 45 180 40 Q 157 45 157 60Z",
+      fill: hair
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "180",
+      cy: "235",
+      r: "14",
+      fill: accent,
+      opacity: "0.7"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "180",
+      cy: "235",
+      r: "14",
+      fill: "none",
+      stroke: accent,
+      strokeWidth: "2"
+    })),
+    // --- DECÚBITO LATERAL ---
+    decubito_lateral: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "180",
+      x2: "380",
+      y2: "180",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "200",
+      cy: "160",
+      rx: "140",
+      ry: "20",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "200",
+      y: "160",
+      width: "130",
+      height: "18",
+      rx: "9",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "335",
+      cy: "170",
+      r: "9",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 200 148 L 340 100",
+      stroke: coat,
+      strokeWidth: "18",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 200 148 L 340 100",
+      stroke: coatBorder,
+      strokeWidth: "1.5",
+      fill: "none"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "345",
+      cy: "98",
+      r: "10",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "60",
+      cy: "150",
+      r: "22",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 40 145 Q 60 120 82 145 Q 82 135 60 128 Q 40 135 40 145Z",
+      fill: hair
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 300 115 L 300 100",
+      stroke: accent,
+      strokeWidth: "2",
+      fill: "none",
+      markerEnd: "url(#arr)"
+    })),
+    // --- DE PIE ---
+    de_pie: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "280",
+      x2: "380",
+      y2: "280",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 165 90 Q 155 200 175 250 L 235 250 Q 255 200 245 90Z",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "180",
+      y: "235",
+      width: "20",
+      height: "45",
+      rx: "6",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "210",
+      y: "235",
+      width: "20",
+      height: "45",
+      rx: "6",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "190",
+      cy: "278",
+      rx: "16",
+      ry: "6",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "220",
+      cy: "278",
+      rx: "16",
+      ry: "6",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "145",
+      y: "100",
+      width: "16",
+      height: "90",
+      rx: "8",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "249",
+      y: "100",
+      width: "16",
+      height: "90",
+      rx: "8",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "197",
+      y: "70",
+      width: "16",
+      height: "20",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "205",
+      cy: "55",
+      r: "25",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 182 50 Q 205 22 228 50 Q 228 35 205 30 Q 182 35 182 50Z",
+      fill: hair
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "205",
+      cy: "140",
+      rx: "35",
+      ry: "15",
+      fill: accent,
+      opacity: "0.15"
+    }, /*#__PURE__*/React.createElement("animate", {
+      attributeName: "ry",
+      values: "12;18;12",
+      dur: "4s",
+      repeatCount: "indefinite"
+    }))),
+    // --- MARCO DE PUERTA ---
+    marco_puerta: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
+      x1: "20",
+      y1: "280",
+      x2: "380",
+      y2: "280",
+      stroke: floor,
+      strokeWidth: "2",
+      strokeDasharray: "4 4"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "20",
+      y: "30",
+      width: "15",
+      height: "260",
+      fill: "#CBD5E1"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "345",
+      y: "30",
+      width: "15",
+      height: "260",
+      fill: "#CBD5E1"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "20",
+      y: "30",
+      width: "340",
+      height: "15",
+      fill: "#CBD5E1"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 155 90 Q 145 200 165 250 L 225 250 Q 245 200 235 90Z",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "2"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 155 100 L 40 80",
+      stroke: skin,
+      strokeWidth: "14",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 235 100 L 350 80",
+      stroke: skin,
+      strokeWidth: "14",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "170",
+      y: "235",
+      width: "20",
+      height: "45",
+      rx: "6",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "200",
+      y: "235",
+      width: "20",
+      height: "45",
+      rx: "6",
+      fill: coat,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "180",
+      cy: "278",
+      rx: "16",
+      ry: "6",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("ellipse", {
+      cx: "210",
+      cy: "278",
+      rx: "16",
+      ry: "6",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("rect", {
+      x: "187",
+      y: "70",
+      width: "16",
+      height: "20",
+      fill: skin
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: "195",
+      cy: "55",
+      r: "25",
+      fill: skin,
+      stroke: coatBorder,
+      strokeWidth: "1.5"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M 172 50 Q 195 22 218 50 Q 218 35 195 30 Q 172 35 172 50Z",
+      fill: hair
+    }))
+  };
+  return /*#__PURE__*/React.createElement("svg", {
+    width: "100%",
+    height: size,
+    viewBox: "0 0 400 300",
+    preserveAspectRatio: "xMidYMid meet",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("marker", {
+    id: "arr",
+    markerWidth: "8",
+    markerHeight: "8",
+    refX: "4",
+    refY: "4",
+    orient: "auto"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M 0 0 L 8 4 L 0 8 z",
+    fill: accent
+  }))), poses[pose] || poses.de_pie);
+};
 const AvatarSVG = ({
   mood = "default",
   size = 120
@@ -1241,41 +2695,41 @@ const ExerciseSession = ({
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      display: "flex",
-      justifyContent: "center",
-      marginBottom: 20
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: "relative"
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      width: 110,
-      height: 110,
-      borderRadius: 999,
+      marginBottom: 20,
+      borderRadius: 20,
+      padding: "16px 12px",
       background: `linear-gradient(135deg, ${pathology.light}, #F0F9FF)`,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      boxShadow: "0 4px 24px rgba(0,0,0,0.1)"
+      position: "relative",
+      boxShadow: "0 2px 16px rgba(0,0,0,0.06)"
     }
-  }, /*#__PURE__*/React.createElement(AvatarSVG, {
-    size: 96,
-    mood: playing ? "encouraging" : "explaining"
-  })), playing && /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: pathology.color,
+      fontWeight: 700,
+      textTransform: "uppercase",
+      letterSpacing: 1,
+      textAlign: "center",
+      marginBottom: 8
+    }
+  }, "Demostración del ejercicio"), /*#__PURE__*/React.createElement(PoseAvatar, {
+    pose: exercise.pose || "de_pie",
+    color: pathology.color,
+    size: 200
+  }), playing && /*#__PURE__*/React.createElement("div", {
     style: {
       position: "absolute",
-      bottom: 2,
-      right: 2,
-      width: 22,
-      height: 22,
-      borderRadius: "50%",
+      top: 10,
+      right: 12,
+      padding: "4px 10px",
       background: "#10B981",
-      border: "2px solid white",
+      color: "white",
+      borderRadius: 20,
+      fontSize: 11,
+      fontWeight: 700,
       display: "flex",
       alignItems: "center",
-      justifyContent: "center"
+      gap: 5
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1285,7 +2739,7 @@ const ExerciseSession = ({
       background: "white",
       animation: "pulse 1s infinite"
     }
-  })))), /*#__PURE__*/React.createElement("div", {
+  }), "EN VIVO")), /*#__PURE__*/React.createElement("div", {
     style: {
       textAlign: "center",
       marginBottom: 20
