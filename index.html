@@ -805,19 +805,7 @@ const PoseAvatar = ({
     }), /*#__PURE__*/React.createElement("path", {
       d: "M 40 155 Q 60 130 82 155 Q 82 145 60 138 Q 40 145 40 155Z",
       fill: hair
-    }), /*#__PURE__*/React.createElement("ellipse", {
-      cx: "200",
-      cy: "160",
-      rx: "45",
-      ry: "20",
-      fill: accent,
-      opacity: "0.15"
-    }, /*#__PURE__*/React.createElement("animate", {
-      attributeName: "ry",
-      values: "18;22;18",
-      dur: "4s",
-      repeatCount: "indefinite"
-    }))),
+    })),
     supino_rodilla: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
       x1: "20",
       y1: "180",
@@ -1272,19 +1260,7 @@ const PoseAvatar = ({
       cy: "150",
       r: "12",
       fill: skin
-    }), /*#__PURE__*/React.createElement("ellipse", {
-      cx: "150",
-      cy: "158",
-      rx: "35",
-      ry: "20",
-      fill: accent,
-      opacity: "0.2"
-    }, /*#__PURE__*/React.createElement("animate", {
-      attributeName: "ry",
-      values: "15;25;15",
-      dur: "4s",
-      repeatCount: "indefinite"
-    })), /*#__PURE__*/React.createElement("rect", {
+    }), /*#__PURE__*/React.createElement("rect", {
       x: "200",
       y: "160",
       width: "120",
@@ -1665,19 +1641,7 @@ const PoseAvatar = ({
     }), /*#__PURE__*/React.createElement("path", {
       d: "M 182 60 Q 205 32 228 60 Q 228 45 205 40 Q 182 45 182 60Z",
       fill: hair
-    }), /*#__PURE__*/React.createElement("ellipse", {
-      cx: "205",
-      cy: "140",
-      rx: "35",
-      ry: "15",
-      fill: accent,
-      opacity: "0.15"
-    }, /*#__PURE__*/React.createElement("animate", {
-      attributeName: "ry",
-      values: "12;18;12",
-      dur: "4s",
-      repeatCount: "indefinite"
-    }))),
+    })),
     sentado_silla_pierna: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
       x1: "20",
       y1: "270",
@@ -2037,19 +2001,7 @@ const PoseAvatar = ({
     }), /*#__PURE__*/React.createElement("path", {
       d: "M 182 50 Q 205 22 228 50 Q 228 35 205 30 Q 182 35 182 50Z",
       fill: hair
-    }), /*#__PURE__*/React.createElement("ellipse", {
-      cx: "205",
-      cy: "140",
-      rx: "35",
-      ry: "15",
-      fill: accent,
-      opacity: "0.15"
-    }, /*#__PURE__*/React.createElement("animate", {
-      attributeName: "ry",
-      values: "12;18;12",
-      dur: "4s",
-      repeatCount: "indefinite"
-    }))),
+    })),
     // --- MARCO DE PUERTA ---
     marco_puerta: /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("line", {
       x1: "20",
@@ -2140,6 +2092,118 @@ const PoseAvatar = ({
       fill: hair
     }))
   };
+
+  // Punto de la zona a tratar (círculo pulsante rojo) por pose
+  const zoneMap = {
+    supino_neutro: {
+      cx: 150,
+      cy: 158
+    },
+    // abdomen/core
+    supino_rodilla: {
+      cx: 110,
+      cy: 158
+    },
+    // zona lumbar
+    supino_pierna: {
+      cx: 235,
+      cy: 110
+    },
+    // isquiotibial
+    supino_rotacion: {
+      cx: 150,
+      cy: 158
+    },
+    // lumbar/rotadores
+    supino_figura4: {
+      cx: 240,
+      cy: 120
+    },
+    // glúteo/piriforme
+    supino_9090: {
+      cx: 120,
+      cy: 158
+    },
+    // lumbar (descompresión)
+    supino_deadbug: {
+      cx: 200,
+      cy: 158
+    },
+    // core profundo
+    supino_tobillos: {
+      cx: 345,
+      cy: 162
+    },
+    // tobillos
+    supino_respiracion: {
+      cx: 150,
+      cy: 158
+    },
+    // diafragma
+    prono_cobra: {
+      cx: 200,
+      cy: 150
+    },
+    // lumbar (extensión)
+    cuatro_apoyos: {
+      cx: 200,
+      cy: 105
+    },
+    // columna lumbar/dorsal
+    cuatro_apoyos_extension: {
+      cx: 205,
+      cy: 118
+    },
+    // core/multífidos
+    plancha_lateral: {
+      cx: 200,
+      cy: 130
+    },
+    // oblicuos/cuadrado lumbar
+    puente: {
+      cx: 200,
+      cy: 120
+    },
+    // glúteos/lumbar
+    sentado_silla: {
+      cx: 205,
+      cy: 70
+    },
+    // cuello (cervical)
+    sentado_silla_pierna: {
+      cx: 300,
+      cy: 190
+    },
+    // ciático/isquiotibial
+    sentado_silla_figura4: {
+      cx: 280,
+      cy: 210
+    },
+    // glúteo/piriforme
+    sentado_piso: {
+      cx: 180,
+      cy: 235
+    },
+    // glúteo (pelota piriforme)
+    decubito_lateral: {
+      cx: 270,
+      cy: 120
+    },
+    // glúteo medio
+    de_pie: {
+      cx: 205,
+      cy: 70
+    },
+    // cuello/general
+    marco_puerta: {
+      cx: 195,
+      cy: 110
+    } // pectoral/desfiladero
+  };
+  const zone = zoneMap[pose] || {
+    cx: 200,
+    cy: 150
+  };
   return /*#__PURE__*/React.createElement("svg", {
     width: "100%",
     height: size,
@@ -2156,7 +2220,31 @@ const PoseAvatar = ({
   }, /*#__PURE__*/React.createElement("path", {
     d: "M 0 0 L 8 4 L 0 8 z",
     fill: accent
-  }))), poses[pose] || poses.de_pie);
+  }))), poses[pose] || poses.de_pie, /*#__PURE__*/React.createElement("circle", {
+    cx: zone.cx,
+    cy: zone.cy,
+    r: "16",
+    fill: "none",
+    stroke: "#EF4444",
+    strokeWidth: "2.5",
+    opacity: "0.9"
+  }, /*#__PURE__*/React.createElement("animate", {
+    attributeName: "r",
+    values: "12;22;12",
+    dur: "1.6s",
+    repeatCount: "indefinite"
+  }), /*#__PURE__*/React.createElement("animate", {
+    attributeName: "opacity",
+    values: "0.9;0.2;0.9",
+    dur: "1.6s",
+    repeatCount: "indefinite"
+  })), /*#__PURE__*/React.createElement("circle", {
+    cx: zone.cx,
+    cy: zone.cy,
+    r: "6",
+    fill: "#EF4444",
+    opacity: "0.85"
+  }));
 };
 const AvatarSVG = ({
   mood = "default",
@@ -2860,14 +2948,61 @@ const ExerciseSession = ({
   onBack
 }) => {
   const [step, setStep] = useState(0);
-  const [playing, setPlaying] = useState(false);
-  const [elapsed, setElapsed] = useState(0);
+
+  // Detectar tipo de ejercicio a partir de "reps"
+  const repsText = exercise.reps || "";
+  // parseo de duración por tiempo: busca "30 seg", "5-10 minutos", "2 minutos", "45 seg"
+  const parseTime = txt => {
+    const t = txt.toLowerCase();
+    // rangos tipo "5-10 minutos" -> usa el primero
+    let m = t.match(/(\d+)\s*-\s*(\d+)\s*min/);
+    if (m) return parseInt(m[1]) * 60;
+    m = t.match(/(\d+)\s*min/);
+    if (m) return parseInt(m[1]) * 60;
+    m = t.match(/(\d+)\s*-\s*(\d+)\s*seg/);
+    if (m) return parseInt(m[1]);
+    m = t.match(/(\d+)\s*seg/);
+    if (m) return parseInt(m[1]);
+    return null;
+  };
+  // parseo de repeticiones: "10 repeticiones", "12 rep", "8 rep por lado"
+  const parseReps = txt => {
+    const m = txt.toLowerCase().match(/(\d+)\s*(rep|repeticion|círculos|circulos|respiracion|respiración)/);
+    return m ? parseInt(m[1]) : null;
+  };
+  const timeSecs = parseTime(repsText);
+  const totalReps = parseReps(repsText);
+  const mode = timeSecs ? "time" : totalReps ? "reps" : "free";
+
+  // Estado timer (cuenta regresiva)
+  const [remaining, setRemaining] = useState(timeSecs || 0);
+  const [running, setRunning] = useState(false);
+  // Estado reps
+  const [repCount, setRepCount] = useState(0);
   const intervalRef = useRef(null);
   useEffect(() => {
-    if (playing) intervalRef.current = setInterval(() => setElapsed(e => e + 1), 1000);else clearInterval(intervalRef.current);
+    if (running && mode === "time") {
+      intervalRef.current = setInterval(() => {
+        setRemaining(r => {
+          if (r <= 1) {
+            clearInterval(intervalRef.current);
+            setRunning(false);
+            return 0;
+          }
+          return r - 1;
+        });
+      }, 1000);
+    } else {
+      clearInterval(intervalRef.current);
+    }
     return () => clearInterval(intervalRef.current);
-  }, [playing]);
+  }, [running, mode]);
   const fmt = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+  const resetTimer = () => {
+    setRunning(false);
+    setRemaining(timeSecs || 0);
+  };
+  const isActive = mode === "time" ? running : false;
   return /*#__PURE__*/React.createElement("div", {
     style: {
       height: "100%",
@@ -2960,7 +3095,30 @@ const ExerciseSession = ({
     pose: exercise.pose || "de_pie",
     color: pathology.color,
     size: 200
-  }), playing && /*#__PURE__*/React.createElement("div", {
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "absolute",
+      bottom: 12,
+      left: 12,
+      padding: "4px 10px",
+      background: "rgba(239,68,68,0.12)",
+      borderRadius: 20,
+      fontSize: 10,
+      color: "#DC2626",
+      fontWeight: 700,
+      display: "flex",
+      alignItems: "center",
+      gap: 5
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 7,
+      height: 7,
+      borderRadius: "50%",
+      background: "#EF4444",
+      animation: "pulse 1.2s infinite"
+    }
+  }), "ZONA A TRABAJAR"), isActive && /*#__PURE__*/React.createElement("div", {
     style: {
       position: "absolute",
       top: 10,
@@ -2983,24 +3141,165 @@ const ExerciseSession = ({
       background: "white",
       animation: "pulse 1s infinite"
     }
-  }), "EN VIVO")), /*#__PURE__*/React.createElement("div", {
+  }), "EN VIVO")), mode === "time" && /*#__PURE__*/React.createElement("div", {
     style: {
       textAlign: "center",
-      marginBottom: 20
+      marginBottom: 20,
+      padding: "18px",
+      background: "#F8FAFC",
+      borderRadius: 18
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontFamily: "monospace",
-      fontSize: 28,
-      fontWeight: 700,
-      color: "#0F172A"
+      fontSize: 11,
+      color: "#94A3B8",
+      textTransform: "uppercase",
+      letterSpacing: 1,
+      marginBottom: 6
     }
-  }, fmt(elapsed)), /*#__PURE__*/React.createElement("div", {
+  }, "Tiempo restante"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "monospace",
+      fontSize: 44,
+      fontWeight: 800,
+      color: remaining === 0 ? "#10B981" : pathology.color,
+      lineHeight: 1
+    }
+  }, remaining === 0 ? "¡Listo! ✓" : fmt(remaining)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 10,
+      marginTop: 16,
+      justifyContent: "center"
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => setRunning(r => !r),
+    disabled: remaining === 0,
+    style: {
+      padding: "12px 28px",
+      background: remaining === 0 ? "#E2E8F0" : running ? "#FEF3C7" : `linear-gradient(135deg, ${pathology.color}, #6366F1)`,
+      color: remaining === 0 ? "#94A3B8" : running ? "#92400E" : "white",
+      border: "none",
+      borderRadius: 12,
+      fontSize: 15,
+      fontWeight: 700,
+      cursor: remaining === 0 ? "default" : "pointer"
+    }
+  }, running ? "⏸ Pausar" : "▶ Iniciar"), /*#__PURE__*/React.createElement("button", {
+    onClick: resetTimer,
+    style: {
+      padding: "12px 18px",
+      background: "#F1F5F9",
+      color: "#64748B",
+      border: "none",
+      borderRadius: 12,
+      fontSize: 14,
+      fontWeight: 600,
+      cursor: "pointer"
+    }
+  }, "↺ Reiniciar"))), mode === "reps" && /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "center",
+      marginBottom: 20,
+      padding: "18px",
+      background: "#F8FAFC",
+      borderRadius: 18
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#94A3B8",
+      textTransform: "uppercase",
+      letterSpacing: 1,
+      marginBottom: 6
+    }
+  }, "Repeticiones · meta ", totalReps), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "monospace",
+      fontSize: 44,
+      fontWeight: 800,
+      color: repCount >= totalReps ? "#10B981" : pathology.color,
+      lineHeight: 1
+    }
+  }, repCount, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 22,
+      color: "#CBD5E1"
+    }
+  }, " / ", totalReps)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 10,
+      marginTop: 16,
+      justifyContent: "center",
+      alignItems: "center"
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => setRepCount(c => Math.max(0, c - 1)),
+    style: {
+      width: 52,
+      height: 52,
+      background: "#F1F5F9",
+      color: "#64748B",
+      border: "none",
+      borderRadius: 14,
+      fontSize: 24,
+      fontWeight: 700,
+      cursor: "pointer"
+    }
+  }, "−"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setRepCount(c => c + 1),
+    style: {
+      padding: "14px 32px",
+      background: `linear-gradient(135deg, ${pathology.color}, #6366F1)`,
+      color: "white",
+      border: "none",
+      borderRadius: 14,
+      fontSize: 16,
+      fontWeight: 700,
+      cursor: "pointer",
+      boxShadow: `0 4px 16px ${pathology.color}40`
+    }
+  }, "+1 rep"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setRepCount(0),
+    style: {
+      width: 52,
+      height: 52,
+      background: "#F1F5F9",
+      color: "#64748B",
+      border: "none",
+      borderRadius: 14,
+      fontSize: 18,
+      cursor: "pointer"
+    }
+  }, "↺")), repCount >= totalReps && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 12,
+      fontSize: 13,
+      color: "#10B981",
+      fontWeight: 700
+    }
+  }, "¡Serie completa! 💪")), mode === "free" && /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "center",
+      marginBottom: 20,
+      padding: "16px",
+      background: "#F8FAFC",
+      borderRadius: 18
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 15,
+      fontWeight: 700,
+      color: pathology.color
+    }
+  }, exercise.reps), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "#94A3B8"
+      color: "#94A3B8",
+      marginTop: 4
     }
-  }, exercise.reps)), /*#__PURE__*/React.createElement("div", {
+  }, "Realizá el movimiento a tu ritmo")), /*#__PURE__*/React.createElement("div", {
     style: {
       marginBottom: 18
     }
@@ -3082,37 +3381,23 @@ const ExerciseSession = ({
   }, exercise.muscles))), /*#__PURE__*/React.createElement("div", {
     style: {
       padding: "16px 20px",
-      borderTop: "1px solid #F1F5F9",
-      display: "flex",
-      gap: 12
+      borderTop: "1px solid #F1F5F9"
     }
   }, /*#__PURE__*/React.createElement("button", {
-    onClick: () => setPlaying(p => !p),
+    onClick: onNext,
     style: {
-      flex: 1,
-      padding: "14px",
-      background: playing ? "#FEF3C7" : `linear-gradient(135deg, ${pathology.color}, #6366F1)`,
-      color: playing ? "#92400E" : "white",
+      width: "100%",
+      padding: "15px",
+      background: `linear-gradient(135deg, ${pathology.color}, #6366F1)`,
+      color: "white",
       border: "none",
       borderRadius: 14,
       fontSize: 15,
       fontWeight: 700,
       cursor: "pointer",
-      boxShadow: playing ? "none" : `0 4px 16px ${pathology.color}40`
+      boxShadow: `0 4px 16px ${pathology.color}40`
     }
-  }, playing ? "⏸ Pausar" : "▶ Iniciar"), /*#__PURE__*/React.createElement("button", {
-    onClick: onNext,
-    style: {
-      padding: "14px 20px",
-      background: "#F1F5F9",
-      color: "#64748B",
-      border: "none",
-      borderRadius: 14,
-      fontSize: 14,
-      fontWeight: 600,
-      cursor: "pointer"
-    }
-  }, "Siguiente ›")));
+  }, exerciseIndex < totalExercises - 1 ? "Completar y siguiente ›" : "Finalizar sesión ✓")));
 };
 const Paywall = ({
   onBack,
@@ -3294,8 +3579,60 @@ const Progress = ({
   onBack,
   user
 }) => {
-  const days = ["L", "M", "X", "J", "V", "S", "D"];
-  const data = [3, 5, 2, 7, 4, 6, 1];
+  const [loading, setLoading] = useState(true);
+  const [rows, setRows] = useState([]);
+  useEffect(() => {
+    const load = async () => {
+      const sb = getSupabase();
+      if (!sb || !user) {
+        setLoading(false);
+        return;
+      }
+      try {
+        const {
+          data
+        } = await sb.from("exercise_progress").select("*").eq("user_id", user.id).order("completed_at", {
+          ascending: false
+        });
+        setRows(data || []);
+      } catch (e) {}
+      setLoading(false);
+    };
+    load();
+  }, [user]);
+
+  // Calcular estadísticas reales
+  const now = new Date();
+  const startOfWeek = new Date(now);
+  startOfWeek.setDate(now.getDate() - now.getDay());
+  startOfWeek.setHours(0, 0, 0, 0);
+  const days = ["D", "L", "M", "X", "J", "V", "S"];
+  const weekData = [0, 0, 0, 0, 0, 0, 0];
+  const uniqueDays = new Set();
+  rows.forEach(r => {
+    const d = new Date(r.completed_at);
+    if (d >= startOfWeek) weekData[d.getDay()]++;
+    uniqueDays.add(d.toISOString().slice(0, 10));
+  });
+  const maxWeek = Math.max(...weekData, 1);
+  const totalSessions = uniqueDays.size;
+  const totalExercises = rows.length;
+  // días consecutivos (racha)
+  let streak = 0;
+  const daysSorted = Array.from(uniqueDays).sort().reverse();
+  if (daysSorted.length) {
+    let cursor = new Date();
+    cursor.setHours(0, 0, 0, 0);
+    for (const ds of daysSorted) {
+      const dd = new Date(ds + "T00:00:00");
+      const diff = Math.round((cursor - dd) / 86400000);
+      if (diff <= streak + (streak === 0 ? 1 : 0) && diff <= 1) {
+        streak++;
+        cursor = dd;
+      } else break;
+    }
+  }
+  const totalMinutes = Math.round(rows.reduce((a, r) => a + (r.duration_seconds || 0), 0) / 60);
   return /*#__PURE__*/React.createElement("div", {
     style: {
       height: "100%",
@@ -3327,7 +3664,39 @@ const Progress = ({
       color: "#64748B",
       marginBottom: 24
     }
-  }, "Esta semana en SpineFlow"), /*#__PURE__*/React.createElement("div", {
+  }, "Tu actividad real en SpineFlow"), loading ? /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "center",
+      padding: "40px 0",
+      color: "#94A3B8",
+      fontSize: 13
+    }
+  }, "Cargando tu progreso…") : totalExercises === 0 ? /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "center",
+      padding: "40px 20px",
+      background: "#F8FAFC",
+      borderRadius: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 40,
+      marginBottom: 12
+    }
+  }, "🏁"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 15,
+      fontWeight: 700,
+      color: "#0F172A",
+      marginBottom: 6
+    }
+  }, "Todavía no completaste ejercicios"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: "#94A3B8",
+      lineHeight: 1.5
+    }
+  }, "Cuando termines tu primer ejercicio, acá vas a ver tu progreso real: sesiones, racha de días y minutos activos.")) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     style: {
       background: "white",
       borderRadius: 20,
@@ -3342,7 +3711,7 @@ const Progress = ({
       color: "#0F172A",
       marginBottom: 16
     }
-  }, "Actividad semanal"), /*#__PURE__*/React.createElement("div", {
+  }, "Actividad esta semana"), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "flex-end",
@@ -3350,8 +3719,8 @@ const Progress = ({
       height: 80,
       gap: 6
     }
-  }, days.map((d, i) => /*#__PURE__*/React.createElement("div", {
-    key: d,
+  }, [1, 2, 3, 4, 5, 6, 0].map(di => /*#__PURE__*/React.createElement("div", {
+    key: di,
     style: {
       flex: 1,
       display: "flex",
@@ -3363,8 +3732,8 @@ const Progress = ({
     style: {
       width: "100%",
       borderRadius: 6,
-      background: "linear-gradient(180deg, #0EA5E9, #6366F1)",
-      height: `${data[i] / 7 * 70}px`,
+      background: weekData[di] > 0 ? "linear-gradient(180deg, #0EA5E9, #6366F1)" : "#F1F5F9",
+      height: `${Math.max(weekData[di] / maxWeek * 70, 4)}px`,
       transition: "height 0.5s"
     }
   }), /*#__PURE__*/React.createElement("div", {
@@ -3372,7 +3741,7 @@ const Progress = ({
       fontSize: 11,
       color: "#94A3B8"
     }
-  }, d))))), /*#__PURE__*/React.createElement("div", {
+  }, days[di]))))), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "grid",
       gridTemplateColumns: "1fr 1fr",
@@ -3380,20 +3749,20 @@ const Progress = ({
       marginBottom: 20
     }
   }, [{
-    l: "Sesiones completadas",
-    v: "12",
+    l: "Sesiones (días)",
+    v: totalSessions,
     i: "✅"
   }, {
-    l: "Días consecutivos",
-    v: "5",
+    l: "Racha de días",
+    v: streak,
     i: "🔥"
   }, {
     l: "Minutos activos",
-    v: "148",
+    v: totalMinutes,
     i: "⏱"
   }, {
     l: "Ejercicios totales",
-    v: "36",
+    v: totalExercises,
     i: "💪"
   }].map(s => /*#__PURE__*/React.createElement("div", {
     key: s.l,
@@ -3435,55 +3804,52 @@ const Progress = ({
       color: "#0F172A",
       marginBottom: 14
     }
-  }, "📅 Rutina de hoy"), [REGIONS[0].pathologies[2], REGIONS[2].pathologies[1], REGIONS[1].pathologies[0]].map((p, i) => /*#__PURE__*/React.createElement("div", {
-    key: p.id,
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 12,
-      padding: "10px 0",
-      borderBottom: i < 2 ? "1px solid #F1F5F9" : "none"
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      width: 36,
-      height: 36,
-      borderRadius: 10,
-      background: "#F0F9FF",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontSize: 16,
-      fontWeight: 700,
-      color: "#0EA5E9"
-    }
-  }, p.title[0]), /*#__PURE__*/React.createElement("div", {
-    style: {
-      flex: 1
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 13,
-      fontWeight: 600,
-      color: "#0F172A"
-    }
-  }, p.title), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: 11,
-      color: "#94A3B8"
-    }
-  }, p.ex.length, " ejercicios · 15 min")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      width: 24,
-      height: 24,
-      borderRadius: "50%",
-      background: "#DCFCE7",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontSize: 12
-    }
-  }, "✓")))));
+  }, "📋 Últimos ejercicios"), rows.slice(0, 6).map((r, i) => {
+    const ex = EXERCISES[r.exercise_id];
+    const d = new Date(r.completed_at);
+    return /*#__PURE__*/React.createElement("div", {
+      key: r.id,
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        padding: "10px 0",
+        borderBottom: i < Math.min(rows.length, 6) - 1 ? "1px solid #F1F5F9" : "none"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 32,
+        height: 32,
+        borderRadius: 9,
+        background: "#DCFCE7",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: 14
+      }
+    }, "✓"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 600,
+        color: "#0F172A"
+      }
+    }, ex ? ex.name : r.exercise_id), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#94A3B8"
+      }
+    }, d.toLocaleDateString("es-AR", {
+      day: "numeric",
+      month: "short"
+    }), " · ", d.toLocaleTimeString("es-AR", {
+      hour: "2-digit",
+      minute: "2-digit"
+    }))));
+  }))));
 };
 const Home = ({
   pathology,
@@ -3928,7 +4294,7 @@ function SpineFlow() {
   const nextExercise = () => {
     // Save progress for completed exercise
     if (activeExId && pathology) {
-      saveProgress(activeExId, pathology.id, 0);
+      saveProgress(activeExId, pathology.id, 60);
     }
     if (activeIdx < sessionList.length - 1) setActiveExId(sessionList[activeIdx + 1]);else goPlan();
   };
