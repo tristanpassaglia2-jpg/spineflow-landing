@@ -1,0 +1,20 @@
+SPINEFLOW v3.3 — PAQUETE PARA GITHUB
+
+CONTENIDO
+- index.html: aplicación actual lista para publicar.
+- assets/coach/mi-profe.jpg: imagen de Mi profe.
+- assets/anatomy/: referencias anatómicas.
+- assets/exercises/: una carpeta creada para cada ejercicio detectado.
+- assets/exercises/pelvic-tilt-reference.png: diseño visual maestro aprobado.
+- manifest.json: inventario de ejercicios y rutas.
+
+IMPORTANTE
+Este paquete deja organizada la estructura profesional para GitHub. La imagen de referencia de báscula pélvica es una lámina de diseño, no un video funcional. Cada ejercicio todavía necesita sus fotogramas o video biomecánico específico antes de poder mostrar movimiento real y correcto.
+
+SUBIDA A GITHUB
+1. Descomprimir el ZIP.
+2. Abrir el repositorio de GitHub.
+3. Add file > Upload files.
+4. Arrastrar index.html y la carpeta assets completa.
+5. Commit changes.
+6. Esperar 1-2 minutos y recargar con Ctrl+F5.
