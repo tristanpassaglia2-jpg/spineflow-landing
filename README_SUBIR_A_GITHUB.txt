@@ -1,11 +1,18 @@
-SPINEFLOW 4.0 PROFESSIONAL
+SPINEFLOW V8 PROFESSIONAL — SUBIDA A GITHUB
 
 1. Conservá una copia del sitio actual.
-2. En GitHub, reemplazá index.html por el index.html de esta carpeta.
-3. Reemplazá la carpeta assets completa por esta carpeta assets.
-4. No subas la carpeta contenedora SpineFlow_v4_0_Professional: subí su contenido a la raíz.
-5. La raíz debe mostrar index.html y assets/.
-6. Hacé Commit changes y esperá el despliegue de Vercel.
-7. Abrí la web en incógnito o presioná Ctrl+F5.
+2. En la raíz del repositorio reemplazá index.html.
+3. Reemplazá por completo la carpeta assets con la incluida en este paquete.
+4. Subí manifest.webmanifest.
+5. Commit: "SpineFlow V8 Professional".
+6. Esperá el despliegue de Vercel y recargá con Ctrl+F5.
 
-Esta entrega incluye 46 ejercicios, animación específica por familia biomecánica, guía de movimiento, mapa muscular, audio por síntesis de voz, sonidos y navegación responsive.
+ESTRUCTURA
+index.html
+manifest.webmanifest
+assets/app.js
+assets/styles.css
+assets/exercises.json
+assets/regions.json
+
+Incluye módulos Cervical, Dorsal y Lumbar; patologías originales; dos ejercicios gratuitos por patología y el resto Premium.

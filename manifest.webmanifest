@@ -1,0 +1,9 @@
+{
+  "name": "SpineFlow V8",
+  "short_name": "SpineFlow",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#F3F8FA",
+  "theme_color": "#073D4C",
+  "icons": []
+}
