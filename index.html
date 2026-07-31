@@ -1487,16 +1487,13 @@ const PlanScreen = ({
       gap: 12,
       alignItems: "flex-start"
     }
-  }, /*#__PURE__*/React.createElement(AvatarSVG, {
-    size: 52,
-    mood: "explaining"
-  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", { className:"sf-professor-mark", "aria-hidden":"true" }, React.createElement("span", null, "SF")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 13,
       fontWeight: 600,
       color: "#0369A1"
     }
-  }, "Tu fisioterapeuta dice:"), /*#__PURE__*/React.createElement("div", {
+  }, "Mi profe"), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
       color: "#0369A1",
@@ -1595,12 +1592,12 @@ const ExerciseVisual = ({ exercise, color = "#0EA5E9", compact = false }) => {
   const isLeg = /pierna|rodilla|isquio|glúteo|clamshell|tobillo/.test(name);
   const isArmLeg = /bird dog|dead bug/.test(name);
   const motionClass = isNeck ? "sf-move-head" : isBridge ? "sf-move-bridge" : isArmLeg ? "sf-move-cross" : isLeg ? "sf-move-leg" : "sf-move-body";
-  const common = { stroke: "#26364A", strokeWidth: 7, strokeLinecap: "round", strokeLinejoin: "round", fill: "none" };
+  const common = { stroke: "#1B6B7A", strokeWidth: 12, strokeLinecap: "round", strokeLinejoin: "round", fill: "none" };
   const joint = (cx, cy, r=5) => React.createElement("circle", { cx, cy, r, fill: color, opacity: .95 });
   let body;
   if (pose === "seated") body = React.createElement(React.Fragment, null,
     React.createElement("path", { d:"M42 154 H122 M52 154 V92 H112", stroke:"#94A3B8", strokeWidth:5, fill:"none", strokeLinecap:"round" }),
-    React.createElement("circle", { cx:83, cy:48, r:18, fill:"#F6C7A8", stroke:"#26364A", strokeWidth:4, className:isNeck?motionClass:"" }),
+    React.createElement("circle", { cx:83, cy:48, r:18, fill:"url(#skinGrad)", stroke:"#183247", strokeWidth:2.5, className:isNeck?motionClass:"" }),
     React.createElement("g", { className:!isNeck?motionClass:"" },
       React.createElement("path", { d:"M82 68 L82 111 L116 112", ...common }),
       React.createElement("path", { d:"M82 82 L55 104 M82 83 L108 101", ...common }),
@@ -1610,7 +1607,7 @@ const ExerciseVisual = ({ exercise, color = "#0EA5E9", compact = false }) => {
   );
   else if (pose === "supine") body = React.createElement(React.Fragment, null,
     React.createElement("path", { d:"M24 148 H176", stroke:"#94A3B8", strokeWidth:5, strokeLinecap:"round" }),
-    React.createElement("circle", { cx:43, cy:125, r:16, fill:"#F6C7A8", stroke:"#26364A", strokeWidth:4 }),
+    React.createElement("circle", { cx:43, cy:125, r:16, fill:"url(#skinGrad)", stroke:"#183247", strokeWidth:2.5 }),
     React.createElement("g", { className:motionClass },
       React.createElement("path", { d:isBridge?"M58 132 Q96 91 132 127":"M58 132 L105 132", ...common }),
       React.createElement("path", { d:isBridge?"M132 127 L159 147":"M104 132 L130 105 L158 145", ...common }),
@@ -1621,7 +1618,7 @@ const ExerciseVisual = ({ exercise, color = "#0EA5E9", compact = false }) => {
   else if (pose === "prone") body = React.createElement(React.Fragment, null,
     React.createElement("path", { d:"M20 150 H180", stroke:"#94A3B8", strokeWidth:5, strokeLinecap:"round" }),
     React.createElement("g", { className:motionClass },
-      React.createElement("circle", { cx:49, cy:105, r:16, fill:"#F6C7A8", stroke:"#26364A", strokeWidth:4 }),
+      React.createElement("circle", { cx:49, cy:105, r:16, fill:"url(#skinGrad)", stroke:"#183247", strokeWidth:2.5 }),
       React.createElement("path", { d:"M64 114 Q95 91 126 128 L165 145", ...common }),
       React.createElement("path", { d:"M78 109 L66 145 M92 105 L87 145", ...common }),
       joint(78,109), joint(126,128)
@@ -1630,7 +1627,7 @@ const ExerciseVisual = ({ exercise, color = "#0EA5E9", compact = false }) => {
   else if (pose === "quadruped") body = React.createElement(React.Fragment, null,
     React.createElement("path", { d:"M18 158 H182", stroke:"#94A3B8", strokeWidth:5, strokeLinecap:"round" }),
     React.createElement("g", { className:motionClass },
-      React.createElement("circle", { cx:49, cy:88, r:15, fill:"#F6C7A8", stroke:"#26364A", strokeWidth:4 }),
+      React.createElement("circle", { cx:49, cy:88, r:15, fill:"url(#skinGrad)", stroke:"#183247", strokeWidth:2.5 }),
       React.createElement("path", { d:"M64 96 Q98 105 126 103", ...common }),
       React.createElement("path", { d:"M72 100 L62 151 M112 105 L119 151", ...common }),
       React.createElement("path", { d:isArmLeg?"M76 101 L42 61 M124 103 L162 72":"M76 101 L54 151 M126 104 L145 151", ...common }),
@@ -1639,7 +1636,7 @@ const ExerciseVisual = ({ exercise, color = "#0EA5E9", compact = false }) => {
   );
   else if (pose === "side") body = React.createElement(React.Fragment, null,
     React.createElement("path", { d:"M18 154 H182", stroke:"#94A3B8", strokeWidth:5, strokeLinecap:"round" }),
-    React.createElement("circle", { cx:45, cy:116, r:16, fill:"#F6C7A8", stroke:"#26364A", strokeWidth:4 }),
+    React.createElement("circle", { cx:45, cy:116, r:16, fill:"url(#skinGrad)", stroke:"#183247", strokeWidth:2.5 }),
     React.createElement("g", { className:motionClass },
       React.createElement("path", { d:"M60 124 L112 130", ...common }),
       React.createElement("path", { d:"M68 126 L45 147", ...common }),
@@ -1650,7 +1647,7 @@ const ExerciseVisual = ({ exercise, color = "#0EA5E9", compact = false }) => {
   else body = React.createElement(React.Fragment, null,
     React.createElement("path", { d:"M18 168 H182", stroke:"#94A3B8", strokeWidth:5, strokeLinecap:"round" }),
     React.createElement("g", { className:motionClass },
-      React.createElement("circle", { cx:100, cy:38, r:18, fill:"#F6C7A8", stroke:"#26364A", strokeWidth:4 }),
+      React.createElement("circle", { cx:100, cy:38, r:18, fill:"url(#skinGrad)", stroke:"#183247", strokeWidth:2.5 }),
       React.createElement("path", { d:"M100 58 L100 113", ...common }),
       React.createElement("path", { d:"M100 75 L66 105 M100 75 L135 104", ...common }),
       React.createElement("path", { d:"M100 113 L78 164 M100 113 L124 164", ...common }),
@@ -1658,9 +1655,11 @@ const ExerciseVisual = ({ exercise, color = "#0EA5E9", compact = false }) => {
     )
   );
   return React.createElement("div", { className:`sf-exercise-visual ${compact?"sf-compact":""}`, style:{"--sf-accent":color}, role:"img", "aria-label":`Demostración animada: ${exercise.name}` },
-    React.createElement("div", { className:"sf-visual-badge" }, "DEMOSTRACIÓN"),
+    React.createElement("div", { className:"sf-visual-badge" }, "GUÍA DE MOVIMIENTO"),
     React.createElement("svg", { viewBox:"0 0 200 190", preserveAspectRatio:"xMidYMid meet" },
       React.createElement("defs", null,
+        React.createElement("linearGradient", { id:"skinGrad", x1:"0", y1:"0", x2:"1", y2:"1" }, React.createElement("stop", { offset:"0%", stopColor:"#F7D4BC" }), React.createElement("stop", { offset:"100%", stopColor:"#D99870" })),
+        React.createElement("linearGradient", { id:"shirtGrad", x1:"0", y1:"0", x2:"1", y2:"1" }, React.createElement("stop", { offset:"0%", stopColor:"#1B6B7A" }), React.createElement("stop", { offset:"100%", stopColor:"#0B3C5D" })),
         React.createElement("radialGradient", { id:`glow-${pose}`, cx:"50%", cy:"50%", r:"50%" },
           React.createElement("stop", { offset:"0%", stopColor:color, stopOpacity:.20 }),
           React.createElement("stop", { offset:"100%", stopColor:color, stopOpacity:0 })
@@ -1670,7 +1669,7 @@ const ExerciseVisual = ({ exercise, color = "#0EA5E9", compact = false }) => {
       React.createElement("path", { d:"M152 45 q18 12 0 24", fill:"none", stroke:color, strokeWidth:4, strokeLinecap:"round", className:"sf-motion-arrow" }),
       React.createElement("path", { d:"M151 69 l8 -2 l-3 -8", fill:"none", stroke:color, strokeWidth:4, strokeLinecap:"round", strokeLinejoin:"round", className:"sf-motion-arrow" })
     ),
-    !compact && React.createElement("div", { className:"sf-visual-caption" }, "Movimiento continuo · pausá si aparece dolor")
+    !compact && React.createElement("div", { className:"sf-visual-caption" }, "Referencia visual · realizá el movimiento sin dolor")
   );
 };
 
@@ -1781,6 +1780,8 @@ const ExerciseSession = ({
           if (r <= 1) {
             clearInterval(intervalRef.current);
             setRunning(false);
+            playTone(880, .22);
+            setTimeout(() => playTone(1120, .28), 180);
             return 0;
           }
           return r - 1;
@@ -1792,9 +1793,33 @@ const ExerciseSession = ({
     return () => clearInterval(intervalRef.current);
   }, [running, mode]);
   const fmt = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+  const playTone = (frequency = 740, duration = 0.16) => {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.frequency.value = frequency;
+      osc.type = "sine";
+      gain.gain.setValueAtTime(0.0001, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + 0.015);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+      osc.connect(gain); gain.connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime + duration + 0.02);
+    } catch (e) {}
+  };
+  const speakGuide = () => {
+    if (!("speechSynthesis" in window)) return;
+    window.speechSynthesis.cancel();
+    const text = `${exercise.name}. ${exercise.position || ""}. ${exercise.steps.join(". ")}. ${exercise.breathing ? "Respiración: " + exercise.breathing : ""}`;
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "es-AR"; u.rate = 0.88; u.pitch = 0.96; u.volume = 1;
+    window.speechSynthesis.speak(u);
+  };
   const resetTimer = () => {
     setRunning(false);
     setRemaining(timeSecs || 0);
+    playTone(520, .1);
   };
   const isActive = mode === "time" ? running : false;
   return /*#__PURE__*/React.createElement("div", {
@@ -1947,7 +1972,7 @@ const ExerciseSession = ({
       fontSize: 12,
       color: "#0369A1"
     }
-  }, "🫁 ", /*#__PURE__*/React.createElement("strong", null, "Respiración:"), " ", exercise.breathing)), mode === "time" && /*#__PURE__*/React.createElement("div", {
+  }, "🫁 ", /*#__PURE__*/React.createElement("strong", null, "Respiración:"), " ", exercise.breathing)), /*#__PURE__*/React.createElement("div", { className:"sf-audio-panel" }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Guía por voz"), /*#__PURE__*/React.createElement("span", null, " Instrucciones del ejercicio en español")), /*#__PURE__*/React.createElement("button", { onClick:speakGuide, className:"sf-audio-btn" }, "▶ Escuchar a Mi profe")), mode === "time" && /*#__PURE__*/React.createElement("div", {
     style: {
       textAlign: "center",
       marginBottom: 20,
@@ -3124,7 +3149,10 @@ function SpineFlow() {
 @keyframes sfBridge { 0%,100%{transform:translateY(5px)} 50%{transform:translateY(-9px)} }
 @keyframes sfCross { 0%,100%{transform:rotate(-2deg)} 50%{transform:rotate(4deg)} }
 @keyframes sfArrow { 0%,100%{opacity:.25;transform:translateY(3px)} 50%{opacity:1;transform:translateY(-3px)} }
-.sf-exercise-visual{position:relative;height:260px;margin-bottom:18px;border-radius:24px;overflow:hidden;background:linear-gradient(145deg,#F8FAFC,#EFF6FF);border:1px solid #E2E8F0;box-shadow:0 14px 35px rgba(15,23,42,.08);display:flex;align-items:center;justify-content:center}.sf-exercise-visual svg{width:100%;height:100%;max-width:360px}.sf-visual-badge{position:absolute;top:14px;left:14px;z-index:2;padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);font-size:9px;font-weight:800;letter-spacing:1.2px;color:var(--sf-accent);box-shadow:0 3px 12px rgba(15,23,42,.08)}.sf-visual-caption{position:absolute;bottom:12px;left:14px;right:14px;text-align:center;font-size:11px;font-weight:600;color:#64748B}.sf-compact{width:66px;height:54px;min-width:66px;margin:0;border-radius:12px;box-shadow:none}.sf-compact .sf-visual-badge,.sf-compact .sf-visual-caption,.sf-compact .sf-motion-arrow{display:none}.sf-move-body{transform-origin:100px 105px;animation:sfBody 2.4s ease-in-out infinite}.sf-move-head{transform-origin:83px 65px;animation:sfHead 2.2s ease-in-out infinite}.sf-move-leg{transform-origin:110px 130px;animation:sfLeg 2.3s ease-in-out infinite}.sf-move-bridge{transform-origin:100px 145px;animation:sfBridge 2.4s ease-in-out infinite}.sf-move-cross{transform-origin:100px 110px;animation:sfCross 2.5s ease-in-out infinite}.sf-motion-arrow{transform-origin:center;animation:sfArrow 1.7s ease-in-out infinite}@media (prefers-reduced-motion:reduce){.sf-exercise-visual *{animation:none!important}} button { -webkit-appearance: none; } ::-webkit-scrollbar { display: none; } input:focus { border-color: #0EA5E9 !important; }
+.sf-exercise-visual{position:relative;height:260px;margin-bottom:18px;border-radius:24px;overflow:hidden;background:linear-gradient(145deg,#F8FAFC,#EFF6FF);border:1px solid #E2E8F0;box-shadow:0 14px 35px rgba(15,23,42,.08);display:flex;align-items:center;justify-content:center}.sf-exercise-visual svg{width:100%;height:100%;max-width:360px}.sf-visual-badge{position:absolute;top:14px;left:14px;z-index:2;padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);font-size:9px;font-weight:800;letter-spacing:1.2px;color:var(--sf-accent);box-shadow:0 3px 12px rgba(15,23,42,.08)}.sf-visual-caption{position:absolute;bottom:12px;left:14px;right:14px;text-align:center;font-size:11px;font-weight:600;color:#64748B}.sf-compact{width:66px;height:54px;min-width:66px;margin:0;border-radius:12px;box-shadow:none}.sf-compact .sf-visual-badge,.sf-compact .sf-visual-caption,.sf-compact .sf-motion-arrow{display:none}.sf-move-body{transform-origin:100px 105px;animation:sfBody 2.4s ease-in-out infinite}.sf-move-head{transform-origin:83px 65px;animation:sfHead 2.2s ease-in-out infinite}.sf-move-leg{transform-origin:110px 130px;animation:sfLeg 2.3s ease-in-out infinite}.sf-move-bridge{transform-origin:100px 145px;animation:sfBridge 2.4s ease-in-out infinite}.sf-move-cross{transform-origin:100px 110px;animation:sfCross 2.5s ease-in-out infinite}.sf-motion-arrow{transform-origin:center;animation:sfArrow 1.7s ease-in-out infinite}@media (prefers-reduced-motion:reduce){.sf-exercise-visual *{animation:none!important}} 
+.sf-professor-mark{width:48px;height:48px;min-width:48px;border-radius:14px;background:linear-gradient(145deg,#0B3C5D,#0F766E);display:grid;place-items:center;box-shadow:0 10px 24px rgba(11,60,93,.2)}.sf-professor-mark span{color:white;font-weight:900;letter-spacing:.5px;font-size:14px}.sf-audio-panel{margin:0 0 20px;padding:14px 16px;border:1px solid #D8E6EC;border-radius:16px;background:linear-gradient(135deg,#F7FBFC,#EDF7F5);display:flex;align-items:center;justify-content:space-between;gap:14px;color:#244154;font-size:12px}.sf-audio-panel span{color:#6B8292}.sf-audio-btn{border:0;border-radius:12px;padding:11px 15px;background:#0B3C5D;color:#fff;font-weight:800;cursor:pointer;white-space:nowrap;box-shadow:0 8px 18px rgba(11,60,93,.18)}.sf-audio-btn:active{transform:translateY(1px)}
+.sf-exercise-visual svg .sf-skin{fill:url(#skinGrad)}.sf-exercise-visual svg .sf-shirt{fill:url(#shirtGrad)}.sf-exercise-visual svg .sf-shorts{fill:#1D3345}.sf-exercise-visual svg .sf-limb{stroke:#D8A47F;stroke-width:14;stroke-linecap:round}.sf-exercise-visual svg .sf-outline{stroke:#183247;stroke-width:2.4}.sf-exercise-visual{background:radial-gradient(circle at 35% 25%,#fff 0,#F4F9FA 42%,#E7F1F3 100%)!important}
+button { -webkit-appearance: none; } ::-webkit-scrollbar { display: none; } input:focus { border-color: #0EA5E9 !important; }
 :root{--sf-navy:#0B1F33;--sf-blue:#087EA4;--sf-ink:#102A43;--sf-muted:#627D98;--sf-line:#D9E2EC;--sf-bg:#F4F7FA}
 body{background:radial-gradient(circle at 20% 0%,#E7F5FA 0,transparent 38%),#EAF0F5!important;color:var(--sf-ink)}
 .sf-app-shell{width:100%;border-left:1px solid #D9E2EC;border-right:1px solid #D9E2EC;box-shadow:0 18px 60px rgba(11,31,51,.12);background:var(--sf-bg)!important}
