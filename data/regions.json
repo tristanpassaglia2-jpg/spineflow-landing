@@ -1,0 +1,211 @@
+[
+  {
+    "id": "cervical",
+    "label": "Cervical",
+    "icon": "🔵",
+    "color": "#0EA5E9",
+    "light": "#E0F2FE",
+    "subtitle": "Cuello y base del cráneo",
+    "pathologies": [
+      {
+        "id": "hernia_cervical",
+        "title": "Hernia de disco cervical",
+        "desc": "Dolor cervical con posible irradiación al brazo",
+        "ex": [
+          "c1",
+          "c5",
+          "c4",
+          "c3",
+          "c8",
+          "c2"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "occipital",
+        "title": "Síndrome occipital (Arnold)",
+        "desc": "Neuralgia occipital / dolor en la base del cráneo",
+        "ex": [
+          "n1",
+          "c6",
+          "c1",
+          "c2",
+          "c7",
+          "g8"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "cervicalgia_espasmo",
+        "title": "Cervicalgia por espasmo",
+        "desc": "Contractura y rigidez cervical",
+        "ex": [
+          "n1",
+          "c6",
+          "c2",
+          "c7",
+          "c1",
+          "g2"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "desfiladero",
+        "title": "Síndrome del desfiladero torácico",
+        "desc": "Compresión neurovascular hombro-cuello",
+        "ex": [
+          "n2",
+          "n3",
+          "c7",
+          "c1",
+          "k8",
+          "c6"
+        ],
+        "free_count": 2
+      }
+    ]
+  },
+  {
+    "id": "dorsal",
+    "label": "Dorsal",
+    "icon": "🟢",
+    "color": "#10B981",
+    "light": "#D1FAE5",
+    "subtitle": "Espalda media y torácica",
+    "pathologies": [
+      {
+        "id": "espasmo_dorsal",
+        "title": "Espasmo dorsal",
+        "desc": "Contractura de la musculatura dorsal",
+        "ex": [
+          "l4",
+          "c7",
+          "g6",
+          "g3",
+          "g2",
+          "k8",
+          "bp"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "escoliosis",
+        "title": "Escoliosis",
+        "desc": "Programa de soporte, fuerza y movilidad",
+        "ex": [
+          "k1",
+          "k4",
+          "k3",
+          "k8",
+          "k5",
+          "cl",
+          "g6"
+        ],
+        "note": "La corrección específica de la curva (métodos Schroth/SEAS) requiere evaluación profesional previa. Este programa es de soporte general: fortalece y da movilidad, pero no reemplaza el diagnóstico del patrón de tu columna.",
+        "free_count": 2
+      },
+      {
+        "id": "dorsalgia",
+        "title": "Dorsalgia",
+        "desc": "Dolor de espalda media",
+        "ex": [
+          "g3",
+          "l4",
+          "g2",
+          "c7",
+          "k8",
+          "g6"
+        ],
+        "free_count": 2
+      }
+    ]
+  },
+  {
+    "id": "lumbar",
+    "label": "Lumbar",
+    "icon": "🟠",
+    "color": "#F59E0B",
+    "light": "#FEF3C7",
+    "subtitle": "Zona baja de la espalda",
+    "pathologies": [
+      {
+        "id": "hernia_lumbar",
+        "title": "Hernia lumbar con ciatalgia",
+        "desc": "Dolor irradiado hacia la pierna",
+        "ex": [
+          "em",
+          "s3",
+          "s6",
+          "dp",
+          "s2",
+          "l1",
+          "s7",
+          "s4"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "lumbalgia",
+        "title": "Lumbalgia mecánica",
+        "desc": "Dolor lumbar por sobrecarga o mala postura",
+        "ex": [
+          "bp",
+          "l2",
+          "l4",
+          "l1",
+          "l7",
+          "k1",
+          "em",
+          "l6"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "piramidal",
+        "title": "Síndrome piramidal (falsa ciática)",
+        "desc": "Dolor glúteo por el músculo piriforme",
+        "ex": [
+          "s1",
+          "s8",
+          "n4",
+          "cl",
+          "s5",
+          "s2",
+          "s7"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "facetario",
+        "title": "Síndrome facetario",
+        "desc": "Dolor de las articulaciones vertebrales",
+        "ex": [
+          "bp",
+          "l1",
+          "l4",
+          "l7",
+          "l2",
+          "k1",
+          "l6"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "postcirugia",
+        "title": "Rehabilitación post cirugía de columna",
+        "desc": "Recuperación progresiva post-quirúrgica",
+        "ex": [
+          "p1",
+          "p2",
+          "p3",
+          "p4",
+          "p5",
+          "p6",
+          "p7",
+          "p8"
+        ],
+        "free_count": 2
+      }
+    ]
+  }
+]
