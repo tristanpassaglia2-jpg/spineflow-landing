@@ -1,4 +1,4 @@
-const CACHE = 'spineflow-v9-rc1';
+const CACHE = 'spineflow-v9-rc2';
 const CORE = [
   '/', '/index.html', '/assets/css/app.css', '/assets/js/app.js',
   '/data/exercises.json', '/data/regions.json', '/manifest.webmanifest',
