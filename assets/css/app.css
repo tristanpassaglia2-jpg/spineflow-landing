@@ -26,3 +26,7 @@ body.dark{--cream:#071418;--white:#0d2228;--ink:#edf8f7;--muted:#9ab0b4;--line:#
 .phase-strip{width:100%!important;height:auto!important;max-width:100%!important;object-fit:contain!important;display:block;transform:none!important}
 .phase-focus{position:absolute;z-index:2;top:0;bottom:0;width:20%;left:0;border:3px solid var(--teal2);background:rgba(24,168,159,.07);box-shadow:0 0 0 999px rgba(3,18,22,.12);pointer-events:none;transition:left .45s cubic-bezier(.2,.8,.2,1)}
 .phase-caption{z-index:3;left:9px;bottom:9px;padding:7px 9px;font-size:11px;transition:left .45s cubic-bezier(.2,.8,.2,1)}
+
+/* RC3: encuadre superior para conservar el rostro completo de Mi Profe. */
+.dashboard-photo{background-position:center 8%!important}
+.hero-photo{object-position:center 8%!important}
