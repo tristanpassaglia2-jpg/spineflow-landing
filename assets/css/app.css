@@ -30,3 +30,7 @@ body.dark{--cream:#071418;--white:#0d2228;--ink:#edf8f7;--muted:#9ab0b4;--line:#
 /* RC3: encuadre superior para conservar el rostro completo de Mi Profe. */
 .dashboard-photo{background-position:center 8%!important}
 .hero-photo{object-position:center 8%!important}
+
+/* RC4: retrato facial de Mi Profe dentro del avatar circular del reproductor. */
+.coach-avatar{width:38px;height:38px;flex:0 0 38px;display:block;overflow:hidden;border-radius:50%;background:#dcebe8}
+.coach-avatar img{width:100%!important;height:100%!important;max-width:none;object-fit:cover!important;object-position:center 11%!important;transform:scale(2.15);transform-origin:50% 14%;border-radius:0!important}
