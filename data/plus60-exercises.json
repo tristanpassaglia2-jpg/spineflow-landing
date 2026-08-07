@@ -1,0 +1,287 @@
+{
+  "s60_01": {
+    "name": "Sentarse y levantarse con apoyo",
+    "level": "Inicial",
+    "reps": "8–10 repeticiones",
+    "series": "2 series",
+    "position": "Sentado/a en silla firme, pies apoyados y manos con apoyo suave.",
+    "breathing": "Espira al levantarte. Inspira al sentarte.",
+    "warning": "Detené el ejercicio ante dolor u opresión en el pecho, falta de aire intensa o desproporcionada, mareo, sensación de desmayo, confusión, palpitaciones con malestar, debilidad repentina o agotamiento extremo. Avisá a un familiar y solicitá asistencia médica si los síntomas son intensos o no mejoran rápidamente.",
+    "steps": [
+      "Prepará una silla firme y un espacio despejado.",
+      "Llevá el tronco suavemente hacia delante y usá un apoyo leve si lo necesitás.",
+      "Empujá con los pies y extendé caderas y rodillas para ponerte de pie.",
+      "Volvé a sentarte con control, sin dejarte caer.",
+      "Completá 2 series de 8–10 repeticiones y descansá según necesidad."
+    ],
+    "variants": "Más fácil: usá una silla más alta o mayor apoyo con manos. Más difícil: menos apoyo manual o pausa de control al ponerse de pie.",
+    "muscles": "Cuádriceps, glúteos, isquiotibiales, core",
+    "sheet": "assets/img/plus60/s60_01_sentarse_con_apoyo.png"
+  },
+  "s60_02": {
+    "name": "Sentarse y levantarse sin manos",
+    "level": "Intermedio",
+    "reps": "8–12 repeticiones",
+    "series": "2 series",
+    "position": "Sentado/a en silla firme, pies apoyados y brazos cruzados o al frente.",
+    "breathing": "Espira al levantarte. Inspira al sentarte.",
+    "warning": "Detené el ejercicio ante síntomas de alarma o dolor significativo.",
+    "steps": [
+      "Sentate en el borde de la silla con los pies apoyados.",
+      "Incliná el tronco hacia delante desde las caderas.",
+      "Empujá con los pies y levantate sin usar las manos.",
+      "Quedate erguido un instante y descendé con control.",
+      "Completá 2 series de 8–12 repeticiones."
+    ],
+    "variants": "Más fácil: usá una silla más alta. Más difícil: pausa de control al ponerse de pie.",
+    "muscles": "Cuádriceps, glúteos, core",
+    "sheet": "assets/img/plus60/s60_02_sentarse_sin_manos.png"
+  },
+  "s60_03": {
+    "name": "Mini sentadilla con apoyo",
+    "level": "Inicial",
+    "reps": "8–12 repeticiones",
+    "series": "2 series",
+    "position": "De pie detrás de una silla firme, pies al ancho de caderas.",
+    "breathing": "Inspira al bajar. Espira al subir.",
+    "warning": "Detené el ejercicio si aparece dolor en rodillas, caderas o espalda.",
+    "steps": [
+      "Colocate detrás de una silla firme con apoyo suave.",
+      "Llevá la cadera ligeramente hacia atrás activando el abdomen.",
+      "Flexioná caderas y rodillas en una mini sentadilla.",
+      "Sostené un instante con el peso repartido y las rodillas alineadas.",
+      "Volvé lentamente a la posición inicial."
+    ],
+    "variants": "Menor profundidad, mayor apoyo o menos repeticiones si es necesario.",
+    "muscles": "Cuádriceps, glúteos, isquiotibiales, gemelos",
+    "sheet": "assets/img/plus60/s60_03_mini_sentadilla_con_apoyo.png"
+  },
+  "s60_04": {
+    "name": "Estocada asistida",
+    "level": "Intermedio",
+    "reps": "6–10 por lado",
+    "series": "2 series",
+    "position": "De pie junto a una silla o apoyo estable.",
+    "breathing": "Inspira al bajar. Espira al volver.",
+    "warning": "Evitá perder el equilibrio o dejar que la rodilla delantera sobrepase en exceso la punta del pie.",
+    "steps": [
+      "Apoyate suavemente en una silla o superficie estable.",
+      "Llevá una pierna hacia atrás en un paso corto.",
+      "Flexioná ambas rodillas en una estocada pequeña y controlada.",
+      "Mantené el equilibrio con peso repartido.",
+      "Empujá con la pierna delantera y volvés a la posición inicial."
+    ],
+    "variants": "Zancada más corta, usar ambas manos o reducir rango si hay sensibilidad.",
+    "muscles": "Cuádriceps, glúteos, gemelos, core",
+    "sheet": "assets/img/plus60/s60_04_estocada_asistida.png"
+  },
+  "s60_05": {
+    "name": "Step-up en escalón bajo",
+    "level": "Intermedio",
+    "reps": "6–10 por lado",
+    "series": "2 series",
+    "position": "Frente a un escalón bajo o plataforma estable, con apoyo cercano.",
+    "breathing": "Espira al subir. Inspira al bajar.",
+    "warning": "No lo realices si el escalón es inestable o si aparece dolor, mareo o inseguridad.",
+    "steps": [
+      "Colocate frente a un escalón bajo.",
+      "Apoyá un pie completo sobre el escalón.",
+      "Empujá con la pierna apoyada y subí el cuerpo de forma controlada.",
+      "Mantené el equilibrio arriba un instante.",
+      "Bajá lentamente y repetí del otro lado."
+    ],
+    "variants": "Escalón más bajo, menos repeticiones o apoyo con una mano.",
+    "muscles": "Cuádriceps, glúteos, gemelos, core",
+    "sheet": "assets/img/plus60/s60_05_step_up_escalon_bajo.png"
+  },
+  "s60_06": {
+    "name": "Abducción de cadera con apoyo",
+    "level": "Inicial",
+    "reps": "8–12 por lado",
+    "series": "2 series",
+    "position": "De pie junto a una silla o apoyo estable.",
+    "breathing": "Espira al separar la pierna. Inspira al regresar.",
+    "warning": "No inclines el tronco ni gires el pie hacia afuera en exceso.",
+    "steps": [
+      "Parate erguido junto a un apoyo estable.",
+      "Activá el abdomen y apoyá una mano para ganar estabilidad.",
+      "Separá una pierna hacia el costado con la punta mirando al frente.",
+      "Mantené la pelvis estable.",
+      "Volvé lentamente a la posición inicial y repetí del otro lado."
+    ],
+    "variants": "Menor rango, usar ambas manos o sostener 1–2 segundos en la posición final.",
+    "muscles": "Glúteo medio, glúteos, core, estabilizadores de cadera",
+    "sheet": "assets/img/plus60/s60_06_abduccion_cadera_con_apoyo.png"
+  },
+  "s60_07": {
+    "name": "Elevación bilateral de talones",
+    "level": "Inicial",
+    "reps": "10–15 repeticiones",
+    "series": "2 series",
+    "position": "De pie detrás de una silla, manos apoyadas suavemente.",
+    "breathing": "Espira al elevar los talones. Inspira al bajar.",
+    "warning": "Evitá balancearte o bloquear las rodillas.",
+    "steps": [
+      "Colocate detrás de una silla con los pies paralelos.",
+      "Activá el abdomen y distribuí el peso.",
+      "Elevá ambos talones al mismo tiempo.",
+      "Mantené la posición alta un instante.",
+      "Descendé lentamente hasta apoyar todo el pie."
+    ],
+    "variants": "Menor altura, mayor apoyo o pausa breve arriba para más control.",
+    "muscles": "Gemelos, sóleo, estabilizadores del tobillo",
+    "sheet": "assets/img/plus60/s60_07_elevacion_bilateral_talones.png"
+  },
+  "s60_08": {
+    "name": "Marcha con elevación de rodillas",
+    "level": "Inicial",
+    "reps": "10–20 pasos",
+    "series": "2 series",
+    "position": "De pie con apoyo cercano y postura erguida.",
+    "breathing": "Respirá de forma regular durante todo el ejercicio.",
+    "warning": "No aceleres demasiado el ritmo. Detené el ejercicio si aparece falta de aire intensa, mareo o dolor.",
+    "steps": [
+      "Parate erguido con apoyo cercano si lo necesitás.",
+      "Elevá una rodilla hasta una altura cómoda.",
+      "Apoyá el pie con control.",
+      "Elevá la otra rodilla manteniendo el equilibrio.",
+      "Continuá alternando con ritmo lento y controlado."
+    ],
+    "variants": "Menor altura de rodilla, sostén con una mano o menos pasos si te fatigás.",
+    "muscles": "Flexores de cadera, cuádriceps, core, glúteos",
+    "sheet": "assets/img/plus60/s60_08_marcha_elevacion_rodillas.png"
+  },
+  "s60_09": {
+    "name": "Transferencia de peso lateral",
+    "level": "Inicial",
+    "reps": "8–12 por lado",
+    "series": "2 series",
+    "position": "De pie con apoyo cercano y pies algo más separados que las caderas.",
+    "breathing": "Respirá de forma tranquila y continua.",
+    "warning": "No dejes que la rodilla colapse hacia adentro ni realices movimientos bruscos.",
+    "steps": [
+      "Colocate con apoyo cercano y pies algo separados.",
+      "Activá el abdomen y distribuí el peso de forma pareja.",
+      "Desplazá lentamente el peso hacia un lado.",
+      "Mantené el control sin inclinar demasiado el tronco.",
+      "Volvé al centro y repetí hacia el otro lado."
+    ],
+    "variants": "Desplazamiento más pequeño, una o dos manos de apoyo o pausa breve en cada lado.",
+    "muscles": "Glúteo medio, aductores, cuádriceps, core",
+    "sheet": "assets/img/plus60/s60_09_transferencia_peso_lateral.png"
+  },
+  "s60_10": {
+    "name": "Equilibrio unipodal asistido",
+    "level": "Intermedio",
+    "reps": "10–20 s por lado",
+    "series": "2 series",
+    "position": "De pie junto a una silla o apoyo estable.",
+    "breathing": "Respirá lenta y regularmente durante el ejercicio.",
+    "warning": "No cierres los ojos en este nivel. Evitá hacerlo lejos de un apoyo.",
+    "steps": [
+      "Parate junto a un apoyo estable con ambos pies apoyados.",
+      "Llevá el peso hacia una pierna.",
+      "Despegá suavemente el otro pie unos centímetros.",
+      "Mantené el equilibrio en una sola pierna.",
+      "Bajá el pie con control y repetí del otro lado."
+    ],
+    "variants": "Apoyar uno o dos dedos, menor tiempo de sostén o dejar la punta del pie libre cerca del suelo.",
+    "muscles": "Glúteo medio, gemelos, core, estabilizadores del tobillo",
+    "sheet": "assets/img/plus60/s60_10_equilibrio_unipodal_asistido.png"
+  },
+  "s60_11": {
+    "name": "Abdominal isométrico en silla",
+    "level": "Inicial",
+    "reps": "6–8 contracciones de 5–8 s",
+    "series": "2 series",
+    "position": "Sentado/a en silla firme, pies apoyados, columna neutra.",
+    "breathing": "Espira al activar el abdomen. Inspira al relajar.",
+    "warning": "No empujes hacia abajo al activar el abdomen. Detené el ejercicio si aparecen dolor, mareos o falta de aire marcada.",
+    "steps": [
+      "Sentate erguido con los pies apoyados.",
+      "Alargá la columna y relajá los hombros.",
+      "Contraé suavemente el abdomen llevando el ombligo hacia adentro.",
+      "Sostené la activación respirando de forma tranquila.",
+      "Relajá lentamente y repetí."
+    ],
+    "variants": "Contracciones más cortas, respaldo de silla o menos repeticiones.",
+    "muscles": "Transverso abdominal, oblicuos, multífidos, suelo pélvico",
+    "sheet": "assets/img/plus60/s60_11_abdominal_isometrico_en_silla.png"
+  },
+  "s60_12": {
+    "name": "Elevación alternada de rodillas sentado",
+    "level": "Inicial",
+    "reps": "8–12 alternadas",
+    "series": "2 series",
+    "position": "Sentado/a erguido/a en silla firme.",
+    "breathing": "Espira al elevar cada rodilla. Inspira al bajar.",
+    "warning": "Evitá inclinar el tronco hacia atrás o contener la respiración.",
+    "steps": [
+      "Sentate erguido con los pies apoyados.",
+      "Activá el abdomen y estabilizá el tronco.",
+      "Elevá la rodilla derecha hasta una altura cómoda.",
+      "Bajala con control y elevá la izquierda.",
+      "Continuá alternando en un ritmo lento y controlado."
+    ],
+    "variants": "Menor altura, apoyo en respaldo o menos alternancias.",
+    "muscles": "Flexores de cadera, transverso abdominal, cuádriceps, core",
+    "sheet": "assets/img/plus60/s60_12_elevacion_alternada_rodillas_sentado.png"
+  },
+  "s60_13": {
+    "name": "Retracción escapular y apertura torácica",
+    "level": "Inicial",
+    "reps": "10–12 repeticiones",
+    "series": "2 series",
+    "position": "De pie o sentado/a con espalda erguida.",
+    "breathing": "Inspira al abrir el pecho. Espira al regresar.",
+    "warning": "Evitá elevar los hombros, tensar el cuello o arquear en exceso la zona lumbar.",
+    "steps": [
+      "Parate o sentate erguido.",
+      "Alargá la columna y activá levemente el abdomen.",
+      "Llevá las escápulas hacia atrás y ligeramente hacia abajo.",
+      "Abrí el pecho y elevá suavemente el esternón.",
+      "Regresá de forma suave a la posición inicial."
+    ],
+    "variants": "Variante sentado, menor rango o manos apoyadas en muslos.",
+    "muscles": "Romboides, trapecio medio e inferior, extensores torácicos",
+    "sheet": "assets/img/plus60/s60_13_retraccion_escapular_apertura_toracica.png"
+  },
+  "s60_14": {
+    "name": "Wall slide",
+    "level": "Inicial",
+    "reps": "8–10 repeticiones",
+    "series": "2 series",
+    "position": "De pie cerca de una pared, codos flexionados.",
+    "breathing": "Espira al deslizar hacia arriba. Inspira al bajar.",
+    "warning": "Evitá dolor de hombro/cuello, costillas salidas o elevar los hombros hacia las orejas.",
+    "steps": [
+      "Parate cerca de la pared con los brazos apoyados.",
+      "Alineá el tronco y activá suavemente el core.",
+      "Deslizá los brazos hacia arriba manteniendo el contacto.",
+      "Sostené brevemente a una altura cómoda.",
+      "Volvé lentamente a la posición inicial."
+    ],
+    "variants": "Menor rango, ejercicio sentado/a contra pared, toalla de soporte o menos repeticiones.",
+    "muscles": "Serrato anterior, trapecio inferior, deltoides, manguito rotador",
+    "sheet": "assets/img/plus60/s60_14_wall_slide.png"
+  },
+  "s60_15": {
+    "name": "Rotación torácica controlada",
+    "level": "Inicial",
+    "reps": "8 por lado",
+    "series": "2 series",
+    "position": "Sentado/a erguido/a en una silla firme, brazos cruzados sobre el pecho.",
+    "breathing": "Inspira al prepararte. Espira al rotar.",
+    "warning": "No gires desde la pelvis ni hagas movimientos bruscos. Detenete si aparece dolor, mareo o vértigo.",
+    "steps": [
+      "Sentate erguido con los pies apoyados.",
+      "Alargá la columna y activá suavemente el core.",
+      "Rotá el tronco hacia la derecha desde el tórax.",
+      "Volvé lentamente al centro.",
+      "Rotá hacia la izquierda con el mismo control."
+    ],
+    "variants": "Menor rango, manos en el pecho en vez de cruzadas, o apoyo en respaldo.",
+    "muscles": "Oblicuos, multífidos torácicos, rotadores espinales, musculatura postural dorsal",
+    "sheet": "assets/img/plus60/s60_15_rotacion_toracica_controlada.png"
+  }
+}

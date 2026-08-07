@@ -1,0 +1,1 @@
+RC7 +60: 15 ejercicios, rutinas 10/20 min, descansos, hidratación y alertas. Subir solo a v9-clean-rebuild. No modifica Supabase ni main. Láminas aún en producción.
