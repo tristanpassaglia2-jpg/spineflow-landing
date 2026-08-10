@@ -143,6 +143,60 @@
     "variants": "Variá la resistencia cambiando la tensión de la banda. Empezá con la más liviana.",
     "muscles": "Flexores cervicales profundos bajo carga (fortalecimiento progresivo)"
   },
+  "c9": {
+    "name": "Retracción escapular activa con sostén isométrico",
+    "level": "Inicial",
+    "reps": "10 repeticiones",
+    "series": "3 series × 10 rep",
+    "position": "Sentado/a en silla firme, espalda recta",
+    "breathing": "Exhalá al juntar escápulas. Inhalá al soltar.",
+    "warning": "Movimiento activo, no forzado. Si hay dolor cervical, ajustá la postura.",
+    "steps": [
+      "Sentado/a derecho/a en silla firme, pies planos, mirada al frente.",
+      "Flexioná los codos a 90° con los brazos pegados al cuerpo, palmas hacia arriba.",
+      "Exhalá y sacá el pecho juntando las escápulas hacia la columna (retracción escapular).",
+      "Mantené 5 segundos con sostén isométrico activo del trapecio medio-inferior + romboides.",
+      "Soltá controlado. 10 repeticiones. 3 series con 30 seg de descanso."
+    ],
+    "variants": "Progresión: con banda elástica al frente para resistencia. Regresión: sostén 3 seg.",
+    "muscles": "Trapecio medio, trapecio inferior, romboides mayor y menor — estabilización escapular"
+  },
+  "c10": {
+    "name": "Wall angel de pie con activación escapular baja",
+    "level": "Intermedio",
+    "reps": "10 repeticiones",
+    "series": "3 series × 10 rep",
+    "position": "De pie con espalda apoyada contra pared, pies unos 15 cm hacia adelante",
+    "breathing": "Exhalá al deslizar hacia arriba (Y). Inhalá al volver (W).",
+    "warning": "Si aparecen parestesias con brazos elevados, LIMITAR el rango a la 'W' y NO progresar a la 'Y'.",
+    "steps": [
+      "De pie con la espalda apoyada contra una pared, pies unos 15 cm hacia adelante, rodillas semiflexionadas.",
+      "Apoyá cabeza, hombros, lumbar y brazos contra la pared. Codos a 90° formando 'W'.",
+      "Exhalá y deslizá los brazos hacia arriba hasta formar una 'Y' manteniendo TODOS los puntos en la pared.",
+      "Mantené 3 segundos activando trapecio medio-inferior y serrato anterior.",
+      "Inhalá y volvé lento a la 'W'. 10 repeticiones. 3 series con 45 seg de descanso."
+    ],
+    "variants": "Regresión: limitar rango a 'W' sin llegar a 'Y'. Progresión: con carga liviana.",
+    "muscles": "Trapecio medio-inferior, serrato anterior, romboides, deltoides posterior — control escapular anti-inclinación"
+  },
+  "c11": {
+    "name": "Movilización de 1ª costilla con toalla",
+    "level": "Intermedio",
+    "reps": "10 repeticiones cada lado",
+    "series": "3 series × 10 rep/lado",
+    "position": "Sentado/a en silla firme, toalla enrollada sobre el hombro",
+    "breathing": "Exhalá durante la lateroflexión. Inhalá al volver.",
+    "warning": "Tracción SUAVE con la toalla. NO forzar. Detenete si aparecen síntomas neurológicos.",
+    "steps": [
+      "Sentado/a en silla firme, espalda recta. Colocá una toalla larga enrollada sobre un hombro con el extremo cayendo hacia la cadera opuesta.",
+      "Sujetá el extremo con la mano contraria pasando por delante del cuerpo.",
+      "Realizá una retracción cervical (chin tuck) manteniendo la mirada al frente.",
+      "Exhalá y hacé lateroflexión cervical hacia el lado opuesto de la toalla, aplicando tracción MUY suave hacia abajo con la toalla.",
+      "Mantené 2 segundos. Volvé lento. 10 repeticiones. Cambiá de lado. 3 series."
+    ],
+    "variants": "Regresión: sin toalla, solo retracción + lateroflexión suave.",
+    "muscles": "Escalenos, primera costilla, musculatura cervicotorácica — apertura del desfiladero superior"
+  },
   "l1": {
     "name": "Rodilla al pecho unilateral",
     "level": "Inicial",
@@ -179,6 +233,24 @@
     "variants": "Más fácil: menor rango (no subir tanto). Más difícil: puente con una pierna extendida, o con una pausa de 5 seg arriba.",
     "muscles": "Glúteo mayor, isquiotibiales, transverso abdominal, multífidos lumbares"
   },
+  "l3": {
+    "name": "Superman modificado (extensión prona activa)",
+    "level": "Intermedio",
+    "reps": "10 repeticiones",
+    "series": "3 series × 10 rep",
+    "position": "Acostado/a boca abajo (prono), brazos extendidos al frente, piernas rectas",
+    "breathing": "Exhalá al elevar. Inhalá al bajar.",
+    "warning": "Elevación MODERADA. Si aparece dolor lumbar, reducí el rango. NO forzar la extensión.",
+    "steps": [
+      "Acostado/a boca abajo, brazos extendidos al frente formando una 'V' abierta, piernas rectas ancho de caderas.",
+      "Activá el core (ombligo hacia dentro suavemente). Mantené la mirada al piso, cuello neutro.",
+      "Exhalá y elevá SIMULTÁNEAMENTE brazo derecho + pierna izquierda (contralateral) unos 10-15 cm del piso.",
+      "Mantené 3 segundos activando erectores lumbares y glúteos. NO hiperextiendas.",
+      "Bajá lento. Repetí con brazo izquierdo + pierna derecha. 3 series de 10 rep alternando lados."
+    ],
+    "variants": "Regresión: solo brazos o solo piernas. Progresión: ambos brazos + ambas piernas simultáneamente.",
+    "muscles": "Erectores lumbares, glúteo mayor, deltoides posterior, multífidos"
+  },
   "l4": {
     "name": "Gato-Camello (Cat-Cow)",
     "level": "Inicial",
@@ -196,6 +268,24 @@
     ],
     "variants": "Más fácil: sentado en una silla, manos en las rodillas, mismo movimiento. Más difícil: desde plancha en antebrazos.",
     "muscles": "Extensores lumbares, abdominales, multífidos, movilidad segmentaria de toda la columna"
+  },
+  "l5": {
+    "name": "Estiramiento de glúteo mayor supino",
+    "level": "Inicial",
+    "reps": "45 seg cada lado",
+    "series": "3 rep × lado",
+    "position": "Acostado/a boca arriba, rodillas flexionadas",
+    "breathing": "Respiración profunda y relajada. El estiramiento se profundiza con cada exhalación.",
+    "warning": "El estiramiento debe sentirse en el glúteo, no en la rodilla. Si duele la rodilla, ajustá el agarre.",
+    "steps": [
+      "Acostado/a boca arriba, rodillas flexionadas, pies apoyados en el piso.",
+      "Llevá una rodilla al pecho, tomandola con ambas manos por detrás del muslo.",
+      "Cruzá el tobillo de la otra pierna sobre la rodilla elevada (figura 4 invertida).",
+      "Traccioná suavemente hacia vos hasta sentir estiramiento profundo en el glúteo cruzado.",
+      "Mantené 45 segundos respirando profundo. Cambiá de lado. 3 repeticiones por lado."
+    ],
+    "variants": "Más suave: menor tracción. Más intenso: acercá más la rodilla al pecho opuesto.",
+    "muscles": "Glúteo mayor, piriforme, rotadores externos de cadera"
   },
   "l6": {
     "name": "Estiramiento de isquiotibiales activo",
@@ -233,40 +323,97 @@
     "variants": "Nivel 1: rango corto. Nivel 2: rango completo. Nivel 3: con una pierna cruzada sobre la otra (rotación más específica).",
     "muscles": "Oblicuos internos y externos, cuadrado lumbar, rotadores lumbares, multífidos"
   },
-  "l3": {
-  "name": "Superman modificado (extensión prona activa)",
-  "level": "Intermedio",
-  "reps": "10 repeticiones",
-  "series": "3 series × 10 rep",
-  "position": "Acostado/a boca abajo (prono), brazos extendidos al frente, piernas rectas",
-  "breathing": "Exhalá al elevar. Inhalá al bajar.",
-  "warning": "Elevación MODERADA. Si aparece dolor lumbar, reducí el rango. NO forzar la extensión.",
-  "steps": [
-    "Acostado/a boca abajo, brazos extendidos al frente formando una 'V' abierta, piernas rectas ancho de caderas.",
-    "Activá el core (ombligo hacia dentro suavemente). Mantené la mirada al piso, cuello neutro.",
-    "Exhalá y elevá SIMULTÁNEAMENTE brazo derecho + pierna izquierda (contralateral) unos 10-15 cm del piso.",
-    "Mantené 3 segundos activando erectores lumbares y glúteos. NO hiperextiendas.",
-    "Bajá lento. Repetí con brazo izquierdo + pierna derecha. 3 series de 10 rep alternando lados."
-  ],
-  "variants": "Regresión: solo brazos o solo piernas. Progresión: ambos brazos + ambas piernas simultáneamente.",
-  "muscles": "Erectores lumbares, glúteo mayor, deltoides posterior, multífidos"
-},
-"l5": {
-  "name": "Estiramiento de glúteo mayor supino",
-  "level": "Inicial",
-  "reps": "45 seg cada lado",
-  "series": "3 rep × lado",
-  "position": "Acostado/a boca arriba, rodillas flexionadas",
-  "breathing": "Respiración profunda y relajada. El estiramiento se profundiza con cada exhalación.",
-  "warning": "El estiramiento debe sentirse en el glúteo, no en la rodilla. Si duele la rodilla, ajustá el agarre.",
-  "steps": [
-    "Acostado/a boca arriba, rodillas flexionadas, pies apoyados en el piso.",
-    "Llevá una rodilla al pecho, tomandola con ambas manos por detrás del muslo.",
-    "Cruzá el tobillo de la otra pierna sobre la rodilla elevada (figura 4 invertida).",
-    "Traccioná suavemente hacia vos hasta sentir estiramiento profundo en el glúteo cruzado.",
-    "Mantené 45 segundos respirando profundo. Cambiá de lado. 3 repeticiones por lado."
-  ],
-  "variants": "Más suave: menor"bp": {
+  "l8": {
+    "name": "Plancha modificada desde rodillas",
+    "level": "Intermedio",
+    "reps": "20-30 seg",
+    "series": "3 series × 30 seg",
+    "position": "Apoyado/a en antebrazos y rodillas, cuerpo en línea recta",
+    "breathing": "Respiración natural. NO contener el aire.",
+    "warning": "La zona lumbar NO debe hundirse ni arquearse. Si perdés la línea, bajá el tiempo.",
+    "steps": [
+      "En cuatro apoyos, bajá a los antebrazos con codos directamente debajo de los hombros.",
+      "Apoyá las rodillas al ancho de caderas, tibias en el piso, tobillos cruzados o pies en el aire.",
+      "Activá el core: ombligo hacia dentro, glúteos apretados, línea recta de hombros a rodillas.",
+      "Mantené la posición 20-30 segundos respirando normalmente. NO contengas el aire.",
+      "Bajá controladamente. Descansá 45 segundos. 3 series."
+    ],
+    "variants": "Regresión: apoyo en manos en vez de antebrazos. Progresión: elevar alternadamente un pie 5 seg.",
+    "muscles": "Transverso abdominal, recto abdominal, oblicuos, multífidos — anti-extensión"
+  },
+  "l9": {
+    "name": "Puente de una pierna (single-leg bridge)",
+    "level": "Intermedio",
+    "reps": "10 rep cada pierna",
+    "series": "3 series × 10 rep/pierna",
+    "position": "Acostado/a boca arriba, una rodilla flexionada con pie apoyado",
+    "breathing": "Exhalá al elevar. Inhalá al bajar.",
+    "warning": "La pelvis debe permanecer NIVELADA. Si se inclina hacia el lado de la pierna extendida, bajá el rango.",
+    "steps": [
+      "Acostado/a boca arriba, una rodilla flexionada con pie plano cerca del glúteo. Otra pierna extendida elevada a 45°.",
+      "Activá el core y apretá el glúteo del lado de apoyo.",
+      "Exhalá y elevá la cadera empujando con el talón. La pierna extendida acompaña el movimiento en línea con el tronco.",
+      "Mantené 3 segundos arriba. La pelvis debe estar nivelada, sin caer del lado de la pierna suelta.",
+      "Bajá lento. 10 repeticiones. Cambiá de pierna. 3 series."
+    ],
+    "variants": "Regresión: pausa breve arriba. Progresión: pausa 5 seg + banda elástica en muslos.",
+    "muscles": "Glúteo mayor, isquiotibiales, core estabilizador, glúteo medio (anti-lateralización)"
+  },
+  "l10": {
+    "name": "Estiramiento del psoas de rodillas (half-kneeling)",
+    "level": "Inicial",
+    "reps": "45 seg cada lado",
+    "series": "3 rep × lado",
+    "position": "De rodillas con una pierna adelantada en 90° (posición de propuesta de matrimonio)",
+    "breathing": "Respiración profunda. Cada exhalación profundiza el estiramiento.",
+    "warning": "NO hiperextiendas la lumbar. La retroversión pélvica es CLAVE para no comprimir.",
+    "steps": [
+      "Arrodillado/a en el piso, una rodilla apoyada, la otra pierna adelantada con pie plano y rodilla en 90°.",
+      "CLAVE: llevá la pelvis en RETROVERSIÓN (metiendo el coxis hacia adentro). Sin esto, no estirás el psoas.",
+      "Manteniendo la retroversión, presioná suavemente la cadera hacia adelante.",
+      "Sentirás estiramiento en la ingle y parte anterior del muslo de la pierna atrás.",
+      "Mantené 45 segundos respirando profundo. Cambiá de pierna. 3 repeticiones por lado."
+    ],
+    "variants": "Más intenso: elevá el brazo del lado de la rodilla apoyada + rotá el tronco al opuesto.",
+    "muscles": "Psoas ilíaco, recto femoral, tensor de la fascia lata — flexores de cadera"
+  },
+  "l11": {
+    "name": "Movilización activa lumbar en cuadrupedia",
+    "level": "Inicial",
+    "reps": "10 rep cada movimiento",
+    "series": "2 series",
+    "position": "Cuatro apoyos (manos bajo hombros, rodillas bajo caderas)",
+    "breathing": "Respiración fluida, coordinada con el movimiento.",
+    "warning": "Movimientos LENTOS y CONTROLADOS. Sin rebotes.",
+    "steps": [
+      "En cuatro apoyos: manos bajo hombros, rodillas bajo caderas, espalda neutra.",
+      "LATERALIZACIÓN: llevá la cadera lentamente hacia un lado (como mirando hacia tu talón), volvé al centro y hacé al otro lado. 10 rep por lado.",
+      "CÍRCULOS DE CADERA: hacé círculos amplios con la pelvis manteniendo el resto del cuerpo estable. 10 en cada dirección.",
+      "OSCILACIÓN ANTERO-POSTERIOR: llevá la cadera hacia los talones y de vuelta a posición neutra. 10 repeticiones.",
+      "Estos 3 movimientos = 1 serie. Descansá 30 seg. 2 series."
+    ],
+    "variants": "Combinable con gato-camello (l4) para movilidad segmentaria completa.",
+    "muscles": "Multífidos, cuadrado lumbar, movilidad segmentaria lumbar y sacroilíaca"
+  },
+  "l12": {
+    "name": "Elongación en posición de niño (child's pose activa)",
+    "level": "Inicial",
+    "reps": "60-90 segundos",
+    "series": "2-3 repeticiones",
+    "position": "Sentado/a sobre los talones, tronco flexionado hacia adelante",
+    "breathing": "Respiración diafragmática profunda. Cada exhalación relaja más.",
+    "warning": "Si tenés problemas de rodilla, colocá una almohada entre glúteos y talones.",
+    "steps": [
+      "Sentado/a sobre los talones, rodillas separadas al ancho de las caderas (o más si es cómodo).",
+      "Llevá el tronco hacia adelante bajando el pecho hacia los muslos.",
+      "Extendé los brazos al frente por el piso, la frente apoyada.",
+      "Respirá profundo sintiendo el estiramiento en toda la cadena posterior de la espalda.",
+      "Mantené 60-90 segundos. Salí lento subiendo vértebra a vértebra. 2-3 repeticiones."
+    ],
+    "variants": "Con brazos a los costados (más pasivo). Con brazos rotados a un lado (estira oblicuos).",
+    "muscles": "Extensores lumbares, dorsal ancho, glúteos, descompresión lumbar pasiva"
+  },
+  "bp": {
     "name": "Báscula pélvica (Pelvic Tilt)",
     "level": "Inicial",
     "reps": "15 repeticiones",
@@ -715,6 +862,222 @@
     "variants": "Sobre superficie inestable (almohada, bosu) para mayor desafío propioceptivo.",
     "muscles": "Core completo, cadena posterior, sistema propioceptivo — readaptación final"
   },
+  "p9": {
+    "name": "Elevaciones de talones con apoyo (fortalecimiento gemelos)",
+    "level": "Inicial",
+    "reps": "15 repeticiones",
+    "series": "3 series × 15 rep",
+    "position": "De pie con manos apoyadas en respaldo de silla o pared",
+    "breathing": "Exhalá al elevar. Inhalá al bajar.",
+    "warning": "Solo con autorización médica (generalmente desde semana 2 post-op). Movimiento controlado.",
+    "steps": [
+      "De pie con pies al ancho de caderas, manos apoyadas en respaldo de silla firme.",
+      "Peso distribuido en ambos pies. Espalda recta, core activo.",
+      "Elevá los talones lentamente subiendo sobre las puntas de los pies.",
+      "Mantené 2 segundos en el punto máximo activando pantorrillas.",
+      "Bajá lento y controlado. 15 repeticiones. 3 series con 30 seg de descanso."
+    ],
+    "variants": "Progresión: sin apoyo, o unipodal (una pierna). Regresión: sentado con extensión de tobillo.",
+    "muscles": "Gemelos (gastrocnemio), sóleo, tibial posterior — bomba muscular venosa"
+  },
+  "p10": {
+    "name": "Elevación de puntas del pie sentado (tibial anterior)",
+    "level": "Inicial",
+    "reps": "15 repeticiones",
+    "series": "3 series × 15 rep",
+    "position": "Sentado/a en silla firme, pies apoyados en el piso",
+    "breathing": "Exhalá al elevar. Inhalá al bajar.",
+    "warning": "Ejercicio suave y controlado. Ideal para reactivar tibial anterior post-op.",
+    "steps": [
+      "Sentado/a en silla firme, espalda apoyada, pies planos en el piso separados al ancho de caderas.",
+      "Manos sobre los muslos, mirada al frente.",
+      "Manteniendo los talones apoyados, elevá las puntas de los pies hacia el techo (dorsiflexión).",
+      "Mantené 2 segundos con contracción del tibial anterior (parte delantera de la pierna).",
+      "Bajá lento. 15 repeticiones. 3 series con 30 seg de descanso."
+    ],
+    "variants": "Progresión: con banda elástica en las puntas de los pies.",
+    "muscles": "Tibial anterior, extensores de los dedos del pie"
+  },
+  "p11": {
+    "name": "Elongación lumbar rodilla al pecho controlada",
+    "level": "Inicial",
+    "reps": "20 seg cada pierna",
+    "series": "3 rep × pierna",
+    "position": "Acostado/a boca arriba, rodillas flexionadas, pies apoyados",
+    "breathing": "Exhalá al acercar la rodilla. Inhalá al bajar.",
+    "warning": "Post-op: movimiento MUY suave y controlado. Detenete si aparece dolor en la zona operada.",
+    "steps": [
+      "Acostado/a boca arriba sobre superficie firme, ambas rodillas flexionadas, pies apoyados.",
+      "Tomá una rodilla por detrás del muslo con ambas manos (nunca sobre la rótula).",
+      "Acercala LENTAMENTE al pecho hasta sentir estiramiento suave en la zona lumbar.",
+      "Mantené 20 segundos respirando profundo. La otra pierna queda flexionada con pie apoyado.",
+      "Bajá lento. Cambiá de pierna. 3 repeticiones por lado."
+    ],
+    "variants": "Fase avanzada post-op: bilateral (ambas rodillas al pecho simultáneas).",
+    "muscles": "Extensores lumbares, glúteo mayor, cuadrado lumbar — elongación suave post-quirúrgica"
+  },
+  "p12": {
+    "name": "Activación core con báscula pélvica + transverso",
+    "level": "Inicial",
+    "reps": "10 rep de 10 seg",
+    "series": "3 series × 10 rep",
+    "position": "Acostado/a boca arriba, rodillas flexionadas, pies apoyados",
+    "breathing": "Inhalá expandiendo abdomen. Exhalá activando transverso + báscula.",
+    "warning": "Activación al 20-30% de fuerza máxima. Sin contener la respiración.",
+    "steps": [
+      "Acostado/a boca arriba, rodillas flexionadas, pies planos. Colocá los dedos 2 cm hacia dentro de los huesos de la cadera.",
+      "Inhalá dejando expandir el abdomen naturalmente.",
+      "Al EXHALAR: activá el transverso (ombligo hacia dentro suave) + aplaná la lumbar contra el piso (báscula pélvica).",
+      "Mantené la activación combinada 10 segundos respirando normalmente.",
+      "Relajá completamente. 3 series de 10 repeticiones. Este es el core del programa post-op."
+    ],
+    "variants": "Progresión: agregar extensión de una pierna manteniendo la activación.",
+    "muscles": "Transverso abdominal, multífidos lumbares, suelo pélvico — cilindro de presión abdominal"
+  },
+  "p13": {
+    "name": "Plancha modificada desde rodillas post-op",
+    "level": "Intermedio",
+    "reps": "20-30 seg",
+    "series": "3 series × 20-30 seg",
+    "position": "Apoyado/a en antebrazos y rodillas, cuerpo en línea recta",
+    "breathing": "Respiración natural. NO contener el aire.",
+    "warning": "Solo desde semana 4-6 post-op con autorización médica. Si la lumbar se hunde, bajá el tiempo.",
+    "steps": [
+      "En cuatro apoyos, bajá a los antebrazos con codos directamente debajo de los hombros.",
+      "Rodillas apoyadas al ancho de caderas, tibias en el piso, pies cruzados o apoyados.",
+      "Activá el core con la técnica de p12: transverso + báscula pélvica.",
+      "Cuerpo formando línea recta de hombros a rodillas. Mantené 20-30 segundos.",
+      "Bajá controlado. Descansá 60 segundos. 3 series."
+    ],
+    "variants": "Progresión: apoyo en manos en vez de antebrazos.",
+    "muscles": "Transverso abdominal, recto abdominal, oblicuos, multífidos — anti-extensión post-op"
+  },
+  "p14": {
+    "name": "Puente lateral modificado desde rodillas",
+    "level": "Intermedio",
+    "reps": "20 seg cada lado",
+    "series": "3 series × 20 seg/lado",
+    "position": "De costado, apoyado en antebrazo y rodilla inferior",
+    "breathing": "Respiración natural. Sin contener el aire.",
+    "warning": "Solo desde semana 4-6 post-op. La cadera debe elevarse formando línea con el hombro.",
+    "steps": [
+      "Acostado/a de costado. Antebrazo apoyado con codo directamente bajo el hombro.",
+      "Rodilla inferior flexionada como punto de apoyo. Rodilla superior extendida en línea con el cuerpo.",
+      "Elevá la cadera formando línea recta desde el hombro hasta la rodilla superior.",
+      "Activá el oblicuo del lado inferior y el glúteo medio superior. Mantené 20 segundos.",
+      "Bajá controlado. Cambiá de lado. 3 series por lado."
+    ],
+    "variants": "Progresión: plancha lateral completa desde los pies (fase 4).",
+    "muscles": "Oblicuo interno/externo, cuadrado lumbar, glúteo medio — estabilización lateral"
+  },
+  "p15": {
+    "name": "Gato-Camello controlado post-op",
+    "level": "Inicial",
+    "reps": "10 ciclos",
+    "series": "3 series × 10 ciclos",
+    "position": "Cuatro apoyos (manos bajo hombros, rodillas bajo caderas)",
+    "breathing": "Inhalá al bajar el vientre. Exhalá al redondear la espalda.",
+    "warning": "Post-op: movimiento MUY suave, controlado, sin llegar a rango máximo. Detenete si duele.",
+    "steps": [
+      "En cuatro apoyos: manos bajo hombros, rodillas bajo caderas, espalda neutra.",
+      "CAMELLO SUAVE: inhalá dejando caer el vientre ligeramente hacia el piso, sacando el pecho suave.",
+      "Mantené 2 segundos. NO llegues al rango máximo en fase post-op.",
+      "GATO SUAVE: exhalá, redondeá la espalda hacia el techo, metiendo el mentón al pecho.",
+      "Mantené 2 segundos. 10 ciclos coordinados con la respiración. 3 series."
+    ],
+    "variants": "Regresión: sentado en silla con manos en rodillas.",
+    "muscles": "Multífidos, erectores espinales, abdominales — movilidad segmentaria progresiva"
+  },
+  "p16": {
+    "name": "Dead bug modificado post-op",
+    "level": "Intermedio",
+    "reps": "8 rep por lado",
+    "series": "3 series × 8 rep/lado",
+    "position": "Acostado/a boca arriba, brazos hacia el techo, rodillas a 90°",
+    "breathing": "Exhalá al extender. Inhalá al volver.",
+    "warning": "Solo desde semana 4-6 post-op con autorización. La lumbar debe estar SIEMPRE pegada al piso.",
+    "steps": [
+      "Acostado/a boca arriba. Brazos extendidos al techo. Caderas y rodillas flexionadas a 90°.",
+      "Activá el core con la técnica de p12: transverso + báscula pélvica.",
+      "Exhalá y extendé LENTAMENTE el brazo derecho hacia atrás y la pierna izquierda al frente SIN tocar el piso.",
+      "Mantené 2 segundos. La lumbar sigue pegada al piso, sin arquear.",
+      "Volvé al inicio. Repetí con brazo izquierdo/pierna derecha. 3 series de 8 rep por lado."
+    ],
+    "variants": "Regresión: solo piernas, brazos cruzados sobre el pecho.",
+    "muscles": "Transverso abdominal, oblicuos, recto abdominal — anti-extensión con contralateralidad"
+  },
+  "p17": {
+    "name": "Plancha completa desde pies (fase 4)",
+    "level": "Avanzado",
+    "reps": "30-45 seg",
+    "series": "3 series × 30-45 seg",
+    "position": "Apoyado/a en antebrazos y puntas de los pies, cuerpo en línea recta",
+    "breathing": "Respiración natural. NO contener el aire.",
+    "warning": "Solo desde semana 8+ post-op CON AUTORIZACIÓN MÉDICA. Si perdés la línea, volvé a p13.",
+    "steps": [
+      "En cuatro apoyos, bajá a los antebrazos con codos directamente debajo de los hombros.",
+      "Extendé las piernas hacia atrás apoyándote en las puntas de los pies.",
+      "Activá el core (transverso + báscula pélvica) formando línea recta de hombros a talones.",
+      "Mantené la posición 30-45 segundos respirando normalmente.",
+      "Bajá controlado. Descansá 90 segundos. 3 series."
+    ],
+    "variants": "Progresión: con elevación alternada de un pie 5 seg.",
+    "muscles": "Core completo, transverso abdominal, glúteos, deltoides — estabilización global"
+  },
+  "p18": {
+    "name": "Bird Dog progresivo (fase 4)",
+    "level": "Avanzado",
+    "reps": "10 rep por lado",
+    "series": "3 series × 10 rep/lado",
+    "position": "Cuatro apoyos (manos bajo hombros, rodillas bajo caderas)",
+    "breathing": "Exhalá al extender. Inhalá al volver.",
+    "warning": "Solo desde semana 8+ post-op CON AUTORIZACIÓN. La pelvis debe permanecer NIVELADA.",
+    "steps": [
+      "En cuatro apoyos: manos bajo hombros, rodillas bajo caderas. Espalda neutra.",
+      "Activá el core con la técnica de p12.",
+      "Exhalá y extendé el brazo derecho al frente y la pierna izquierda hacia atrás EN LÍNEA con el tronco.",
+      "Mantené 3-5 segundos. La cadera NO se mueve, imaginate un vaso de agua sobre la lumbar.",
+      "Volvé controlado. Alterná lados. 3 series de 10 por lado."
+    ],
+    "variants": "Regresión: solo brazo, o solo pierna.",
+    "muscles": "Multífidos, erectores espinales, glúteo mayor, deltoides — estabilización anti-rotacional"
+  },
+  "p19": {
+    "name": "Puente lateral completo (fase 4)",
+    "level": "Avanzado",
+    "reps": "30 seg cada lado",
+    "series": "3 series × 30 seg/lado",
+    "position": "De costado, apoyado en antebrazo y pies alineados",
+    "breathing": "Respiración natural. Sin contener el aire.",
+    "warning": "Solo desde semana 8+ post-op CON AUTORIZACIÓN MÉDICA.",
+    "steps": [
+      "Acostado/a de costado. Antebrazo apoyado con codo directamente bajo el hombro.",
+      "Piernas extendidas y alineadas, pie inferior apoyado en el borde exterior, pie superior apoyado encima.",
+      "Elevá la cadera formando línea recta desde hombros hasta los pies.",
+      "Activá el oblicuo inferior y el glúteo medio superior. Mantené 30 segundos.",
+      "Bajá controlado. Cambiá de lado. 3 series por lado."
+    ],
+    "variants": "Progresión: con elevación de pierna superior 5 seg.",
+    "muscles": "Oblicuo interno/externo, cuadrado lumbar, glúteo medio — estabilización lateral avanzada"
+  },
+  "p20": {
+    "name": "Sentadilla funcional con apoyo",
+    "level": "Avanzado",
+    "reps": "10-12 repeticiones",
+    "series": "3 series × 10-12 rep",
+    "position": "De pie con manos apoyadas en respaldo de silla firme",
+    "breathing": "Inhalá al bajar. Exhalá al subir.",
+    "warning": "Solo desde semana 8+ post-op. Movimiento CONTROLADO, sin impulso.",
+    "steps": [
+      "De pie con pies al ancho de caderas, manos apoyadas en respaldo de silla firme frente a vos.",
+      "Espalda recta, core activo, mirada al frente.",
+      "Inhalá y bajá lentamente doblando rodillas y cadera, empujando los glúteos hacia atrás.",
+      "Bajá hasta que los muslos queden paralelos al piso (o hasta donde sea cómodo).",
+      "Exhalá y subí empujando con los talones. 3 series de 10-12 rep."
+    ],
+    "variants": "Progresión: sin apoyo. Regresión: sentadilla parcial con menor rango.",
+    "muscles": "Cuádriceps, glúteo mayor, isquiotibiales, core — cadena cinética completa"
+  },
   "g2": {
     "name": "Movilización global de cuello y hombros",
     "level": "Inicial",
@@ -750,7 +1113,7 @@
     ],
     "variants": "Con toalla enrollada sobre el borde del respaldo: aumenta la especificidad del punto de apoyo interescapular. Con brazos cruzados sobre el pecho: alternativa si aparecen molestias cervicales con las manos detrás de la cabeza.",
     "muscles": "Extensores torácicos (erector espinal), romboides, trapecio medio e inferior, intercostales — movilidad de columna torácica en extensión"
-  }
+  },
   "g6": {
     "name": "Rotación de tronco de pie con brazos relajados",
     "level": "Inicial",
@@ -858,5 +1221,113 @@
     ],
     "variants": "Pelota más dura (lacrosse) para más presión. Pelota más blanda (goma) para comenzar.",
     "muscles": "Piriforme, glúteo profundo, obturador interno — liberación miofascial"
+  },
+  "sac1": {
+    "name": "Isométrico de aductores con pelota",
+    "level": "Inicial",
+    "reps": "10 rep de 10 seg",
+    "series": "3 series × 10 rep",
+    "position": "Sentado/a en silla firme, pelota entre las rodillas",
+    "breathing": "Exhalá al apretar. Respirá normal durante el sostén.",
+    "warning": "Contracción al 60-70% de fuerza máxima. Sin dolor pélvico.",
+    "steps": [
+      "Sentado/a en silla firme, espalda apoyada, pies planos en el piso separados al ancho de caderas.",
+      "Colocá una pelota (fitball chica, pelota de fútbol o almohada firme) entre las rodillas.",
+      "Manos sobre los muslos, activá el core.",
+      "Exhalá y apretá la pelota con ambas rodillas hacia adentro activando los aductores.",
+      "Mantené 10 segundos respirando normal. Relajá 5 seg. 10 repeticiones. 3 series."
+    ],
+    "variants": "Progresión: acostado boca arriba con la pelota, elevar cadera + apretar (integra puente).",
+    "muscles": "Aductor mayor, aductor largo, aductor corto, grácil, pectíneo — estabilizadores pélvicos"
+  },
+  "sac2": {
+    "name": "Puente con banda en rodillas",
+    "level": "Intermedio",
+    "reps": "12 repeticiones",
+    "series": "3 series × 12 rep",
+    "position": "Acostado/a boca arriba, rodillas flexionadas, banda elástica en muslos",
+    "breathing": "Exhalá al subir. Inhalá al bajar.",
+    "warning": "La cadera debe elevarse SIN colapsar las rodillas hacia adentro (la banda es la resistencia).",
+    "steps": [
+      "Acostado/a boca arriba, rodillas flexionadas, pies planos separados al ancho de caderas.",
+      "Colocá una banda elástica alrededor de los muslos, justo por encima de las rodillas.",
+      "Activá el core y empujá las rodillas ligeramente hacia afuera contra la banda (mantener activo todo el ejercicio).",
+      "Exhalá y elevá la cadera vértebra a vértebra manteniendo la tensión de la banda.",
+      "Mantené 3 seg arriba. Bajá controlado. 3 series de 12 rep."
+    ],
+    "variants": "Regresión: sin banda. Progresión: puente con una pierna extendida + banda.",
+    "muscles": "Glúteo mayor, glúteo medio, isquiotibiales, aductores — estabilización sacroilíaca"
+  },
+  "sac3": {
+    "name": "Movilización activa de sacroilíaca (rotación cadera supino)",
+    "level": "Inicial",
+    "reps": "10 rep cada lado",
+    "series": "2 series × 10 rep/lado",
+    "position": "Acostado/a boca arriba, rodillas flexionadas",
+    "breathing": "Exhalá al rotar. Inhalá al volver.",
+    "warning": "Movimiento SUAVE dentro de rango cómodo. Sin forzar el final del movimiento.",
+    "steps": [
+      "Acostado/a boca arriba, rodillas flexionadas y juntas, pies apoyados en el piso, brazos abiertos en cruz.",
+      "Manteniendo los hombros en el piso, exhalá y dejá caer ambas rodillas juntas lentamente hacia un lado.",
+      "Simultáneamente girá la cabeza hacia el lado opuesto (activación sacroilíaca contralateral).",
+      "Mantené 3 segundos sintiendo movilización suave en la zona sacroilíaca.",
+      "Volvé al centro usando el core (no impulso). Cambiá de lado. 10 rep cada lado. 2 series."
+    ],
+    "variants": "Regresión: rango corto. Progresión: con una pierna cruzada sobre la otra.",
+    "muscles": "Articulación sacroilíaca, oblicuos, rotadores lumbares — movilización activa articular"
+  },
+  "pub2": {
+    "name": "Estiramiento aductores en mariposa",
+    "level": "Inicial",
+    "reps": "60 segundos",
+    "series": "3 repeticiones",
+    "position": "Sentado/a en el piso, plantas de los pies juntas",
+    "breathing": "Respiración profunda y relajada. Cada exhalación profundiza el estiramiento.",
+    "warning": "No forzar las rodillas hacia abajo con las manos. Estiramiento SUAVE y sostenido.",
+    "steps": [
+      "Sentado/a en el piso con la espalda recta, plantas de los pies juntas y talones cerca del pubis.",
+      "Sujetá los tobillos o los pies con ambas manos.",
+      "Dejá caer las rodillas hacia el piso por su propio peso (sin empujarlas con las manos).",
+      "Podés inclinar el tronco ligeramente hacia adelante desde la cadera para profundizar.",
+      "Mantené 60 segundos respirando profundo. 3 repeticiones con 30 seg de descanso."
+    ],
+    "variants": "Más suave: acercar menos los talones al pubis. Más intenso: inclinar más el tronco.",
+    "muscles": "Aductores (aductor mayor, largo, corto, grácil, pectíneo), rotadores externos de cadera"
+  },
+  "pub3": {
+    "name": "Copenhagen adductor progresivo (nivel inicial)",
+    "level": "Avanzado",
+    "reps": "8 rep cada lado",
+    "series": "3 series × 8 rep/lado",
+    "position": "De costado con antebrazo apoyado y pierna superior sobre banco o silla",
+    "breathing": "Exhalá al elevar. Inhalá al bajar.",
+    "warning": "Ejercicio EXIGENTE. Solo con autorización médica si hay pubalgia aguda. Empezá con progresión suave.",
+    "steps": [
+      "Acostado/a de costado con antebrazo apoyado, codo bajo el hombro. Pierna superior extendida y apoyada sobre un banco o silla firme (rodilla o tobillo apoyados según nivel).",
+      "Pierna inferior extendida en el aire, cerca del piso.",
+      "Activá el core y elevá la cadera formando línea recta desde hombros hasta el pie superior.",
+      "SIMULTÁNEAMENTE elevá la pierna inferior hasta tocar la superior (adducción activa).",
+      "Bajá controlado. 8 repeticiones. Cambiá de lado. 3 series."
+    ],
+    "variants": "Regresión: rodilla superior apoyada (más corto brazo de palanca). Progresión: tobillo superior apoyado.",
+    "muscles": "Aductores (todos los grupos), oblicuo interno, glúteo medio, core anti-lateralización"
+  },
+  "pub4": {
+    "name": "Puente con pelota entre rodillas",
+    "level": "Intermedio",
+    "reps": "12 repeticiones",
+    "series": "3 series × 12 rep",
+    "position": "Acostado/a boca arriba con pelota firme entre las rodillas",
+    "breathing": "Exhalá al elevar apretando. Inhalá al bajar.",
+    "warning": "Contracción de aductores mantenida durante todo el puente. Sin colapso pélvico.",
+    "steps": [
+      "Acostado/a boca arriba, rodillas flexionadas, pies planos. Pelota firme entre las rodillas.",
+      "Apretá la pelota con contracción de aductores al 60-70% de fuerza (mantener activa todo el ejercicio).",
+      "Exhalá y elevá la cadera vértebra a vértebra formando línea recta de hombros a rodillas.",
+      "Mantené 5 segundos con: cadera arriba + aductores apretando la pelota + glúteos activos.",
+      "Bajá lento vértebra a vértebra manteniendo la presión sobre la pelota. 3 series de 12 rep."
+    ],
+    "variants": "Regresión: sin puente, solo apretar pelota acostado. Progresión: puente con una pierna extendida.",
+    "muscles": "Aductores + glúteo mayor + core — cadena estabilizadora pélvica anti-inestabilidad"
   }
 }
