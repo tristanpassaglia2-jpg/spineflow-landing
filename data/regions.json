@@ -54,12 +54,14 @@
         "title": "Síndrome del desfiladero torácico",
         "desc": "Compresión neurovascular hombro-cuello",
         "ex": [
-          "n2",
-          "n3",
-          "c7",
           "c1",
           "k8",
-          "c6"
+          "c9",
+          "c10",
+          "c11",
+          "n3",
+          "c6",
+          "n2"
         ],
         "free_count": 2
       }
@@ -84,7 +86,8 @@
           "g3",
           "g2",
           "k8",
-          "bp"
+          "bp",
+          "l3"
         ],
         "free_count": 2
       },
@@ -114,7 +117,8 @@
           "g2",
           "c7",
           "k8",
-          "g6"
+          "g6",
+          "l3"
         ],
         "free_count": 2
       }
@@ -140,7 +144,9 @@
           "s2",
           "l1",
           "s7",
-          "s4"
+          "s4",
+          "l5",
+          "l11"
         ],
         "free_count": 2
       },
@@ -156,7 +162,13 @@
           "l7",
           "k1",
           "em",
-          "l6"
+          "l6",
+          "l3",
+          "l8",
+          "l9",
+          "l10",
+          "l11",
+          "l12"
         ],
         "free_count": 2
       },
@@ -171,7 +183,8 @@
           "cl",
           "s5",
           "s2",
-          "s7"
+          "s7",
+          "l5"
         ],
         "free_count": 2
       },
@@ -186,14 +199,101 @@
           "l7",
           "l2",
           "k1",
-          "l6"
+          "l6",
+          "l3",
+          "l8",
+          "l12"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "sacroileitis",
+        "title": "Sacroileítis",
+        "desc": "Dolor en articulación sacroilíaca / zona lumbar baja",
+        "ex": [
+          "s1",
+          "sac1",
+          "cl",
+          "s5",
+          "s6",
+          "sac2",
+          "sac3"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "pubalgia",
+        "title": "Pubalgia",
+        "desc": "Dolor en la zona del pubis / región inguinal",
+        "ex": [
+          "sac1",
+          "pub2",
+          "s5",
+          "pub3",
+          "k5",
+          "pub4",
+          "l10",
+          "k3"
         ],
         "free_count": 2
       },
       {
         "id": "postcirugia",
         "title": "Rehabilitación post cirugía de columna",
-        "desc": "Recuperación progresiva post-quirúrgica",
+        "desc": "Recuperación progresiva post-quirúrgica por fases temporales",
+        "phases": [
+          {
+            "phase": 1,
+            "name": "Fase Aguda",
+            "when": "Día 1-7",
+            "ex": [
+              "p1",
+              "p2",
+              "p3",
+              "p4",
+              "p5"
+            ]
+          },
+          {
+            "phase": 2,
+            "name": "Subaguda temprana",
+            "when": "Semana 2-3",
+            "ex": [
+              "p5",
+              "p9",
+              "p10",
+              "p3",
+              "p11",
+              "p12"
+            ]
+          },
+          {
+            "phase": 3,
+            "name": "Subaguda tardía",
+            "when": "Semana 4-8",
+            "ex": [
+              "p5",
+              "p6",
+              "p13",
+              "p14",
+              "p7",
+              "p15",
+              "p16"
+            ]
+          },
+          {
+            "phase": 4,
+            "name": "Reintegración funcional",
+            "when": ">8 semanas con autorización",
+            "ex": [
+              "p8",
+              "p17",
+              "p18",
+              "p19",
+              "p20"
+            ]
+          }
+        ],
         "ex": [
           "p1",
           "p2",
@@ -202,7 +302,19 @@
           "p5",
           "p6",
           "p7",
-          "p8"
+          "p8",
+          "p9",
+          "p10",
+          "p11",
+          "p12",
+          "p13",
+          "p14",
+          "p15",
+          "p16",
+          "p17",
+          "p18",
+          "p19",
+          "p20"
         ],
         "free_count": 2
       }
