@@ -1,1265 +1,713 @@
 {
-  "version": "11.0-rc1",
-  "strategy": {
-    "title": "Secuencias fotográficas clínicas premium",
-    "instructor_label": "Mis profes",
-    "fallback": "Si status != ready o falta un fotograma, mantener V9/RC9.",
-    "asset_rule": "Sin texto, QR, logos o diagramas incrustados."
+  "version": "v11-static-sequences",
+  "updated": "2026-08-10",
+  "schema_docs": {
+    "status": "'pending' (usar fallback V9) o 'ready' (usar phases[])",
+    "phases": "Array de objetos con {phase: N, image: 'media/sequences/<id>/0N.webp', voice_start_ms, voice_end_ms}",
+    "voice_track": "Opcional. Path a archivo audio pre-grabado. Null = usar Web Speech API sobre exercises.json.steps",
+    "expected_phase_count": "Cantidad de fases visuales que se van a generar para este ejercicio (1, 3, 4 o 5)",
+    "notes": "Comentarios operativos"
   },
-  "exercises": {
-    "bp": {
-      "name": "Báscula pélvica",
-      "group": "original",
-      "mode": "sequence",
-      "status": "pending",
-      "frame_count": 3,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Movimiento",
-        "Final"
-      ],
-      "frames": [
-        "media/sequences/bp/01.webp",
-        "media/sequences/bp/02.webp",
-        "media/sequences/bp/03.webp"
-      ]
-    },
+  "sequences": {
     "c1": {
-      "name": "Retracción cervical",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 3,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Movimiento",
-        "Final"
-      ],
-      "frames": [
-        "media/sequences/c1/01.webp",
-        "media/sequences/c1/02.webp",
-        "media/sequences/c1/03.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[cervical] Retracción cervical (Chin Tuck) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/c1/"
     },
     "c2": {
-      "name": "Estiramiento lateral cervical",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 3,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Movimiento",
-        "Final"
-      ],
-      "frames": [
-        "media/sequences/c2/01.webp",
-        "media/sequences/c2/02.webp",
-        "media/sequences/c2/03.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[cervical] Estiramiento lateral cervical — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/c2/"
     },
     "c3": {
-      "name": "Rotación cervical activa asistida",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/c3/01.webp",
-        "media/sequences/c3/02.webp",
-        "media/sequences/c3/03.webp",
-        "media/sequences/c3/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[cervical] Rotación cervical activa asistida — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/c3/"
     },
     "c4": {
-      "name": "Flexo-extensión cervical controlada",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/c4/01.webp",
-        "media/sequences/c4/02.webp",
-        "media/sequences/c4/03.webp",
-        "media/sequences/c4/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[cervical] Flexo-extensión cervical controlada — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/c4/"
     },
     "c5": {
-      "name": "Isométricos cervicales multi-dirección",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/c5/01.webp",
-        "media/sequences/c5/02.webp",
-        "media/sequences/c5/03.webp",
-        "media/sequences/c5/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[cervical] Isométricos cervicales multi-dirección — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/c5/"
     },
     "c6": {
-      "name": "Estiramiento trapecio superior y elevador",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/c6/01.webp",
-        "media/sequences/c6/02.webp",
-        "media/sequences/c6/03.webp",
-        "media/sequences/c6/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[cervical] Estiramiento trapecio superior y elevador — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/c6/"
     },
     "c7": {
-      "name": "Movilización de cintura escapular",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/c7/01.webp",
-        "media/sequences/c7/02.webp",
-        "media/sequences/c7/03.webp",
-        "media/sequences/c7/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[cervical] Movilización de cintura escapular — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/c7/"
     },
     "c8": {
-      "name": "Retracción cervical contra resistencia elástica",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/c8/01.webp",
-        "media/sequences/c8/02.webp",
-        "media/sequences/c8/03.webp",
-        "media/sequences/c8/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[cervical] Retracción cervical contra resistencia elástica — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/c8/"
     },
-    "cl": {
-      "name": "Clamshell",
-      "group": "original",
-      "mode": "sequence",
+    "c9": {
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/cl/01.webp",
-        "media/sequences/cl/02.webp",
-        "media/sequences/cl/03.webp",
-        "media/sequences/cl/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[cervical] Retracción escapular activa con sostén isométrico — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/c9/"
     },
-    "dp": {
-      "name": "Wall Slide",
-      "group": "original",
-      "mode": "sequence",
+    "c10": {
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/dp/01.webp",
-        "media/sequences/dp/02.webp",
-        "media/sequences/dp/03.webp",
-        "media/sequences/dp/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[cervical] Wall angel de pie con activación escapular baja — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/c10/"
     },
-    "em": {
-      "name": "Extensión lumbar mantenida",
-      "group": "original",
-      "mode": "guided_static",
+    "c11": {
       "status": "pending",
-      "frame_count": 1,
-      "frame_duration_ms": 0,
-      "crossfade_ms": 240,
-      "labels": [
-        "Guía"
-      ],
-      "frames": [
-        "media/sequences/em/01.webp"
-      ]
-    },
-    "g2": {
-      "name": "Movilización global de cuello y hombros",
-      "group": "original",
-      "mode": "sequence",
-      "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/g2/01.webp",
-        "media/sequences/g2/02.webp",
-        "media/sequences/g2/03.webp",
-        "media/sequences/g2/04.webp"
-      ]
-    },
-    "g3": {
-      "name": "Extensión dorsal en silla",
-      "group": "original",
-      "mode": "sequence",
-      "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/g3/01.webp",
-        "media/sequences/g3/02.webp",
-        "media/sequences/g3/03.webp",
-        "media/sequences/g3/04.webp"
-      ]
-    },
-    "g6": {
-      "name": "Rotación de tronco de pie",
-      "group": "original",
-      "mode": "sequence",
-      "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/g6/01.webp",
-        "media/sequences/g6/02.webp",
-        "media/sequences/g6/03.webp",
-        "media/sequences/g6/04.webp"
-      ]
-    },
-    "g8": {
-      "name": "Relajación muscular progresiva",
-      "group": "original",
-      "mode": "guided_static",
-      "status": "pending",
-      "frame_count": 1,
-      "frame_duration_ms": 0,
-      "crossfade_ms": 240,
-      "labels": [
-        "Guía"
-      ],
-      "frames": [
-        "media/sequences/g8/01.webp"
-      ]
-    },
-    "k1": {
-      "name": "Activación del transverso abdominal",
-      "group": "original",
-      "mode": "guided_static",
-      "status": "pending",
-      "frame_count": 1,
-      "frame_duration_ms": 0,
-      "crossfade_ms": 240,
-      "labels": [
-        "Guía"
-      ],
-      "frames": [
-        "media/sequences/k1/01.webp"
-      ]
-    },
-    "k3": {
-      "name": "Dead Bug",
-      "group": "original",
-      "mode": "sequence",
-      "status": "pending",
-      "frame_count": 5,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Control",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/k3/01.webp",
-        "media/sequences/k3/02.webp",
-        "media/sequences/k3/03.webp",
-        "media/sequences/k3/04.webp",
-        "media/sequences/k3/05.webp"
-      ]
-    },
-    "k4": {
-      "name": "Bird Dog",
-      "group": "original",
-      "mode": "sequence",
-      "status": "pending",
-      "frame_count": 5,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Cuadrupedia",
-        "Activación",
-        "Extensión contralateral",
-        "Control",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/k4/01.webp",
-        "media/sequences/k4/02.webp",
-        "media/sequences/k4/03.webp",
-        "media/sequences/k4/04.webp",
-        "media/sequences/k4/05.webp"
-      ],
-      "clinical_notes": [
-        "Manos bajo hombros, rodillas bajo caderas y columna neutra.",
-        "Activación suave del core sin contener la respiración.",
-        "Brazo derecho adelante + pierna izquierda atrás; pelvis nivelada.",
-        "Sostener sin rotación pélvica ni hiperextensión lumbar.",
-        "Volver lentamente a cuadrupedia."
-      ]
-    },
-    "k5": {
-      "name": "Plancha lateral modificada",
-      "group": "original",
-      "mode": "sequence",
-      "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/k5/01.webp",
-        "media/sequences/k5/02.webp",
-        "media/sequences/k5/03.webp",
-        "media/sequences/k5/04.webp"
-      ]
-    },
-    "k8": {
-      "name": "Respiración diafragmática con core",
-      "group": "original",
-      "mode": "guided_static",
-      "status": "pending",
-      "frame_count": 1,
-      "frame_duration_ms": 0,
-      "crossfade_ms": 240,
-      "labels": [
-        "Guía"
-      ],
-      "frames": [
-        "media/sequences/k8/01.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[cervical] Movilización de 1ª costilla con toalla — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/c11/"
     },
     "l1": {
-      "name": "Rodilla al pecho unilateral",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 3,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Movimiento",
-        "Final"
-      ],
-      "frames": [
-        "media/sequences/l1/01.webp",
-        "media/sequences/l1/02.webp",
-        "media/sequences/l1/03.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[lumbar] Rodilla al pecho unilateral — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/l1/"
     },
     "l2": {
-      "name": "Puente de glúteos",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/l2/01.webp",
-        "media/sequences/l2/02.webp",
-        "media/sequences/l2/03.webp",
-        "media/sequences/l2/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[lumbar] Puente de glúteos (Hip Bridge) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/l2/"
+    },
+    "l3": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[lumbar] Superman modificado (extensión prona activa) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/l3/"
     },
     "l4": {
-      "name": "Gato-Camello",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/l4/01.webp",
-        "media/sequences/l4/02.webp",
-        "media/sequences/l4/03.webp",
-        "media/sequences/l4/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[lumbar] Gato-Camello (Cat-Cow) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/l4/"
+    },
+    "l5": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[lumbar] Estiramiento de glúteo mayor supino — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/l5/"
     },
     "l6": {
-      "name": "Estiramiento de isquiotibiales activo",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 3,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Movimiento",
-        "Final"
-      ],
-      "frames": [
-        "media/sequences/l6/01.webp",
-        "media/sequences/l6/02.webp",
-        "media/sequences/l6/03.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[lumbar] Estiramiento de isquiotibiales activo — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/l6/"
     },
     "l7": {
-      "name": "Rotaciones lumbares controladas",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/l7/01.webp",
-        "media/sequences/l7/02.webp",
-        "media/sequences/l7/03.webp",
-        "media/sequences/l7/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[lumbar] Rotaciones lumbares controladas — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/l7/"
     },
-    "n1": {
-      "name": "Auto-liberación suboccipital con pelota",
-      "group": "original",
-      "mode": "sequence",
+    "l8": {
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/n1/01.webp",
-        "media/sequences/n1/02.webp",
-        "media/sequences/n1/03.webp",
-        "media/sequences/n1/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[lumbar] Plancha modificada desde rodillas — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/l8/"
     },
-    "n2": {
-      "name": "Estiramiento pectoral en marco de puerta",
-      "group": "original",
-      "mode": "sequence",
+    "l9": {
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/n2/01.webp",
-        "media/sequences/n2/02.webp",
-        "media/sequences/n2/03.webp",
-        "media/sequences/n2/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[lumbar] Puente de una pierna (single-leg bridge) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/l9/"
     },
-    "n3": {
-      "name": "Deslizamiento del nervio mediano",
-      "group": "original",
-      "mode": "sequence",
+    "l10": {
       "status": "pending",
-      "frame_count": 5,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Control",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/n3/01.webp",
-        "media/sequences/n3/02.webp",
-        "media/sequences/n3/03.webp",
-        "media/sequences/n3/04.webp",
-        "media/sequences/n3/05.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[lumbar] Estiramiento del psoas de rodillas (half-kneeling) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/l10/"
     },
-    "n4": {
-      "name": "Auto-liberación de piriforme",
-      "group": "original",
-      "mode": "sequence",
+    "l11": {
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/n4/01.webp",
-        "media/sequences/n4/02.webp",
-        "media/sequences/n4/03.webp",
-        "media/sequences/n4/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[lumbar] Movilización activa lumbar en cuadrupedia — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/l11/"
     },
-    "p1": {
-      "name": "Bombeo de tobillos",
-      "group": "original",
-      "mode": "sequence",
+    "l12": {
       "status": "pending",
-      "frame_count": 3,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Movimiento",
-        "Final"
-      ],
-      "frames": [
-        "media/sequences/p1/01.webp",
-        "media/sequences/p1/02.webp",
-        "media/sequences/p1/03.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[lumbar] Elongación en posición de niño (child's pose activa) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/l12/"
     },
-    "p2": {
-      "name": "Respiración profunda post-operatoria",
-      "group": "original",
-      "mode": "guided_static",
+    "bp": {
       "status": "pending",
-      "frame_count": 1,
-      "frame_duration_ms": 0,
-      "crossfade_ms": 240,
-      "labels": [
-        "Guía"
-      ],
-      "frames": [
-        "media/sequences/p2/01.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[lumbar-base] Báscula pélvica (Pelvic Tilt) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/bp/"
     },
-    "p3": {
-      "name": "Contracción isométrica de cuádriceps",
-      "group": "original",
-      "mode": "sequence",
+    "cl": {
       "status": "pending",
-      "frame_count": 3,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Movimiento",
-        "Final"
-      ],
-      "frames": [
-        "media/sequences/p3/01.webp",
-        "media/sequences/p3/02.webp",
-        "media/sequences/p3/03.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[cervical] Clamshell (La Concha) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/cl/"
     },
-    "p4": {
-      "name": "Log-roll para incorporarse",
-      "group": "original",
-      "mode": "sequence",
+    "dp": {
       "status": "pending",
-      "frame_count": 5,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Control",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/p4/01.webp",
-        "media/sequences/p4/02.webp",
-        "media/sequences/p4/03.webp",
-        "media/sequences/p4/04.webp",
-        "media/sequences/p4/05.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[lumbar-base] Deslizamiento lateral en pared (Wall Slide) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/dp/"
     },
-    "p5": {
-      "name": "Deambulación progresiva",
-      "group": "original",
-      "mode": "sequence",
+    "em": {
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/p5/01.webp",
-        "media/sequences/p5/02.webp",
-        "media/sequences/p5/03.webp",
-        "media/sequences/p5/04.webp"
-      ]
-    },
-    "p6": {
-      "name": "Puente de glúteos progresivo",
-      "group": "original",
-      "mode": "sequence",
-      "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/p6/01.webp",
-        "media/sequences/p6/02.webp",
-        "media/sequences/p6/03.webp",
-        "media/sequences/p6/04.webp"
-      ]
-    },
-    "p7": {
-      "name": "Movilización neural suave en sedestación",
-      "group": "original",
-      "mode": "sequence",
-      "status": "pending",
-      "frame_count": 5,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Control",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/p7/01.webp",
-        "media/sequences/p7/02.webp",
-        "media/sequences/p7/03.webp",
-        "media/sequences/p7/04.webp",
-        "media/sequences/p7/05.webp"
-      ]
-    },
-    "p8": {
-      "name": "Estabilización funcional en bipedestación",
-      "group": "original",
-      "mode": "sequence",
-      "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/p8/01.webp",
-        "media/sequences/p8/02.webp",
-        "media/sequences/p8/03.webp",
-        "media/sequences/p8/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[lumbar-base] Extensión lumbar mantenida (McKenzie) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/em/"
     },
     "s1": {
-      "name": "Figura 4 en decúbito",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s1/01.webp",
-        "media/sequences/s1/02.webp",
-        "media/sequences/s1/03.webp",
-        "media/sequences/s1/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[sciatica-piriform] Estiramiento piriforme en decúbito (Figura 4) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s1/"
     },
     "s2": {
-      "name": "Deslizamiento neural del nervio ciático",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 5,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Control",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s2/01.webp",
-        "media/sequences/s2/02.webp",
-        "media/sequences/s2/03.webp",
-        "media/sequences/s2/04.webp",
-        "media/sequences/s2/05.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[sciatica-piriform] Deslizamiento neural del nervio ciático (Neural Floss) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s2/"
     },
     "s3": {
-      "name": "Extensión en prono progresiva",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s3/01.webp",
-        "media/sequences/s3/02.webp",
-        "media/sequences/s3/03.webp",
-        "media/sequences/s3/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[sciatica-piriform] Extensión en decúbito prono progresiva (McKenzie) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s3/"
     },
     "s4": {
-      "name": "Estiramiento isquiotibial con toalla",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s4/01.webp",
-        "media/sequences/s4/02.webp",
-        "media/sequences/s4/03.webp",
-        "media/sequences/s4/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[sciatica-piriform] Estiramiento isquiotibial con toalla — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s4/"
     },
     "s5": {
-      "name": "Glúteo medio en decúbito lateral",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s5/01.webp",
-        "media/sequences/s5/02.webp",
-        "media/sequences/s5/03.webp",
-        "media/sequences/s5/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[sciatica-piriform] Fortalecimiento de glúteo medio en decúbito lateral — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s5/"
     },
     "s6": {
-      "name": "Descompresión lumbar 90-90",
-      "group": "original",
-      "mode": "guided_static",
       "status": "pending",
-      "frame_count": 1,
-      "frame_duration_ms": 0,
-      "crossfade_ms": 240,
-      "labels": [
-        "Guía"
-      ],
-      "frames": [
-        "media/sequences/s6/01.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[sciatica-piriform] Posición de descompresión lumbar 90-90 — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s6/"
     },
     "s7": {
-      "name": "Caminata terapéutica progresiva",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s7/01.webp",
-        "media/sequences/s7/02.webp",
-        "media/sequences/s7/03.webp",
-        "media/sequences/s7/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[sciatica-piriform] Caminata terapéutica progresiva — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s7/"
     },
     "s8": {
-      "name": "Figura 4 sentado",
-      "group": "original",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s8/01.webp",
-        "media/sequences/s8/02.webp",
-        "media/sequences/s8/03.webp",
-        "media/sequences/s8/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[sciatica-piriform] Estiramiento de cadera en figura 4 sentado — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s8/"
     },
-    "s60_01": {
-      "name": "Sentarse y levantarse con apoyo",
-      "group": "plus60",
-      "mode": "sequence",
+    "k1": {
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s60_01/01.webp",
-        "media/sequences/s60_01/02.webp",
-        "media/sequences/s60_01/03.webp",
-        "media/sequences/s60_01/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[core] Activación del transverso abdominal — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/k1/"
     },
-    "s60_02": {
-      "name": "Sentarse y levantarse sin manos",
-      "group": "plus60",
-      "mode": "sequence",
+    "k3": {
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s60_02/01.webp",
-        "media/sequences/s60_02/02.webp",
-        "media/sequences/s60_02/03.webp",
-        "media/sequences/s60_02/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[core] Dead Bug (Insecto Muerto) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/k3/"
     },
-    "s60_03": {
-      "name": "Mini sentadilla con apoyo",
-      "group": "plus60",
-      "mode": "sequence",
+    "k4": {
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s60_03/01.webp",
-        "media/sequences/s60_03/02.webp",
-        "media/sequences/s60_03/03.webp",
-        "media/sequences/s60_03/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[core] Bird Dog (Cuadrupedia con extensión) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/k4/"
     },
-    "s60_04": {
-      "name": "Estocada asistida",
-      "group": "plus60",
-      "mode": "sequence",
+    "k5": {
       "status": "pending",
-      "frame_count": 5,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Control",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s60_04/01.webp",
-        "media/sequences/s60_04/02.webp",
-        "media/sequences/s60_04/03.webp",
-        "media/sequences/s60_04/04.webp",
-        "media/sequences/s60_04/05.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[core] Plancha lateral modificada — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/k5/"
     },
-    "s60_05": {
-      "name": "Step-up en escalón bajo",
-      "group": "plus60",
-      "mode": "sequence",
+    "k8": {
       "status": "pending",
-      "frame_count": 5,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Control",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s60_05/01.webp",
-        "media/sequences/s60_05/02.webp",
-        "media/sequences/s60_05/03.webp",
-        "media/sequences/s60_05/04.webp",
-        "media/sequences/s60_05/05.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[core] Respiración diafragmática con activación de core — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/k8/"
     },
-    "s60_06": {
-      "name": "Abducción de cadera con apoyo",
-      "group": "plus60",
-      "mode": "sequence",
+    "p1": {
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s60_06/01.webp",
-        "media/sequences/s60_06/02.webp",
-        "media/sequences/s60_06/03.webp",
-        "media/sequences/s60_06/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Bombeo de tobillos circulatorio — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p1/"
     },
-    "s60_07": {
-      "name": "Elevación bilateral de talones",
-      "group": "plus60",
-      "mode": "sequence",
+    "p2": {
       "status": "pending",
-      "frame_count": 3,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Movimiento",
-        "Final"
-      ],
-      "frames": [
-        "media/sequences/s60_07/01.webp",
-        "media/sequences/s60_07/02.webp",
-        "media/sequences/s60_07/03.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Respiración profunda post-operatoria — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p2/"
     },
-    "s60_08": {
-      "name": "Marcha con elevación de rodillas",
-      "group": "plus60",
-      "mode": "sequence",
+    "p3": {
       "status": "pending",
-      "frame_count": 5,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Control",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s60_08/01.webp",
-        "media/sequences/s60_08/02.webp",
-        "media/sequences/s60_08/03.webp",
-        "media/sequences/s60_08/04.webp",
-        "media/sequences/s60_08/05.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Contracción isométrica de cuádriceps — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p3/"
     },
-    "s60_09": {
-      "name": "Transferencia de peso lateral",
-      "group": "plus60",
-      "mode": "sequence",
+    "p4": {
       "status": "pending",
-      "frame_count": 5,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Control",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s60_09/01.webp",
-        "media/sequences/s60_09/02.webp",
-        "media/sequences/s60_09/03.webp",
-        "media/sequences/s60_09/04.webp",
-        "media/sequences/s60_09/05.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Técnica de log-roll para incorporarse — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p4/"
+    },
+    "p5": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Deambulación progresiva — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p5/"
+    },
+    "p6": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Puente de glúteos progresivo (fase subaguda) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p6/"
+    },
+    "p7": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Movilización neural suave en sedestación — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p7/"
+    },
+    "p8": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Estabilización funcional en bipedestación — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p8/"
+    },
+    "p9": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Elevaciones de talones con apoyo (fortalecimiento gemelos) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p9/"
+    },
+    "p10": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Elevación de puntas del pie sentado (tibial anterior) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p10/"
+    },
+    "p11": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Elongación lumbar rodilla al pecho controlada — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p11/"
+    },
+    "p12": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Activación core con báscula pélvica + transverso — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p12/"
+    },
+    "p13": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Plancha modificada desde rodillas post-op — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p13/"
+    },
+    "p14": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Puente lateral modificado desde rodillas — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p14/"
+    },
+    "p15": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Gato-Camello controlado post-op — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p15/"
+    },
+    "p16": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Dead bug modificado post-op — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p16/"
+    },
+    "p17": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Plancha completa desde pies (fase 4) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p17/"
+    },
+    "p18": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Bird Dog progresivo (fase 4) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p18/"
+    },
+    "p19": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Puente lateral completo (fase 4) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p19/"
+    },
+    "p20": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[post-op] Sentadilla funcional con apoyo — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/p20/"
+    },
+    "g2": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[dorsal] Movilización global de cuello y hombros — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/g2/"
+    },
+    "g3": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[dorsal] Extensión dorsal en silla — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/g3/"
+    },
+    "g6": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[dorsal] Rotación de tronco de pie con brazos relajados — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/g6/"
+    },
+    "g8": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[dorsal] Relajación muscular progresiva de Jacobson — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/g8/"
+    },
+    "n1": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[neural-myofascial] Auto-liberación suboccipital con pelota — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/n1/"
+    },
+    "n2": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[neural-myofascial] Estiramiento pectoral en marco de puerta — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/n2/"
+    },
+    "n3": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[neural-myofascial] Deslizamiento del nervio mediano (Median Nerve Glide) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/n3/"
+    },
+    "n4": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[neural-myofascial] Auto-liberación de piriforme con pelota de tenis — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/n4/"
+    },
+    "sac1": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[sacroileitis] Isométrico de aductores con pelota — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/sac1/"
+    },
+    "sac2": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[sacroileitis] Puente con banda en rodillas — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/sac2/"
+    },
+    "sac3": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[sacroileitis] Movilización activa de sacroilíaca (rotación cadera supino) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/sac3/"
+    },
+    "pub2": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[pubalgia] Estiramiento aductores en mariposa — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/pub2/"
+    },
+    "pub3": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[pubalgia] Copenhagen adductor progresivo (nivel inicial) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/pub3/"
+    },
+    "pub4": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[pubalgia] Puente con pelota entre rodillas — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/pub4/"
+    },
+    "l13": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[lumbar] Elongación de cuadrado lumbar en decúbito lateral — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/l13/"
+    },
+    "l14": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[lumbar] Estiramiento cuadrado lumbar sentado con inclinación lateral — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/l14/"
+    },
+    "g4": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[dorsal] Prone Y-T-I (fortalecimiento dorsal escapular) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/g4/"
+    },
+    "s60_1": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Sentarse y levantarse con apoyo — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_1/"
+    },
+    "s60_2": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Sentarse y levantarse sin manos — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_2/"
+    },
+    "s60_3": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Mini sentadilla con apoyo — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_3/"
+    },
+    "s60_4": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Estocada asistida — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_4/"
+    },
+    "s60_5": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Step-up en escalón bajo — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_5/"
+    },
+    "s60_6": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Abducción de cadera con apoyo — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_6/"
+    },
+    "s60_7": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Elevación bilateral de talones — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_7/"
+    },
+    "s60_8": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Marcha con elevación de rodillas — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_8/"
+    },
+    "s60_9": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Transferencia de peso lateral — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_9/"
     },
     "s60_10": {
-      "name": "Equilibrio unipodal asistido",
-      "group": "plus60",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 5,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Control",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s60_10/01.webp",
-        "media/sequences/s60_10/02.webp",
-        "media/sequences/s60_10/03.webp",
-        "media/sequences/s60_10/04.webp",
-        "media/sequences/s60_10/05.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Equilibrio unipodal asistido — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_10/"
     },
     "s60_11": {
-      "name": "Abdominal isométrico en silla",
-      "group": "plus60",
-      "mode": "guided_static",
       "status": "pending",
-      "frame_count": 1,
-      "frame_duration_ms": 0,
-      "crossfade_ms": 240,
-      "labels": [
-        "Guía"
-      ],
-      "frames": [
-        "media/sequences/s60_11/01.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Abdominal isométrico en silla — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_11/"
     },
     "s60_12": {
-      "name": "Elevación alternada de rodillas sentado",
-      "group": "plus60",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 5,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Control",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s60_12/01.webp",
-        "media/sequences/s60_12/02.webp",
-        "media/sequences/s60_12/03.webp",
-        "media/sequences/s60_12/04.webp",
-        "media/sequences/s60_12/05.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Elevación alternada de rodillas sentado — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_12/"
     },
     "s60_13": {
-      "name": "Retracción escapular y apertura torácica",
-      "group": "plus60",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 3,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Movimiento",
-        "Final"
-      ],
-      "frames": [
-        "media/sequences/s60_13/01.webp",
-        "media/sequences/s60_13/02.webp",
-        "media/sequences/s60_13/03.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Retracción escapular y apertura torácica — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_13/"
     },
     "s60_14": {
-      "name": "Wall slide",
-      "group": "plus60",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 4,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s60_14/01.webp",
-        "media/sequences/s60_14/02.webp",
-        "media/sequences/s60_14/03.webp",
-        "media/sequences/s60_14/04.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Wall slide (deslizamiento en pared) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_14/"
     },
     "s60_15": {
-      "name": "Rotación torácica controlada",
-      "group": "plus60",
-      "mode": "sequence",
       "status": "pending",
-      "frame_count": 5,
-      "frame_duration_ms": 1800,
-      "crossfade_ms": 240,
-      "labels": [
-        "Inicio",
-        "Preparación",
-        "Movimiento",
-        "Control",
-        "Retorno"
-      ],
-      "frames": [
-        "media/sequences/s60_15/01.webp",
-        "media/sequences/s60_15/02.webp",
-        "media/sequences/s60_15/03.webp",
-        "media/sequences/s60_15/04.webp",
-        "media/sequences/s60_15/05.webp"
-      ]
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Rotación torácica controlada — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_15/"
+    },
+    "s60_16": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Sentadilla con silla (chair squat completo) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_16/"
+    },
+    "s60_17": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Estocada estacionaria con apoyo — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_17/"
+    },
+    "s60_18": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Push-up de pared — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_18/"
+    },
+    "s60_19": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Marcha estacionaria con apertura de brazos — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_19/"
+    },
+    "s60_20": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Extensión de rodilla sentado — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_20/"
+    },
+    "s60_21": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Elevación de rodillas sentado con banda — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_21/"
+    },
+    "s60_22": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Puente de glúteos con pies en silla — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_22/"
+    },
+    "s60_23": {
+      "status": "pending",
+      "phases": [],
+      "voice_track": null,
+      "expected_phase_count": 5,
+      "notes": "[+60] Dead bug sentado (variante silla) — Fallback V9/RC9 activo. Cambiar a 'ready' cuando las láminas estén generadas en media/sequences/s60_23/"
     }
   }
 }
