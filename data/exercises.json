@@ -233,7 +233,40 @@
     "variants": "Nivel 1: rango corto. Nivel 2: rango completo. Nivel 3: con una pierna cruzada sobre la otra (rotación más específica).",
     "muscles": "Oblicuos internos y externos, cuadrado lumbar, rotadores lumbares, multífidos"
   },
-  "bp": {
+  "l3": {
+  "name": "Superman modificado (extensión prona activa)",
+  "level": "Intermedio",
+  "reps": "10 repeticiones",
+  "series": "3 series × 10 rep",
+  "position": "Acostado/a boca abajo (prono), brazos extendidos al frente, piernas rectas",
+  "breathing": "Exhalá al elevar. Inhalá al bajar.",
+  "warning": "Elevación MODERADA. Si aparece dolor lumbar, reducí el rango. NO forzar la extensión.",
+  "steps": [
+    "Acostado/a boca abajo, brazos extendidos al frente formando una 'V' abierta, piernas rectas ancho de caderas.",
+    "Activá el core (ombligo hacia dentro suavemente). Mantené la mirada al piso, cuello neutro.",
+    "Exhalá y elevá SIMULTÁNEAMENTE brazo derecho + pierna izquierda (contralateral) unos 10-15 cm del piso.",
+    "Mantené 3 segundos activando erectores lumbares y glúteos. NO hiperextiendas.",
+    "Bajá lento. Repetí con brazo izquierdo + pierna derecha. 3 series de 10 rep alternando lados."
+  ],
+  "variants": "Regresión: solo brazos o solo piernas. Progresión: ambos brazos + ambas piernas simultáneamente.",
+  "muscles": "Erectores lumbares, glúteo mayor, deltoides posterior, multífidos"
+},
+"l5": {
+  "name": "Estiramiento de glúteo mayor supino",
+  "level": "Inicial",
+  "reps": "45 seg cada lado",
+  "series": "3 rep × lado",
+  "position": "Acostado/a boca arriba, rodillas flexionadas",
+  "breathing": "Respiración profunda y relajada. El estiramiento se profundiza con cada exhalación.",
+  "warning": "El estiramiento debe sentirse en el glúteo, no en la rodilla. Si duele la rodilla, ajustá el agarre.",
+  "steps": [
+    "Acostado/a boca arriba, rodillas flexionadas, pies apoyados en el piso.",
+    "Llevá una rodilla al pecho, tomandola con ambas manos por detrás del muslo.",
+    "Cruzá el tobillo de la otra pierna sobre la rodilla elevada (figura 4 invertida).",
+    "Traccioná suavemente hacia vos hasta sentir estiramiento profundo en el glúteo cruzado.",
+    "Mantené 45 segundos respirando profundo. Cambiá de lado. 3 repeticiones por lado."
+  ],
+  "variants": "Más suave: menor"bp": {
     "name": "Báscula pélvica (Pelvic Tilt)",
     "level": "Inicial",
     "reps": "15 repeticiones",
