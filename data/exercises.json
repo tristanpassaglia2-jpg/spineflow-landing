@@ -705,19 +705,19 @@
     "level": "Inicial",
     "reps": "10 repeticiones",
     "series": "3 series × 10 rep",
-    "position": "Sentado/a en silla con respaldo a la altura de la escápula",
-    "breathing": "Inhalá al extender (abrir pecho). Exhalá al volver.",
-    "warning": "El respaldo de la silla funciona como punto de apoyo. Sin forzar la extensión.",
+    "position": "Sentado/a en silla con respaldo firme, borde superior a la altura de las escápulas. Pies apoyados, columna neutra al inicio.",
+    "breathing": "Inhalá profundo al extender (abriendo el pecho al techo). Exhalá lento al volver al inicio.",
+    "warning": "El borde superior del respaldo actúa como punto de apoyo entre las escápulas — no forzar la extensión más allá del rango cómodo. Suspendé si aparece mareo, dolor cervical agudo o hormigueo en brazos.",
     "steps": [
-      "Sentate en una silla con el respaldo a la altura media-alta de la espalda (escápulas).",
-      "Entrelazá las manos detrás de la cabeza o cruzá los brazos sobre el pecho.",
-      "Apoyá la espalda sobre el borde superior del respaldo.",
-      "Inhalá y extendé suavemente la columna dorsal sobre el respaldo, abriendo el pecho al techo.",
-      "Mantené 3 segundos. Volvé al inicio. 3 series de 10 repeticiones."
+      "Sentate derecho/a en una silla firme, con el borde superior del respaldo a la altura de las escápulas. Pies planos separados al ancho de la cadera, columna neutra, manos apoyadas sobre los muslos.",
+      "Llevá las manos detrás de la cabeza (dedos entrelazados) o cruzá los brazos sobre el pecho. Codos abiertos hacia los lados. La columna sigue neutra, todavía sin extender.",
+      "Apoyá la parte alta de la espalda (zona interescapular) contra el borde superior del respaldo. Buscá el contacto activo antes de comenzar la extensión.",
+      "Inhalá profundo y extendé la columna dorsal sobre el respaldo, abriendo el pecho al techo. La cabeza queda en línea con la columna, sin caer hacia atrás. Mantené 3 segundos.",
+      "Exhalá y volvé lento y controlado a la posición inicial. Completá 3 series de 10 repeticiones con 30 segundos de descanso entre series."
     ],
-    "variants": "Con toalla enrollada: colocá una toalla sobre el respaldo para un punto de apoyo más preciso.",
-    "muscles": "Extensores dorsales, romboides, intercostales — movilidad de la columna torácica"
-  },
+    "variants": "Con toalla enrollada sobre el borde del respaldo: aumenta la especificidad del punto de apoyo interescapular. Con brazos cruzados sobre el pecho: alternativa si aparecen molestias cervicales con las manos detrás de la cabeza.",
+    "muscles": "Extensores torácicos (erector espinal), romboides, trapecio medio e inferior, intercostales — movilidad de columna torácica en extensión"
+  }
   "g6": {
     "name": "Rotación de tronco de pie con brazos relajados",
     "level": "Inicial",
