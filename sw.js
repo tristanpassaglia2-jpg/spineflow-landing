@@ -1,4 +1,4 @@
-const CACHE='spineflow-v11-rc1-json-hotfix-v2';
+const CACHE='spineflow-v11-rc1-json-hotfix-v3';
 const CORE=['/','/index.html','/assets/css/app.css','/assets/js/exercises-json-hotfix.js','/assets/js/plus60-loader.js','/assets/js/rc9-audit-fixes.js','/assets/js/app.js','/assets/js/v11-static-sequences.js','/data/exercises.json','/data/regions.json','/data/plus60-exercises.json','/data/plus60-region.json','/data/plus60-routines.json','/data/v11-static-sequences.json','/manifest.webmanifest','/media/coach/mi-profe.webp'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==CACHE).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));
