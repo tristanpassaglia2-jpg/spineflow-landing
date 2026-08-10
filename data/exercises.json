@@ -1329,5 +1329,59 @@
     ],
     "variants": "Regresión: sin puente, solo apretar pelota acostado. Progresión: puente con una pierna extendida.",
     "muscles": "Aductores + glúteo mayor + core — cadena estabilizadora pélvica anti-inestabilidad"
+  },
+  "l13": {
+    "name": "Elongación de cuadrado lumbar en decúbito lateral",
+    "level": "Inicial",
+    "reps": "45 seg cada lado",
+    "series": "3 rep × lado",
+    "position": "Acostado/a de costado con brazo superior elevado por encima de la cabeza",
+    "breathing": "Respiración profunda. Cada exhalación profundiza el estiramiento.",
+    "warning": "Si sentís pinchazo o hormigueo en la lumbar, reducí el rango. NO forzar.",
+    "steps": [
+      "Acostado/a de costado sobre una colchoneta, pierna inferior extendida, pierna superior levemente flexionada delante para estabilidad.",
+      "Extendé el brazo superior por encima de la cabeza, apoyando la mano en el piso.",
+      "Elevá el tronco desde la cadera formando una CURVA LATERAL suave (como una banana). Sentirás el estiramiento en el costado del cuerpo.",
+      "Focalizá el estiramiento en la zona lumbar-costal (entre la última costilla y la cresta ilíaca).",
+      "Mantené 45 segundos respirando profundo. Bajá controlado. Cambiá de lado. 3 rep por lado."
+    ],
+    "variants": "Más suave: brazo superior apoyado en la cabeza (menor tensión). Más intenso: pierna superior cruzada por delante para abrir cadera.",
+    "muscles": "Cuadrado lumbar, oblicuos, dorsal ancho, iliocostal — cadena lateral del tronco"
+  },
+  "l14": {
+    "name": "Estiramiento cuadrado lumbar sentado con inclinación lateral",
+    "level": "Inicial",
+    "reps": "30 seg cada lado",
+    "series": "3 rep × lado",
+    "position": "Sentado/a en silla firme con espalda recta, pies apoyados",
+    "breathing": "Exhalá al inclinarte. Respirá profundo durante el sostén.",
+    "warning": "La cadera contralateral debe permanecer APOYADA en el asiento. Si se despega, estás yendo demasiado lejos.",
+    "steps": [
+      "Sentado/a en silla firme, pies planos separados al ancho de caderas. Espalda recta, mirada al frente.",
+      "Elevá el brazo derecho por encima de la cabeza, apoyá el brazo izquierdo en el asiento o el muslo.",
+      "Exhalá y llevá el brazo derecho HACIA LA IZQUIERDA, extendiendo el costado del cuerpo lo más posible.",
+      "Sentirás el estiramiento desde la axila hasta la cresta ilíaca del lado derecho. La cadera derecha sigue apoyada.",
+      "Mantené 30 segundos respirando profundo. Volvé lento. Cambiá de lado. 3 repeticiones por lado."
+    ],
+    "variants": "Más intenso: rotá levemente el tronco hacia adelante mientras te inclinás. Más suave: menor amplitud.",
+    "muscles": "Cuadrado lumbar, oblicuo externo, dorsal ancho, serrato anterior — cadena lateral"
+  },
+  "g4": {
+    "name": "Prone Y-T-I (fortalecimiento dorsal escapular)",
+    "level": "Intermedio",
+    "reps": "8 rep de cada letra (Y, T, I)",
+    "series": "3 series × secuencia YTI",
+    "position": "Acostado/a boca abajo (prono), brazos extendidos según cada letra",
+    "breathing": "Exhalá al elevar los brazos. Inhalá al bajar.",
+    "warning": "Elevación MODERADA de brazos (10-15 cm del piso). Sin hiperextender el cuello. Si aparece dolor cervical, reducí el rango.",
+    "steps": [
+      "Acostado/a boca abajo sobre colchoneta, frente apoyada en una toalla enrollada (cuello neutro). Piernas rectas.",
+      "POSICIÓN Y: brazos extendidos al frente formando una 'Y' (pulgares hacia arriba). Exhalá y elevá ambos brazos 10-15 cm activando trapecio inferior. Mantené 2 seg. Bajá. 8 rep.",
+      "POSICIÓN T: brazos extendidos LATERALMENTE formando una 'T' (pulgares hacia arriba). Exhalá y elevá activando trapecio medio + romboides. Mantené 2 seg. Bajá. 8 rep.",
+      "POSICIÓN I: brazos extendidos HACIA LOS PIES formando una 'I' (palmas hacia el cuerpo). Exhalá y elevá activando trapecio inferior + dorsal ancho. Mantené 2 seg. Bajá. 8 rep.",
+      "Las 3 letras = 1 serie. Descansá 60 seg entre series. 3 series completas."
+    ],
+    "variants": "Regresión: elevación menor (5 cm) o solo una letra. Progresión: con mancuernas livianas (0.5-1 kg) en las manos.",
+    "muscles": "Trapecio medio e inferior, romboides mayor y menor, deltoides posterior, serrato anterior — estabilizadores dorsales completos"
   }
 }
