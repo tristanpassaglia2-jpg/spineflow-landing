@@ -2,8 +2,8 @@
   "version": "v11-plus60",
   "updated": "2026-08-10",
   "plus60": {
-    "s60_1": {
-      "id": "s60_1",
+    "s60_01": {
+      "id": "s60_01",
       "name": "Sentarse y levantarse con apoyo",
       "focus": [
         "fuerza",
@@ -25,8 +25,8 @@
       "variants": "Progresión: con menor apoyo de manos. Regresión: usar silla más alta.",
       "muscles": "Cuádriceps, glúteos, core estabilizador"
     },
-    "s60_2": {
-      "id": "s60_2",
+    "s60_02": {
+      "id": "s60_02",
       "name": "Sentarse y levantarse sin manos",
       "focus": [
         "fuerza",
@@ -48,8 +48,8 @@
       "variants": "Progresión: silla más baja. Regresión: usar manos en muslos.",
       "muscles": "Cuádriceps, glúteos, isquiotibiales, core"
     },
-    "s60_3": {
-      "id": "s60_3",
+    "s60_03": {
+      "id": "s60_03",
       "name": "Mini sentadilla con apoyo",
       "focus": [
         "fuerza"
@@ -70,8 +70,8 @@
       "variants": "Progresión: soltar una mano. Regresión: menor rango.",
       "muscles": "Cuádriceps, glúteos, aductores, core"
     },
-    "s60_4": {
-      "id": "s60_4",
+    "s60_04": {
+      "id": "s60_04",
       "name": "Estocada asistida",
       "focus": [
         "fuerza",
@@ -93,8 +93,8 @@
       "variants": "Progresión: soltar el apoyo de mano. Regresión: paso más corto.",
       "muscles": "Cuádriceps, glúteos, isquiotibiales, aductores, core"
     },
-    "s60_5": {
-      "id": "s60_5",
+    "s60_05": {
+      "id": "s60_05",
       "name": "Step-up en escalón bajo",
       "focus": [
         "fuerza",
@@ -116,8 +116,8 @@
       "variants": "Progresión: escalón más alto o sin apoyo. Regresión: banquito de 5 cm.",
       "muscles": "Cuádriceps, glúteos, isquiotibiales, core, propiocepción"
     },
-    "s60_6": {
-      "id": "s60_6",
+    "s60_06": {
+      "id": "s60_06",
       "name": "Abducción de cadera con apoyo",
       "focus": [
         "equilibrio",
@@ -139,8 +139,8 @@
       "variants": "Progresión: banda elástica arriba de las rodillas. Regresión: menor rango.",
       "muscles": "Glúteo medio, tensor de la fascia lata, core estabilizador"
     },
-    "s60_7": {
-      "id": "s60_7",
+    "s60_07": {
+      "id": "s60_07",
       "name": "Elevación bilateral de talones",
       "focus": [
         "fuerza"
@@ -161,8 +161,8 @@
       "variants": "Progresión: unipodal (una pierna). Regresión: menor rango.",
       "muscles": "Gemelos, sóleo, tibial posterior — bomba muscular venosa"
     },
-    "s60_8": {
-      "id": "s60_8",
+    "s60_08": {
+      "id": "s60_08",
       "name": "Marcha con elevación de rodillas",
       "focus": [
         "cardio",
@@ -184,8 +184,8 @@
       "variants": "Progresión: más rápido, con banda en muñecas. Regresión: menor altura de rodilla.",
       "muscles": "Flexores de cadera, cuádriceps, core dinámico, sistema cardiovascular"
     },
-    "s60_9": {
-      "id": "s60_9",
+    "s60_09": {
+      "id": "s60_09",
       "name": "Transferencia de peso lateral",
       "focus": [
         "equilibrio"
