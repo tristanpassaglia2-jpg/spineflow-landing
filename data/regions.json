@@ -102,7 +102,8 @@
           "k8",
           "k5",
           "cl",
-          "g6"
+          "g6",
+          "g4"
         ],
         "note": "La corrección específica de la curva (métodos Schroth/SEAS) requiere evaluación profesional previa. Este programa es de soporte general: fortalece y da movilidad, pero no reemplaza el diagnóstico del patrón de tu columna.",
         "free_count": 2
@@ -118,7 +119,8 @@
           "c7",
           "k8",
           "g6",
-          "l3"
+          "l3",
+          "g4"
         ],
         "free_count": 2
       }
@@ -168,7 +170,9 @@
           "l9",
           "l10",
           "l11",
-          "l12"
+          "l12",
+          "l13",
+          "l14"
         ],
         "free_count": 2
       },
