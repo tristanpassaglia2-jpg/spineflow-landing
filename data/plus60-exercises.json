@@ -1,146 +1,529 @@
 {
-  "s60_16": {
-    "name": "Sentadilla con silla (chair squat completo)",
-    "level": "Intermedio",
-    "reps": "10-12 repeticiones",
-    "series": "3 series × 10 rep",
-    "position": "De pie delante de una silla firme, pies al ancho de caderas",
-    "breathing": "Inhalá al bajar. Exhalá al subir.",
-    "warning": "La silla es de SEGURIDAD, no de apoyo. Bajá controlado, no te dejes caer.",
-    "steps": [
-      "Parate delante de una silla, espalda recta, pies al ancho de caderas, brazos al frente para equilibrio.",
-      "Bajá lentamente doblando rodillas y cadera hasta rozar suavemente el asiento (sin sentarte completo).",
-      "Mantené el pecho arriba y las rodillas alineadas con las puntas de los pies.",
-      "Empujá el piso con los talones y subí a la posición inicial activando glúteos.",
-      "3 series de 10-12 repeticiones. Descansá 60 segundos entre series."
-    ],
-    "variants": "Regresión: sentarse completo y volver a levantarse. Progresión: sin tocar la silla.",
-    "muscles": "Cuádriceps, glúteo mayor, isquiotibiales, core estabilizador"
-  },
-  "s60_17": {
-    "name": "Estocada estacionaria con apoyo",
-    "level": "Intermedio",
-    "reps": "10 rep cada pierna",
-    "series": "3 series × 10 rep/pierna",
-    "position": "De pie con una mano apoyada en respaldo de silla o pared",
-    "breathing": "Inhalá al bajar. Exhalá al subir.",
-    "warning": "La rodilla delantera NO debe pasar la punta del pie. Espalda recta.",
-    "steps": [
-      "De pie, una mano apoyada en respaldo de silla o pared para equilibrio.",
-      "Dá un paso adelante mediano (60-80 cm). Pies alineados, ambos apuntando al frente.",
-      "Bajá lentamente doblando ambas rodillas hasta que la de atrás casi toque el piso.",
-      "Rodilla delantera a 90°, alineada con el tobillo. Tronco vertical.",
-      "Subí empujando con el talón delantero. 10 repeticiones. Cambiá de pierna. 3 series."
-    ],
-    "variants": "Regresión: menor rango. Progresión: sin apoyo de mano.",
-    "muscles": "Cuádriceps, glúteo mayor, isquiotibiales, core, propiocepción"
-  },
-  "s60_18": {
-    "name": "Push-up de pared",
-    "level": "Inicial",
-    "reps": "12-15 repeticiones",
-    "series": "3 series × 12-15 rep",
-    "position": "De pie frente a una pared, brazos extendidos apoyados",
-    "breathing": "Inhalá al acercarte a la pared. Exhalá al empujar hacia atrás.",
-    "warning": "Cuerpo debe formar línea recta. Sin dejar caer la cadera.",
-    "steps": [
-      "Parate a un paso de la pared. Apoyá las manos separadas al ancho de hombros a la altura del pecho.",
-      "Activá el core, cuerpo formando línea recta desde la cabeza a los talones.",
-      "Inhalá y flexioná los codos acercando el pecho a la pared. Codos apuntando 45° hacia atrás.",
-      "Exhalá y empujá la pared volviendo a la posición inicial.",
-      "3 series de 12-15 repeticiones. Descansá 60 segundos entre series."
-    ],
-    "variants": "Más difícil: alejate más de la pared o hacela en el borde de una mesa.",
-    "muscles": "Pectoral mayor, deltoides anterior, tríceps, serrato anterior"
-  },
-  "s60_19": {
-    "name": "Marcha estacionaria con apertura de brazos",
-    "level": "Inicial",
-    "reps": "60 segundos",
-    "series": "3 series × 60 seg",
-    "position": "De pie, pies al ancho de caderas",
-    "breathing": "Respiración rítmica y natural coordinada con el movimiento.",
-    "warning": "Si aparece falta de aire o mareo, reducí la intensidad o parate.",
-    "steps": [
-      "De pie con pies al ancho de caderas, mirada al frente, espalda recta.",
-      "Elevá una rodilla hasta la altura de la cadera (o lo más alto cómodo).",
-      "Simultáneamente elevá los brazos abriéndolos lateralmente hasta la altura de hombros.",
-      "Bajá y cambiá de pierna, cerrando los brazos. Ritmo constante como marcha militar.",
-      "60 segundos continuos. Descansá 30 segundos. 3 series."
-    ],
-    "variants": "Regresión: sin brazos, solo marcha. Progresión: más rápido o con banda elástica en muñecas.",
-    "muscles": "Flexores de cadera, cuádriceps, deltoides, core dinámico, sistema cardiovascular"
-  },
-  "s60_20": {
-    "name": "Extensión de rodilla sentado",
-    "level": "Inicial",
-    "reps": "12-15 rep cada pierna",
-    "series": "3 series × 12 rep/pierna",
-    "position": "Sentado/a en silla firme, espalda apoyada",
-    "breathing": "Exhalá al extender. Inhalá al bajar.",
-    "warning": "Movimiento CONTROLADO. Sin impulso.",
-    "steps": [
-      "Sentado/a en silla firme con espalda bien apoyada, pies planos en el piso.",
-      "Manos sujetan el borde del asiento para estabilidad.",
-      "Exhalá y extendé una rodilla llevando la pierna paralela al piso. Punta del pie hacia vos.",
-      "Mantené 2 segundos arriba activando el cuádriceps.",
-      "Bajá lento a la posición inicial. 12-15 repeticiones. Cambiá de pierna. 3 series."
-    ],
-    "variants": "Progresión: con tobillera de peso liviana (0.5-1 kg) o banda elástica.",
-    "muscles": "Cuádriceps (vasto interno, vasto externo, recto femoral, vasto intermedio)"
-  },
-  "s60_21": {
-    "name": "Elevación de rodillas sentado con banda",
-    "level": "Intermedio",
-    "reps": "10 rep cada pierna",
-    "series": "3 series × 10 rep/pierna",
-    "position": "Sentado/a en silla firme, banda elástica alrededor de un muslo",
-    "breathing": "Exhalá al elevar. Inhalá al bajar.",
-    "warning": "Sin banda si no la tenés — el ejercicio funciona igual, solo menos resistencia.",
-    "steps": [
-      "Sentado/a en silla firme, pies planos. Banda elástica alrededor del muslo (opcional).",
-      "Manos sujetan el borde del asiento para estabilidad.",
-      "Exhalá y elevá una rodilla hacia el pecho activando flexores de cadera y core.",
-      "Mantené 2 segundos con la rodilla alta.",
-      "Bajá lento sin dejar caer el pie. 10 repeticiones. Cambiá de pierna. 3 series."
-    ],
-    "variants": "Regresión: sin banda. Progresión: elevar y sostener 5 seg arriba.",
-    "muscles": "Psoas ilíaco, recto femoral, transverso abdominal, oblicuos"
-  },
-  "s60_22": {
-    "name": "Puente de glúteos con pies en silla",
-    "level": "Intermedio",
-    "reps": "12 repeticiones",
-    "series": "3 series × 12 rep",
-    "position": "Acostado/a boca arriba con pies apoyados en el asiento de una silla",
-    "breathing": "Exhalá al subir. Inhalá al bajar.",
-    "warning": "La silla debe estar FIRME contra una pared para que no se mueva.",
-    "steps": [
-      "Acostado/a boca arriba, pies apoyados sobre el asiento de una silla firme (rodillas a 90°).",
-      "Brazos a los costados, activá el core.",
-      "Exhalá empujando el asiento con los talones y elevando la cadera vértebra a vértebra.",
-      "Mantené 3 segundos arriba formando línea recta de hombros a rodillas.",
-      "Bajá lento vértebra a vértebra. 3 series de 12 repeticiones."
-    ],
-    "variants": "Más fácil: menor rango. Más difícil: puente con una pierna extendida.",
-    "muscles": "Glúteo mayor, isquiotibiales, transverso abdominal, multífidos"
-  },
-  "s60_23": {
-    "name": "Dead bug sentado (variante silla)",
-    "level": "Inicial",
-    "reps": "8 rep cada lado",
-    "series": "3 series × 8 rep/lado",
-    "position": "Sentado/a en silla firme, espalda apoyada",
-    "breathing": "Exhalá al extender. Inhalá al volver.",
-    "warning": "La espalda NO debe despegarse del respaldo. Sin arquear la lumbar.",
-    "steps": [
-      "Sentado/a en silla firme con espalda bien apoyada al respaldo.",
-      "Elevá ambos brazos al frente y los pies unos cm del piso (posición inicial de dead bug adaptada).",
-      "Exhalá y extendé LENTAMENTE el brazo derecho hacia arriba + la pierna izquierda hacia adelante simultáneamente.",
-      "Mantené 2 segundos con contracción del core. La espalda sigue apoyada.",
-      "Volvé al inicio. Cambiá de lado (brazo izquierdo + pierna derecha). 3 series de 8 rep por lado."
-    ],
-    "variants": "Regresión: solo brazos o solo piernas. Progresión: con banda elástica en tobillos.",
-    "muscles": "Transverso abdominal, oblicuos, core estabilizador anti-rotacional"
+  "version": "v11-plus60",
+  "updated": "2026-08-10",
+  "plus60": {
+    "s60_1": {
+      "id": "s60_1",
+      "name": "Sentarse y levantarse con apoyo",
+      "focus": [
+        "fuerza",
+        "silla"
+      ],
+      "level": "Inicial",
+      "duration": "45 seg",
+      "series": "3 series × 10 rep",
+      "position": "Silla firme con reposabrazos, pies apoyados al piso.",
+      "breathing": "Inhalá al bajar. Exhalá al levantarte activando glúteos.",
+      "warning": "Movete despacio. Si aparece mareo, pausá y respirá.",
+      "steps": [
+        "Sentate al fondo de la silla con la espalda apoyada y los pies en el piso.",
+        "Apoyá las manos en los reposabrazos y llevá el tronco hacia adelante.",
+        "Empujá con los talones y las manos para incorporarte a la vertical.",
+        "Volvé a sentarte con control: pelvis primero, tronco después, sin dejarte caer.",
+        "Descansá 20-30 segundos entre series."
+      ],
+      "variants": "Progresión: con menor apoyo de manos. Regresión: usar silla más alta.",
+      "muscles": "Cuádriceps, glúteos, core estabilizador"
+    },
+    "s60_2": {
+      "id": "s60_2",
+      "name": "Sentarse y levantarse sin manos",
+      "focus": [
+        "fuerza",
+        "silla"
+      ],
+      "level": "Intermedio",
+      "duration": "45 seg",
+      "series": "3 series × 8 rep",
+      "position": "Silla firme, brazos cruzados sobre el pecho.",
+      "breathing": "Inhalá al bajar. Exhalá al subir apretando glúteos.",
+      "warning": "Reducí la altura del respaldo si te falta fuerza en cuádriceps.",
+      "steps": [
+        "Sentate al fondo de la silla con la espalda alta apoyada.",
+        "Cruzá los brazos sobre el pecho.",
+        "Incliná el tronco hacia adelante empujando con talones.",
+        "Ponete de pie sin ayuda de las manos, apretando glúteos y core.",
+        "Bajá controlado sin sentarte de golpe."
+      ],
+      "variants": "Progresión: silla más baja. Regresión: usar manos en muslos.",
+      "muscles": "Cuádriceps, glúteos, isquiotibiales, core"
+    },
+    "s60_3": {
+      "id": "s60_3",
+      "name": "Mini sentadilla con apoyo",
+      "focus": [
+        "fuerza"
+      ],
+      "level": "Inicial",
+      "duration": "45 seg",
+      "series": "3 series × 12 rep",
+      "position": "De pie tomando el respaldo de una silla firme o pared.",
+      "breathing": "Inhalá al bajar. Exhalá al subir.",
+      "warning": "No pases la punta de los pies con las rodillas.",
+      "steps": [
+        "Tomate con firmeza del respaldo de una silla o pasamanos.",
+        "Separá los pies al ancho de la cadera con las puntas levemente hacia afuera.",
+        "Bajá empujando la cola hacia atrás como si te sentaras en una silla imaginaria.",
+        "Bajá solo hasta 45° o hasta donde sea cómodo. Mantené la espalda recta.",
+        "Subí empujando el piso con los talones."
+      ],
+      "variants": "Progresión: soltar una mano. Regresión: menor rango.",
+      "muscles": "Cuádriceps, glúteos, aductores, core"
+    },
+    "s60_4": {
+      "id": "s60_4",
+      "name": "Estocada asistida",
+      "focus": [
+        "fuerza",
+        "equilibrio"
+      ],
+      "level": "Intermedio",
+      "duration": "60 seg",
+      "series": "3 series × 8 rep por pierna",
+      "position": "De pie con una mano apoyada en la pared o respaldo.",
+      "breathing": "Inhalá al bajar. Exhalá al subir.",
+      "warning": "La rodilla delantera no debe pasar la punta del pie. Si perdés estabilidad, volvé a mini-sentadilla.",
+      "steps": [
+        "Parate con una mano apoyada en pared o respaldo para asistir el equilibrio.",
+        "Dá un paso adelante de 40-60 cm. Tronco vertical, mirada al frente.",
+        "Bajá la rodilla de atrás sin tocar el piso. La rodilla adelantada queda a 90°.",
+        "Empujá el piso con el talón delantero para volver a la posición inicial.",
+        "Completá las repeticiones de una pierna, después la otra."
+      ],
+      "variants": "Progresión: soltar el apoyo de mano. Regresión: paso más corto.",
+      "muscles": "Cuádriceps, glúteos, isquiotibiales, aductores, core"
+    },
+    "s60_5": {
+      "id": "s60_5",
+      "name": "Step-up en escalón bajo",
+      "focus": [
+        "fuerza",
+        "equilibrio"
+      ],
+      "level": "Intermedio",
+      "duration": "60 seg",
+      "series": "3 series × 10 rep por pierna",
+      "position": "Delante de un escalón bajo firme (10-15 cm) con apoyo lateral.",
+      "breathing": "Exhalá al subir. Inhalá al bajar.",
+      "warning": "Usá pasamanos o pared. Empezá con el escalón más bajo disponible.",
+      "steps": [
+        "Ubicate delante de un escalón bajo (10-15 cm) con la mano apoyada al lateral.",
+        "Apoyá el pie derecho completo sobre el escalón.",
+        "Empujá con el talón y subí llevando el pie izquierdo al lado del derecho.",
+        "Bajá primero el pie izquierdo con control, después el derecho.",
+        "Alterná pierna guía cada 5 repeticiones."
+      ],
+      "variants": "Progresión: escalón más alto o sin apoyo. Regresión: banquito de 5 cm.",
+      "muscles": "Cuádriceps, glúteos, isquiotibiales, core, propiocepción"
+    },
+    "s60_6": {
+      "id": "s60_6",
+      "name": "Abducción de cadera con apoyo",
+      "focus": [
+        "equilibrio",
+        "fuerza"
+      ],
+      "level": "Inicial",
+      "duration": "45 seg",
+      "series": "3 series × 12 rep por pierna",
+      "position": "De pie apoyando una mano en respaldo o pared.",
+      "breathing": "Exhalá al abrir la pierna. Inhalá al volver.",
+      "warning": "El movimiento es lateral puro. No inclines el tronco hacia el lado contrario.",
+      "steps": [
+        "Parate con una mano apoyada en un respaldo o pared firme.",
+        "Contraé el abdomen para mantener la pelvis estable.",
+        "Elevá lentamente la pierna hacia el lado sin inclinar el tronco.",
+        "Sentí el trabajo en el costado del glúteo. No pases los 30-40° de apertura.",
+        "Bajá lento hasta que el pie casi toque el piso. Alterná pierna cada serie."
+      ],
+      "variants": "Progresión: banda elástica arriba de las rodillas. Regresión: menor rango.",
+      "muscles": "Glúteo medio, tensor de la fascia lata, core estabilizador"
+    },
+    "s60_7": {
+      "id": "s60_7",
+      "name": "Elevación bilateral de talones",
+      "focus": [
+        "fuerza"
+      ],
+      "level": "Inicial",
+      "duration": "45 seg",
+      "series": "3 series × 15 rep",
+      "position": "De pie tomando un respaldo firme o pared.",
+      "breathing": "Exhalá al subir. Inhalá al bajar.",
+      "warning": "Movimiento controlado. Si aparece calambre en gemelos, pausá.",
+      "steps": [
+        "Ponete de pie tomando el respaldo con las manos.",
+        "Pies separados al ancho de la cadera, mirada al frente.",
+        "Subí en puntas de pie despacio elevando los talones al máximo cómodo.",
+        "Mantené 2 segundos en la posición alta.",
+        "Bajá con control. Volvé a subir."
+      ],
+      "variants": "Progresión: unipodal (una pierna). Regresión: menor rango.",
+      "muscles": "Gemelos, sóleo, tibial posterior — bomba muscular venosa"
+    },
+    "s60_8": {
+      "id": "s60_8",
+      "name": "Marcha con elevación de rodillas",
+      "focus": [
+        "cardio",
+        "equilibrio"
+      ],
+      "level": "Inicial",
+      "duration": "60 seg",
+      "series": "3 series × 60 seg",
+      "position": "De pie con una mano apoyada si necesitás equilibrio.",
+      "breathing": "Respiración rítmica coordinada con el paso.",
+      "warning": "Si te falta el aire o sentís mareo, bajá el ritmo.",
+      "steps": [
+        "Parate erguido con la mirada al frente y los pies al ancho de las caderas.",
+        "Elevá una rodilla a la altura de la cadera (o hasta lo cómodo).",
+        "Bajá el pie y elevá la otra rodilla como una marcha en el lugar.",
+        "Mantené el tronco firme. Podés balancear los brazos con naturalidad.",
+        "60 segundos continuos. Descansá 30 seg entre series."
+      ],
+      "variants": "Progresión: más rápido, con banda en muñecas. Regresión: menor altura de rodilla.",
+      "muscles": "Flexores de cadera, cuádriceps, core dinámico, sistema cardiovascular"
+    },
+    "s60_9": {
+      "id": "s60_9",
+      "name": "Transferencia de peso lateral",
+      "focus": [
+        "equilibrio"
+      ],
+      "level": "Inicial",
+      "duration": "45 seg",
+      "series": "3 series × 10 rep",
+      "position": "De pie con pies al ancho de caderas, mano apoyada en pared.",
+      "breathing": "Respiración natural y calmada.",
+      "warning": "El objetivo es propiocepción, no fuerza. Movimientos lentos y controlados.",
+      "steps": [
+        "Parate con los pies al ancho de las caderas y una mano apoyada en pared.",
+        "Despacio, transferí todo el peso al pie derecho (sin levantar el izquierdo).",
+        "Mantené 3 segundos sintiendo el trabajo de estabilización del glúteo.",
+        "Volvé al centro y transferí al pie izquierdo. 3 seg.",
+        "Alterná lados con ritmo lento y controlado."
+      ],
+      "variants": "Progresión: soltar el apoyo de mano. Regresión: menor tiempo de sostén.",
+      "muscles": "Glúteo medio, core estabilizador, tobillo — propiocepción y equilibrio"
+    },
+    "s60_10": {
+      "id": "s60_10",
+      "name": "Equilibrio unipodal asistido",
+      "focus": [
+        "equilibrio"
+      ],
+      "level": "Intermedio",
+      "duration": "30 seg por pierna",
+      "series": "3 series × 30 seg × pierna",
+      "position": "De pie con una mano apoyada en respaldo, pared o pasamanos.",
+      "breathing": "Respiración calmada. Mirada fija en un punto para asistir el equilibrio.",
+      "warning": "Si aparece mareo, apoyá inmediatamente el otro pie.",
+      "steps": [
+        "Parate con una mano apoyada en un respaldo firme o pared.",
+        "Elevá una rodilla hasta que el muslo quede paralelo al piso (o hasta lo cómodo).",
+        "Mantené la posición con mirada fija al frente. Espalda erguida.",
+        "Bajá lento después de 30 segundos.",
+        "Cambiá de pierna. 3 series por pierna."
+      ],
+      "variants": "Progresión: soltar el apoyo, cerrar los ojos. Regresión: menor tiempo.",
+      "muscles": "Glúteo medio, core, tobillo, propiocepción — prevención de caídas"
+    },
+    "s60_11": {
+      "id": "s60_11",
+      "name": "Abdominal isométrico en silla",
+      "focus": [
+        "core",
+        "silla"
+      ],
+      "level": "Inicial",
+      "duration": "10 seg × 8 rep",
+      "series": "3 series",
+      "position": "Sentado/a en silla firme con la espalda separada del respaldo.",
+      "breathing": "Respiración natural sin contener el aire.",
+      "warning": "La activación es SUAVE (30-40% del máximo). No hay que empujar con fuerza excesiva.",
+      "steps": [
+        "Sentate al medio de la silla, espalda derecha SEPARADA del respaldo.",
+        "Manos apoyadas suavemente en los muslos.",
+        "Activá el abdomen bajo (como si quisieras acercar el ombligo a la columna).",
+        "Mantené 10 segundos respirando normal.",
+        "Relajá completo 5 seg. 8 repeticiones. 3 series."
+      ],
+      "variants": "Progresión: activar 20 segundos. Regresión: 5 segundos.",
+      "muscles": "Transverso abdominal, multífidos, suelo pélvico — cilindro de core profundo"
+    },
+    "s60_12": {
+      "id": "s60_12",
+      "name": "Elevación alternada de rodillas sentado",
+      "focus": [
+        "core",
+        "silla"
+      ],
+      "level": "Inicial",
+      "duration": "60 seg",
+      "series": "3 series × 60 seg",
+      "position": "Sentado/a en silla firme, espalda apoyada al respaldo.",
+      "breathing": "Exhalá al elevar rodilla. Inhalá al bajar.",
+      "warning": "Movimiento controlado, sin impulso. Si duele la lumbar, reducí la altura de la rodilla.",
+      "steps": [
+        "Sentado/a en silla con la espalda apoyada al respaldo.",
+        "Manos sujetando el asiento a los costados para estabilizar el tronco.",
+        "Exhalá elevando una rodilla hacia el pecho activando el core.",
+        "Mantené 1 segundo. Bajá lento.",
+        "Alterná piernas. 60 segundos continuos. 3 series."
+      ],
+      "variants": "Progresión: banda elástica en muslos. Regresión: pausas cada 10 rep.",
+      "muscles": "Flexores de cadera, transverso abdominal, oblicuos"
+    },
+    "s60_13": {
+      "id": "s60_13",
+      "name": "Retracción escapular y apertura torácica",
+      "focus": [
+        "postura"
+      ],
+      "level": "Inicial",
+      "duration": "10 seg × 10 rep",
+      "series": "3 series",
+      "position": "Sentado/a en silla con la espalda separada del respaldo, o de pie.",
+      "breathing": "Inhalá al abrir el pecho juntando escápulas. Exhalá al relajar.",
+      "warning": "Movimiento activo y controlado. No forzar el cuello hacia atrás.",
+      "steps": [
+        "Sentado/a con la espalda separada del respaldo, mirada al frente.",
+        "Flexioná los codos a 90° con las palmas hacia arriba.",
+        "Inhalá abriendo el pecho y juntando las escápulas hacia la columna.",
+        "Mantené 10 segundos activo. Sentí la contracción entre los omóplatos.",
+        "Exhalá y relajá suave. Repetí 10 veces × 3 series."
+      ],
+      "variants": "Progresión: con banda elástica al frente para resistencia. Regresión: menor tiempo de sostén.",
+      "muscles": "Trapecio medio-inferior, romboides, deltoides posterior — postura activa"
+    },
+    "s60_14": {
+      "id": "s60_14",
+      "name": "Wall slide (deslizamiento en pared)",
+      "focus": [
+        "postura"
+      ],
+      "level": "Intermedio",
+      "duration": "10 rep",
+      "series": "3 series × 10 rep",
+      "position": "De pie con la espalda apoyada en la pared, pies unos 15 cm hacia adelante.",
+      "breathing": "Exhalá al subir. Inhalá al bajar.",
+      "warning": "Si aparecen molestias en el hombro, limitá el rango. Toda la espalda debe permanecer contra la pared.",
+      "steps": [
+        "De pie con espalda, hombros y cabeza apoyados contra pared.",
+        "Codos a 90° apoyados a los lados formando una 'W'.",
+        "Exhalá deslizando los brazos hacia arriba hasta formar una 'Y'.",
+        "Mantené el contacto de brazos, hombros y espalda con la pared todo el movimiento.",
+        "Bajá lento hasta la 'W'. Repetí 10 veces × 3 series."
+      ],
+      "variants": "Progresión: con carga liviana en manos. Regresión: rango corto (solo hasta 'T').",
+      "muscles": "Trapecio medio-inferior, serrato anterior, romboides, deltoides — control escapular"
+    },
+    "s60_15": {
+      "id": "s60_15",
+      "name": "Rotación torácica controlada",
+      "focus": [
+        "postura",
+        "movilidad"
+      ],
+      "level": "Inicial",
+      "duration": "45 seg",
+      "series": "3 series × 10 rep por lado",
+      "position": "Sentado/a en silla firme, pies planos, brazos cruzados sobre el pecho.",
+      "breathing": "Exhalá al rotar. Inhalá al volver al centro.",
+      "warning": "El movimiento parte de la columna dorsal, no de los hombros ni de la lumbar. Rotación lenta.",
+      "steps": [
+        "Sentado/a en silla firme con pies planos al piso, tronco erguido.",
+        "Cruzá los brazos sobre el pecho para aislar la rotación torácica.",
+        "Exhalá y rotá el tronco lentamente hacia la derecha desde la caja torácica.",
+        "Mantené 2 segundos. Volvé al centro.",
+        "Repetí hacia la izquierda. 10 rep por lado × 3 series."
+      ],
+      "variants": "Progresión: con palo en los hombros para amplificar el rango.",
+      "muscles": "Oblicuos, multífidos torácicos, movilidad dorsal — anti-rigidez"
+    },
+    "s60_16": {
+      "id": "s60_16",
+      "name": "Sentadilla con silla (chair squat completo)",
+      "focus": [
+        "fuerza",
+        "silla"
+      ],
+      "level": "Intermedio",
+      "duration": "60 seg",
+      "series": "3 series × 10-12 rep",
+      "position": "De pie delante de una silla firme, pies al ancho de caderas.",
+      "breathing": "Inhalá al bajar. Exhalá al subir.",
+      "warning": "La silla es de SEGURIDAD, no de apoyo. Bajá controlado, no te dejes caer.",
+      "steps": [
+        "Parate delante de una silla, espalda recta, pies al ancho de caderas, brazos al frente para equilibrio.",
+        "Bajá lentamente doblando rodillas y cadera hasta rozar suavemente el asiento (sin sentarte completo).",
+        "Mantené el pecho arriba y las rodillas alineadas con las puntas de los pies.",
+        "Empujá el piso con los talones y subí a la posición inicial activando glúteos.",
+        "3 series de 10-12 repeticiones. Descansá 60 segundos entre series."
+      ],
+      "variants": "Regresión: sentarse completo y volver a levantarse. Progresión: sin tocar la silla.",
+      "muscles": "Cuádriceps, glúteo mayor, isquiotibiales, core estabilizador"
+    },
+    "s60_17": {
+      "id": "s60_17",
+      "name": "Estocada estacionaria con apoyo",
+      "focus": [
+        "fuerza",
+        "equilibrio"
+      ],
+      "level": "Intermedio",
+      "duration": "60 seg",
+      "series": "3 series × 10 rep por pierna",
+      "position": "De pie con una mano apoyada en respaldo de silla o pared.",
+      "breathing": "Inhalá al bajar. Exhalá al subir.",
+      "warning": "La rodilla delantera NO debe pasar la punta del pie. Espalda recta.",
+      "steps": [
+        "De pie, una mano apoyada en respaldo de silla o pared para equilibrio.",
+        "Dá un paso adelante mediano (60-80 cm). Pies alineados, ambos apuntando al frente.",
+        "Bajá lentamente doblando ambas rodillas hasta que la de atrás casi toque el piso.",
+        "Rodilla delantera a 90°, alineada con el tobillo. Tronco vertical.",
+        "Subí empujando con el talón delantero. 10 repeticiones. Cambiá de pierna. 3 series."
+      ],
+      "variants": "Regresión: menor rango. Progresión: sin apoyo de mano.",
+      "muscles": "Cuádriceps, glúteo mayor, isquiotibiales, core, propiocepción"
+    },
+    "s60_18": {
+      "id": "s60_18",
+      "name": "Push-up de pared",
+      "focus": [
+        "fuerza",
+        "postura"
+      ],
+      "level": "Inicial",
+      "duration": "45 seg",
+      "series": "3 series × 12-15 rep",
+      "position": "De pie frente a una pared, brazos extendidos apoyados.",
+      "breathing": "Inhalá al acercarte a la pared. Exhalá al empujar hacia atrás.",
+      "warning": "Cuerpo debe formar línea recta. Sin dejar caer la cadera.",
+      "steps": [
+        "Parate a un paso de la pared. Apoyá las manos separadas al ancho de hombros a la altura del pecho.",
+        "Activá el core, cuerpo formando línea recta desde la cabeza a los talones.",
+        "Inhalá y flexioná los codos acercando el pecho a la pared. Codos apuntando 45° hacia atrás.",
+        "Exhalá y empujá la pared volviendo a la posición inicial.",
+        "3 series de 12-15 repeticiones. Descansá 60 segundos entre series."
+      ],
+      "variants": "Más difícil: alejate más de la pared o hacela en el borde de una mesa.",
+      "muscles": "Pectoral mayor, deltoides anterior, tríceps, serrato anterior"
+    },
+    "s60_19": {
+      "id": "s60_19",
+      "name": "Marcha estacionaria con apertura de brazos",
+      "focus": [
+        "cardio",
+        "coordinación"
+      ],
+      "level": "Inicial",
+      "duration": "60 seg",
+      "series": "3 series × 60 seg",
+      "position": "De pie, pies al ancho de caderas.",
+      "breathing": "Respiración rítmica y natural coordinada con el movimiento.",
+      "warning": "Si aparece falta de aire o mareo, reducí la intensidad o parate.",
+      "steps": [
+        "De pie con pies al ancho de caderas, mirada al frente, espalda recta.",
+        "Elevá una rodilla hasta la altura de la cadera (o lo más alto cómodo).",
+        "Simultáneamente elevá los brazos abriéndolos lateralmente hasta la altura de hombros.",
+        "Bajá y cambiá de pierna, cerrando los brazos. Ritmo constante como marcha militar.",
+        "60 segundos continuos. Descansá 30 segundos. 3 series."
+      ],
+      "variants": "Regresión: sin brazos, solo marcha. Progresión: más rápido o con banda elástica en muñecas.",
+      "muscles": "Flexores de cadera, cuádriceps, deltoides, core dinámico, sistema cardiovascular"
+    },
+    "s60_20": {
+      "id": "s60_20",
+      "name": "Extensión de rodilla sentado",
+      "focus": [
+        "fuerza",
+        "silla"
+      ],
+      "level": "Inicial",
+      "duration": "45 seg",
+      "series": "3 series × 12-15 rep por pierna",
+      "position": "Sentado/a en silla firme, espalda apoyada.",
+      "breathing": "Exhalá al extender. Inhalá al bajar.",
+      "warning": "Movimiento CONTROLADO. Sin impulso.",
+      "steps": [
+        "Sentado/a en silla firme con espalda bien apoyada, pies planos en el piso.",
+        "Manos sujetan el borde del asiento para estabilidad.",
+        "Exhalá y extendé una rodilla llevando la pierna paralela al piso. Punta del pie hacia vos.",
+        "Mantené 2 segundos arriba activando el cuádriceps.",
+        "Bajá lento a la posición inicial. 12-15 repeticiones. Cambiá de pierna. 3 series."
+      ],
+      "variants": "Progresión: con tobillera de peso liviana (0.5-1 kg) o banda elástica.",
+      "muscles": "Cuádriceps (vasto interno, vasto externo, recto femoral, vasto intermedio)"
+    },
+    "s60_21": {
+      "id": "s60_21",
+      "name": "Elevación de rodillas sentado con banda",
+      "focus": [
+        "core",
+        "silla"
+      ],
+      "level": "Intermedio",
+      "duration": "45 seg",
+      "series": "3 series × 10 rep por pierna",
+      "position": "Sentado/a en silla firme, banda elástica alrededor de un muslo.",
+      "breathing": "Exhalá al elevar. Inhalá al bajar.",
+      "warning": "Sin banda si no la tenés — el ejercicio funciona igual, solo menos resistencia.",
+      "steps": [
+        "Sentado/a en silla firme, pies planos. Banda elástica alrededor del muslo (opcional).",
+        "Manos sujetan el borde del asiento para estabilidad.",
+        "Exhalá y elevá una rodilla hacia el pecho activando flexores de cadera y core.",
+        "Mantené 2 segundos con la rodilla alta.",
+        "Bajá lento sin dejar caer el pie. 10 repeticiones. Cambiá de pierna. 3 series."
+      ],
+      "variants": "Regresión: sin banda. Progresión: elevar y sostener 5 seg arriba.",
+      "muscles": "Psoas ilíaco, recto femoral, transverso abdominal, oblicuos"
+    },
+    "s60_22": {
+      "id": "s60_22",
+      "name": "Puente de glúteos con pies en silla",
+      "focus": [
+        "fuerza",
+        "silla"
+      ],
+      "level": "Intermedio",
+      "duration": "45 seg",
+      "series": "3 series × 12 rep",
+      "position": "Acostado/a boca arriba con pies apoyados en el asiento de una silla.",
+      "breathing": "Exhalá al subir. Inhalá al bajar.",
+      "warning": "La silla debe estar FIRME contra una pared para que no se mueva.",
+      "steps": [
+        "Acostado/a boca arriba, pies apoyados sobre el asiento de una silla firme (rodillas a 90°).",
+        "Brazos a los costados, activá el core.",
+        "Exhalá empujando el asiento con los talones y elevando la cadera vértebra a vértebra.",
+        "Mantené 3 segundos arriba formando línea recta de hombros a rodillas.",
+        "Bajá lento vértebra a vértebra. 3 series de 12 repeticiones."
+      ],
+      "variants": "Más fácil: menor rango. Más difícil: puente con una pierna extendida.",
+      "muscles": "Glúteo mayor, isquiotibiales, transverso abdominal, multífidos"
+    },
+    "s60_23": {
+      "id": "s60_23",
+      "name": "Dead bug sentado (variante silla)",
+      "focus": [
+        "core",
+        "silla"
+      ],
+      "level": "Inicial",
+      "duration": "45 seg",
+      "series": "3 series × 8 rep por lado",
+      "position": "Sentado/a en silla firme, espalda apoyada.",
+      "breathing": "Exhalá al extender. Inhalá al volver.",
+      "warning": "La espalda NO debe despegarse del respaldo. Sin arquear la lumbar.",
+      "steps": [
+        "Sentado/a en silla firme con espalda bien apoyada al respaldo.",
+        "Elevá ambos brazos al frente y los pies unos cm del piso (posición inicial de dead bug adaptada).",
+        "Exhalá y extendé LENTAMENTE el brazo derecho hacia arriba + la pierna izquierda hacia adelante simultáneamente.",
+        "Mantené 2 segundos con contracción del core. La espalda sigue apoyada.",
+        "Volvé al inicio. Cambiá de lado (brazo izquierdo + pierna derecha). 3 series de 8 rep por lado."
+      ],
+      "variants": "Regresión: solo brazos o solo piernas. Progresión: con banda elástica en tobillos.",
+      "muscles": "Transverso abdominal, oblicuos, core estabilizador anti-rotacional"
+    }
   }
 }
