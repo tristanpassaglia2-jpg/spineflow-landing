@@ -1,0 +1,3222 @@
+{
+  "version": "v12-programs",
+  "updated": "2026-08-13",
+  "config": {
+    "sessions_per_week": 3,
+    "free_rule": "La sesion 1 completa es gratis. El resto requiere Premium.",
+    "phase_labels": {
+      "1": "Alivio",
+      "2": "Movilidad",
+      "3": "Activacion",
+      "4": "Fortalecimiento"
+    },
+    "pacing_rule": {
+      "title": "Ajusta tu ritmo",
+      "body": "Guiate por como amanecés al dia siguiente, no por lo facil que te resulto hoy. Si al otro dia estas igual o mejor, podes avanzar. Si amanecés peor, baja un escalon. Retroceder no es perder el progreso.",
+      "cta_forward": "Pasar a la semana siguiente",
+      "cta_back": "Repetir esta semana"
+    }
+  },
+  "programs": {
+    "hernia_cervical": {
+      "name": "Hernia de disco cervical",
+      "module": "cervical",
+      "duration_weeks": 4,
+      "intro": "Programa progresivo de 4 semanas. Empezamos calmando el dolor, seguimos recuperando movilidad, despues activamos el core profundo y terminamos fortaleciendo para evitar recaidas.",
+      "weeks": [
+        {
+          "number": 1,
+          "title": "Alivio",
+          "goal": "Bajar el dolor y el espasmo. Movimientos suaves, sin carga.",
+          "note": "Si algun ejercicio aumenta el dolor, saltealo y segui con el siguiente.",
+          "dose": "Series cortas y suaves. Mejor quedarse corto que pasarse.",
+          "pacing": "Esta semana es suave a proposito: primero calmamos el dolor, despues exigimos. Si completas las sesiones sin molestia y sentis que podes mas, pasa a la Semana 2. Si todavia te duele al moverte, quedate aca los dias que necesites, no hay apuro.",
+          "sessions": [
+            {
+              "id": "hernia_cervical-w1-s1",
+              "number": 1,
+              "title": "Primer contacto",
+              "free": true,
+              "duration_min": 12,
+              "exercises": [
+                "c1",
+                "c4",
+                "c3",
+                "c6"
+              ]
+            },
+            {
+              "id": "hernia_cervical-w1-s2",
+              "number": 2,
+              "title": "Descompresion",
+              "free": false,
+              "duration_min": 13,
+              "exercises": [
+                "c1",
+                "c4",
+                "c3",
+                "c6"
+              ]
+            },
+            {
+              "id": "hernia_cervical-w1-s3",
+              "number": 3,
+              "title": "Movimiento suave",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "c1",
+                "c4",
+                "c3",
+                "c6"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Movilidad",
+          "goal": "Recuperar rango de movimiento y elasticidad.",
+          "note": "Los estiramientos se sostienen, no se rebotan. Respira durante el sosten.",
+          "dose": "Sostene cada estiramiento 20-30 segundos. Sin rebotes.",
+          "pacing": "Aca recuperamos movimiento. Si los estiramientos ya te salen comodos y llegas al rango completo sin tirones, avanza a la Semana 3. Si algun movimiento todavia te tira, repeti esta semana antes de sumarle carga.",
+          "sessions": [
+            {
+              "id": "hernia_cervical-w2-s1",
+              "number": 4,
+              "title": "Apertura",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "c1",
+                "c4",
+                "c3",
+                "c2",
+                "c6"
+              ]
+            },
+            {
+              "id": "hernia_cervical-w2-s2",
+              "number": 5,
+              "title": "Rango completo",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "c1",
+                "c4",
+                "c3",
+                "c2",
+                "c6"
+              ]
+            },
+            {
+              "id": "hernia_cervical-w2-s3",
+              "number": 6,
+              "title": "Movilidad fina",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "c1",
+                "c4",
+                "c3",
+                "c2",
+                "c6"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Activacion",
+          "goal": "Despertar el core profundo y los estabilizadores.",
+          "note": "La calidad importa mas que la cantidad. Si perdes la postura, para y descansa.",
+          "dose": "Sumale 2 repeticiones o 5 segundos de sosten respecto de la semana pasada.",
+          "pacing": "Empezamos a despertar el core. Si sostenes las posiciones sin perder la postura y sin dolor al dia siguiente, pasa a la Semana 4. Si terminas con la zona cargada o se te desarma la forma, quedate una semana mas: la base importa mas que la velocidad.",
+          "sessions": [
+            {
+              "id": "hernia_cervical-w3-s1",
+              "number": 7,
+              "title": "Core profundo",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "c1",
+                "c5",
+                "c9",
+                "c4",
+                "c3",
+                "c6"
+              ]
+            },
+            {
+              "id": "hernia_cervical-w3-s2",
+              "number": 8,
+              "title": "Control",
+              "free": false,
+              "duration_min": 17,
+              "exercises": [
+                "c1",
+                "c5",
+                "c9",
+                "c3",
+                "c2",
+                "c6"
+              ]
+            },
+            {
+              "id": "hernia_cervical-w3-s3",
+              "number": 9,
+              "title": "Estabilidad",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "c1",
+                "c5",
+                "c9",
+                "c2",
+                "c4",
+                "c6"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Fortalecimiento",
+          "goal": "Ganar fuerza real para que el dolor no vuelva.",
+          "note": "Ultima semana. Si completas estas 3 sesiones ya tenes la base para mantener.",
+          "dose": "Maxima dosis del programa: sumale otras 2 repeticiones o 10 segundos de sosten.",
+          "pacing": "La mas exigente. Si te resulta liviana, repetila sumando repeticiones o segundos de sosten. Si te cuesta, volve unos dias a la Semana 3 y retoma.",
+          "sessions": [
+            {
+              "id": "hernia_cervical-w4-s1",
+              "number": 10,
+              "title": "Fuerza base",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "c1",
+                "c8",
+                "c5",
+                "c9",
+                "c6"
+              ]
+            },
+            {
+              "id": "hernia_cervical-w4-s2",
+              "number": 11,
+              "title": "Carga progresiva",
+              "free": false,
+              "duration_min": 19,
+              "exercises": [
+                "c1",
+                "c8",
+                "c9",
+                "c5",
+                "c6"
+              ]
+            },
+            {
+              "id": "hernia_cervical-w4-s3",
+              "number": 12,
+              "title": "Integracion final",
+              "free": false,
+              "duration_min": 20,
+              "exercises": [
+                "c1",
+                "c8",
+                "c5",
+                "c9",
+                "c6"
+              ]
+            }
+          ]
+        }
+      ],
+      "pool": [
+        "c1",
+        "c5",
+        "c4",
+        "c3",
+        "c8",
+        "c2",
+        "c6",
+        "c9"
+      ],
+      "pool_added": [
+        "c6",
+        "c9"
+      ]
+    },
+    "occipital": {
+      "name": "Síndrome occipital (Arnold)",
+      "module": "cervical",
+      "duration_weeks": 4,
+      "intro": "Programa progresivo de 4 semanas. Empezamos calmando el dolor, seguimos recuperando movilidad, despues activamos el core profundo y terminamos fortaleciendo para evitar recaidas.",
+      "weeks": [
+        {
+          "number": 1,
+          "title": "Alivio",
+          "goal": "Bajar el dolor y el espasmo. Movimientos suaves, sin carga.",
+          "note": "Si algun ejercicio aumenta el dolor, saltealo y segui con el siguiente.",
+          "dose": "Series cortas y suaves. Mejor quedarse corto que pasarse.",
+          "pacing": "Esta semana es suave a proposito: primero calmamos el dolor, despues exigimos. Si completas las sesiones sin molestia y sentis que podes mas, pasa a la Semana 2. Si todavia te duele al moverte, quedate aca los dias que necesites, no hay apuro.",
+          "sessions": [
+            {
+              "id": "occipital-w1-s1",
+              "number": 1,
+              "title": "Primer contacto",
+              "free": true,
+              "duration_min": 12,
+              "exercises": [
+                "n1",
+                "c6",
+                "c2",
+                "c1"
+              ]
+            },
+            {
+              "id": "occipital-w1-s2",
+              "number": 2,
+              "title": "Descompresion",
+              "free": false,
+              "duration_min": 13,
+              "exercises": [
+                "c1",
+                "c6",
+                "c2",
+                "g8"
+              ]
+            },
+            {
+              "id": "occipital-w1-s3",
+              "number": 3,
+              "title": "Movimiento suave",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "g8",
+                "c6",
+                "c2",
+                "n1"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Movilidad",
+          "goal": "Recuperar rango de movimiento y elasticidad.",
+          "note": "Los estiramientos se sostienen, no se rebotan. Respira durante el sosten.",
+          "dose": "Sostene cada estiramiento 20-30 segundos. Sin rebotes.",
+          "pacing": "Aca recuperamos movimiento. Si los estiramientos ya te salen comodos y llegas al rango completo sin tirones, avanza a la Semana 3. Si algun movimiento todavia te tira, repeti esta semana antes de sumarle carga.",
+          "sessions": [
+            {
+              "id": "occipital-w2-s1",
+              "number": 4,
+              "title": "Apertura",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "n1",
+                "c6",
+                "c2",
+                "c7"
+              ]
+            },
+            {
+              "id": "occipital-w2-s2",
+              "number": 5,
+              "title": "Rango completo",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "c1",
+                "c6",
+                "c2",
+                "c7",
+                "g8"
+              ]
+            },
+            {
+              "id": "occipital-w2-s3",
+              "number": 6,
+              "title": "Movilidad fina",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "g8",
+                "c6",
+                "c2",
+                "c7"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Activacion",
+          "goal": "Despertar el core profundo y los estabilizadores.",
+          "note": "La calidad importa mas que la cantidad. Si perdes la postura, para y descansa.",
+          "dose": "Sumale 2 repeticiones o 5 segundos de sosten respecto de la semana pasada.",
+          "pacing": "Empezamos a despertar el core. Si sostenes las posiciones sin perder la postura y sin dolor al dia siguiente, pasa a la Semana 4. Si terminas con la zona cargada o se te desarma la forma, quedate una semana mas: la base importa mas que la velocidad.",
+          "sessions": [
+            {
+              "id": "occipital-w3-s1",
+              "number": 7,
+              "title": "Core profundo",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "n1",
+                "c5",
+                "c9",
+                "c10",
+                "c6",
+                "c2"
+              ]
+            },
+            {
+              "id": "occipital-w3-s2",
+              "number": 8,
+              "title": "Control",
+              "free": false,
+              "duration_min": 17,
+              "exercises": [
+                "c1",
+                "c5",
+                "c9",
+                "c10",
+                "c2",
+                "c7"
+              ]
+            },
+            {
+              "id": "occipital-w3-s3",
+              "number": 9,
+              "title": "Estabilidad",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "g8",
+                "c5",
+                "c9",
+                "c10",
+                "c7",
+                "c6"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Fortalecimiento",
+          "goal": "Ganar fuerza real para que el dolor no vuelva.",
+          "note": "Ultima semana. Si completas estas 3 sesiones ya tenes la base para mantener.",
+          "dose": "Maxima dosis del programa: sumale otras 2 repeticiones o 10 segundos de sosten.",
+          "pacing": "La mas exigente. Si te resulta liviana, repetila sumando repeticiones o segundos de sosten. Si te cuesta, volve unos dias a la Semana 3 y retoma.",
+          "sessions": [
+            {
+              "id": "occipital-w4-s1",
+              "number": 10,
+              "title": "Fuerza base",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "n1",
+                "c5",
+                "c9",
+                "c10",
+                "c6"
+              ]
+            },
+            {
+              "id": "occipital-w4-s2",
+              "number": 11,
+              "title": "Carga progresiva",
+              "free": false,
+              "duration_min": 19,
+              "exercises": [
+                "c1",
+                "c5",
+                "c9",
+                "c10",
+                "g8"
+              ]
+            },
+            {
+              "id": "occipital-w4-s3",
+              "number": 12,
+              "title": "Integracion final",
+              "free": false,
+              "duration_min": 20,
+              "exercises": [
+                "g8",
+                "c5",
+                "c9",
+                "c10",
+                "c6"
+              ]
+            }
+          ]
+        }
+      ],
+      "pool": [
+        "n1",
+        "c6",
+        "c1",
+        "c2",
+        "c7",
+        "g8",
+        "c5",
+        "c9",
+        "c10"
+      ],
+      "pool_added": [
+        "c5",
+        "c9",
+        "c10"
+      ]
+    },
+    "cervicalgia_espasmo": {
+      "name": "Cervicalgia por espasmo",
+      "module": "cervical",
+      "duration_weeks": 4,
+      "intro": "Programa progresivo de 4 semanas. Empezamos calmando el dolor, seguimos recuperando movilidad, despues activamos el core profundo y terminamos fortaleciendo para evitar recaidas.",
+      "weeks": [
+        {
+          "number": 1,
+          "title": "Alivio",
+          "goal": "Bajar el dolor y el espasmo. Movimientos suaves, sin carga.",
+          "note": "Si algun ejercicio aumenta el dolor, saltealo y segui con el siguiente.",
+          "dose": "Series cortas y suaves. Mejor quedarse corto que pasarse.",
+          "pacing": "Esta semana es suave a proposito: primero calmamos el dolor, despues exigimos. Si completas las sesiones sin molestia y sentis que podes mas, pasa a la Semana 2. Si todavia te duele al moverte, quedate aca los dias que necesites, no hay apuro.",
+          "sessions": [
+            {
+              "id": "cervicalgia_espasmo-w1-s1",
+              "number": 1,
+              "title": "Primer contacto",
+              "free": true,
+              "duration_min": 12,
+              "exercises": [
+                "n1",
+                "c6",
+                "c2",
+                "c7"
+              ]
+            },
+            {
+              "id": "cervicalgia_espasmo-w1-s2",
+              "number": 2,
+              "title": "Descompresion",
+              "free": false,
+              "duration_min": 13,
+              "exercises": [
+                "c1",
+                "c6",
+                "c2",
+                "n1"
+              ]
+            },
+            {
+              "id": "cervicalgia_espasmo-w1-s3",
+              "number": 3,
+              "title": "Movimiento suave",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "g2",
+                "c6",
+                "c2",
+                "n1"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Movilidad",
+          "goal": "Recuperar rango de movimiento y elasticidad.",
+          "note": "Los estiramientos se sostienen, no se rebotan. Respira durante el sosten.",
+          "dose": "Sostene cada estiramiento 20-30 segundos. Sin rebotes.",
+          "pacing": "Aca recuperamos movimiento. Si los estiramientos ya te salen comodos y llegas al rango completo sin tirones, avanza a la Semana 3. Si algun movimiento todavia te tira, repeti esta semana antes de sumarle carga.",
+          "sessions": [
+            {
+              "id": "cervicalgia_espasmo-w2-s1",
+              "number": 4,
+              "title": "Apertura",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "n1",
+                "c6",
+                "c2",
+                "c7"
+              ]
+            },
+            {
+              "id": "cervicalgia_espasmo-w2-s2",
+              "number": 5,
+              "title": "Rango completo",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "c1",
+                "c6",
+                "c2",
+                "c7"
+              ]
+            },
+            {
+              "id": "cervicalgia_espasmo-w2-s3",
+              "number": 6,
+              "title": "Movilidad fina",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "g2",
+                "c6",
+                "c2",
+                "c7"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Activacion",
+          "goal": "Despertar el core profundo y los estabilizadores.",
+          "note": "La calidad importa mas que la cantidad. Si perdes la postura, para y descansa.",
+          "dose": "Sumale 2 repeticiones o 5 segundos de sosten respecto de la semana pasada.",
+          "pacing": "Empezamos a despertar el core. Si sostenes las posiciones sin perder la postura y sin dolor al dia siguiente, pasa a la Semana 4. Si terminas con la zona cargada o se te desarma la forma, quedate una semana mas: la base importa mas que la velocidad.",
+          "sessions": [
+            {
+              "id": "cervicalgia_espasmo-w3-s1",
+              "number": 7,
+              "title": "Core profundo",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "n1",
+                "c5",
+                "c9",
+                "c10",
+                "c6",
+                "c2"
+              ]
+            },
+            {
+              "id": "cervicalgia_espasmo-w3-s2",
+              "number": 8,
+              "title": "Control",
+              "free": false,
+              "duration_min": 17,
+              "exercises": [
+                "c1",
+                "c5",
+                "c9",
+                "c10",
+                "c2",
+                "c7"
+              ]
+            },
+            {
+              "id": "cervicalgia_espasmo-w3-s3",
+              "number": 9,
+              "title": "Estabilidad",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "g2",
+                "c5",
+                "c9",
+                "c10",
+                "c7",
+                "c6"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Fortalecimiento",
+          "goal": "Ganar fuerza real para que el dolor no vuelva.",
+          "note": "Ultima semana. Si completas estas 3 sesiones ya tenes la base para mantener.",
+          "dose": "Maxima dosis del programa: sumale otras 2 repeticiones o 10 segundos de sosten.",
+          "pacing": "La mas exigente. Si te resulta liviana, repetila sumando repeticiones o segundos de sosten. Si te cuesta, volve unos dias a la Semana 3 y retoma.",
+          "sessions": [
+            {
+              "id": "cervicalgia_espasmo-w4-s1",
+              "number": 10,
+              "title": "Fuerza base",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "n1",
+                "c5",
+                "c9",
+                "c10",
+                "c6"
+              ]
+            },
+            {
+              "id": "cervicalgia_espasmo-w4-s2",
+              "number": 11,
+              "title": "Carga progresiva",
+              "free": false,
+              "duration_min": 19,
+              "exercises": [
+                "c1",
+                "c5",
+                "c9",
+                "c10",
+                "c6"
+              ]
+            },
+            {
+              "id": "cervicalgia_espasmo-w4-s3",
+              "number": 12,
+              "title": "Integracion final",
+              "free": false,
+              "duration_min": 20,
+              "exercises": [
+                "g2",
+                "c5",
+                "c9",
+                "c10",
+                "c6"
+              ]
+            }
+          ]
+        }
+      ],
+      "pool": [
+        "n1",
+        "c6",
+        "c2",
+        "c7",
+        "c1",
+        "g2",
+        "c5",
+        "c9",
+        "c10"
+      ],
+      "pool_added": [
+        "c5",
+        "c9",
+        "c10"
+      ]
+    },
+    "desfiladero": {
+      "name": "Síndrome del desfiladero torácico",
+      "module": "cervical",
+      "duration_weeks": 4,
+      "intro": "Programa progresivo de 4 semanas. Empezamos calmando el dolor, seguimos recuperando movilidad, despues activamos el core profundo y terminamos fortaleciendo para evitar recaidas.",
+      "weeks": [
+        {
+          "number": 1,
+          "title": "Alivio",
+          "goal": "Bajar el dolor y el espasmo. Movimientos suaves, sin carga.",
+          "note": "Si algun ejercicio aumenta el dolor, saltealo y segui con el siguiente.",
+          "dose": "Series cortas y suaves. Mejor quedarse corto que pasarse.",
+          "pacing": "Esta semana es suave a proposito: primero calmamos el dolor, despues exigimos. Si completas las sesiones sin molestia y sentis que podes mas, pasa a la Semana 2. Si todavia te duele al moverte, quedate aca los dias que necesites, no hay apuro.",
+          "sessions": [
+            {
+              "id": "desfiladero-w1-s1",
+              "number": 1,
+              "title": "Primer contacto",
+              "free": true,
+              "duration_min": 12,
+              "exercises": [
+                "c1",
+                "c11",
+                "n3",
+                "c6"
+              ]
+            },
+            {
+              "id": "desfiladero-w1-s2",
+              "number": 2,
+              "title": "Descompresion",
+              "free": false,
+              "duration_min": 13,
+              "exercises": [
+                "k8",
+                "c11",
+                "n3",
+                "c6"
+              ]
+            },
+            {
+              "id": "desfiladero-w1-s3",
+              "number": 3,
+              "title": "Movimiento suave",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "c1",
+                "c11",
+                "n3",
+                "c6"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Movilidad",
+          "goal": "Recuperar rango de movimiento y elasticidad.",
+          "note": "Los estiramientos se sostienen, no se rebotan. Respira durante el sosten.",
+          "dose": "Sostene cada estiramiento 20-30 segundos. Sin rebotes.",
+          "pacing": "Aca recuperamos movimiento. Si los estiramientos ya te salen comodos y llegas al rango completo sin tirones, avanza a la Semana 3. Si algun movimiento todavia te tira, repeti esta semana antes de sumarle carga.",
+          "sessions": [
+            {
+              "id": "desfiladero-w2-s1",
+              "number": 4,
+              "title": "Apertura",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "c1",
+                "c11",
+                "n3",
+                "c6",
+                "n2"
+              ]
+            },
+            {
+              "id": "desfiladero-w2-s2",
+              "number": 5,
+              "title": "Rango completo",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "k8",
+                "c11",
+                "n3",
+                "c6",
+                "n2"
+              ]
+            },
+            {
+              "id": "desfiladero-w2-s3",
+              "number": 6,
+              "title": "Movilidad fina",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "c1",
+                "c11",
+                "n3",
+                "c6",
+                "n2"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Activacion",
+          "goal": "Despertar el core profundo y los estabilizadores.",
+          "note": "La calidad importa mas que la cantidad. Si perdes la postura, para y descansa.",
+          "dose": "Sumale 2 repeticiones o 5 segundos de sosten respecto de la semana pasada.",
+          "pacing": "Empezamos a despertar el core. Si sostenes las posiciones sin perder la postura y sin dolor al dia siguiente, pasa a la Semana 4. Si terminas con la zona cargada o se te desarma la forma, quedate una semana mas: la base importa mas que la velocidad.",
+          "sessions": [
+            {
+              "id": "desfiladero-w3-s1",
+              "number": 7,
+              "title": "Core profundo",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "c1",
+                "c9",
+                "c10",
+                "c11",
+                "n3",
+                "c6"
+              ]
+            },
+            {
+              "id": "desfiladero-w3-s2",
+              "number": 8,
+              "title": "Control",
+              "free": false,
+              "duration_min": 17,
+              "exercises": [
+                "k8",
+                "c9",
+                "c10",
+                "n3",
+                "c6"
+              ]
+            },
+            {
+              "id": "desfiladero-w3-s3",
+              "number": 9,
+              "title": "Estabilidad",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "c1",
+                "c9",
+                "c10",
+                "c6",
+                "c11"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Fortalecimiento",
+          "goal": "Ganar fuerza real para que el dolor no vuelva.",
+          "note": "Ultima semana. Si completas estas 3 sesiones ya tenes la base para mantener.",
+          "dose": "Maxima dosis del programa: sumale otras 2 repeticiones o 10 segundos de sosten.",
+          "pacing": "La mas exigente. Si te resulta liviana, repetila sumando repeticiones o segundos de sosten. Si te cuesta, volve unos dias a la Semana 3 y retoma.",
+          "sessions": [
+            {
+              "id": "desfiladero-w4-s1",
+              "number": 10,
+              "title": "Fuerza base",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "c1",
+                "c9",
+                "c10",
+                "c6"
+              ]
+            },
+            {
+              "id": "desfiladero-w4-s2",
+              "number": 11,
+              "title": "Carga progresiva",
+              "free": false,
+              "duration_min": 19,
+              "exercises": [
+                "k8",
+                "c9",
+                "c10",
+                "c6"
+              ]
+            },
+            {
+              "id": "desfiladero-w4-s3",
+              "number": 12,
+              "title": "Integracion final",
+              "free": false,
+              "duration_min": 20,
+              "exercises": [
+                "c1",
+                "c9",
+                "c10",
+                "c6"
+              ]
+            }
+          ]
+        }
+      ],
+      "pool": [
+        "c1",
+        "k8",
+        "c9",
+        "c10",
+        "c11",
+        "n3",
+        "c6",
+        "n2"
+      ],
+      "pool_added": []
+    },
+    "espasmo_dorsal": {
+      "name": "Espasmo dorsal",
+      "module": "dorsal",
+      "duration_weeks": 4,
+      "intro": "Programa progresivo de 4 semanas. Empezamos calmando el dolor, seguimos recuperando movilidad, despues activamos el core profundo y terminamos fortaleciendo para evitar recaidas.",
+      "weeks": [
+        {
+          "number": 1,
+          "title": "Alivio",
+          "goal": "Bajar el dolor y el espasmo. Movimientos suaves, sin carga.",
+          "note": "Si algun ejercicio aumenta el dolor, saltealo y segui con el siguiente.",
+          "dose": "Series cortas y suaves. Mejor quedarse corto que pasarse.",
+          "pacing": "Esta semana es suave a proposito: primero calmamos el dolor, despues exigimos. Si completas las sesiones sin molestia y sentis que podes mas, pasa a la Semana 2. Si todavia te duele al moverte, quedate aca los dias que necesites, no hay apuro.",
+          "sessions": [
+            {
+              "id": "espasmo_dorsal-w1-s1",
+              "number": 1,
+              "title": "Primer contacto",
+              "free": true,
+              "duration_min": 12,
+              "exercises": [
+                "g2",
+                "l4",
+                "c7",
+                "g6"
+              ]
+            },
+            {
+              "id": "espasmo_dorsal-w1-s2",
+              "number": 2,
+              "title": "Descompresion",
+              "free": false,
+              "duration_min": 13,
+              "exercises": [
+                "k8",
+                "l4",
+                "c7",
+                "g6"
+              ]
+            },
+            {
+              "id": "espasmo_dorsal-w1-s3",
+              "number": 3,
+              "title": "Movimiento suave",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "bp",
+                "l4",
+                "c7",
+                "g6"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Movilidad",
+          "goal": "Recuperar rango de movimiento y elasticidad.",
+          "note": "Los estiramientos se sostienen, no se rebotan. Respira durante el sosten.",
+          "dose": "Sostene cada estiramiento 20-30 segundos. Sin rebotes.",
+          "pacing": "Aca recuperamos movimiento. Si los estiramientos ya te salen comodos y llegas al rango completo sin tirones, avanza a la Semana 3. Si algun movimiento todavia te tira, repeti esta semana antes de sumarle carga.",
+          "sessions": [
+            {
+              "id": "espasmo_dorsal-w2-s1",
+              "number": 4,
+              "title": "Apertura",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "g2",
+                "l4",
+                "c7",
+                "g6",
+                "g3"
+              ]
+            },
+            {
+              "id": "espasmo_dorsal-w2-s2",
+              "number": 5,
+              "title": "Rango completo",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "k8",
+                "l4",
+                "c7",
+                "g6",
+                "g3"
+              ]
+            },
+            {
+              "id": "espasmo_dorsal-w2-s3",
+              "number": 6,
+              "title": "Movilidad fina",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "bp",
+                "l4",
+                "c7",
+                "g6",
+                "g3"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Activacion",
+          "goal": "Despertar el core profundo y los estabilizadores.",
+          "note": "La calidad importa mas que la cantidad. Si perdes la postura, para y descansa.",
+          "dose": "Sumale 2 repeticiones o 5 segundos de sosten respecto de la semana pasada.",
+          "pacing": "Empezamos a despertar el core. Si sostenes las posiciones sin perder la postura y sin dolor al dia siguiente, pasa a la Semana 4. Si terminas con la zona cargada o se te desarma la forma, quedate una semana mas: la base importa mas que la velocidad.",
+          "sessions": [
+            {
+              "id": "espasmo_dorsal-w3-s1",
+              "number": 7,
+              "title": "Core profundo",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "g2",
+                "c9",
+                "k1",
+                "l4",
+                "c7"
+              ]
+            },
+            {
+              "id": "espasmo_dorsal-w3-s2",
+              "number": 8,
+              "title": "Control",
+              "free": false,
+              "duration_min": 17,
+              "exercises": [
+                "k8",
+                "c9",
+                "k1",
+                "c7",
+                "g6"
+              ]
+            },
+            {
+              "id": "espasmo_dorsal-w3-s3",
+              "number": 9,
+              "title": "Estabilidad",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "bp",
+                "c9",
+                "k1",
+                "g6",
+                "l4"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Fortalecimiento",
+          "goal": "Ganar fuerza real para que el dolor no vuelva.",
+          "note": "Ultima semana. Si completas estas 3 sesiones ya tenes la base para mantener.",
+          "dose": "Maxima dosis del programa: sumale otras 2 repeticiones o 10 segundos de sosten.",
+          "pacing": "La mas exigente. Si te resulta liviana, repetila sumando repeticiones o segundos de sosten. Si te cuesta, volve unos dias a la Semana 3 y retoma.",
+          "sessions": [
+            {
+              "id": "espasmo_dorsal-w4-s1",
+              "number": 10,
+              "title": "Fuerza base",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "g2",
+                "l3",
+                "g4",
+                "c9",
+                "k1"
+              ]
+            },
+            {
+              "id": "espasmo_dorsal-w4-s2",
+              "number": 11,
+              "title": "Carga progresiva",
+              "free": false,
+              "duration_min": 19,
+              "exercises": [
+                "k8",
+                "l3",
+                "g4",
+                "k1",
+                "c9"
+              ]
+            },
+            {
+              "id": "espasmo_dorsal-w4-s3",
+              "number": 12,
+              "title": "Integracion final",
+              "free": false,
+              "duration_min": 20,
+              "exercises": [
+                "bp",
+                "l3",
+                "g4",
+                "c9",
+                "k1"
+              ]
+            }
+          ]
+        }
+      ],
+      "pool": [
+        "l4",
+        "c7",
+        "g6",
+        "g3",
+        "g2",
+        "k8",
+        "bp",
+        "l3",
+        "c9",
+        "k1",
+        "g4"
+      ],
+      "pool_added": [
+        "c9",
+        "k1",
+        "g4"
+      ]
+    },
+    "escoliosis": {
+      "name": "Escoliosis",
+      "module": "dorsal",
+      "duration_weeks": 4,
+      "intro": "Programa progresivo de 4 semanas. Empezamos calmando el dolor, seguimos recuperando movilidad, despues activamos el core profundo y terminamos fortaleciendo para evitar recaidas.",
+      "weeks": [
+        {
+          "number": 1,
+          "title": "Alivio",
+          "goal": "Bajar el dolor y el espasmo. Movimientos suaves, sin carga.",
+          "note": "Si algun ejercicio aumenta el dolor, saltealo y segui con el siguiente.",
+          "dose": "Series cortas y suaves. Mejor quedarse corto que pasarse.",
+          "pacing": "Esta semana es suave a proposito: primero calmamos el dolor, despues exigimos. Si completas las sesiones sin molestia y sentis que podes mas, pasa a la Semana 2. Si todavia te duele al moverte, quedate aca los dias que necesites, no hay apuro.",
+          "sessions": [
+            {
+              "id": "escoliosis-w1-s1",
+              "number": 1,
+              "title": "Primer contacto",
+              "free": true,
+              "duration_min": 12,
+              "exercises": [
+                "k8",
+                "g6",
+                "l4",
+                "l13"
+              ]
+            },
+            {
+              "id": "escoliosis-w1-s2",
+              "number": 2,
+              "title": "Descompresion",
+              "free": false,
+              "duration_min": 13,
+              "exercises": [
+                "k8",
+                "g6",
+                "l4",
+                "l13"
+              ]
+            },
+            {
+              "id": "escoliosis-w1-s3",
+              "number": 3,
+              "title": "Movimiento suave",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "k8",
+                "g6",
+                "l4",
+                "l13"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Movilidad",
+          "goal": "Recuperar rango de movimiento y elasticidad.",
+          "note": "Los estiramientos se sostienen, no se rebotan. Respira durante el sosten.",
+          "dose": "Sostene cada estiramiento 20-30 segundos. Sin rebotes.",
+          "pacing": "Aca recuperamos movimiento. Si los estiramientos ya te salen comodos y llegas al rango completo sin tirones, avanza a la Semana 3. Si algun movimiento todavia te tira, repeti esta semana antes de sumarle carga.",
+          "sessions": [
+            {
+              "id": "escoliosis-w2-s1",
+              "number": 4,
+              "title": "Apertura",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "k8",
+                "g6",
+                "l4",
+                "l13"
+              ]
+            },
+            {
+              "id": "escoliosis-w2-s2",
+              "number": 5,
+              "title": "Rango completo",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "k8",
+                "g6",
+                "l4",
+                "l13"
+              ]
+            },
+            {
+              "id": "escoliosis-w2-s3",
+              "number": 6,
+              "title": "Movilidad fina",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "k8",
+                "g6",
+                "l4",
+                "l13"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Activacion",
+          "goal": "Despertar el core profundo y los estabilizadores.",
+          "note": "La calidad importa mas que la cantidad. Si perdes la postura, para y descansa.",
+          "dose": "Sumale 2 repeticiones o 5 segundos de sosten respecto de la semana pasada.",
+          "pacing": "Empezamos a despertar el core. Si sostenes las posiciones sin perder la postura y sin dolor al dia siguiente, pasa a la Semana 4. Si terminas con la zona cargada o se te desarma la forma, quedate una semana mas: la base importa mas que la velocidad.",
+          "sessions": [
+            {
+              "id": "escoliosis-w3-s1",
+              "number": 7,
+              "title": "Core profundo",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "k8",
+                "k1",
+                "k4",
+                "k3",
+                "cl",
+                "g6"
+              ]
+            },
+            {
+              "id": "escoliosis-w3-s2",
+              "number": 8,
+              "title": "Control",
+              "free": false,
+              "duration_min": 17,
+              "exercises": [
+                "k8",
+                "k1",
+                "k4",
+                "k3",
+                "cl",
+                "l4"
+              ]
+            },
+            {
+              "id": "escoliosis-w3-s3",
+              "number": 9,
+              "title": "Estabilidad",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "k8",
+                "k1",
+                "k4",
+                "k3",
+                "cl",
+                "l13"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Fortalecimiento",
+          "goal": "Ganar fuerza real para que el dolor no vuelva.",
+          "note": "Ultima semana. Si completas estas 3 sesiones ya tenes la base para mantener.",
+          "dose": "Maxima dosis del programa: sumale otras 2 repeticiones o 10 segundos de sosten.",
+          "pacing": "La mas exigente. Si te resulta liviana, repetila sumando repeticiones o segundos de sosten. Si te cuesta, volve unos dias a la Semana 3 y retoma.",
+          "sessions": [
+            {
+              "id": "escoliosis-w4-s1",
+              "number": 10,
+              "title": "Fuerza base",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "k8",
+                "k5",
+                "g4",
+                "k1",
+                "k4",
+                "l13"
+              ]
+            },
+            {
+              "id": "escoliosis-w4-s2",
+              "number": 11,
+              "title": "Carga progresiva",
+              "free": false,
+              "duration_min": 19,
+              "exercises": [
+                "k8",
+                "k5",
+                "g4",
+                "k4",
+                "k3",
+                "l13"
+              ]
+            },
+            {
+              "id": "escoliosis-w4-s3",
+              "number": 12,
+              "title": "Integracion final",
+              "free": false,
+              "duration_min": 20,
+              "exercises": [
+                "k8",
+                "k5",
+                "g4",
+                "k3",
+                "cl",
+                "l13"
+              ]
+            }
+          ]
+        }
+      ],
+      "pool": [
+        "k1",
+        "k4",
+        "k3",
+        "k8",
+        "k5",
+        "cl",
+        "g6",
+        "g4",
+        "l4",
+        "l13"
+      ],
+      "pool_added": [
+        "l4",
+        "l13"
+      ]
+    },
+    "dorsalgia": {
+      "name": "Dorsalgia",
+      "module": "dorsal",
+      "duration_weeks": 4,
+      "intro": "Programa progresivo de 4 semanas. Empezamos calmando el dolor, seguimos recuperando movilidad, despues activamos el core profundo y terminamos fortaleciendo para evitar recaidas.",
+      "weeks": [
+        {
+          "number": 1,
+          "title": "Alivio",
+          "goal": "Bajar el dolor y el espasmo. Movimientos suaves, sin carga.",
+          "note": "Si algun ejercicio aumenta el dolor, saltealo y segui con el siguiente.",
+          "dose": "Series cortas y suaves. Mejor quedarse corto que pasarse.",
+          "pacing": "Esta semana es suave a proposito: primero calmamos el dolor, despues exigimos. Si completas las sesiones sin molestia y sentis que podes mas, pasa a la Semana 2. Si todavia te duele al moverte, quedate aca los dias que necesites, no hay apuro.",
+          "sessions": [
+            {
+              "id": "dorsalgia-w1-s1",
+              "number": 1,
+              "title": "Primer contacto",
+              "free": true,
+              "duration_min": 12,
+              "exercises": [
+                "g2",
+                "g3",
+                "l4",
+                "c7"
+              ]
+            },
+            {
+              "id": "dorsalgia-w1-s2",
+              "number": 2,
+              "title": "Descompresion",
+              "free": false,
+              "duration_min": 13,
+              "exercises": [
+                "k8",
+                "g3",
+                "l4",
+                "g2"
+              ]
+            },
+            {
+              "id": "dorsalgia-w1-s3",
+              "number": 3,
+              "title": "Movimiento suave",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "g2",
+                "g3",
+                "l4",
+                "c7"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Movilidad",
+          "goal": "Recuperar rango de movimiento y elasticidad.",
+          "note": "Los estiramientos se sostienen, no se rebotan. Respira durante el sosten.",
+          "dose": "Sostene cada estiramiento 20-30 segundos. Sin rebotes.",
+          "pacing": "Aca recuperamos movimiento. Si los estiramientos ya te salen comodos y llegas al rango completo sin tirones, avanza a la Semana 3. Si algun movimiento todavia te tira, repeti esta semana antes de sumarle carga.",
+          "sessions": [
+            {
+              "id": "dorsalgia-w2-s1",
+              "number": 4,
+              "title": "Apertura",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "g2",
+                "g3",
+                "l4",
+                "c7",
+                "g6"
+              ]
+            },
+            {
+              "id": "dorsalgia-w2-s2",
+              "number": 5,
+              "title": "Rango completo",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "k8",
+                "g3",
+                "l4",
+                "c7",
+                "g6"
+              ]
+            },
+            {
+              "id": "dorsalgia-w2-s3",
+              "number": 6,
+              "title": "Movilidad fina",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "g2",
+                "g3",
+                "l4",
+                "c7",
+                "g6"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Activacion",
+          "goal": "Despertar el core profundo y los estabilizadores.",
+          "note": "La calidad importa mas que la cantidad. Si perdes la postura, para y descansa.",
+          "dose": "Sumale 2 repeticiones o 5 segundos de sosten respecto de la semana pasada.",
+          "pacing": "Empezamos a despertar el core. Si sostenes las posiciones sin perder la postura y sin dolor al dia siguiente, pasa a la Semana 4. Si terminas con la zona cargada o se te desarma la forma, quedate una semana mas: la base importa mas que la velocidad.",
+          "sessions": [
+            {
+              "id": "dorsalgia-w3-s1",
+              "number": 7,
+              "title": "Core profundo",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "g2",
+                "c9",
+                "k1",
+                "g3",
+                "l4"
+              ]
+            },
+            {
+              "id": "dorsalgia-w3-s2",
+              "number": 8,
+              "title": "Control",
+              "free": false,
+              "duration_min": 17,
+              "exercises": [
+                "k8",
+                "c9",
+                "k1",
+                "l4",
+                "c7"
+              ]
+            },
+            {
+              "id": "dorsalgia-w3-s3",
+              "number": 9,
+              "title": "Estabilidad",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "g2",
+                "c9",
+                "k1",
+                "c7",
+                "g3"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Fortalecimiento",
+          "goal": "Ganar fuerza real para que el dolor no vuelva.",
+          "note": "Ultima semana. Si completas estas 3 sesiones ya tenes la base para mantener.",
+          "dose": "Maxima dosis del programa: sumale otras 2 repeticiones o 10 segundos de sosten.",
+          "pacing": "La mas exigente. Si te resulta liviana, repetila sumando repeticiones o segundos de sosten. Si te cuesta, volve unos dias a la Semana 3 y retoma.",
+          "sessions": [
+            {
+              "id": "dorsalgia-w4-s1",
+              "number": 10,
+              "title": "Fuerza base",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "g2",
+                "l3",
+                "g4",
+                "c9",
+                "k1"
+              ]
+            },
+            {
+              "id": "dorsalgia-w4-s2",
+              "number": 11,
+              "title": "Carga progresiva",
+              "free": false,
+              "duration_min": 19,
+              "exercises": [
+                "k8",
+                "l3",
+                "g4",
+                "k1",
+                "c9"
+              ]
+            },
+            {
+              "id": "dorsalgia-w4-s3",
+              "number": 12,
+              "title": "Integracion final",
+              "free": false,
+              "duration_min": 20,
+              "exercises": [
+                "g2",
+                "l3",
+                "g4",
+                "c9",
+                "k1"
+              ]
+            }
+          ]
+        }
+      ],
+      "pool": [
+        "g3",
+        "l4",
+        "g2",
+        "c7",
+        "k8",
+        "g6",
+        "l3",
+        "g4",
+        "c9",
+        "k1"
+      ],
+      "pool_added": [
+        "c9",
+        "k1"
+      ]
+    },
+    "hernia_lumbar": {
+      "name": "Hernia lumbar con ciatalgia",
+      "module": "lumbar",
+      "duration_weeks": 4,
+      "intro": "Programa progresivo de 4 semanas. Empezamos calmando el dolor, seguimos recuperando movilidad, despues activamos el core profundo y terminamos fortaleciendo para evitar recaidas.",
+      "weeks": [
+        {
+          "number": 1,
+          "title": "Alivio",
+          "goal": "Bajar el dolor y el espasmo. Movimientos suaves, sin carga.",
+          "note": "Si algun ejercicio aumenta el dolor, saltealo y segui con el siguiente.",
+          "dose": "Series cortas y suaves. Mejor quedarse corto que pasarse.",
+          "pacing": "Esta semana es suave a proposito: primero calmamos el dolor, despues exigimos. Si completas las sesiones sin molestia y sentis que podes mas, pasa a la Semana 2. Si todavia te duele al moverte, quedate aca los dias que necesites, no hay apuro.",
+          "sessions": [
+            {
+              "id": "hernia_lumbar-w1-s1",
+              "number": 1,
+              "title": "Primer contacto",
+              "free": true,
+              "duration_min": 12,
+              "exercises": [
+                "s6",
+                "em",
+                "s3",
+                "dp",
+                "s4"
+              ]
+            },
+            {
+              "id": "hernia_lumbar-w1-s2",
+              "number": 2,
+              "title": "Descompresion",
+              "free": false,
+              "duration_min": 13,
+              "exercises": [
+                "s6",
+                "em",
+                "s3",
+                "dp",
+                "s4"
+              ]
+            },
+            {
+              "id": "hernia_lumbar-w1-s3",
+              "number": 3,
+              "title": "Movimiento suave",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "s6",
+                "em",
+                "s3",
+                "dp",
+                "s4"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Movilidad",
+          "goal": "Recuperar rango de movimiento y elasticidad.",
+          "note": "Los estiramientos se sostienen, no se rebotan. Respira durante el sosten.",
+          "dose": "Sostene cada estiramiento 20-30 segundos. Sin rebotes.",
+          "pacing": "Aca recuperamos movimiento. Si los estiramientos ya te salen comodos y llegas al rango completo sin tirones, avanza a la Semana 3. Si algun movimiento todavia te tira, repeti esta semana antes de sumarle carga.",
+          "sessions": [
+            {
+              "id": "hernia_lumbar-w2-s1",
+              "number": 4,
+              "title": "Apertura",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "s6",
+                "em",
+                "s3",
+                "dp",
+                "s2",
+                "s4"
+              ]
+            },
+            {
+              "id": "hernia_lumbar-w2-s2",
+              "number": 5,
+              "title": "Rango completo",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "s6",
+                "em",
+                "s3",
+                "dp",
+                "s2",
+                "s4"
+              ]
+            },
+            {
+              "id": "hernia_lumbar-w2-s3",
+              "number": 6,
+              "title": "Movilidad fina",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "s6",
+                "em",
+                "s3",
+                "dp",
+                "s2",
+                "s4"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Activacion",
+          "goal": "Despertar el core profundo y los estabilizadores.",
+          "note": "La calidad importa mas que la cantidad. Si perdes la postura, para y descansa.",
+          "dose": "Sumale 2 repeticiones o 5 segundos de sosten respecto de la semana pasada.",
+          "pacing": "Empezamos a despertar el core. Si sostenes las posiciones sin perder la postura y sin dolor al dia siguiente, pasa a la Semana 4. Si terminas con la zona cargada o se te desarma la forma, quedate una semana mas: la base importa mas que la velocidad.",
+          "sessions": [
+            {
+              "id": "hernia_lumbar-w3-s1",
+              "number": 7,
+              "title": "Core profundo",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "s6",
+                "k1",
+                "l2",
+                "em",
+                "s3",
+                "s4"
+              ]
+            },
+            {
+              "id": "hernia_lumbar-w3-s2",
+              "number": 8,
+              "title": "Control",
+              "free": false,
+              "duration_min": 17,
+              "exercises": [
+                "s6",
+                "k1",
+                "l2",
+                "s3",
+                "dp",
+                "s4"
+              ]
+            },
+            {
+              "id": "hernia_lumbar-w3-s3",
+              "number": 9,
+              "title": "Estabilidad",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "s6",
+                "k1",
+                "l2",
+                "dp",
+                "em",
+                "s4"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Fortalecimiento",
+          "goal": "Ganar fuerza real para que el dolor no vuelva.",
+          "note": "Ultima semana. Si completas estas 3 sesiones ya tenes la base para mantener.",
+          "dose": "Maxima dosis del programa: sumale otras 2 repeticiones o 10 segundos de sosten.",
+          "pacing": "La mas exigente. Si te resulta liviana, repetila sumando repeticiones o segundos de sosten. Si te cuesta, volve unos dias a la Semana 3 y retoma.",
+          "sessions": [
+            {
+              "id": "hernia_lumbar-w4-s1",
+              "number": 10,
+              "title": "Fuerza base",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "s6",
+                "s7",
+                "l8",
+                "k1",
+                "l2",
+                "s4"
+              ]
+            },
+            {
+              "id": "hernia_lumbar-w4-s2",
+              "number": 11,
+              "title": "Carga progresiva",
+              "free": false,
+              "duration_min": 19,
+              "exercises": [
+                "s6",
+                "s7",
+                "l8",
+                "l2",
+                "k1",
+                "s4"
+              ]
+            },
+            {
+              "id": "hernia_lumbar-w4-s3",
+              "number": 12,
+              "title": "Integracion final",
+              "free": false,
+              "duration_min": 20,
+              "exercises": [
+                "s6",
+                "s7",
+                "l8",
+                "k1",
+                "l2",
+                "s4"
+              ]
+            }
+          ]
+        }
+      ],
+      "pool": [
+        "em",
+        "s3",
+        "s6",
+        "dp",
+        "s2",
+        "l1",
+        "s7",
+        "s4",
+        "l5",
+        "l11",
+        "k1",
+        "l2",
+        "l8"
+      ],
+      "pool_added": [
+        "k1",
+        "l2",
+        "l8"
+      ]
+    },
+    "lumbalgia": {
+      "name": "Lumbalgia mecánica",
+      "module": "lumbar",
+      "duration_weeks": 4,
+      "intro": "Programa progresivo de 4 semanas. Empezamos calmando el dolor, seguimos recuperando movilidad, despues activamos el core profundo y terminamos fortaleciendo para evitar recaidas.",
+      "weeks": [
+        {
+          "number": 1,
+          "title": "Alivio",
+          "goal": "Bajar el dolor y el espasmo. Movimientos suaves, sin carga.",
+          "note": "Si algun ejercicio aumenta el dolor, saltealo y segui con el siguiente.",
+          "dose": "Series cortas y suaves. Mejor quedarse corto que pasarse.",
+          "pacing": "Esta semana es suave a proposito: primero calmamos el dolor, despues exigimos. Si completas las sesiones sin molestia y sentis que podes mas, pasa a la Semana 2. Si todavia te duele al moverte, quedate aca los dias que necesites, no hay apuro.",
+          "sessions": [
+            {
+              "id": "lumbalgia-w1-s1",
+              "number": 1,
+              "title": "Primer contacto",
+              "free": true,
+              "duration_min": 12,
+              "exercises": [
+                "bp",
+                "l4",
+                "l1",
+                "l7",
+                "l6"
+              ]
+            },
+            {
+              "id": "lumbalgia-w1-s2",
+              "number": 2,
+              "title": "Descompresion",
+              "free": false,
+              "duration_min": 13,
+              "exercises": [
+                "l12",
+                "l4",
+                "l1",
+                "l7"
+              ]
+            },
+            {
+              "id": "lumbalgia-w1-s3",
+              "number": 3,
+              "title": "Movimiento suave",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "bp",
+                "l4",
+                "l1",
+                "l7",
+                "l13"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Movilidad",
+          "goal": "Recuperar rango de movimiento y elasticidad.",
+          "note": "Los estiramientos se sostienen, no se rebotan. Respira durante el sosten.",
+          "dose": "Sostene cada estiramiento 20-30 segundos. Sin rebotes.",
+          "pacing": "Aca recuperamos movimiento. Si los estiramientos ya te salen comodos y llegas al rango completo sin tirones, avanza a la Semana 3. Si algun movimiento todavia te tira, repeti esta semana antes de sumarle carga.",
+          "sessions": [
+            {
+              "id": "lumbalgia-w2-s1",
+              "number": 4,
+              "title": "Apertura",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "bp",
+                "l4",
+                "l1",
+                "l7",
+                "em",
+                "l6"
+              ]
+            },
+            {
+              "id": "lumbalgia-w2-s2",
+              "number": 5,
+              "title": "Rango completo",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "l12",
+                "l4",
+                "l1",
+                "l7",
+                "em"
+              ]
+            },
+            {
+              "id": "lumbalgia-w2-s3",
+              "number": 6,
+              "title": "Movilidad fina",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "bp",
+                "l4",
+                "l1",
+                "l7",
+                "em",
+                "l13"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Activacion",
+          "goal": "Despertar el core profundo y los estabilizadores.",
+          "note": "La calidad importa mas que la cantidad. Si perdes la postura, para y descansa.",
+          "dose": "Sumale 2 repeticiones o 5 segundos de sosten respecto de la semana pasada.",
+          "pacing": "Empezamos a despertar el core. Si sostenes las posiciones sin perder la postura y sin dolor al dia siguiente, pasa a la Semana 4. Si terminas con la zona cargada o se te desarma la forma, quedate una semana mas: la base importa mas que la velocidad.",
+          "sessions": [
+            {
+              "id": "lumbalgia-w3-s1",
+              "number": 7,
+              "title": "Core profundo",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "bp",
+                "l2",
+                "k1",
+                "l4",
+                "l1",
+                "l6"
+              ]
+            },
+            {
+              "id": "lumbalgia-w3-s2",
+              "number": 8,
+              "title": "Control",
+              "free": false,
+              "duration_min": 17,
+              "exercises": [
+                "l12",
+                "l2",
+                "k1",
+                "l1",
+                "l7"
+              ]
+            },
+            {
+              "id": "lumbalgia-w3-s3",
+              "number": 9,
+              "title": "Estabilidad",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "bp",
+                "l2",
+                "k1",
+                "l7",
+                "l4",
+                "l13"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Fortalecimiento",
+          "goal": "Ganar fuerza real para que el dolor no vuelva.",
+          "note": "Ultima semana. Si completas estas 3 sesiones ya tenes la base para mantener.",
+          "dose": "Maxima dosis del programa: sumale otras 2 repeticiones o 10 segundos de sosten.",
+          "pacing": "La mas exigente. Si te resulta liviana, repetila sumando repeticiones o segundos de sosten. Si te cuesta, volve unos dias a la Semana 3 y retoma.",
+          "sessions": [
+            {
+              "id": "lumbalgia-w4-s1",
+              "number": 10,
+              "title": "Fuerza base",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "bp",
+                "l3",
+                "l8",
+                "l9",
+                "l2",
+                "k1"
+              ]
+            },
+            {
+              "id": "lumbalgia-w4-s2",
+              "number": 11,
+              "title": "Carga progresiva",
+              "free": false,
+              "duration_min": 19,
+              "exercises": [
+                "l12",
+                "l3",
+                "l8",
+                "l9",
+                "k1",
+                "l2"
+              ]
+            },
+            {
+              "id": "lumbalgia-w4-s3",
+              "number": 12,
+              "title": "Integracion final",
+              "free": false,
+              "duration_min": 20,
+              "exercises": [
+                "bp",
+                "l3",
+                "l8",
+                "l9",
+                "l2",
+                "k1"
+              ]
+            }
+          ]
+        }
+      ],
+      "pool": [
+        "bp",
+        "l2",
+        "l4",
+        "l1",
+        "l7",
+        "k1",
+        "em",
+        "l6",
+        "l3",
+        "l8",
+        "l9",
+        "l10",
+        "l11",
+        "l12",
+        "l13",
+        "l14"
+      ],
+      "pool_added": []
+    },
+    "piramidal": {
+      "name": "Síndrome piramidal (falsa ciática)",
+      "module": "lumbar",
+      "duration_weeks": 4,
+      "intro": "Programa progresivo de 4 semanas. Empezamos calmando el dolor, seguimos recuperando movilidad, despues activamos el core profundo y terminamos fortaleciendo para evitar recaidas.",
+      "weeks": [
+        {
+          "number": 1,
+          "title": "Alivio",
+          "goal": "Bajar el dolor y el espasmo. Movimientos suaves, sin carga.",
+          "note": "Si algun ejercicio aumenta el dolor, saltealo y segui con el siguiente.",
+          "dose": "Series cortas y suaves. Mejor quedarse corto que pasarse.",
+          "pacing": "Esta semana es suave a proposito: primero calmamos el dolor, despues exigimos. Si completas las sesiones sin molestia y sentis que podes mas, pasa a la Semana 2. Si todavia te duele al moverte, quedate aca los dias que necesites, no hay apuro.",
+          "sessions": [
+            {
+              "id": "piramidal-w1-s1",
+              "number": 1,
+              "title": "Primer contacto",
+              "free": true,
+              "duration_min": 12,
+              "exercises": [
+                "n4",
+                "s1",
+                "s8",
+                "cl"
+              ]
+            },
+            {
+              "id": "piramidal-w1-s2",
+              "number": 2,
+              "title": "Descompresion",
+              "free": false,
+              "duration_min": 13,
+              "exercises": [
+                "n4",
+                "s1",
+                "s8",
+                "cl"
+              ]
+            },
+            {
+              "id": "piramidal-w1-s3",
+              "number": 3,
+              "title": "Movimiento suave",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "n4",
+                "s1",
+                "s8",
+                "cl"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Movilidad",
+          "goal": "Recuperar rango de movimiento y elasticidad.",
+          "note": "Los estiramientos se sostienen, no se rebotan. Respira durante el sosten.",
+          "dose": "Sostene cada estiramiento 20-30 segundos. Sin rebotes.",
+          "pacing": "Aca recuperamos movimiento. Si los estiramientos ya te salen comodos y llegas al rango completo sin tirones, avanza a la Semana 3. Si algun movimiento todavia te tira, repeti esta semana antes de sumarle carga.",
+          "sessions": [
+            {
+              "id": "piramidal-w2-s1",
+              "number": 4,
+              "title": "Apertura",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "n4",
+                "s1",
+                "s8",
+                "s2",
+                "l5"
+              ]
+            },
+            {
+              "id": "piramidal-w2-s2",
+              "number": 5,
+              "title": "Rango completo",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "n4",
+                "s1",
+                "s8",
+                "s2",
+                "l5"
+              ]
+            },
+            {
+              "id": "piramidal-w2-s3",
+              "number": 6,
+              "title": "Movilidad fina",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "n4",
+                "s1",
+                "s8",
+                "s2",
+                "l5"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Activacion",
+          "goal": "Despertar el core profundo y los estabilizadores.",
+          "note": "La calidad importa mas que la cantidad. Si perdes la postura, para y descansa.",
+          "dose": "Sumale 2 repeticiones o 5 segundos de sosten respecto de la semana pasada.",
+          "pacing": "Empezamos a despertar el core. Si sostenes las posiciones sin perder la postura y sin dolor al dia siguiente, pasa a la Semana 4. Si terminas con la zona cargada o se te desarma la forma, quedate una semana mas: la base importa mas que la velocidad.",
+          "sessions": [
+            {
+              "id": "piramidal-w3-s1",
+              "number": 7,
+              "title": "Core profundo",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "n4",
+                "cl",
+                "s5",
+                "s1",
+                "s8"
+              ]
+            },
+            {
+              "id": "piramidal-w3-s2",
+              "number": 8,
+              "title": "Control",
+              "free": false,
+              "duration_min": 17,
+              "exercises": [
+                "n4",
+                "cl",
+                "s5",
+                "s8",
+                "s2"
+              ]
+            },
+            {
+              "id": "piramidal-w3-s3",
+              "number": 9,
+              "title": "Estabilidad",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "n4",
+                "cl",
+                "s5",
+                "s2",
+                "s1"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Fortalecimiento",
+          "goal": "Ganar fuerza real para que el dolor no vuelva.",
+          "note": "Ultima semana. Si completas estas 3 sesiones ya tenes la base para mantener.",
+          "dose": "Maxima dosis del programa: sumale otras 2 repeticiones o 10 segundos de sosten.",
+          "pacing": "La mas exigente. Si te resulta liviana, repetila sumando repeticiones o segundos de sosten. Si te cuesta, volve unos dias a la Semana 3 y retoma.",
+          "sessions": [
+            {
+              "id": "piramidal-w4-s1",
+              "number": 10,
+              "title": "Fuerza base",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "n4",
+                "s7",
+                "cl",
+                "s5"
+              ]
+            },
+            {
+              "id": "piramidal-w4-s2",
+              "number": 11,
+              "title": "Carga progresiva",
+              "free": false,
+              "duration_min": 19,
+              "exercises": [
+                "n4",
+                "s7",
+                "s5",
+                "cl"
+              ]
+            },
+            {
+              "id": "piramidal-w4-s3",
+              "number": 12,
+              "title": "Integracion final",
+              "free": false,
+              "duration_min": 20,
+              "exercises": [
+                "n4",
+                "s7",
+                "cl",
+                "s5"
+              ]
+            }
+          ]
+        }
+      ],
+      "pool": [
+        "s1",
+        "s8",
+        "n4",
+        "cl",
+        "s5",
+        "s2",
+        "s7",
+        "l5"
+      ],
+      "pool_added": []
+    },
+    "facetario": {
+      "name": "Síndrome facetario",
+      "module": "lumbar",
+      "duration_weeks": 4,
+      "intro": "Programa progresivo de 4 semanas. Empezamos calmando el dolor, seguimos recuperando movilidad, despues activamos el core profundo y terminamos fortaleciendo para evitar recaidas.",
+      "weeks": [
+        {
+          "number": 1,
+          "title": "Alivio",
+          "goal": "Bajar el dolor y el espasmo. Movimientos suaves, sin carga.",
+          "note": "Si algun ejercicio aumenta el dolor, saltealo y segui con el siguiente.",
+          "dose": "Series cortas y suaves. Mejor quedarse corto que pasarse.",
+          "pacing": "Esta semana es suave a proposito: primero calmamos el dolor, despues exigimos. Si completas las sesiones sin molestia y sentis que podes mas, pasa a la Semana 2. Si todavia te duele al moverte, quedate aca los dias que necesites, no hay apuro.",
+          "sessions": [
+            {
+              "id": "facetario-w1-s1",
+              "number": 1,
+              "title": "Primer contacto",
+              "free": true,
+              "duration_min": 12,
+              "exercises": [
+                "bp",
+                "l1",
+                "l4",
+                "l6"
+              ]
+            },
+            {
+              "id": "facetario-w1-s2",
+              "number": 2,
+              "title": "Descompresion",
+              "free": false,
+              "duration_min": 13,
+              "exercises": [
+                "l12",
+                "l1",
+                "l4",
+                "bp"
+              ]
+            },
+            {
+              "id": "facetario-w1-s3",
+              "number": 3,
+              "title": "Movimiento suave",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "bp",
+                "l1",
+                "l4",
+                "l6"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Movilidad",
+          "goal": "Recuperar rango de movimiento y elasticidad.",
+          "note": "Los estiramientos se sostienen, no se rebotan. Respira durante el sosten.",
+          "dose": "Sostene cada estiramiento 20-30 segundos. Sin rebotes.",
+          "pacing": "Aca recuperamos movimiento. Si los estiramientos ya te salen comodos y llegas al rango completo sin tirones, avanza a la Semana 3. Si algun movimiento todavia te tira, repeti esta semana antes de sumarle carga.",
+          "sessions": [
+            {
+              "id": "facetario-w2-s1",
+              "number": 4,
+              "title": "Apertura",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "bp",
+                "l1",
+                "l4",
+                "l7",
+                "l6"
+              ]
+            },
+            {
+              "id": "facetario-w2-s2",
+              "number": 5,
+              "title": "Rango completo",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "l12",
+                "l1",
+                "l4",
+                "l7",
+                "l6"
+              ]
+            },
+            {
+              "id": "facetario-w2-s3",
+              "number": 6,
+              "title": "Movilidad fina",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "bp",
+                "l1",
+                "l4",
+                "l7",
+                "l6"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Activacion",
+          "goal": "Despertar el core profundo y los estabilizadores.",
+          "note": "La calidad importa mas que la cantidad. Si perdes la postura, para y descansa.",
+          "dose": "Sumale 2 repeticiones o 5 segundos de sosten respecto de la semana pasada.",
+          "pacing": "Empezamos a despertar el core. Si sostenes las posiciones sin perder la postura y sin dolor al dia siguiente, pasa a la Semana 4. Si terminas con la zona cargada o se te desarma la forma, quedate una semana mas: la base importa mas que la velocidad.",
+          "sessions": [
+            {
+              "id": "facetario-w3-s1",
+              "number": 7,
+              "title": "Core profundo",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "bp",
+                "l2",
+                "k1",
+                "l1",
+                "l4",
+                "l6"
+              ]
+            },
+            {
+              "id": "facetario-w3-s2",
+              "number": 8,
+              "title": "Control",
+              "free": false,
+              "duration_min": 17,
+              "exercises": [
+                "l12",
+                "l2",
+                "k1",
+                "l4",
+                "l7"
+              ]
+            },
+            {
+              "id": "facetario-w3-s3",
+              "number": 9,
+              "title": "Estabilidad",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "bp",
+                "l2",
+                "k1",
+                "l7",
+                "l1",
+                "l6"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Fortalecimiento",
+          "goal": "Ganar fuerza real para que el dolor no vuelva.",
+          "note": "Ultima semana. Si completas estas 3 sesiones ya tenes la base para mantener.",
+          "dose": "Maxima dosis del programa: sumale otras 2 repeticiones o 10 segundos de sosten.",
+          "pacing": "La mas exigente. Si te resulta liviana, repetila sumando repeticiones o segundos de sosten. Si te cuesta, volve unos dias a la Semana 3 y retoma.",
+          "sessions": [
+            {
+              "id": "facetario-w4-s1",
+              "number": 10,
+              "title": "Fuerza base",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "bp",
+                "l3",
+                "l8",
+                "l2",
+                "k1",
+                "l6"
+              ]
+            },
+            {
+              "id": "facetario-w4-s2",
+              "number": 11,
+              "title": "Carga progresiva",
+              "free": false,
+              "duration_min": 19,
+              "exercises": [
+                "l12",
+                "l3",
+                "l8",
+                "k1",
+                "l2"
+              ]
+            },
+            {
+              "id": "facetario-w4-s3",
+              "number": 12,
+              "title": "Integracion final",
+              "free": false,
+              "duration_min": 20,
+              "exercises": [
+                "bp",
+                "l3",
+                "l8",
+                "l2",
+                "k1",
+                "l6"
+              ]
+            }
+          ]
+        }
+      ],
+      "pool": [
+        "bp",
+        "l1",
+        "l4",
+        "l7",
+        "l2",
+        "k1",
+        "l6",
+        "l3",
+        "l8",
+        "l12"
+      ],
+      "pool_added": []
+    },
+    "sacroileitis": {
+      "name": "Sacroileítis",
+      "module": "lumbar",
+      "duration_weeks": 4,
+      "intro": "Programa progresivo de 4 semanas. Empezamos calmando el dolor, seguimos recuperando movilidad, despues activamos el core profundo y terminamos fortaleciendo para evitar recaidas.",
+      "weeks": [
+        {
+          "number": 1,
+          "title": "Alivio",
+          "goal": "Bajar el dolor y el espasmo. Movimientos suaves, sin carga.",
+          "note": "Si algun ejercicio aumenta el dolor, saltealo y segui con el siguiente.",
+          "dose": "Series cortas y suaves. Mejor quedarse corto que pasarse.",
+          "pacing": "Esta semana es suave a proposito: primero calmamos el dolor, despues exigimos. Si completas las sesiones sin molestia y sentis que podes mas, pasa a la Semana 2. Si todavia te duele al moverte, quedate aca los dias que necesites, no hay apuro.",
+          "sessions": [
+            {
+              "id": "sacroileitis-w1-s1",
+              "number": 1,
+              "title": "Primer contacto",
+              "free": true,
+              "duration_min": 12,
+              "exercises": [
+                "sac1",
+                "s1",
+                "sac3",
+                "cl"
+              ]
+            },
+            {
+              "id": "sacroileitis-w1-s2",
+              "number": 2,
+              "title": "Descompresion",
+              "free": false,
+              "duration_min": 13,
+              "exercises": [
+                "s6",
+                "s1",
+                "sac3",
+                "sac1"
+              ]
+            },
+            {
+              "id": "sacroileitis-w1-s3",
+              "number": 3,
+              "title": "Movimiento suave",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "bp",
+                "s1",
+                "sac3",
+                "sac1"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Movilidad",
+          "goal": "Recuperar rango de movimiento y elasticidad.",
+          "note": "Los estiramientos se sostienen, no se rebotan. Respira durante el sosten.",
+          "dose": "Sostene cada estiramiento 20-30 segundos. Sin rebotes.",
+          "pacing": "Aca recuperamos movimiento. Si los estiramientos ya te salen comodos y llegas al rango completo sin tirones, avanza a la Semana 3. Si algun movimiento todavia te tira, repeti esta semana antes de sumarle carga.",
+          "sessions": [
+            {
+              "id": "sacroileitis-w2-s1",
+              "number": 4,
+              "title": "Apertura",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "sac1",
+                "s1",
+                "sac3",
+                "l4"
+              ]
+            },
+            {
+              "id": "sacroileitis-w2-s2",
+              "number": 5,
+              "title": "Rango completo",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "s6",
+                "s1",
+                "sac3",
+                "l4"
+              ]
+            },
+            {
+              "id": "sacroileitis-w2-s3",
+              "number": 6,
+              "title": "Movilidad fina",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "bp",
+                "s1",
+                "sac3",
+                "l4"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Activacion",
+          "goal": "Despertar el core profundo y los estabilizadores.",
+          "note": "La calidad importa mas que la cantidad. Si perdes la postura, para y descansa.",
+          "dose": "Sumale 2 repeticiones o 5 segundos de sosten respecto de la semana pasada.",
+          "pacing": "Empezamos a despertar el core. Si sostenes las posiciones sin perder la postura y sin dolor al dia siguiente, pasa a la Semana 4. Si terminas con la zona cargada o se te desarma la forma, quedate una semana mas: la base importa mas que la velocidad.",
+          "sessions": [
+            {
+              "id": "sacroileitis-w3-s1",
+              "number": 7,
+              "title": "Core profundo",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "sac1",
+                "cl",
+                "s5",
+                "sac2",
+                "l2",
+                "s1"
+              ]
+            },
+            {
+              "id": "sacroileitis-w3-s2",
+              "number": 8,
+              "title": "Control",
+              "free": false,
+              "duration_min": 17,
+              "exercises": [
+                "s6",
+                "cl",
+                "s5",
+                "sac2",
+                "l2",
+                "sac3"
+              ]
+            },
+            {
+              "id": "sacroileitis-w3-s3",
+              "number": 9,
+              "title": "Estabilidad",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "bp",
+                "cl",
+                "s5",
+                "sac2",
+                "l2",
+                "l4"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Fortalecimiento",
+          "goal": "Ganar fuerza real para que el dolor no vuelva.",
+          "note": "Ultima semana. Si completas estas 3 sesiones ya tenes la base para mantener.",
+          "dose": "Maxima dosis del programa: sumale otras 2 repeticiones o 10 segundos de sosten.",
+          "pacing": "La mas exigente. Si te resulta liviana, repetila sumando repeticiones o segundos de sosten. Si te cuesta, volve unos dias a la Semana 3 y retoma.",
+          "sessions": [
+            {
+              "id": "sacroileitis-w4-s1",
+              "number": 10,
+              "title": "Fuerza base",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "sac1",
+                "cl",
+                "s5",
+                "sac2",
+                "l2"
+              ]
+            },
+            {
+              "id": "sacroileitis-w4-s2",
+              "number": 11,
+              "title": "Carga progresiva",
+              "free": false,
+              "duration_min": 19,
+              "exercises": [
+                "s6",
+                "cl",
+                "s5",
+                "sac2",
+                "l2"
+              ]
+            },
+            {
+              "id": "sacroileitis-w4-s3",
+              "number": 12,
+              "title": "Integracion final",
+              "free": false,
+              "duration_min": 20,
+              "exercises": [
+                "bp",
+                "cl",
+                "s5",
+                "sac2",
+                "l2"
+              ]
+            }
+          ]
+        }
+      ],
+      "pool": [
+        "s1",
+        "sac1",
+        "cl",
+        "s5",
+        "s6",
+        "sac2",
+        "sac3",
+        "l4",
+        "bp",
+        "l2"
+      ],
+      "pool_added": [
+        "l4",
+        "bp",
+        "l2"
+      ]
+    },
+    "pubalgia": {
+      "name": "Pubalgia",
+      "module": "lumbar",
+      "duration_weeks": 4,
+      "intro": "Programa progresivo de 4 semanas. Empezamos calmando el dolor, seguimos recuperando movilidad, despues activamos el core profundo y terminamos fortaleciendo para evitar recaidas.",
+      "weeks": [
+        {
+          "number": 1,
+          "title": "Alivio",
+          "goal": "Bajar el dolor y el espasmo. Movimientos suaves, sin carga.",
+          "note": "Si algun ejercicio aumenta el dolor, saltealo y segui con el siguiente.",
+          "dose": "Series cortas y suaves. Mejor quedarse corto que pasarse.",
+          "pacing": "Esta semana es suave a proposito: primero calmamos el dolor, despues exigimos. Si completas las sesiones sin molestia y sentis que podes mas, pasa a la Semana 2. Si todavia te duele al moverte, quedate aca los dias que necesites, no hay apuro.",
+          "sessions": [
+            {
+              "id": "pubalgia-w1-s1",
+              "number": 1,
+              "title": "Primer contacto",
+              "free": true,
+              "duration_min": 12,
+              "exercises": [
+                "sac1",
+                "pub2",
+                "l10",
+                "s5"
+              ]
+            },
+            {
+              "id": "pubalgia-w1-s2",
+              "number": 2,
+              "title": "Descompresion",
+              "free": false,
+              "duration_min": 13,
+              "exercises": [
+                "bp",
+                "pub2",
+                "l10",
+                "sac1"
+              ]
+            },
+            {
+              "id": "pubalgia-w1-s3",
+              "number": 3,
+              "title": "Movimiento suave",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "sac1",
+                "pub2",
+                "l10",
+                "s5"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Movilidad",
+          "goal": "Recuperar rango de movimiento y elasticidad.",
+          "note": "Los estiramientos se sostienen, no se rebotan. Respira durante el sosten.",
+          "dose": "Sostene cada estiramiento 20-30 segundos. Sin rebotes.",
+          "pacing": "Aca recuperamos movimiento. Si los estiramientos ya te salen comodos y llegas al rango completo sin tirones, avanza a la Semana 3. Si algun movimiento todavia te tira, repeti esta semana antes de sumarle carga.",
+          "sessions": [
+            {
+              "id": "pubalgia-w2-s1",
+              "number": 4,
+              "title": "Apertura",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "sac1",
+                "pub2",
+                "l10",
+                "l4"
+              ]
+            },
+            {
+              "id": "pubalgia-w2-s2",
+              "number": 5,
+              "title": "Rango completo",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "bp",
+                "pub2",
+                "l10",
+                "l4"
+              ]
+            },
+            {
+              "id": "pubalgia-w2-s3",
+              "number": 6,
+              "title": "Movilidad fina",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "sac1",
+                "pub2",
+                "l10",
+                "l4"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Activacion",
+          "goal": "Despertar el core profundo y los estabilizadores.",
+          "note": "La calidad importa mas que la cantidad. Si perdes la postura, para y descansa.",
+          "dose": "Sumale 2 repeticiones o 5 segundos de sosten respecto de la semana pasada.",
+          "pacing": "Empezamos a despertar el core. Si sostenes las posiciones sin perder la postura y sin dolor al dia siguiente, pasa a la Semana 4. Si terminas con la zona cargada o se te desarma la forma, quedate una semana mas: la base importa mas que la velocidad.",
+          "sessions": [
+            {
+              "id": "pubalgia-w3-s1",
+              "number": 7,
+              "title": "Core profundo",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "sac1",
+                "s5",
+                "pub4",
+                "k3",
+                "pub2",
+                "l10"
+              ]
+            },
+            {
+              "id": "pubalgia-w3-s2",
+              "number": 8,
+              "title": "Control",
+              "free": false,
+              "duration_min": 17,
+              "exercises": [
+                "bp",
+                "s5",
+                "pub4",
+                "k3",
+                "l10",
+                "l4"
+              ]
+            },
+            {
+              "id": "pubalgia-w3-s3",
+              "number": 9,
+              "title": "Estabilidad",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "sac1",
+                "s5",
+                "pub4",
+                "k3",
+                "l4",
+                "pub2"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Fortalecimiento",
+          "goal": "Ganar fuerza real para que el dolor no vuelva.",
+          "note": "Ultima semana. Si completas estas 3 sesiones ya tenes la base para mantener.",
+          "dose": "Maxima dosis del programa: sumale otras 2 repeticiones o 10 segundos de sosten.",
+          "pacing": "La mas exigente. Si te resulta liviana, repetila sumando repeticiones o segundos de sosten. Si te cuesta, volve unos dias a la Semana 3 y retoma.",
+          "sessions": [
+            {
+              "id": "pubalgia-w4-s1",
+              "number": 10,
+              "title": "Fuerza base",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "sac1",
+                "pub3",
+                "k5",
+                "s5",
+                "pub4"
+              ]
+            },
+            {
+              "id": "pubalgia-w4-s2",
+              "number": 11,
+              "title": "Carga progresiva",
+              "free": false,
+              "duration_min": 19,
+              "exercises": [
+                "bp",
+                "pub3",
+                "k5",
+                "pub4",
+                "k3"
+              ]
+            },
+            {
+              "id": "pubalgia-w4-s3",
+              "number": 12,
+              "title": "Integracion final",
+              "free": false,
+              "duration_min": 20,
+              "exercises": [
+                "sac1",
+                "pub3",
+                "k5",
+                "k3",
+                "s5"
+              ]
+            }
+          ]
+        }
+      ],
+      "pool": [
+        "sac1",
+        "pub2",
+        "s5",
+        "pub3",
+        "k5",
+        "pub4",
+        "l10",
+        "k3",
+        "bp",
+        "l4"
+      ],
+      "pool_added": [
+        "bp",
+        "l4"
+      ]
+    },
+    "postcirugia": {
+      "name": "Rehabilitacion post-cirugia de columna",
+      "module": "lumbar",
+      "duration_weeks": 4,
+      "phase_based": true,
+      "intro": "Programa por fases post-operatorias. Los tiempos son orientativos: tu cirujano define cuando pasar de fase.",
+      "weeks": [
+        {
+          "number": 1,
+          "title": "Fase 1 - Aguda",
+          "goal": "Dia 1 a 7. Circulacion, respiracion y movilidad segura en cama.",
+          "note": "Segui SIEMPRE la indicacion de tu cirujano por encima de esta guia.",
+          "pacing": "No avances por sentirte bien: en post-operatorio los tiempos los marca tu cirujano, no la sensacion. Si tenes fiebre, dolor creciente o la herida cambia de aspecto, consulta ya.",
+          "sessions": [
+            {
+              "id": "postcirugia-w1-s1",
+              "number": 1,
+              "title": "Primer contacto",
+              "free": true,
+              "duration_min": 10,
+              "exercises": [
+                "p1",
+                "p2",
+                "p3",
+                "p4"
+              ]
+            },
+            {
+              "id": "postcirugia-w1-s2",
+              "number": 2,
+              "title": "Descompresion",
+              "free": false,
+              "duration_min": 11,
+              "exercises": [
+                "p2",
+                "p3",
+                "p4",
+                "p5"
+              ]
+            },
+            {
+              "id": "postcirugia-w1-s3",
+              "number": 3,
+              "title": "Movimiento suave",
+              "free": false,
+              "duration_min": 12,
+              "exercises": [
+                "p3",
+                "p4",
+                "p5",
+                "p1"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Fase 2 - Subaguda temprana",
+          "goal": "Semana 2 a 3. Empezamos a cargar de a poco.",
+          "note": "Segui SIEMPRE la indicacion de tu cirujano por encima de esta guia.",
+          "pacing": "Avanza a la fase siguiente solo cuando tu cirujano lo autorice, aunque los ejercicios te resulten faciles. Si algo te tira en la zona operada, volve a la fase anterior.",
+          "sessions": [
+            {
+              "id": "postcirugia-w2-s1",
+              "number": 4,
+              "title": "Apertura",
+              "free": false,
+              "duration_min": 12,
+              "exercises": [
+                "p9",
+                "p10",
+                "p11",
+                "p12"
+              ]
+            },
+            {
+              "id": "postcirugia-w2-s2",
+              "number": 5,
+              "title": "Rango completo",
+              "free": false,
+              "duration_min": 13,
+              "exercises": [
+                "p10",
+                "p11",
+                "p12",
+                "p9"
+              ]
+            },
+            {
+              "id": "postcirugia-w2-s3",
+              "number": 6,
+              "title": "Movilidad fina",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "p11",
+                "p12",
+                "p9",
+                "p10"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Fase 3 - Subaguda tardia",
+          "goal": "Semana 4 a 8. Core y estabilidad.",
+          "note": "Segui SIEMPRE la indicacion de tu cirujano por encima de esta guia.",
+          "pacing": "Si sostenes las posiciones sin dolor al dia siguiente y tenes el alta para progresar, pasa a la Fase 4. Si terminas con la zona cargada, repeti esta fase.",
+          "sessions": [
+            {
+              "id": "postcirugia-w3-s1",
+              "number": 7,
+              "title": "Core profundo",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "p6",
+                "p13",
+                "p14",
+                "p7"
+              ]
+            },
+            {
+              "id": "postcirugia-w3-s2",
+              "number": 8,
+              "title": "Control",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "p13",
+                "p14",
+                "p7",
+                "p15"
+              ]
+            },
+            {
+              "id": "postcirugia-w3-s3",
+              "number": 9,
+              "title": "Estabilidad",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "p14",
+                "p7",
+                "p15",
+                "p16"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Fase 4 - Reintegracion",
+          "goal": "Mas de 8 semanas. Vuelta a la actividad normal.",
+          "note": "Segui SIEMPRE la indicacion de tu cirujano por encima de esta guia.",
+          "pacing": "Si te resulta liviana, repetila sumando repeticiones. Si te cuesta, volve a la Fase 3 unos dias y retoma.",
+          "sessions": [
+            {
+              "id": "postcirugia-w4-s1",
+              "number": 10,
+              "title": "Fuerza base",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "p8",
+                "p17",
+                "p18",
+                "p19"
+              ]
+            },
+            {
+              "id": "postcirugia-w4-s2",
+              "number": 11,
+              "title": "Carga progresiva",
+              "free": false,
+              "duration_min": 17,
+              "exercises": [
+                "p17",
+                "p18",
+                "p19",
+                "p20"
+              ]
+            },
+            {
+              "id": "postcirugia-w4-s3",
+              "number": 12,
+              "title": "Integracion final",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "p18",
+                "p19",
+                "p20",
+                "p8"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
