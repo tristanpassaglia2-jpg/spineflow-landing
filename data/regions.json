@@ -17,7 +17,9 @@
           "c4",
           "c3",
           "c8",
-          "c2"
+          "c2",
+          "c6",
+          "c9"
         ],
         "free_count": 2
       },
@@ -31,7 +33,10 @@
           "c1",
           "c2",
           "c7",
-          "g8"
+          "g8",
+          "c5",
+          "c9",
+          "c10"
         ],
         "free_count": 2
       },
@@ -45,7 +50,10 @@
           "c2",
           "c7",
           "c1",
-          "g2"
+          "g2",
+          "c5",
+          "c9",
+          "c10"
         ],
         "free_count": 2
       },
@@ -87,7 +95,10 @@
           "g2",
           "k8",
           "bp",
-          "l3"
+          "l3",
+          "c9",
+          "k1",
+          "g4"
         ],
         "free_count": 2
       },
@@ -103,7 +114,9 @@
           "k5",
           "cl",
           "g6",
-          "g4"
+          "g4",
+          "l4",
+          "l13"
         ],
         "note": "La corrección específica de la curva (métodos Schroth/SEAS) requiere evaluación profesional previa. Este programa es de soporte general: fortalece y da movilidad, pero no reemplaza el diagnóstico del patrón de tu columna.",
         "free_count": 2
@@ -120,7 +133,9 @@
           "k8",
           "g6",
           "l3",
-          "g4"
+          "g4",
+          "c9",
+          "k1"
         ],
         "free_count": 2
       }
@@ -148,7 +163,10 @@
           "s7",
           "s4",
           "l5",
-          "l11"
+          "l11",
+          "k1",
+          "l2",
+          "l8"
         ],
         "free_count": 2
       },
@@ -221,7 +239,10 @@
           "s5",
           "s6",
           "sac2",
-          "sac3"
+          "sac3",
+          "l4",
+          "bp",
+          "l2"
         ],
         "free_count": 2
       },
@@ -237,7 +258,9 @@
           "k5",
           "pub4",
           "l10",
-          "k3"
+          "k3",
+          "bp",
+          "l4"
         ],
         "free_count": 2
       },
