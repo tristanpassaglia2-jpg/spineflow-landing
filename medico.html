@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>SpineFlow · Panel médico</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--bg:#0E1F25;--card:#16303A;--ink:#F2F7F7;--muted:#8FAAB2;--teal:#19B3A6;--gold:#E0A84B;--red:#E0785C}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  display:flex;justify-content:center}
+.app{width:100%;max-width:460px;min-height:100dvh;
+  padding:calc(env(safe-area-inset-top) + 20px) 18px calc(env(safe-area-inset-bottom) + 24px)}
+
+/* login */
+#login{display:flex;flex-direction:column;justify-content:center;height:calc(100dvh - 80px);gap:14px}
+#login h2{font-size:22px;margin:0 0 4px}
+#login p{color:var(--muted);font-size:14px;margin:0 0 20px}
+#login input{padding:14px 16px;border-radius:12px;border:1px solid #2A4A55;background:var(--card);color:var(--ink);
+  font-size:15px;font-family:inherit}
+#login input:focus{outline:none;border-color:var(--teal)}
+#login button{padding:15px;border-radius:12px;border:none;background:var(--teal);color:#062B28;
+  font-size:15px;font-weight:800;cursor:pointer;font-family:inherit}
+#loginError{color:var(--red);font-size:13px;min-height:1.2em;text-align:center}
+
+/* app */
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.brand{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--teal)}
+.doc{font-size:11.5px;color:var(--muted);cursor:pointer}
+h1{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px}
+.sub{font-size:14px;color:var(--muted);line-height:1.5;margin:0 0 20px}
+
+.picker h3,.step2{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 13px}
+.step2{margin:24px 0 12px}
+.grp{margin-bottom:15px}
+.grp>span{display:block;font-size:12px;font-weight:750;color:var(--teal);margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.pt{padding:10px 13px;border-radius:12px;border:1.5px solid #2A4A55;background:var(--card);
+  color:var(--ink);font-size:13px;font-weight:650;font-family:inherit;cursor:pointer;transition:.14s}
+.pt:active{transform:scale(.97)}
+.pt.on{background:var(--teal);border-color:var(--teal);color:#062B28;font-weight:800}
+.pt.full{border-color:var(--gold);color:var(--gold)}
+.pt.full.on{background:var(--gold);border-color:var(--gold);color:#2E1D06}
+
+.access-type{display:flex;gap:6px;margin-bottom:14px}
+.at{flex:1;padding:9px;border-radius:10px;border:1.5px solid #2A4A55;background:var(--card);
+  color:var(--ink);font-size:11.5px;font-weight:700;font-family:inherit;cursor:pointer;text-align:center}
+.at.on{background:var(--teal);border-color:var(--teal);color:#062B28}
+.at small{display:block;font-size:9.5px;font-weight:600;margin-top:2px;opacity:.8}
+
+.gen{width:100%;padding:19px;border-radius:18px;border:none;background:var(--teal);color:#062B28;
+  font-size:17px;font-weight:800;cursor:pointer;box-shadow:0 8px 22px rgba(25,179,166,.25);font-family:inherit}
+.gen:disabled{background:#24444E;color:#6B858E;box-shadow:none;cursor:default}
+
+.qrcard{display:none;background:#fff;border-radius:22px;padding:22px;margin-top:18px;text-align:center;color:#12303A}
+.qrcard.on{display:block;animation:pop .25s ease}
+@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.qrpat{display:inline-block;background:#EAF6F5;color:#0B5F5B;font-size:12.5px;font-weight:800;
+  padding:6px 13px;border-radius:9px;margin-bottom:13px}
+.qrbox{display:flex;justify-content:center;margin-bottom:14px}
+.qrbox img,.qrbox canvas{border-radius:10px}
+.code{font-size:27px;font-weight:800;letter-spacing:.14em;font-family:ui-monospace,monospace;margin-bottom:5px}
+.codelbl{font-size:11px;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:#6B8189;margin-bottom:14px}
+.timer{display:inline-flex;align-items:center;gap:7px;background:#FFF4E2;color:#8A5A1C;
+  font-size:13px;font-weight:750;padding:8px 14px;border-radius:11px}
+.timer.dead{background:#FBE6E0;color:#9A3B22}
+.say{margin-top:16px;padding-top:15px;border-top:1px dashed #DDE5E7;font-size:13.5px;
+  line-height:1.55;color:#3D5A63;font-style:italic}
+
+.list{margin-top:26px}
+.list h3{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+.row{display:flex;align-items:center;gap:12px;background:var(--card);border-radius:14px;padding:13px 15px;margin-bottom:9px}
+.rcode{flex:1;font-family:ui-monospace,monospace;font-size:15px;font-weight:700;letter-spacing:.08em}
+.rtime{font-size:11.5px;color:var(--muted)}
+.chip{font-size:10px;font-weight:800;letter-spacing:.06em;padding:5px 9px;border-radius:8px}
+.chip.wait{background:#3A3320;color:var(--gold)}
+.chip.used{background:#153A2C;color:#4FD69C}
+.chip.dead{background:#3A2420;color:var(--red)}
+.empty{color:var(--muted);font-size:13.5px;text-align:center;padding:24px 10px;line-height:1.5}
+
+.stats{display:flex;gap:9px;margin-top:22px}
+.stat{flex:1;background:var(--card);border-radius:14px;padding:13px;text-align:center}
+.stat b{display:block;font-size:21px;font-weight:800}
+.stat span{font-size:10.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+
+.note{margin-top:20px;font-size:11.5px;color:var(--muted);line-height:1.55;text-align:center}
+.hide{display:none}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+
+  <!-- LOGIN -->
+  <div id="login">
+    <h2>Panel médico</h2>
+    <p>Ingresá con tu cuenta de SpineFlow.</p>
+    <input id="email" type="email" placeholder="tu@email.com" autocomplete="email">
+    <input id="pass" type="password" placeholder="Contraseña" autocomplete="current-password">
+    <button id="loginBtn">Entrar</button>
+    <div id="loginError"></div>
+  </div>
+
+  <!-- APP -->
+  <div id="main" class="hide">
+    <div class="top">
+      <span class="brand">SpineFlow</span>
+      <span class="doc" id="docLabel">—</span>
+    </div>
+    <h1>Acceso para pacientes</h1>
+    <p class="sub">Generá un código, mostrale la pantalla al paciente y que lo escanee ahí mismo. Vale 10 minutos y una sola vez.</p>
+
+    <div class="picker">
+      <h3>1 · Elegí la patología</h3>
+      <div class="grp"><span>Cervical</span>
+        <div class="chips">
+          <button class="pt" data-id="hernia_cervical">Hernia cervical</button>
+          <button class="pt" data-id="occipital">Occipital (Arnold)</button>
+          <button class="pt" data-id="cervicalgia_espasmo">Cervicalgia</button>
+          <button class="pt" data-id="desfiladero">Desfiladero torácico</button>
+        </div></div>
+      <div class="grp"><span>Dorsal</span>
+        <div class="chips">
+          <button class="pt" data-id="espasmo_dorsal">Espasmo dorsal</button>
+          <button class="pt" data-id="escoliosis">Escoliosis</button>
+          <button class="pt" data-id="dorsalgia">Dorsalgia</button>
+        </div></div>
+      <div class="grp"><span>Lumbar</span>
+        <div class="chips">
+          <button class="pt" data-id="hernia_lumbar">Hernia + ciatalgia</button>
+          <button class="pt" data-id="lumbalgia">Lumbalgia mecánica</button>
+          <button class="pt" data-id="piramidal">Piramidal</button>
+          <button class="pt" data-id="facetario">Facetario</button>
+          <button class="pt" data-id="sacroileitis">Sacroileítis</button>
+          <button class="pt" data-id="pubalgia">Pubalgia</button>
+          <button class="pt" data-id="postcirugia">Post cirugía</button>
+        </div></div>
+      <div class="grp"><span>Otros</span>
+        <div class="chips">
+          <button class="pt" data-id="plus60">Programa +60</button>
+          <button class="pt full" data-id="all">🔓 Acceso completo</button>
+        </div></div>
+    </div>
+
+    <h3 class="step2">2 · Tipo de acceso</h3>
+    <div class="access-type">
+      <button class="at on" data-type="patient">Paciente<small>4 semanas</small></button>
+      <button class="at" data-type="friend">Invitado<small>1 semana</small></button>
+      <button class="at" data-type="colleague">Colega<small>1 mes</small></button>
+    </div>
+
+    <button class="gen" id="genBtn" disabled>Elegí una patología</button>
+
+    <div class="qrcard" id="qrcard">
+      <div class="qrpat" id="qrpat">—</div>
+      <div class="qrbox" id="qrbox"></div>
+      <div class="code" id="code">—</div>
+      <div class="codelbl">Código de acceso</div>
+      <div class="timer" id="timer">⏱ Válido por 10:00</div>
+      <p class="say">"Escaneá esto. Es la app con los ejercicios que te indico para lo tuyo — para vos es sin cargo. La desarrollé yo con un equipo."</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b id="sHoy">0</b><span>Hoy</span></div>
+      <div class="stat"><b id="sCanj">0</b><span>Canjeados</span></div>
+      <div class="stat"><b id="sTot">0</b><span>Total mes</span></div>
+    </div>
+
+    <div class="list">
+      <h3>Códigos de hoy</h3>
+      <div id="rows"><p class="empty">Todavía no generaste ninguno.<br>Tocá "Generar código" con el paciente adelante.</p></div>
+    </div>
+
+    <p class="note">Cada código sirve una sola vez. Si el paciente lo comparte, lo pierde él.<br>
+    El acceso queda atado a su cuenta · máx. 2 dispositivos.</p>
+  </div>
+</div>
+
+<script>
+// ⚠️ REEMPLAZAR con los valores REALES de tu proyecto Supabase
+// (Dashboard → Settings → API → Project URL + anon public key)
+const SUPABASE_URL  = 'https://atefklvwshuwrmeasrnq.supabase.co';
+const SUPABASE_ANON = 'sb_publishable_QFbwN6DQNY5idxUntqDSqg_EdF7TcSp;
+
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+const BASE_URL = location.origin; // dominio de la app en producción
+
+let pat=null, patName='', accessType='patient', tick=null;
+const $=id=>document.getElementById(id);
+
+/* ---------- LOGIN ---------- */
+$('loginBtn').onclick=async()=>{
+  $('loginError').textContent='';
+  const {error}=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('pass').value});
+  if(error){ $('loginError').textContent='No pudimos entrar: '+error.message; return; }
+  bootApp();
+};
+sb.auth.getSession().then(({data:{session}})=>{ if(session) bootApp(); });
+
+async function bootApp(){
+  const {data:{user}}=await sb.auth.getUser();
+  const {data:doc,error}=await sb.from('authorized_doctors').select('full_name,code_prefix').eq('user_id',user.id).single();
+  if(error||!doc){
+    $('loginError').textContent='Este usuario no está autorizado como médico. Escribime.';
+    return;
+  }
+  $('login').classList.add('hide');
+  $('main').classList.remove('hide');
+  $('docLabel').textContent=`${doc.full_name} · ${doc.code_prefix}`;
+  $('docLabel').onclick=async()=>{ if(confirm('¿Cerrar sesión?')){ await sb.auth.signOut(); location.reload(); } };
+  loadStats();
+}
+
+/* ---------- PATOLOGÍA + TIPO ---------- */
+document.querySelectorAll('.pt').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('.pt').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    pat=b.dataset.id; patName=b.textContent.replace('🔓 ','');
+    $('genBtn').disabled=false;
+    updateGenLabel();
+  };
+});
+document.querySelectorAll('.at').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('.at').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    accessType=b.dataset.type;
+    updateGenLabel();
+  };
+});
+function updateGenLabel(){
+  if(!pat){ $('genBtn').textContent='Elegí una patología'; return; }
+  const dur={patient:'4 semanas',friend:'1 semana',colleague:'1 mes'}[accessType];
+  $('genBtn').textContent=`＋ Generar código · ${patName} · ${dur}`;
+}
+
+/* ---------- GENERAR CÓDIGO ---------- */
+$('genBtn').onclick=async()=>{
+  if(!pat) return;
+  $('genBtn').disabled=true;
+  $('genBtn').textContent='Generando...';
+  const {data,error}=await sb.rpc('generate_invite_code',{p_pathology:pat,p_access_type:accessType});
+  $('genBtn').disabled=false;
+  updateGenLabel();
+  if(error){ alert('Error: '+error.message); return; }
+  showCode(data);
+  loadStats();
+};
+
+function showCode(code){
+  const url=`${BASE_URL}/activar?c=${code}&p=${pat}`;
+  $('code').textContent=code;
+  $('qrpat').textContent=patName;
+  $('qrbox').innerHTML='';
+  new QRCode($('qrbox'),{text:url,width:190,height:190,colorDark:"#12303A",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M});
+  $('qrcard').classList.add('on');
+  const exp=Date.now()+10*60*1000;
+  if(tick) clearInterval(tick);
+  tick=setInterval(()=>{
+    const r=Math.max(0,Math.round((exp-Date.now())/1000));
+    const el=$('timer');
+    if(r===0){ el.className='timer dead'; el.textContent='⏱ Vencido — generá uno nuevo'; clearInterval(tick); return; }
+    el.className='timer';
+    el.textContent=`⏱ Válido por ${String(Math.floor(r/60)).padStart(2,'0')}:${String(r%60).padStart(2,'0')}`;
+  },1000);
+}
+
+/* ---------- STATS + LISTA (desde Supabase real) ---------- */
+async function loadStats(){
+  const hoyISO=new Date(new Date().setHours(0,0,0,0)).toISOString();
+  const mesISO=new Date(new Date().setDate(1)).toISOString().slice(0,10);
+  const {data:hoy}=await sb.from('invite_codes').select('*').gte('created_at',hoyISO).order('created_at',{ascending:false});
+  const {count:mes}=await sb.from('invite_codes').select('*',{count:'exact',head:true}).gte('created_at',mesISO);
+
+  $('sHoy').textContent=hoy?.length||0;
+  $('sCanj').textContent=hoy?.filter(c=>c.used_at).length||0;
+  $('sTot').textContent=mes||0;
+
+  const rows=$('rows');
+  if(!hoy?.length){ rows.innerHTML=`<p class="empty">Todavía no generaste ninguno.<br>Tocá "Generar código" con el paciente adelante.</p>`; return; }
+  const now=Date.now();
+  rows.innerHTML=hoy.map(c=>{
+    const [cls,txt]=c.used_at?['used','CANJEADO']:new Date(c.expires_at).getTime()<now?['dead','VENCIDO']:['wait','PENDIENTE'];
+    const h=new Date(c.created_at).toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+    return `<div class="row">
+      <div><div class="rcode">${c.code}</div><div class="rtime">${h} · ${c.pathology}</div></div>
+      <div style="flex:1"></div>
+      <span class="chip ${cls}">${txt}</span></div>`;
+  }).join('');
+}
+</script>
+</body>
+</html>
