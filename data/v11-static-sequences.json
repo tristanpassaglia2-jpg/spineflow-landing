@@ -1,9 +1,14 @@
 {
   "version": "v11-static-sequences",
-  "updated": "2026-08-16",
-  "ready": 52,
-  "pending": 25,
-  "note": "Las secuencias con status 'ready' cargan desde media/sequences/[id]/. Las 'pending' caen al fallback V9 (media/exercises/[id].webp)",
+  "updated": "2026-08-17",
+  "totals": {
+    "ready_own": 58,
+    "ready_reuse": 17,
+    "pending": 2,
+    "ready_total": 75,
+    "catalog_total": 77
+  },
+  "note": "status=ready → cargar desde folder o desde reuses. status=pending → fallback a media/exercises/[id].webp (V9)",
   "sequences": {
     "c1": {
       "name": "Retracción cervical (Chin Tuck)",
@@ -21,7 +26,7 @@
       "files": [
         "01.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "3 rep × lado",
       "reps": "30 seg cada lado"
     },
@@ -31,7 +36,7 @@
       "files": [
         "01.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "2 series × 10 rep/lado",
       "reps": "10 rep cada lado"
     },
@@ -41,7 +46,7 @@
       "files": [
         "01.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "2 series × 10 rep",
       "reps": "10 repeticiones"
     },
@@ -81,7 +86,7 @@
       "files": [
         "01.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "3 series × 12 rep",
       "reps": "12 repeticiones"
     },
@@ -153,7 +158,6 @@
       "files": [
         "01.webp",
         "02.webp",
-        "02b.webp",
         "03.webp"
       ],
       "status": "ready",
@@ -176,7 +180,7 @@
       "files": [
         "01.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "3 rep × pierna",
       "reps": "30 seg cada pierna"
     },
@@ -186,7 +190,7 @@
       "files": [
         "01.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "2 series × 10 rep/lado",
       "reps": "10 rep cada lado"
     },
@@ -202,11 +206,8 @@
     },
     "l9": {
       "name": "Puente de una pierna (single-leg bridge)",
-      "folder": "media/sequences/l9/",
-      "files": [
-        "01.webp"
-      ],
-      "status": "pending",
+      "reuses": "l5",
+      "status": "ready",
       "series": "3 series × 10 rep/pierna",
       "reps": "10 rep cada pierna"
     },
@@ -222,11 +223,8 @@
     },
     "l11": {
       "name": "Movilización activa lumbar en cuadrupedia",
-      "folder": "media/sequences/l11/",
-      "files": [
-        "01.webp"
-      ],
-      "status": "pending",
+      "reuses": "openbook",
+      "status": "ready",
       "series": "2 series",
       "reps": "10 rep cada movimiento"
     },
@@ -246,7 +244,7 @@
       "files": [
         "01.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "3 series × 15 rep",
       "reps": "15 repeticiones"
     },
@@ -263,11 +261,8 @@
     },
     "dp": {
       "name": "Deslizamiento lateral en pared (Wall Slide)",
-      "folder": "media/sequences/dp/",
-      "files": [
-        "01.webp"
-      ],
-      "status": "pending",
+      "reuses": "c10",
+      "status": "ready",
       "series": "3 series × 10 rep/lado",
       "reps": "10 rep cada lado"
     },
@@ -298,14 +293,16 @@
       "files": [
         "01.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "3 series × 10 rep/pierna",
       "reps": "10 rep cada pierna"
     },
     "s3": {
       "name": "Extensión en decúbito prono progresiva (McKenzie)",
       "reuses": "em",
-      "status": "ready"
+      "status": "ready",
+      "series": "3 series × 10 rep",
+      "reps": "10 repeticiones"
     },
     "s4": {
       "name": "Estiramiento isquiotibial con toalla",
@@ -360,7 +357,9 @@
     "k1": {
       "name": "Activación del transverso abdominal",
       "reuses": "l4",
-      "status": "ready"
+      "status": "ready",
+      "series": "3 series × 10 rep",
+      "reps": "10 rep de 10 seg"
     },
     "k3": {
       "name": "Dead Bug (Insecto Muerto)",
@@ -415,7 +414,9 @@
     "p2": {
       "name": "Respiración profunda post-operatoria",
       "reuses": "k8",
-      "status": "ready"
+      "status": "ready",
+      "series": "Cada 2 horas",
+      "reps": "10 respiraciones"
     },
     "p3": {
       "name": "Contracción isométrica de cuádriceps",
@@ -433,7 +434,7 @@
       "files": [
         "01.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "3 series",
       "reps": "Técnica funcional"
     },
@@ -443,14 +444,16 @@
       "files": [
         "01.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "2-3 veces/día",
       "reps": "5-15 minutos"
     },
     "p6": {
       "name": "Puente de glúteos progresivo (fase subaguda)",
       "reuses": "l2",
-      "status": "ready"
+      "status": "ready",
+      "series": "3 series × 10 rep",
+      "reps": "10 repeticiones"
     },
     "p7": {
       "name": "Movilización neural suave en sedestación",
@@ -478,7 +481,7 @@
       "files": [
         "01.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "3 series × 15 rep",
       "reps": "15 repeticiones"
     },
@@ -495,32 +498,44 @@
     "p11": {
       "name": "Elongación lumbar rodilla al pecho controlada",
       "reuses": "l1",
-      "status": "ready"
+      "status": "ready",
+      "series": "3 rep × pierna",
+      "reps": "20 seg cada pierna"
     },
     "p12": {
       "name": "Activación core con báscula pélvica + transverso",
       "reuses": "bp",
-      "status": "ready"
+      "status": "ready",
+      "series": "3 series × 10 rep",
+      "reps": "10 rep de 10 seg"
     },
     "p13": {
       "name": "Plancha modificada desde rodillas post-op",
       "reuses": "l8",
-      "status": "ready"
+      "status": "ready",
+      "series": "3 series × 20-30 seg",
+      "reps": "20-30 seg"
     },
     "p14": {
       "name": "Puente lateral modificado desde rodillas",
       "reuses": "k5",
-      "status": "ready"
+      "status": "ready",
+      "series": "3 series × 20 seg/lado",
+      "reps": "20 seg cada lado"
     },
     "p15": {
       "name": "Gato-Camello controlado post-op",
       "reuses": "l4",
-      "status": "ready"
+      "status": "ready",
+      "series": "3 series × 10 ciclos",
+      "reps": "10 ciclos"
     },
     "p16": {
       "name": "Dead bug modificado post-op",
       "reuses": "k3",
-      "status": "ready"
+      "status": "ready",
+      "series": "3 series × 8 rep/lado",
+      "reps": "8 rep por lado"
     },
     "p17": {
       "name": "Plancha completa desde pies (fase 4)",
@@ -535,25 +550,21 @@
     "p18": {
       "name": "Bird Dog progresivo (fase 4)",
       "reuses": "k4",
-      "status": "ready"
+      "status": "ready",
+      "series": "3 series × 10 rep/lado",
+      "reps": "10 rep por lado"
     },
     "p19": {
       "name": "Puente lateral completo (fase 4)",
-      "folder": "media/sequences/p19/",
-      "files": [
-        "01.webp"
-      ],
-      "status": "pending",
+      "reuses": "k5",
+      "status": "ready",
       "series": "3 series × 30 seg/lado",
       "reps": "30 seg cada lado"
     },
     "p20": {
       "name": "Sentadilla funcional con apoyo",
-      "folder": "media/sequences/p20/",
-      "files": [
-        "01.webp"
-      ],
-      "status": "pending",
+      "reuses": "s60_03",
+      "status": "ready",
       "series": "3 series × 10-12 rep",
       "reps": "10-12 repeticiones"
     },
@@ -563,7 +574,7 @@
       "files": [
         "01.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "2 series",
       "reps": "5 rep cada movimiento"
     },
@@ -583,7 +594,7 @@
       "files": [
         "01.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "2-3 series",
       "reps": "10 oscilaciones"
     },
@@ -593,7 +604,7 @@
       "files": [
         "01.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "1 vez al final de la sesión",
       "reps": "10-15 minutos"
     },
@@ -610,11 +621,8 @@
     },
     "n2": {
       "name": "Estiramiento pectoral en marco de puerta",
-      "folder": "media/sequences/n2/",
-      "files": [
-        "01.webp"
-      ],
-      "status": "pending",
+      "reuses": "pect01",
+      "status": "ready",
       "series": "3 series",
       "reps": "30 seg × 3 posiciones"
     },
@@ -634,7 +642,7 @@
       "files": [
         "01.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "2 rep × lado",
       "reps": "60-90 seg cada lado"
     },
@@ -644,7 +652,7 @@
       "files": [
         "01.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "3 series × 10 rep",
       "reps": "10 rep de 10 seg"
     },
@@ -664,7 +672,7 @@
       "files": [
         "01.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "2 series × 10 rep/lado",
       "reps": "10 rep cada lado"
     },
