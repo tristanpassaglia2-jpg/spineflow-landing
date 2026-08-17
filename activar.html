@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>SpineFlow · Activar</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--bg:#F2EFE8;--ink:#14313A;--muted:#5F737B;--teal:#0F8B84;--deep:#0B5F5B;--line:#E4DFD4;--red:#DC6B4E}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  display:flex;justify-content:center}
+.app{width:100%;max-width:440px;min-height:100dvh;
+  padding:calc(env(safe-area-inset-top) + 30px) 22px calc(env(safe-area-inset-bottom) + 24px)}
+
+.brand{font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--deep);margin-bottom:14px}
+.pat{display:inline-block;background:#EAF4F3;color:var(--deep);font-size:13px;font-weight:800;padding:6px 13px;border-radius:9px;margin-bottom:14px}
+h1{font-size:27px;font-weight:800;letter-spacing:-.02em;line-height:1.12;margin:0 0 8px}
+.lead{font-size:15px;color:var(--muted);line-height:1.5;margin:0 0 22px}
+
+.box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:16px}
+.box h3{font-size:15px;font-weight:800;margin:0 0 14px}
+input{width:100%;padding:14px 15px;border-radius:12px;border:1.5px solid var(--line);background:#fff;
+  color:var(--ink);font-size:15px;font-family:inherit;margin-bottom:10px}
+input:focus{outline:none;border-color:var(--teal)}
+button.primary{width:100%;padding:16px;border-radius:14px;border:none;background:var(--teal);color:#fff;
+  font-size:16px;font-weight:800;cursor:pointer;font-family:inherit}
+button.primary:disabled{background:#94BEBB;cursor:default}
+button.ghost{width:100%;padding:12px;border:none;background:transparent;color:var(--deep);
+  font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:underline}
+.err{color:var(--red);font-size:13px;min-height:1.2em;margin-top:6px}
+
+.done{text-align:center;padding:40px 20px}
+.done .tick{width:60px;height:60px;border-radius:50%;background:var(--teal);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 18px}
+.done h2{font-size:24px;font-weight:800;margin:0 0 8px}
+.done p{color:var(--muted);font-size:14.5px;line-height:1.55;margin:0 0 24px}
+
+.hide{display:none}
+.small{font-size:12px;color:var(--muted);text-align:center;margin-top:14px;line-height:1.55}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <div class="brand">SpineFlow</div>
+
+  <!-- CARGANDO -->
+  <div id="loading">
+    <h1>Un segundo…</h1>
+    <p class="lead">Verificando tu código.</p>
+  </div>
+
+  <!-- CÓDIGO INVÁLIDO -->
+  <div id="badcode" class="hide">
+    <h1>Ese código no sirve</h1>
+    <p class="lead" id="badcodeReason">El código puede haber vencido o ya haber sido usado.</p>
+    <div class="box">
+      <p style="margin:0;font-size:14px;line-height:1.55">Si tu médico te lo acaba de generar, pedile uno nuevo. Los códigos vencen a los 10 minutos por seguridad.</p>
+    </div>
+  </div>
+
+  <!-- LOGIN / REGISTRO -->
+  <div id="auth" class="hide">
+    <div class="pat" id="patLabel">—</div>
+    <h1>Tu médico te invitó</h1>
+    <p class="lead" id="authLead">Creá tu cuenta para activar el programa de <b id="patName">—</b>. Es gratis por <b id="durLabel">4 semanas</b>.</p>
+
+    <div class="box" id="registerBox">
+      <h3>Crear cuenta</h3>
+      <input id="rEmail" type="email" placeholder="tu@email.com" autocomplete="email">
+      <input id="rPass" type="password" placeholder="Elegí una contraseña (mín. 6 caracteres)" autocomplete="new-password">
+      <button class="primary" id="registerBtn">Crear cuenta y activar</button>
+      <div class="err" id="rErr"></div>
+      <button class="ghost" onclick="showLogin()">Ya tengo cuenta →</button>
+    </div>
+
+    <div class="box hide" id="loginBox">
+      <h3>Entrar con mi cuenta</h3>
+      <input id="lEmail" type="email" placeholder="tu@email.com" autocomplete="email">
+      <input id="lPass" type="password" placeholder="Contraseña" autocomplete="current-password">
+      <button class="primary" id="loginBtn">Entrar y activar</button>
+      <div class="err" id="lErr"></div>
+      <button class="ghost" onclick="showRegister()">Necesito crear cuenta →</button>
+    </div>
+
+    <p class="small">Al continuar aceptás los <a href="/terminos" style="color:var(--deep)">términos</a> y la <a href="/privacidad" style="color:var(--deep)">política de privacidad</a>.</p>
+  </div>
+
+  <!-- ÉXITO -->
+  <div id="ok" class="hide done">
+    <div class="tick">✓</div>
+    <h2 id="okTitle">¡Todo listo!</h2>
+    <p id="okMsg">—</p>
+    <button class="primary" onclick="location.href='/app'">Ir al programa</button>
+  </div>
+</div>
+
+<script>
+// ⚠️ REEMPLAZAR con los valores REALES de Supabase (mismos que medico.html)
+const SUPABASE_URL  = 'https://atefklvwshuwrmeasrnq.supabase.co';
+const SUPABASE_ANON = 'sb_publishable_QFbwN6DQNY5idxUntqDSqg_EdF7TcSp';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+const PATOLOGIAS = {
+  hernia_cervical:'Hernia cervical', occipital:'Occipital (Arnold)',
+  cervicalgia_espasmo:'Cervicalgia', desfiladero:'Desfiladero torácico',
+  espasmo_dorsal:'Espasmo dorsal', escoliosis:'Escoliosis', dorsalgia:'Dorsalgia',
+  hernia_lumbar:'Hernia lumbar', lumbalgia:'Lumbalgia', piramidal:'Piramidal',
+  facetario:'Facetario', sacroileitis:'Sacroileítis', pubalgia:'Pubalgia',
+  postcirugia:'Post cirugía', plus60:'Programa +60', all:'Acceso completo'
+};
+const $=id=>document.getElementById(id);
+const params=new URLSearchParams(location.search);
+const code=params.get('c'), pat=params.get('p');
+
+function show(id){ ['loading','badcode','auth','ok'].forEach(x=>$(x).classList.add('hide')); $(id).classList.remove('hide'); }
+function showLogin(){ $('registerBox').classList.add('hide'); $('loginBox').classList.remove('hide'); }
+function showRegister(){ $('loginBox').classList.add('hide'); $('registerBox').classList.remove('hide'); }
+
+async function boot(){
+  if(!code||!pat){ $('badcodeReason').textContent='El link no tiene código.'; return show('badcode'); }
+
+  // 1. Chequeo rápido: ¿existe el código y está vigente?
+  const {data:info}=await sb.from('invite_codes').select('access_type,pathology,expires_at,used_at,duration_days').eq('code',code).maybeSingle();
+  if(!info){ $('badcodeReason').textContent='Ese código no existe.'; return show('badcode'); }
+  if(info.used_at){ $('badcodeReason').textContent='Ese código ya fue usado.'; return show('badcode'); }
+  if(new Date(info.expires_at)<new Date()){ $('badcodeReason').textContent='Ese código expiró. Pedile uno nuevo a tu médico.'; return show('badcode'); }
+
+  $('patLabel').textContent=PATOLOGIAS[pat]||pat;
+  $('patName').textContent=PATOLOGIAS[pat]||pat;
+  $('durLabel').textContent=`${info.duration_days} días`;
+
+  // 2. Si ya está logueado, canjear directo
+  const {data:{session}}=await sb.auth.getSession();
+  if(session) return redeem();
+  show('auth');
+}
+
+$('registerBtn').onclick=async()=>{
+  $('rErr').textContent='';
+  const e=$('rEmail').value.trim(), p=$('rPass').value;
+  if(!e||p.length<6){ $('rErr').textContent='Revisá el email y que la contraseña tenga al menos 6 caracteres.'; return; }
+  $('registerBtn').disabled=true; $('registerBtn').textContent='Creando cuenta…';
+  const {error}=await sb.auth.signUp({email:e,password:p});
+  if(error){ $('rErr').textContent=error.message; $('registerBtn').disabled=false; $('registerBtn').textContent='Crear cuenta y activar'; return; }
+  // Auto-signin en caso de que la confirmación sea diferida
+  await sb.auth.signInWithPassword({email:e,password:p});
+  redeem();
+};
+$('loginBtn').onclick=async()=>{
+  $('lErr').textContent='';
+  const e=$('lEmail').value.trim(), p=$('lPass').value;
+  $('loginBtn').disabled=true; $('loginBtn').textContent='Entrando…';
+  const {error}=await sb.auth.signInWithPassword({email:e,password:p});
+  if(error){ $('lErr').textContent=error.message; $('loginBtn').disabled=false; $('loginBtn').textContent='Entrar y activar'; return; }
+  redeem();
+};
+
+async function redeem(){
+  show('loading');
+  const {data,error}=await sb.rpc('redeem_invite_code',{p_code:code});
+  if(error){
+    $('badcodeReason').textContent=error.message;
+    return show('badcode');
+  }
+  const dur={28:'4 semanas',7:'1 semana',30:'1 mes'}[data.duration_days]||`${data.duration_days} días`;
+  $('okTitle').textContent='¡Programa activado!';
+  $('okMsg').innerHTML=`Ya tenés acceso al programa de <b>${PATOLOGIAS[data.pathology]||data.pathology}</b> por <b>${dur}</b>.<br><br>La Sesión 1 te va a quedar disponible para siempre, aunque no continúes después.`;
+  show('ok');
+}
+
+boot();
+</script>
+</body>
+</html>
