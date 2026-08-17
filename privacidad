@@ -1,0 +1,118 @@
+# Política de Privacidad de SpineFlow
+
+**Última actualización:** 14 de agosto de 2026
+
+En SpineFlow trabajamos con datos que tienen que ver con tu salud, así que la privacidad no es un formulario más: es parte del producto. Este documento te explica en criollo qué datos guardamos, para qué, con quién los compartimos y cómo podés borrarlos cuando quieras.
+
+## 1. Quién es el responsable
+
+- **Responsable:** Tristan Passaglia (VIGIA Apps)
+- **Domicilio:** Córdoba, Argentina
+- **Contacto:** vigia24app@gmail.com
+
+Somos quienes decidimos qué datos se recolectan y para qué se usan. Cumplimos con la **Ley Nacional 25.326 de Protección de Datos Personales** y su decreto reglamentario.
+
+## 2. Qué datos recolectamos
+
+**Datos que vos nos das al registrarte:**
+- Correo electrónico
+- Contraseña (guardada en formato encriptado, ni nosotros la vemos)
+- Nombre o apodo (opcional)
+
+**Datos que se generan cuando usás la app:**
+- La patología que elegiste tratar (por ejemplo: lumbalgia)
+- Tu progreso: qué sesiones completaste, qué semana estás cursando, tu racha
+- Preferencias de la app (velocidad de voz, notificaciones)
+
+**Datos técnicos automáticos:**
+- Modelo de dispositivo y sistema operativo
+- Dirección IP y ubicación aproximada (país/ciudad, no dirección exacta)
+- Fecha y hora de uso
+
+**Datos de pago:**
+- **No guardamos números de tarjeta ni CBU.** El pago lo procesa Mercado Pago; nosotros solo recibimos la confirmación de que la suscripción está paga.
+
+**Datos que NO recolectamos:**
+- Historia clínica formal
+- Documentos de identidad
+- Fotos, videos ni audios tuyos
+- Datos de familiares o terceros
+
+## 3. Datos sensibles
+
+Que uses SpineFlow para tratar una lumbalgia es un dato de salud, y la ley argentina los considera **datos sensibles**. Los tratamos con cuidado especial:
+
+- Cifrado en tránsito (conexión HTTPS) y en reposo (bases de datos encriptadas)
+- Acceso restringido: solo personal autorizado de VIGIA Apps
+- Nunca los usamos para publicidad
+- Nunca los vendemos a terceros
+
+## 4. Para qué usamos tus datos
+
+- **Prestarte el servicio:** darte acceso a tu programa, guardar tu progreso, mostrarte tu racha
+- **Adaptarnos a vos:** recomendarte la sesión que corresponde según tu avance
+- **Cobrarte:** procesar tu suscripción y renovaciones automáticas
+- **Mejorar la app:** estadísticas agregadas y anónimas (nunca datos individuales)
+- **Contactarte:** avisarte cambios importantes, recuperación de contraseña, soporte
+- **Cumplir la ley:** responder a la Justicia si nos lo pide formalmente
+
+## 5. Con quién compartimos tus datos
+
+Trabajamos con proveedores que nos ayudan a que la app funcione:
+
+| Proveedor | Para qué | Dónde están los datos |
+|---|---|---|
+| **Supabase** | Base de datos y autenticación | São Paulo, Brasil |
+| **Vercel** | Alojamiento de la app | Estados Unidos |
+| **Mercado Pago** | Procesamiento de pagos | Argentina |
+| **Cloudflare / Vercel Edge** | Distribución técnica (CDN) | Red global |
+
+Todos ellos tienen sus propias políticas de privacidad y cumplen con estándares internacionales. **No compartimos tus datos con nadie más**, salvo obligación legal.
+
+**Transferencia internacional:** algunos datos se almacenan fuera de Argentina. Los países involucrados (Brasil, EE.UU.) tienen niveles de protección adecuados según la Agencia de Acceso a la Información Pública argentina, o cuentan con contratos de transferencia con garantías equivalentes a la Ley 25.326.
+
+## 6. Cuánto tiempo guardamos tus datos
+
+- **Mientras tengas cuenta activa:** todos tus datos, para que puedas seguir usando la app
+- **Si cerrás tu cuenta:** eliminamos tus datos personales en un plazo máximo de **30 días**
+- **Datos de facturación:** los guardamos **10 años** por obligación fiscal (AFIP)
+- **Copias de seguridad:** pueden permanecer hasta **90 días** en backups antes de sobreescribirse
+
+## 7. Tus derechos (Habeas Data)
+
+Como titular de los datos, tenés derecho a:
+
+- **Acceso:** pedir una copia de todos los datos que tenemos sobre vos
+- **Rectificación:** corregir datos incorrectos
+- **Actualización:** modificar datos desactualizados
+- **Supresión:** pedir que borremos tu cuenta y datos
+- **Oposición:** oponerte a que usemos tus datos para determinados fines
+
+**Cómo ejercerlos:** mandanos un mail a **vigia24app@gmail.com** con el asunto "Habeas Data" y desde el mismo correo con el que te registraste. Te respondemos en máximo 10 días hábiles, sin cargo.
+
+Si considerás que no respetamos tus derechos, podés reclamar ante la **Agencia de Acceso a la Información Pública** (www.argentina.gob.ar/aaip).
+
+## 8. Seguridad
+
+Hacemos todo lo razonable para proteger tus datos, pero ningún sistema es 100% invulnerable. Si detectáramos una brecha de seguridad que te afecte, te avisaríamos por correo dentro de las 72 horas.
+
+De tu lado te pedimos:
+- Contraseña fuerte y no repetida
+- No compartir tu cuenta
+- Avisarnos si perdés el celular o sospechás que alguien accedió sin permiso
+
+## 9. Menores de edad
+
+SpineFlow está pensada para **personas mayores de 18 años**. Si sos menor, no te registres por tu cuenta: hablalo con tu médico o con tus padres. Si detectamos una cuenta de un menor sin consentimiento parental, la eliminamos.
+
+## 10. Cookies y tecnologías similares
+
+Usamos cookies técnicas indispensables para que la app funcione (mantener tu sesión abierta, preferencias). **No usamos cookies publicitarias ni de seguimiento de terceros.**
+
+## 11. Cambios en esta política
+
+Si la modificamos, te avisamos por correo y dentro de la app con al menos 30 días de anticipación. Si no estás de acuerdo con los cambios, podés cerrar tu cuenta antes de que entren en vigencia.
+
+## 12. Contacto
+
+**vigia24app@gmail.com** — respondemos en 48 horas hábiles.
