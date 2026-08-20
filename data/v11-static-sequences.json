@@ -308,9 +308,11 @@
       "name": "Estiramiento isquiotibial con toalla",
       "folder": "media/sequences/s4/",
       "files": [
-        "01.webp"
+        "01.webp",
+        "02.webp",
+        "03.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "3 rep × pierna",
       "reps": "30 seg cada pierna"
     },
@@ -338,9 +340,11 @@
       "name": "Caminata terapéutica progresiva",
       "folder": "media/sequences/s7/",
       "files": [
-        "01.webp"
+        "01.webp",
+        "02.webp",
+        "03.webp"
       ],
-      "status": "pending",
+      "status": "ready",
       "series": "1 vez/día, todos los días",
       "reps": "15-20 minutos"
     },
