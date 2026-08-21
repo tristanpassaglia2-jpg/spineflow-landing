@@ -645,7 +645,7 @@
       "media/sequences/s4/02.webp",
       "media/sequences/s4/03.webp"
     ],
-    "status": "pending"
+    "status": "ready"
   },
   "s7": {
     "name": "Caminata terapéutica",
@@ -655,7 +655,7 @@
       "media/sequences/s7/02.webp",
       "media/sequences/s7/03.webp"
     ],
-    "status": "pending"
+    "status": "ready"
   },
   "s60_01": {
     "name": "Sentarse/levantarse con apoyo",
@@ -813,7 +813,7 @@
       "media/sequences/s60_16/02.webp",
       "media/sequences/s60_16/03.webp"
     ],
-    "status": "pending"
+    "status": "ready"
   },
   "s60_17": {
     "name": "Estocada reversa con silla",
@@ -823,7 +823,7 @@
       "media/sequences/s60_17/02.webp",
       "media/sequences/s60_17/03.webp"
     ],
-    "status": "pending"
+    "status": "ready"
   },
   "s60_18": {
     "name": "Push-up en pared",
@@ -833,7 +833,7 @@
       "media/sequences/s60_18/02.webp",
       "media/sequences/s60_18/03.webp"
     ],
-    "status": "pending"
+    "status": "ready"
   },
   "s60_19": {
     "name": "Marcha con brazos",
@@ -843,7 +843,7 @@
       "media/sequences/s60_19/02.webp",
       "media/sequences/s60_19/03.webp"
     ],
-    "status": "pending"
+    "status": "ready"
   },
   "s60_20": {
     "name": "Extensión de rodilla sentado",
@@ -853,7 +853,7 @@
       "media/sequences/s60_20/02.webp",
       "media/sequences/s60_20/03.webp"
     ],
-    "status": "pending"
+    "status": "ready"
   },
   "s60_21": {
     "name": "Elevación rodillas con banda",
@@ -863,7 +863,7 @@
       "media/sequences/s60_21/02.webp",
       "media/sequences/s60_21/03.webp"
     ],
-    "status": "pending"
+    "status": "ready"
   },
   "s60_22": {
     "name": "Puente en silla",
@@ -873,7 +873,7 @@
       "media/sequences/s60_22/02.webp",
       "media/sequences/s60_22/03.webp"
     ],
-    "status": "pending"
+    "status": "ready"
   },
   "s60_23": {
     "name": "Dead bug en silla",
@@ -883,7 +883,7 @@
       "media/sequences/s60_23/02.webp",
       "media/sequences/s60_23/03.webp"
     ],
-    "status": "pending"
+    "status": "ready"
   },
   "p1": {
     "name": "Bombeo de tobillos",
