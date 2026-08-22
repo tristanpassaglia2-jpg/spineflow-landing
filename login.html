@@ -1,9 +1,423 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Login · SpineFlow</title><link rel="stylesheet" href="assets/styles.css" /></head>
-<body><nav class="nav"><div class="nav-inner"><a class="brand" href="index.html"><span class="brand-orb"></span><span>SPINEFLOW</span></a><div class="nav-links"><a href="index.html#mapa">Mapa</a><a href="index.html#catalogo">Módulos</a><a href="login.html">Login</a><a class="btn" href="index.html#planes">Empezar a vender</a></div></div></nav>
-<div class="container"><div class="breadcrumbs"><a href="index.html">Inicio</a> / <span>Login</span></div>
-<section class="page-hero"><div class="summary"><span class="badge">Acceso</span><h1>Entrar a SpineFlow</h1><p class="sub">Pantalla demo lista para conectar con Supabase o Firebase. Visualmente ya cumple la función comercial de mostrar acceso de usuarios y área privada.</p><div class="price-box"><span class="price-chip">Supabase ready</span><span class="price-chip">Firebase ready</span><span class="price-chip">Static demo</span></div><div class="source-box" style="margin-top:14px">Cuando tengas credenciales, este bloque puede reemplazarse por login real, recuperación de contraseña, planes activos y dashboard del paciente.</div></div><div class="hero-visual"><div class="avaCard"><div class="avaLabel">Demo</div><div class="avaTitle">Acceso visual</div><img src="assets/images/valen.png" alt="Valen" /><p class="avaDesc">Útil para vender una experiencia más completa desde el primer lanzamiento.</p></div></div></section>
-<section class="section-card"><div class="toolbar"><input placeholder="Email" /><input placeholder="Contraseña" type="password" /><button class="btn">Entrar</button></div></section>
-<section class="section-card"><div class="cta-strip"><div class="cta-panel"><h3>Para producción</h3><ul class="cta-list"><li>Conectar autenticación real.</li><li>Mostrar módulos comprados.</li><li>Habilitar seguimiento y progreso.</li></ul></div><div class="cta-panel"><h3>Para ventas</h3><p>Podés usar esta página como parte del pitch comercial: el paciente ve que existe un acceso exclusivo y percibe más valor que en un PDF o una landing simple.</p></div></div></section>
-<div class="footer">SpineFlow · login demo listo para evolucionar a acceso real</div></div></body></html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Login · SpineFlow</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<style>
+  /* ── Login card ── */
+  .login-wrap {
+    max-width: 420px;
+    margin: 40px auto;
+    padding: 0 16px;
+  }
+  .login-card {
+    background: var(--card-bg, #fff);
+    border: 1px solid var(--border, #e2e8f0);
+    border-radius: 16px;
+    padding: 32px 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.06);
+  }
+  .login-card h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 0 0 6px;
+    color: var(--heading, #1a202c);
+  }
+  .login-card .sub {
+    text-align: center;
+    color: var(--muted, #718096);
+    font-size: .9rem;
+    margin: 0 0 24px;
+  }
+  .login-card label {
+    display: block;
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--heading, #1a202c);
+    margin: 0 0 6px;
+  }
+  .login-card input[type="email"],
+  .login-card input[type="password"],
+  .login-card input[type="text"] {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border, #e2e8f0);
+    border-radius: 8px;
+    font-size: .95rem;
+    margin: 0 0 16px;
+    box-sizing: border-box;
+    background: var(--bg, #f7fafc);
+    transition: border-color .2s;
+  }
+  .login-card input:focus {
+    outline: none;
+    border-color: #319795;
+    box-shadow: 0 0 0 3px rgba(49,151,149,.15);
+  }
+  .login-card .btn-primary {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #319795, #2b6cb0);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity .2s;
+  }
+  .login-card .btn-primary:hover { opacity: .9; }
+  .login-card .btn-primary:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+  }
+  .login-card .switch-link {
+    text-align: center;
+    margin-top: 18px;
+    font-size: .85rem;
+    color: var(--muted, #718096);
+  }
+  .login-card .switch-link a {
+    color: #319795;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .login-card .switch-link a:hover { text-decoration: underline; }
+  .login-card .forgot-link {
+    text-align: right;
+    margin: -10px 0 16px;
+    font-size: .8rem;
+  }
+  .login-card .forgot-link a {
+    color: #319795;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  /* ── Mensajes ── */
+  .msg {
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: .85rem;
+    margin: 0 0 16px;
+    display: none;
+  }
+  .msg.error {
+    background: #fff5f5;
+    color: #c53030;
+    border: 1px solid #feb2b2;
+    display: block;
+  }
+  .msg.success {
+    background: #f0fff4;
+    color: #276749;
+    border: 1px solid #9ae6b4;
+    display: block;
+  }
+  /* ── Spinner ── */
+  .btn-primary .spinner {
+    display: inline-block;
+    width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin .6s linear infinite;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  /* ── Orb (por si styles.css no la tiene) ── */
+  .brand-orb {
+    display: inline-block;
+    width: 10px; height: 10px;
+    background: #319795;
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+  /* ── Logged-in view ── */
+  .logged-in-card {
+    text-align: center;
+  }
+  .logged-in-card .avatar {
+    width: 64px; height: 64px;
+    background: linear-gradient(135deg, #319795, #2b6cb0);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; color: #fff; font-weight: 700;
+    margin: 0 auto 12px;
+  }
+  .logged-in-card .user-email {
+    color: var(--muted, #718096);
+    font-size: .9rem;
+    margin: 0 0 20px;
+    word-break: break-all;
+  }
+  .btn-outline {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    color: #c53030;
+    border: 1px solid #feb2b2;
+    border-radius: 10px;
+    font-size: .9rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background .2s;
+  }
+  .btn-outline:hover { background: #fff5f5; }
+  .btn-go-app {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #319795, #2b6cb0);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-orb"></span><span>SPINEFLOW</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#mapa">Mapa</a>
+      <a href="index.html#catalogo">Módulos</a>
+      <a href="login.html">Login</a>
+      <a class="btn" href="index.html#planes">Empezar</a>
+    </div>
+  </div>
+</nav>
+
+<div class="login-wrap">
+
+  <!-- ══════ Vista: LOGIN ══════ -->
+  <div id="view-login" class="login-card">
+    <h2>👋 Entrar a SpineFlow</h2>
+    <p class="sub">Tu programa de rehabilitación personalizado</p>
+    <div id="msg-login" class="msg"></div>
+
+    <label for="login-email">Email</label>
+    <input type="email" id="login-email" placeholder="tu@email.com" autocomplete="email" />
+
+    <label for="login-pass">Contraseña</label>
+    <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password" />
+    <div class="forgot-link"><a onclick="showView('forgot')">¿Olvidaste tu contraseña?</a></div>
+
+    <button class="btn-primary" id="btn-login" onclick="doLogin()">Entrar</button>
+
+    <div class="switch-link">
+      ¿No tenés cuenta? <a onclick="showView('register')">Registrate gratis</a>
+    </div>
+  </div>
+
+  <!-- ══════ Vista: REGISTRO ══════ -->
+  <div id="view-register" class="login-card" style="display:none">
+    <h2>🚀 Crear cuenta</h2>
+    <p class="sub">La Sesión 1 de tu patología es gratis, para siempre</p>
+    <div id="msg-register" class="msg"></div>
+
+    <label for="reg-name">Nombre</label>
+    <input type="text" id="reg-name" placeholder="Tu nombre" autocomplete="name" />
+
+    <label for="reg-email">Email</label>
+    <input type="email" id="reg-email" placeholder="tu@email.com" autocomplete="email" />
+
+    <label for="reg-pass">Contraseña</label>
+    <input type="password" id="reg-pass" placeholder="Mínimo 6 caracteres" autocomplete="new-password" />
+
+    <button class="btn-primary" id="btn-register" onclick="doRegister()">Crear mi cuenta</button>
+
+    <div class="switch-link">
+      ¿Ya tenés cuenta? <a onclick="showView('login')">Entrar</a>
+    </div>
+  </div>
+
+  <!-- ══════ Vista: OLVIDÉ CONTRASEÑA ══════ -->
+  <div id="view-forgot" class="login-card" style="display:none">
+    <h2>🔑 Recuperar contraseña</h2>
+    <p class="sub">Te mandamos un email para resetearla</p>
+    <div id="msg-forgot" class="msg"></div>
+
+    <label for="forgot-email">Email de tu cuenta</label>
+    <input type="email" id="forgot-email" placeholder="tu@email.com" autocomplete="email" />
+
+    <button class="btn-primary" id="btn-forgot" onclick="doForgot()">Enviar enlace</button>
+
+    <div class="switch-link">
+      <a onclick="showView('login')">← Volver al login</a>
+    </div>
+  </div>
+
+  <!-- ══════ Vista: YA LOGUEADO ══════ -->
+  <div id="view-logged" class="login-card logged-in-card" style="display:none">
+    <div class="avatar" id="user-avatar">?</div>
+    <h2 id="user-name">Hola</h2>
+    <p class="user-email" id="user-email"></p>
+    <a class="btn-go-app" href="index.html">Ir a mi programa →</a>
+    <button class="btn-outline" onclick="doLogout()">Cerrar sesión</button>
+  </div>
+
+</div>
+
+<div class="footer">SpineFlow · Rehabilitación de columna con programa clínico personalizado</div>
+
+<script>
+// ── Supabase init ──
+const SUPABASE_URL  = 'https://atefklvwshuwrmeasrnq.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0ZWZrbHZ3c2h1d3JtZWFzcm5xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU0MjgxMTQsImV4cCI6MjEwMTAwNDExNH0.R7r_tagPkqAmdxI2JYhkQ_s4Gzt7ZA1Q2QbzvtOi2kI';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+// ── Views ──
+const views = ['login', 'register', 'forgot', 'logged'];
+function showView(name) {
+  views.forEach(v => {
+    const el = document.getElementById('view-' + v);
+    if (el) el.style.display = v === name ? 'block' : 'none';
+  });
+  // Limpiar mensajes
+  document.querySelectorAll('.msg').forEach(m => { m.className = 'msg'; m.textContent = ''; });
+}
+
+function showMsg(viewName, text, type) {
+  const el = document.getElementById('msg-' + viewName);
+  if (!el) return;
+  el.textContent = text;
+  el.className = 'msg ' + type;
+}
+
+function setLoading(btnId, loading) {
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+  btn.disabled = loading;
+  if (loading) {
+    btn.dataset.originalText = btn.textContent;
+    btn.innerHTML = '<span class="spinner"></span> Cargando…';
+  } else {
+    btn.textContent = btn.dataset.originalText || 'OK';
+  }
+}
+
+// ── Traducir errores de Supabase ──
+function translateError(msg) {
+  if (!msg) return 'Ocurrió un error. Intentá de nuevo.';
+  const m = msg.toLowerCase();
+  if (m.includes('invalid login'))        return 'Email o contraseña incorrectos.';
+  if (m.includes('email not confirmed'))  return 'Revisá tu email y confirmá tu cuenta antes de entrar.';
+  if (m.includes('user already registered')) return 'Ya existe una cuenta con ese email. ¿Querés entrar?';
+  if (m.includes('password') && m.includes('6')) return 'La contraseña tiene que tener al menos 6 caracteres.';
+  if (m.includes('rate limit'))           return 'Demasiados intentos. Esperá un momento y volvé a probar.';
+  if (m.includes('email'))                return 'Revisá que el email esté bien escrito.';
+  return msg;
+}
+
+// ── LOGIN ──
+async function doLogin() {
+  const email = document.getElementById('login-email').value.trim();
+  const pass  = document.getElementById('login-pass').value;
+  if (!email || !pass) { showMsg('login', 'Completá email y contraseña.', 'error'); return; }
+
+  setLoading('btn-login', true);
+  const { data, error } = await sb.auth.signInWithPassword({ email, password: pass });
+  setLoading('btn-login', false);
+
+  if (error) { showMsg('login', translateError(error.message), 'error'); return; }
+  showLoggedView(data.user);
+}
+
+// ── REGISTRO ──
+async function doRegister() {
+  const name  = document.getElementById('reg-name').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const pass  = document.getElementById('reg-pass').value;
+  if (!email || !pass) { showMsg('register', 'Completá email y contraseña.', 'error'); return; }
+  if (pass.length < 6) { showMsg('register', 'La contraseña tiene que tener al menos 6 caracteres.', 'error'); return; }
+
+  setLoading('btn-register', true);
+  const { data, error } = await sb.auth.signUp({
+    email,
+    password: pass,
+    options: { data: { display_name: name || email.split('@')[0] } }
+  });
+  setLoading('btn-register', false);
+
+  if (error) { showMsg('register', translateError(error.message), 'error'); return; }
+
+  // Si Supabase tiene "Confirm email" habilitado, el user no estará confirmado aún
+  if (data.user && !data.user.email_confirmed_at && !data.session) {
+    showMsg('register', '✅ ¡Cuenta creada! Revisá tu email y hacé clic en el enlace de confirmación para entrar.', 'success');
+  } else {
+    // Email confirmation desactivado → entra directo
+    // Actualizar display_name en profiles
+    if (name) {
+      await sb.from('profiles').update({ display_name: name }).eq('id', data.user.id);
+    }
+    showLoggedView(data.user);
+  }
+}
+
+// ── OLVIDÉ CONTRASEÑA ──
+async function doForgot() {
+  const email = document.getElementById('forgot-email').value.trim();
+  if (!email) { showMsg('forgot', 'Poné tu email.', 'error'); return; }
+
+  setLoading('btn-forgot', true);
+  const { error } = await sb.auth.resetPasswordForEmail(email, {
+    redirectTo: window.location.origin + '/login.html'
+  });
+  setLoading('btn-forgot', false);
+
+  if (error) { showMsg('forgot', translateError(error.message), 'error'); return; }
+  showMsg('forgot', '✅ Si esa cuenta existe, te mandamos un email con el enlace para resetear tu contraseña.', 'success');
+}
+
+// ── LOGOUT ──
+async function doLogout() {
+  await sb.auth.signOut();
+  showView('login');
+}
+
+// ── Vista logueado ──
+function showLoggedView(user) {
+  const name = user.user_metadata?.display_name || user.email?.split('@')[0] || 'Usuario';
+  document.getElementById('user-avatar').textContent = name.charAt(0).toUpperCase();
+  document.getElementById('user-name').textContent = '¡Hola, ' + name + '!';
+  document.getElementById('user-email').textContent = user.email;
+  showView('logged');
+}
+
+// ── Enter = submit ──
+document.addEventListener('keydown', function(e) {
+  if (e.key !== 'Enter') return;
+  const active = document.activeElement;
+  if (!active) return;
+  if (active.id === 'login-email' || active.id === 'login-pass') doLogin();
+  if (active.id === 'reg-name' || active.id === 'reg-email' || active.id === 'reg-pass') doRegister();
+  if (active.id === 'forgot-email') doForgot();
+});
+
+// ── Check sesión activa al cargar ──
+(async function init() {
+  const { data: { session } } = await sb.auth.getSession();
+  if (session?.user) {
+    showLoggedView(session.user);
+  }
+})();
+</script>
+</body>
+</html>
