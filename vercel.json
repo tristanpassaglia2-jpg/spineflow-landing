@@ -3,16 +3,6 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/login",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/login.html",
-      "destination": "/",
-      "permanent": true
-    },
-    {
       "source": "/pages/:path*",
       "destination": "/",
       "permanent": true
