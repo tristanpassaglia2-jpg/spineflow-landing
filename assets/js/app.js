@@ -2,24 +2,43 @@
   'use strict';
   const $ = (s, root = document) => root.querySelector(s);
   const app = $('#app');
+
+  /* ── Supabase ── */
+  const SB_URL = 'https://atefklvwshuwrmeasrnq.supabase.co';
+  const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0ZWZrbHZ3c2h1d3JtZWFzcm5xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU0MjgxMTQsImV4cCI6MjEwMTAwNDExNH0.R7r_tagPkqAmdxI2JYhkQ_s4Gzt7ZA1Q2QbzvtOi2kI';
+  const sb = supabase.createClient(SB_URL, SB_KEY);
+
+  /* ── Local cache (dark mode + offline fallback) ── */
   const store = {
     get(key, fallback) { try { const v = localStorage.getItem(`sf9_${key}`); return v === null ? fallback : JSON.parse(v); } catch { return fallback; } },
     set(key, value) { localStorage.setItem(`sf9_${key}`, JSON.stringify(value)); }
   };
+
+  /* ── State ── */
   const state = {
-    exercises: {}, regions: [], view: store.get('session', false) ? 'dashboard' : 'landing',
+    user: null, displayName: '', exercises: {}, regions: [], view: 'landing',
     currentRegion: null, currentPath: null, currentExercise: null, phase: 0,
-    premium: store.get('premium', false), dark: store.get('dark', false),
-    favorites: store.get('favorites', []), history: store.get('history', []),
-    scores: store.get('scores', { eva: 3, odi: 18, ndi: 14 }), player: null, seconds: 30
+    premium: false, dark: store.get('dark', false),
+    favorites: [], history: [],
+    scores: { eva: 3, odi: 18, ndi: 14 },
+    player: null, seconds: 30, authView: 'login', scoreTimer: null
   };
   const phases = ['Posición inicial', 'Movimiento', 'Pausa', 'Retorno', 'Repetición'];
   const icons = { dashboard:'⌂', modules:'◫', progress:'↗', calendar:'▦', education:'◇', favorites:'♡' };
   const labels = { dashboard:'Inicio', modules:'Mi programa', progress:'Progreso clínico', calendar:'Calendario', education:'Biblioteca', favorites:'Favoritos' };
 
+  /* ══════════════════════════════════════
+     INIT
+  ══════════════════════════════════════ */
   async function init() {
     document.body.classList.toggle('dark', state.dark);
     try {
+      const { data: { session } } = await sb.auth.getSession();
+      if (session?.user) {
+        state.user = session.user;
+        await loadUserData();
+        state.view = 'dashboard';
+      }
       const [e, r] = await Promise.all([fetch('data/exercises.json'), fetch('data/regions.json')]);
       if (!e.ok || !r.ok) throw new Error('No se pudieron cargar los datos clínicos');
       state.exercises = await e.json(); state.regions = await r.json();
@@ -28,20 +47,143 @@
     } catch (error) {
       app.innerHTML = `<div class="boot"><span class="boot-mark">!</span><h2>No pudimos iniciar SpineFlow</h2><p>${error.message}. Usá un servidor local o Vercel, no abras el HTML con doble clic.</p></div>`;
     }
+    sb.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN' && session?.user && !state.user) {
+        state.user = session.user;
+        loadUserData().then(() => { state.view = 'dashboard'; render(); toast('¡Bienvenido/a!'); });
+      }
+    });
   }
 
+  /* ══════════════════════════════════════
+     USER DATA — SYNC CON SUPABASE
+  ══════════════════════════════════════ */
+  async function loadUserData() {
+    try {
+      const { data: profile } = await sb.from('profiles').select('favorites, scores, is_premium, display_name').eq('id', state.user.id).single();
+      if (profile) {
+        state.favorites = profile.favorites || [];
+        state.scores = profile.scores || { eva: 3, odi: 18, ndi: 14 };
+        state.premium = profile.is_premium || false;
+        state.displayName = profile.display_name || state.user.user_metadata?.display_name || '';
+      }
+      const { data: progress } = await sb.from('exercise_progress').select('exercise_id, completed_at').eq('user_id', state.user.id).order('completed_at', { ascending: false }).limit(500);
+      if (progress) {
+        state.history = progress.map(p => ({ id: p.exercise_id, at: new Date(p.completed_at).getTime() }));
+      }
+      store.set('favorites', state.favorites);
+      store.set('history', state.history);
+      store.set('scores', state.scores);
+      store.set('premium', state.premium);
+    } catch {
+      state.favorites = store.get('favorites', []);
+      state.history = store.get('history', []);
+      state.scores = store.get('scores', { eva: 3, odi: 18, ndi: 14 });
+      state.premium = store.get('premium', false);
+      state.displayName = '';
+    }
+  }
+  async function saveProfile(fields) {
+    if (!state.user) return;
+    try { await sb.from('profiles').update(fields).eq('id', state.user.id); } catch {}
+  }
+
+  /* ══════════════════════════════════════
+     AUTH — LOGIN / REGISTRO / RECUPERAR
+  ══════════════════════════════════════ */
+  function translateError(msg) {
+    if (!msg) return 'Ocurrió un error. Intentá de nuevo.';
+    const m = msg.toLowerCase();
+    if (m.includes('invalid login')) return 'Email o contraseña incorrectos.';
+    if (m.includes('email not confirmed')) return 'Revisá tu email y confirmá tu cuenta antes de entrar.';
+    if (m.includes('user already registered')) return 'Ya existe una cuenta con ese email. ¿Querés entrar?';
+    if (m.includes('password') && m.includes('6')) return 'La contraseña tiene que tener al menos 6 caracteres.';
+    if (m.includes('rate limit')) return 'Demasiados intentos. Esperá un momento.';
+    if (m.includes('email')) return 'Revisá que el email esté bien escrito.';
+    return msg;
+  }
+  function showAuthMsg(text, type) {
+    const el = $('#authMsg');
+    if (!el) return;
+    el.innerHTML = `<div style="padding:10px 14px;border-radius:8px;font-size:.85rem;margin:0 0 16px;background:${type === 'error' ? '#fff5f5' : '#f0fff4'};color:${type === 'error' ? '#c53030' : '#276749'};border:1px solid ${type === 'error' ? '#feb2b2' : '#9ae6b4'}">${text}</div>`;
+  }
+  function setAuthLoading(on) {
+    const btn = $('#authBtn');
+    if (!btn) return;
+    btn.disabled = on;
+    if (on) { btn.dataset.text = btn.textContent; btn.textContent = 'Cargando…'; }
+    else btn.textContent = btn.dataset.text || 'OK';
+  }
+
+  async function doLogin() {
+    const email = $('#authEmail')?.value.trim();
+    const pass = $('#authPass')?.value;
+    if (!email || !pass) return showAuthMsg('Completá email y contraseña.', 'error');
+    setAuthLoading(true);
+    const { data, error } = await sb.auth.signInWithPassword({ email, password: pass });
+    setAuthLoading(false);
+    if (error) return showAuthMsg(translateError(error.message), 'error');
+    state.user = data.user;
+    await loadUserData();
+    go('dashboard');
+    toast('¡Bienvenido/a!');
+  }
+  async function doRegister() {
+    const name = $('#authName')?.value.trim();
+    const email = $('#authEmail')?.value.trim();
+    const pass = $('#authPass')?.value;
+    if (!email || !pass) return showAuthMsg('Completá email y contraseña.', 'error');
+    if (pass.length < 6) return showAuthMsg('La contraseña tiene que tener al menos 6 caracteres.', 'error');
+    setAuthLoading(true);
+    const { data, error } = await sb.auth.signUp({ email, password: pass, options: { data: { display_name: name || email.split('@')[0] } } });
+    setAuthLoading(false);
+    if (error) return showAuthMsg(translateError(error.message), 'error');
+    if (data.user && !data.user.email_confirmed_at && !data.session) {
+      showAuthMsg('✅ ¡Cuenta creada! Revisá tu email y hacé clic en el enlace de confirmación para entrar.', 'success');
+    } else {
+      state.user = data.user;
+      if (name) await saveProfile({ display_name: name });
+      await loadUserData();
+      go('dashboard');
+      toast('¡Cuenta creada! Bienvenido/a');
+    }
+  }
+  async function doForgot() {
+    const email = $('#authEmail')?.value.trim();
+    if (!email) return showAuthMsg('Poné tu email.', 'error');
+    setAuthLoading(true);
+    const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin + '/login' });
+    setAuthLoading(false);
+    if (error) return showAuthMsg(translateError(error.message), 'error');
+    showAuthMsg('✅ Si esa cuenta existe, te mandamos un email para resetear tu contraseña.', 'success');
+  }
+  async function logout() {
+    await sb.auth.signOut();
+    state.user = null; state.displayName = '';
+    state.favorites = []; state.history = [];
+    state.scores = { eva: 3, odi: 18, ndi: 14 }; state.premium = false;
+    go('landing');
+    toast('Sesión cerrada');
+  }
+
+  /* ══════════════════════════════════════
+     NAVIGATION & RENDER
+  ══════════════════════════════════════ */
   function go(view, params = {}) {
     clearPlayer(); Object.assign(state, params); state.view = view; window.scrollTo({ top: 0, behavior: 'smooth' }); render();
   }
   function render() {
     if (state.view === 'landing') return renderLanding();
     if (state.view === 'login') return renderLogin();
+    if (!state.user) { state.view = 'login'; return renderLogin(); }
     app.innerHTML = shell(page()); bindShell(); bindPage();
   }
+
+  /* ── Landing ── */
   function renderLanding() {
     app.innerHTML = `<div class="landing">
-      <nav class="landing-nav"><div class="brand"><span class="brand-mark">SF</span>SpineFlow</div><div class="landing-actions"><button class="btn btn-light" data-action="login">Ingresar</button><button class="btn btn-primary" data-action="enter">Comenzar</button></div></nav>
-      <main class="hero"><div class="hero-copy"><p class="eyebrow">Rehabilitación de columna · Guiada y progresiva</p><h1>Volvé a moverte con <span>confianza.</span></h1><p>Un programa clínico claro para acompañar tu recuperación cervical, dorsal, lumbar o adultos +60. 100 ejercicios específicos, seguimiento y una guía humana en cada paso.</p><div class="hero-actions"><button class="btn btn-primary" data-action="enter">Explorar mi programa →</button><button class="btn btn-light" data-action="login">Ya tengo una cuenta</button></div><div class="trust-row"><span>Diseño clínico</span><span>Progreso medible</span><span>En casa o consultorio</span></div></div>
+      <nav class="landing-nav"><div class="brand"><span class="brand-mark">SF</span>SpineFlow</div><div class="landing-actions"><button class="btn btn-light" data-action="login">Ingresar</button><button class="btn btn-primary" data-action="register">Comenzar</button></div></nav>
+      <main class="hero"><div class="hero-copy"><p class="eyebrow">Rehabilitación de columna · Guiada y progresiva</p><h1>Volvé a moverte con <span>confianza.</span></h1><p>Un programa clínico claro para acompañar tu recuperación cervical, dorsal, lumbar o adultos +60. 100 ejercicios específicos, seguimiento y una guía humana en cada paso.</p><div class="hero-actions"><button class="btn btn-primary" data-action="register">Crear mi cuenta gratis →</button><button class="btn btn-light" data-action="login">Ya tengo una cuenta</button></div><div class="trust-row"><span>Diseño clínico</span><span>Progreso medible</span><span>En casa o consultorio</span></div></div>
       <div class="hero-visual"><img class="hero-photo" src="media/coach/mi-profe.webp" alt="Mis profes, guías de SpineFlow"><div class="coach-badge"><span class="coach-dot"></span><div><strong>Mis profes</strong><span>Tu guía en los 100 ejercicios</span></div></div></div></main>
       <section class="proof-strip"><div><strong>100</strong><span>ejercicios específicos</span></div><div><strong>4</strong><span>módulos SpineFlow</span></div><div><strong>14</strong><span>programas por patología</span></div><div><strong>1-5</strong><span>fases visuales por ejercicio</span></div></section>
     </div>`;
@@ -49,25 +191,71 @@
   }
   function landingClick(e) {
     const action = e.target.closest('[data-action]')?.dataset.action;
-    if (action === 'login') go('login');
-    if (action === 'enter') { store.set('session', true); go('dashboard'); }
+    if (action === 'login') { state.authView = 'login'; go('login'); }
+    else if (action === 'register') { state.authView = 'register'; go('login'); }
     else if (state.view === 'landing') app.addEventListener('click', landingClick, { once: true });
   }
+
+  /* ── Login / Registro / Recuperar ── */
   function renderLogin() {
-    app.innerHTML = `<div class="login-wrap"><div class="login-visual"><h2>Tu recuperación merece claridad, constancia y acompañamiento.</h2></div><div class="login-form"><form class="login-box" id="loginForm"><button type="button" class="btn btn-ghost" data-back>← Volver</button><div class="brand"><span class="brand-mark">SF</span>SpineFlow</div><h1>Bienvenido/a</h1><p class="muted">Ingresá para continuar con tu programa.</p><div class="field"><label>Correo electrónico</label><input type="email" required placeholder="nombre@correo.com"></div><div class="field"><label>Contraseña</label><input type="password" required minlength="4" placeholder="••••••••"></div><button class="btn btn-primary btn-wide">Ingresar</button><p class="safe-note">Modo de demostración seguro: este paquete no contiene claves ni modifica usuarios de Supabase. La conexión real se habilita al configurar las variables del proyecto.</p></form></div></div>`;
-    $('[data-back]').onclick = () => go('landing');
-    $('#loginForm').onsubmit = e => { e.preventDefault(); store.set('session', true); go('dashboard'); toast('Sesión de demostración iniciada'); };
+    const v = state.authView || 'login';
+    let inner;
+    if (v === 'register') {
+      inner = `<button type="button" class="btn btn-ghost" data-auth-back>← Volver</button>
+        <div class="brand"><span class="brand-mark">SF</span>SpineFlow</div>
+        <h1>Crear cuenta</h1><p class="muted">La Sesión 1 de tu patología es gratis, para siempre.</p>
+        <div id="authMsg"></div>
+        <div class="field"><label>Nombre</label><input type="text" id="authName" placeholder="Tu nombre" autocomplete="name"></div>
+        <div class="field"><label>Email</label><input type="email" id="authEmail" required placeholder="tu@email.com" autocomplete="email"></div>
+        <div class="field"><label>Contraseña</label><input type="password" id="authPass" required minlength="6" placeholder="Mínimo 6 caracteres" autocomplete="new-password"></div>
+        <button class="btn btn-primary btn-wide" id="authBtn">Crear mi cuenta</button>
+        <p class="muted" style="text-align:center;margin-top:16px">¿Ya tenés cuenta? <a href="#" class="auth-link" data-to="login">Entrar</a></p>`;
+    } else if (v === 'forgot') {
+      inner = `<button type="button" class="btn btn-ghost" data-auth-back>← Volver</button>
+        <div class="brand"><span class="brand-mark">SF</span>SpineFlow</div>
+        <h1>Recuperar contraseña</h1><p class="muted">Te mandamos un email para resetearla.</p>
+        <div id="authMsg"></div>
+        <div class="field"><label>Email de tu cuenta</label><input type="email" id="authEmail" required placeholder="tu@email.com" autocomplete="email"></div>
+        <button class="btn btn-primary btn-wide" id="authBtn">Enviar enlace</button>
+        <p class="muted" style="text-align:center;margin-top:16px"><a href="#" class="auth-link" data-to="login">← Volver al login</a></p>`;
+    } else {
+      inner = `<button type="button" class="btn btn-ghost" data-auth-back>← Volver</button>
+        <div class="brand"><span class="brand-mark">SF</span>SpineFlow</div>
+        <h1>Bienvenido/a</h1><p class="muted">Ingresá para continuar con tu programa.</p>
+        <div id="authMsg"></div>
+        <div class="field"><label>Correo electrónico</label><input type="email" id="authEmail" required placeholder="tu@email.com" autocomplete="email"></div>
+        <div class="field"><label>Contraseña</label><input type="password" id="authPass" required minlength="4" placeholder="••••••••" autocomplete="current-password"></div>
+        <p style="text-align:right;margin:-8px 0 12px"><a href="#" class="auth-link" data-to="forgot" style="font-size:.85rem">¿Olvidaste tu contraseña?</a></p>
+        <button class="btn btn-primary btn-wide" id="authBtn">Ingresar</button>
+        <p class="muted" style="text-align:center;margin-top:16px">¿No tenés cuenta? <a href="#" class="auth-link" data-to="register">Registrate gratis</a></p>`;
+    }
+    app.innerHTML = `<div class="login-wrap"><div class="login-visual"><h2>Tu recuperación merece claridad, constancia y acompañamiento.</h2></div><div class="login-form"><div class="login-box">${inner}</div></div></div>`;
+    $('[data-auth-back]')?.addEventListener('click', () => { state.authView = 'login'; go('landing'); });
+    document.querySelectorAll('.auth-link').forEach(a => a.addEventListener('click', e => { e.preventDefault(); state.authView = a.dataset.to; renderLogin(); }));
+    const btn = $('#authBtn');
+    if (v === 'login') btn.onclick = doLogin;
+    else if (v === 'register') btn.onclick = doRegister;
+    else if (v === 'forgot') btn.onclick = doForgot;
+    document.querySelectorAll('#authEmail,#authPass,#authName').forEach(input => {
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); btn.click(); } });
+    });
   }
 
+  /* ══════════════════════════════════════
+     SHELL & PAGES
+  ══════════════════════════════════════ */
   function shell(content) {
     const nav = Object.keys(labels).map(v => `<button class="nav-item ${state.view===v?'active':''}" data-view="${v}"><span class="nav-icon">${icons[v]}</span>${labels[v]}</button>`).join('');
-    return `<div class="shell"><aside class="sidebar" id="sidebar"><div class="brand"><span class="brand-mark">SF</span>SpineFlow</div><nav class="nav-list">${nav}</nav><div class="side-plan"><small>Plan actual</small><strong>${state.premium?'Premium activo':'Plan gratuito'}</strong><button class="btn ${state.premium?'btn-light':'btn-gold'} btn-wide" data-premium>${state.premium?'Gestionar plan':'Ver Premium'}</button></div></aside><main class="main"><header class="topbar"><button class="btn btn-light mobile-menu" data-menu>☰</button><div><strong>${labels[state.view] || 'SpineFlow'}</strong></div><div class="top-actions"><button class="btn btn-light" data-dark title="Cambiar tema">${state.dark?'☀':'☾'}</button><div class="profile-dot" aria-label="Perfil del paciente">P</div></div></header><div class="content">${content}</div></main></div>`;
+    const name = state.displayName || state.user?.email?.split('@')[0] || '';
+    const initial = name.charAt(0).toUpperCase() || 'U';
+    return `<div class="shell"><aside class="sidebar" id="sidebar"><div class="brand"><span class="brand-mark">SF</span>SpineFlow</div><nav class="nav-list">${nav}</nav><div class="side-plan"><small>Plan actual</small><strong>${state.premium?'Premium activo':'Plan gratuito'}</strong><button class="btn ${state.premium?'btn-light':'btn-gold'} btn-wide" data-premium>${state.premium?'Gestionar plan':'Ver Premium'}</button><button class="btn btn-light btn-wide" data-logout style="margin-top:8px;font-size:.8rem;opacity:.7">Cerrar sesión</button></div></aside><main class="main"><header class="topbar"><button class="btn btn-light mobile-menu" data-menu>☰</button><div><strong>${labels[state.view] || 'SpineFlow'}</strong></div><div class="top-actions"><button class="btn btn-light" data-dark title="Cambiar tema">${state.dark?'☀':'☾'}</button><div class="profile-dot" aria-label="Perfil" title="${name}">${initial}</div></div></header><div class="content">${content}</div></main></div>`;
   }
   function bindShell() {
     document.querySelectorAll('[data-view]').forEach(b => b.onclick = () => go(b.dataset.view));
     $('[data-menu]')?.addEventListener('click', () => $('#sidebar').classList.toggle('open'));
     $('[data-dark]')?.addEventListener('click', () => { state.dark=!state.dark; store.set('dark',state.dark); document.body.classList.toggle('dark',state.dark); render(); });
     $('[data-premium]')?.addEventListener('click', premiumModal);
+    $('[data-logout]')?.addEventListener('click', logout);
   }
   function page() {
     switch (state.view) {
@@ -77,10 +265,13 @@
     }
   }
 
+  /* ── Dashboard ── */
   function dashboard() {
     const completed = new Set(state.history.map(h => h.id)).size;
     const adherence = Math.min(100, Math.round((state.history.filter(h => Date.now()-h.at<7*864e5).length/5)*100));
-    return `<div class="page-head"><div><p class="eyebrow">Panel del paciente</p><h1>Hola</h1><p>Tu plan está listo. Movete con control y registrá cómo te sentís.</p></div><button class="btn btn-primary" data-open-first>Continuar programa →</button></div>
+    const name = state.displayName || state.user?.email?.split('@')[0] || '';
+    return `<div class="page-head"><div><p class="eyebrow">Panel del paciente</p><h1>Hola${name ? ', ' + name : ''}</h1><p>Tu plan está listo. Movete con control y registrá cómo te sentís.</p></div><button class="btn btn-primary" data-open-first>Continuar programa →</button></div>
+      <div class="alert-banner"><h3>⚠ Detené la rutina y pedí ayuda</h3><p>Frená ante dolor u opresión en el pecho, falta de aire intensa o desproporcionada, mareo, sensación de desmayo, confusión, palpitaciones con malestar, debilidad repentina, pérdida de equilibrio o agotamiento extremo.</p><p>Sentate o recostate en un lugar seguro, no continúes la rutina, avisá a un familiar o persona cercana y solicitá asistencia médica de emergencia si los síntomas son intensos o no mejoran rápidamente.</p></div>
       <div class="grid grid-4"><div class="card metric"><div class="metric-top"><span>Adherencia semanal</span><span>◎</span></div><strong>${adherence}%</strong><span class="trend">Objetivo: 80%</span></div><div class="card metric"><div class="metric-top"><span>Ejercicios realizados</span><span>✓</span></div><strong>${state.history.length}</strong><span class="trend">${completed} diferentes</span></div><div class="card metric"><div class="metric-top"><span>Dolor EVA</span><span>↘</span></div><strong>${state.scores.eva}/10</strong><span class="trend">Registro actual</span></div><div class="card metric"><div class="metric-top"><span>Favoritos</span><span>♡</span></div><strong>${state.favorites.length}</strong><span class="trend">Acceso rápido</span></div></div>
       <section class="card dashboard-hero"><div class="dashboard-copy"><span class="pill">Sesión recomendada</span><h2>Una secuencia clara, acompañada por Mis profes.</h2><p>Cada ejercicio tiene hasta cinco fases fotográficas propias, indicaciones clínicas, respiración, advertencias y control de tiempo.</p><button class="btn btn-gold" data-open-first>Empezar sesión</button></div><div class="dashboard-photo" role="img" aria-label="Mis profes, guías de SpineFlow"></div></section>
       <div class="section-title"><h2>Módulos SpineFlow</h2><button class="btn btn-ghost" data-view="modules">Ver todos →</button></div>${moduleGrid()}`;
@@ -112,7 +303,7 @@
 
   function progress() {
     const adherence=Math.min(100,Math.round((state.history.filter(h=>Date.now()-h.at<7*864e5).length/5)*100));
-    return `<div class="page-head"><div><p class="eyebrow">Resultados reportados por el paciente</p><h1>Progreso clínico</h1><p>Registrá tus valores y compartilos con tu profesional tratante.</p></div></div><div class="grid grid-3"><div class="card score-card"><h3>Dolor EVA</h3><p class="muted">0 sin dolor · 10 máximo</p><div class="range-row"><input type="range" min="0" max="10" value="${state.scores.eva}" data-score="eva"><span class="range-value">${state.scores.eva}</span></div></div><div class="card score-card"><h3>ODI</h3><p class="muted">Discapacidad lumbar</p><div class="range-row"><input type="range" min="0" max="100" value="${state.scores.odi}" data-score="odi"><span class="range-value">${state.scores.odi}%</span></div></div><div class="card score-card"><h3>NDI</h3><p class="muted">Discapacidad cervical</p><div class="range-row"><input type="range" min="0" max="100" value="${state.scores.ndi}" data-score="ndi"><span class="range-value">${state.scores.ndi}%</span></div></div></div><div class="section-title"><h2>Resumen de adherencia</h2></div><div class="grid grid-2"><div class="card metric"><div class="metric-top"><span>Últimos 7 días</span></div><strong>${adherence}%</strong><div style="height:10px;background:#e6efed;border-radius:10px;overflow:hidden"><div style="height:100%;width:${adherence}%;background:var(--teal)"></div></div></div><div class="card metric"><div class="metric-top"><span>Sesiones registradas</span></div><strong>${state.history.length}</strong><span class="muted">Los datos se guardan localmente en este Release Candidate.</span></div></div>`;
+    return `<div class="page-head"><div><p class="eyebrow">Resultados reportados por el paciente</p><h1>Progreso clínico</h1><p>Registrá tus valores y compartilos con tu profesional tratante.</p></div></div><div class="grid grid-3"><div class="card score-card"><h3>Dolor EVA</h3><p class="muted">0 sin dolor · 10 máximo</p><div class="range-row"><input type="range" min="0" max="10" value="${state.scores.eva}" data-score="eva"><span class="range-value">${state.scores.eva}</span></div></div><div class="card score-card"><h3>ODI</h3><p class="muted">Discapacidad lumbar</p><div class="range-row"><input type="range" min="0" max="100" value="${state.scores.odi}" data-score="odi"><span class="range-value">${state.scores.odi}%</span></div></div><div class="card score-card"><h3>NDI</h3><p class="muted">Discapacidad cervical</p><div class="range-row"><input type="range" min="0" max="100" value="${state.scores.ndi}" data-score="ndi"><span class="range-value">${state.scores.ndi}%</span></div></div></div><div class="section-title"><h2>Resumen de adherencia</h2></div><div class="grid grid-2"><div class="card metric"><div class="metric-top"><span>Últimos 7 días</span></div><strong>${adherence}%</strong><div style="height:10px;background:#e6efed;border-radius:10px;overflow:hidden"><div style="height:100%;width:${adherence}%;background:var(--teal)"></div></div></div><div class="card metric"><div class="metric-top"><span>Sesiones registradas</span></div><strong>${state.history.length}</strong><span class="muted">Datos sincronizados con tu cuenta.</span></div></div>`;
   }
   function calendarPage() {
     const doneDays=new Set(state.history.map(h=>new Date(h.at).getDate())); const now=new Date(); const y=now.getFullYear(),m=now.getMonth(), days=new Date(y,m+1,0).getDate(), first=(new Date(y,m,1).getDay()+6)%7;
@@ -128,6 +319,9 @@
     return `<div class="page-head"><div><p class="eyebrow">Acceso rápido</p><h1>Favoritos</h1><p>Tus ejercicios guardados.</p></div></div><div class="exercise-list">${state.favorites.map(id=>{const ctx=contextForExercise(id);return exerciseRow(id,ctx.index,ctx.path)}).join('')}</div>`;
   }
 
+  /* ══════════════════════════════════════
+     BIND PAGE EVENTS
+  ══════════════════════════════════════ */
   function bindPage() {
     document.querySelectorAll('[data-region]').forEach(b=>b.onclick=()=>go('pathology',{currentRegion:b.dataset.region,currentPath:null}));
     document.querySelectorAll('[data-path]').forEach(b=>b.onclick=()=>{state.currentPath=b.dataset.path;render()});
@@ -137,9 +331,19 @@
     $('[data-exercise-back]')?.addEventListener('click',()=>go('pathology'));
     document.querySelectorAll('[data-phase]').forEach(b=>b.onclick=()=>setPhase(Number(b.dataset.phase)));
     $('[data-play]')?.addEventListener('click',togglePlayer); $('[data-voice]')?.addEventListener('click',speakCurrent); $('[data-complete]')?.addEventListener('click',completeExercise); $('[data-favorite]')?.addEventListener('click',toggleFavorite);
-    document.querySelectorAll('[data-score]').forEach(input=>input.oninput=()=>{state.scores[input.dataset.score]=Number(input.value);store.set('scores',state.scores);input.nextElementSibling.textContent=input.value+(input.dataset.score==='eva'?'':'%')});
-    document.querySelectorAll('[data-article]').forEach(b=>b.onclick=()=>toast('Artículo educativo disponible en esta versión de demostración'));
+    document.querySelectorAll('[data-score]').forEach(input=>input.oninput=()=>{
+      state.scores[input.dataset.score]=Number(input.value);
+      store.set('scores',state.scores);
+      input.nextElementSibling.textContent=input.value+(input.dataset.score==='eva'?'':'%');
+      clearTimeout(state.scoreTimer);
+      state.scoreTimer=setTimeout(()=>saveProfile({scores:state.scores}),1000);
+    });
+    document.querySelectorAll('[data-article]').forEach(b=>b.onclick=()=>toast('Artículo educativo disponible próximamente'));
   }
+
+  /* ══════════════════════════════════════
+     HELPERS (sin cambios)
+  ══════════════════════════════════════ */
   function regionById(id){return state.regions.find(r=>r.id===id)}
   function pathById(id){for(const r of state.regions){const p=r.pathologies.find(x=>x.id===id);if(p)return p}return null}
   function contextForExercise(id){for(const region of state.regions){for(const path of region.pathologies){const index=path.ex.indexOf(id);if(index>=0)return{region,path,index}}}return{region:state.regions[0],path:state.regions[0].pathologies[0],index:0}}
@@ -149,9 +353,20 @@
   function clearPlayer(){if(state.player){clearInterval(state.player);state.player=null}}
   function speakCurrent(){if(!('speechSynthesis'in window))return toast('La voz guiada no está disponible en este navegador');speechSynthesis.cancel();const ex=state.exercises[state.currentExercise];const u=new SpeechSynthesisUtterance(`${phases[state.phase]}. ${ex.steps[state.phase]||ex.steps.at(-1)}`);u.lang='es-AR';u.rate=.92;speechSynthesis.speak(u);toast('Voz guiada activada')}
   function beep(freq=720,duration=.18){try{const C=window.AudioContext||window.webkitAudioContext,a=new C(),o=a.createOscillator(),g=a.createGain();o.frequency.value=freq;o.type='sine';g.gain.setValueAtTime(.12,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+duration);o.connect(g).connect(a.destination);o.start();o.stop(a.currentTime+duration)}catch{}}
-  function completeExercise(){const item={id:state.currentExercise,at:Date.now()};state.history.push(item);store.set('history',state.history);clearPlayer();beep(760,.18);setTimeout(()=>beep(980,.25),170);toast('Ejercicio completado y guardado en tu historial')}
-  function toggleFavorite(){const id=state.currentExercise,i=state.favorites.indexOf(id);if(i>=0)state.favorites.splice(i,1);else state.favorites.push(id);store.set('favorites',state.favorites);render();toast(i>=0?'Eliminado de favoritos':'Guardado en favoritos')}
-  function premiumModal(){const layer=document.createElement('div');layer.className='modal-layer';layer.innerHTML=`<div class="modal"><span class="pill pill-premium">SpineFlow Premium</span><h2>Desbloqueá el programa completo</h2><p class="muted">Accedé a los 100 ejercicios distribuidos en las 14 patologías, seguimiento e historial completo. En este Release Candidate podés activar la vista Premium de demostración.</p><div class="modal-actions"><button class="btn btn-gold" data-activate>${state.premium?'Desactivar demostración':'Activar Premium demo'}</button><button class="btn btn-light" data-close>Ahora no</button></div></div>`;document.body.append(layer);$('[data-close]',layer).onclick=()=>layer.remove();$('[data-activate]',layer).onclick=()=>{state.premium=!state.premium;store.set('premium',state.premium);layer.remove();render();toast(state.premium?'Premium de demostración activado':'Premium de demostración desactivado')}}
+  async function completeExercise(){
+    const item={id:state.currentExercise,at:Date.now()};
+    state.history.push(item);store.set('history',state.history);
+    if(state.user){try{await sb.from('exercise_progress').insert({user_id:state.user.id,exercise_id:state.currentExercise,pathology_id:state.currentPath||'',duration_seconds:Math.max(0,30-state.seconds)})}catch{}}
+    clearPlayer();beep(760,.18);setTimeout(()=>beep(980,.25),170);toast('Ejercicio completado y guardado');
+  }
+  async function toggleFavorite(){
+    const id=state.currentExercise,i=state.favorites.indexOf(id);
+    if(i>=0)state.favorites.splice(i,1);else state.favorites.push(id);
+    store.set('favorites',state.favorites);
+    if(state.user) await saveProfile({favorites:state.favorites});
+    render();toast(i>=0?'Eliminado de favoritos':'Guardado en favoritos');
+  }
+  function premiumModal(){const layer=document.createElement('div');layer.className='modal-layer';layer.innerHTML=`<div class="modal"><span class="pill pill-premium">SpineFlow Premium</span><h2>Desbloqueá el programa completo</h2><p class="muted">Accedé a los 100 ejercicios distribuidos en las 14 patologías, seguimiento e historial completo.</p><div class="modal-actions"><button class="btn btn-gold" data-activate>${state.premium?'Desactivar Premium':'Activar Premium demo'}</button><button class="btn btn-light" data-close>Ahora no</button></div></div>`;document.body.append(layer);$('[data-close]',layer).onclick=()=>layer.remove();$('[data-activate]',layer).onclick=()=>{state.premium=!state.premium;store.set('premium',state.premium);if(state.user)saveProfile({is_premium:state.premium});layer.remove();render();toast(state.premium?'Premium activado':'Premium desactivado')}}
   function toast(message){document.querySelector('.toast')?.remove();const el=document.createElement('div');el.className='toast';el.textContent=message;document.body.append(el);setTimeout(()=>el.remove(),2800)}
   init();
 })();
