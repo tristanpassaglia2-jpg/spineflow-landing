@@ -16,12 +16,12 @@
 
   /* ── State ── */
   const state = {
-    user: null, displayName: '', exercises: {}, regions: [], view: 'landing',
+    user: null, displayName: '', exercises: {}, regions: [], sequences: {}, view: 'landing',
     currentRegion: null, currentPath: null, currentExercise: null, phase: 0,
     premium: false, dark: store.get('dark', false),
     favorites: [], history: [],
     scores: { eva: 3, odi: 18, ndi: 14 },
-    player: null, seconds: 30, authView: 'login', scoreTimer: null
+    player: null, seconds: 30, authView: 'login', scoreTimer: null, voiceOn: true, loopTimer: null
   };
   const phases = ['Posición inicial', 'Movimiento', 'Pausa', 'Retorno', 'Repetición'];
   const icons = { dashboard:'⌂', modules:'◫', progress:'↗', calendar:'▦', education:'◇', favorites:'♡' };
@@ -39,9 +39,14 @@
         await loadUserData();
         state.view = 'dashboard';
       }
-      const [e, r] = await Promise.all([fetch('data/exercises.json'), fetch('data/regions.json')]);
+      const [e, r, seq] = await Promise.all([
+        fetch('data/exercises.json'),
+        fetch('data/regions.json'),
+        fetch('data/v11-static-sequences.json').catch(() => null)
+      ]);
       if (!e.ok || !r.ok) throw new Error('No se pudieron cargar los datos clínicos');
       state.exercises = await e.json(); state.regions = await r.json();
+      try { if (seq && seq.ok) state.sequences = await seq.json(); } catch { state.sequences = {}; }
       render();
       if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});
     } catch (error) {
@@ -292,11 +297,25 @@
     const ex=state.exercises[id], locked=index>=path.free_count&&!state.premium;
     return `<article class="exercise-row"><div class="exercise-thumb" style="background-image:url('media/exercises/${id}.webp')"></div><div><div class="exercise-tags"><span class="pill">${ex.level}</span>${index<path.free_count?'<span class="pill free">Gratis</span>':'<span class="pill pill-premium">Premium</span>'}</div><h3>${ex.name}</h3><p>${ex.position} · ${ex.reps}</p></div><div class="exercise-status"><span class="lock ${locked?'':'free'}">${locked?'🔒':'✓'}</span><button class="btn ${locked?'btn-light':'btn-primary'}" data-exercise="${id}" data-locked="${locked}">${locked?'Ver Premium':'Comenzar'}</button></div></article>`;
   }
+  /* Resuelve las láminas de secuencia (loop) de un ejercicio.
+     Formato del JSON: {"l1":{files:[...]}} o alias {"p2":{type:"alias",alias_of:"k8"}} */
+  function imagesFor(id) {
+    const seq = state.sequences;
+    let node = seq[id];
+    if (node && node.type === 'alias' && node.alias_of) node = seq[node.alias_of];
+    if (node && Array.isArray(node.files) && node.files.length) return node.files.slice();
+    return null; // sin secuencia → fallback lámina vieja
+  }
+
   function exercise() {
     const ex=state.exercises[state.currentExercise]; if(!ex) return modules();
-    const fav=state.favorites.includes(state.currentExercise); const step=ex.steps[state.phase]||ex.steps[ex.steps.length-1];
+    const fav=state.favorites.includes(state.currentExercise);
+    const imgs = imagesFor(state.currentExercise);
+    const firstImg = imgs ? imgs[0] : `media/exercises/${state.currentExercise}.webp`;
     return `<button class="btn btn-dark back-button" data-exercise-back>← Volver al programa</button><div class="exercise-layout"><section class="card exercise-main"><div class="exercise-title-row"><div><p class="eyebrow">Ejercicio guiado por Mis profes</p><h1>${ex.name}</h1></div><button class="btn btn-light" data-favorite>${fav?'♥ Guardado':'♡ Favorito'}</button></div><div class="exercise-tags"><span class="pill">${ex.level}</span><span class="pill">${ex.series}</span><span class="pill">${ex.reps}</span></div>
-      <div class="player"><div class="player-head"><div class="coach-mini"><span class="coach-avatar"><img src="media/coach/mi-profe.webp" alt="Retrato de Mis profes"></span><div><strong>Mis profes</strong><span>Guía de movimiento</span></div></div><div class="timer" id="timer">00:${String(state.seconds).padStart(2,'0')}</div></div><div class="phase-frame"><img id="phaseStrip" class="phase-strip" src="media/exercises/${state.currentExercise}.webp" alt="Lámina fotográfica de cinco fases de ${ex.name}"><span class="phase-focus" id="phaseFocus" style="left:${state.phase*20}%"></span><span class="phase-caption" id="phaseCaption" style="left:calc(${state.phase*20}% + 9px)">${phases[state.phase]}</span></div><div class="phase-dots">${phases.map((p,i)=>`<button class="phase-dot ${i===state.phase?'active':''}" data-phase="${i}">${p}</button>`).join('')}</div><div class="player-controls"><button class="btn btn-light" data-play>▶ Iniciar</button><button class="btn btn-light" data-voice>◉ Voz guiada</button><button class="btn btn-primary" data-complete>✓ Completar</button></div></div><div class="instruction"><small id="stepLabel">Indicación · fase ${state.phase+1}</small><p id="stepText">${step}</p></div></section>
+      <div class="player"><div class="player-head"><div class="coach-mini"><span class="coach-avatar"><img src="media/coach/mi-profe.webp" alt="Retrato de Mis profes"></span><div><strong>Mis profes</strong><span>Guía de movimiento</span></div></div><span class="speak-badge" id="speakBadge">● GUÍA</span></div>
+        <div class="loop-stage" id="loopStage"><div class="loop-layer on" id="loopA"><img src="${firstImg}" alt="${ex.name}" onerror="this.style.opacity=0"></div><div class="loop-layer" id="loopB"><img src="" alt=""></div><div class="loop-dots" id="loopDots"></div></div>
+        <div class="player-controls"><button class="btn btn-light" data-play>Ⅱ Pausar</button><button class="btn btn-light" data-voice>🔊 Voz</button><button class="btn btn-primary" data-complete>✓ Completar</button></div></div><div class="instruction"><small id="stepLabel">Indicación · fase 1</small><p id="stepText">${ex.steps[0]||ex.position||''}</p></div></section>
       <aside class="card clinical-panel"><div class="muscle-map"><p class="eyebrow">Lámina clínica</p><h3>Músculos y estructuras implicadas</h3>${muscleChips(ex.muscles)}</div><div class="info-box"><h3>◎ Objetivo terapéutico</h3><p>Mejorar el control del movimiento y la tolerancia funcional respetando el rango indicado.</p></div><div class="info-box"><h3>↗ Consejos del fisioterapeuta</h3><p>${ex.variants}</p></div><div class="info-box"><h3>≋ Respiración</h3><p>${ex.breathing}</p></div><div class="info-box warn"><h3>△ Advertencia clínica</h3><p>${ex.warning}</p></div><div class="info-box"><h3>Pasos completos</h3><div class="steps-list">${ex.steps.map(s=>`<div class="step-item">${s}</div>`).join('')}</div></div></aside></div>`;
   }
   function muscleChips(text) { return text.split(/,|—|\(|\)/).map(x=>x.trim()).filter(Boolean).slice(0,6).map(x=>`<span class="muscle-chip">${x}</span>`).join(''); }
@@ -329,8 +348,8 @@
     document.querySelectorAll('[data-exercise]').forEach(b=>b.onclick=()=>{ if(b.dataset.locked==='true') return premiumModal(); const id=b.dataset.exercise,ctx=contextForExercise(id); go('exercise',{currentExercise:id,currentRegion:state.currentRegion||ctx.region.id,currentPath:state.currentPath||ctx.path.id,phase:0,seconds:30}); });
     document.querySelectorAll('[data-open-first]').forEach(b=>b.onclick=()=>{const r=state.regions[0],p=r.pathologies[0];go('exercise',{currentRegion:r.id,currentPath:p.id,currentExercise:p.ex[0],phase:0,seconds:30})});
     $('[data-exercise-back]')?.addEventListener('click',()=>go('pathology'));
-    document.querySelectorAll('[data-phase]').forEach(b=>b.onclick=()=>setPhase(Number(b.dataset.phase)));
-    $('[data-play]')?.addEventListener('click',togglePlayer); $('[data-voice]')?.addEventListener('click',speakCurrent); $('[data-complete]')?.addEventListener('click',completeExercise); $('[data-favorite]')?.addEventListener('click',toggleFavorite);
+    $('[data-play]')?.addEventListener('click',toggleLoop); $('[data-voice]')?.addEventListener('click',toggleVoice); $('[data-complete]')?.addEventListener('click',completeExercise); $('[data-favorite]')?.addEventListener('click',toggleFavorite);
+    if(state.view==='exercise') startLoop();
     document.querySelectorAll('[data-score]').forEach(input=>input.oninput=()=>{
       state.scores[input.dataset.score]=Number(input.value);
       store.set('scores',state.scores);
@@ -347,11 +366,89 @@
   function regionById(id){return state.regions.find(r=>r.id===id)}
   function pathById(id){for(const r of state.regions){const p=r.pathologies.find(x=>x.id===id);if(p)return p}return null}
   function contextForExercise(id){for(const region of state.regions){for(const path of region.pathologies){const index=path.ex.indexOf(id);if(index>=0)return{region,path,index}}}return{region:state.regions[0],path:state.regions[0].pathologies[0],index:0}}
-  function setPhase(n){state.phase=n;const focus=$('#phaseFocus'),caption=$('#phaseCaption');if(focus)focus.style.left=`${n*20}%`;if(caption){caption.style.left=`calc(${n*20}% + 9px)`;caption.replaceChildren(document.createTextNode(phases[n]))}document.querySelectorAll('.phase-dot').forEach((b,i)=>b.classList.toggle('active',i===n));const ex=state.exercises[state.currentExercise];if($('#stepText'))$('#stepText').textContent=ex.steps[n]||ex.steps.at(-1);if($('#stepLabel'))$('#stepLabel').textContent=`Indicación · fase ${n+1}`}
-  function togglePlayer(){if(state.player){clearPlayer();$('[data-play]').textContent='▶ Continuar';return}$('[data-play]').textContent='Ⅱ Pausar';state.player=setInterval(()=>{state.seconds--;if(state.seconds<=0){state.seconds=30;setPhase((state.phase+1)%5);beep(540,.08)}updateTimer()},1000)}
-  function updateTimer(){const el=$('#timer');if(el)el.textContent=`00:${String(state.seconds).padStart(2,'0')}`}
-  function clearPlayer(){if(state.player){clearInterval(state.player);state.player=null}}
-  function speakCurrent(){if(!('speechSynthesis'in window))return toast('La voz guiada no está disponible en este navegador');speechSynthesis.cancel();const ex=state.exercises[state.currentExercise];const u=new SpeechSynthesisUtterance(`${phases[state.phase]}. ${ex.steps[state.phase]||ex.steps.at(-1)}`);u.lang='es-AR';u.rate=.92;speechSynthesis.speak(u);toast('Voz guiada activada')}
+  /* ══════ MOTOR DEL REPRODUCTOR EN LOOP (crossfade + voz sincronizada) ══════ */
+  const LOOP_MIN_MS = 3200;   // tiempo mínimo por fase
+  const LOOP_HOLD_MS = 2600;  // pausa después de la voz (para ejecutar)
+  const LOOP_RATE = 0.78;     // velocidad de voz (lenta, público +60)
+  let loopUseA = true, loopToken = 0;
+
+  function loopPhases() {
+    const ex = state.exercises[state.currentExercise];
+    const imgs = imagesFor(state.currentExercise) || [`media/exercises/${state.currentExercise}.webp`];
+    return imgs.map((src, i) => ({
+      img: src,
+      cap: ex.steps?.[i] || ex.position || ex.name || '',
+      voice: ex.steps?.[i] || ex.position || ''
+    }));
+  }
+  function paintPhase() {
+    const ph = loopPhases()[state.phase];
+    if (!ph) return;
+    const a = $('#loopA'), b = $('#loopB');
+    if (!a || !b) return;
+    const back = loopUseA ? b : a, front = loopUseA ? a : b;
+    const img = back.querySelector('img');
+    if (img) { img.src = ph.img; img.style.opacity = 1; }
+    back.classList.add('on'); front.classList.remove('on');
+    loopUseA = !loopUseA;
+    const dots = $('#loopDots');
+    if (dots) dots.innerHTML = loopPhases().map((_,i)=>`<span class="loop-dot ${i===state.phase?'act':''}"></span>`).join('');
+    if ($('#stepText')) $('#stepText').textContent = ph.cap;
+    if ($('#stepLabel')) $('#stepLabel').textContent = `Indicación · fase ${state.phase+1}`;
+  }
+  function runLoopPhase() {
+    const my = ++loopToken;
+    paintPhase();
+    const seq = loopPhases();
+    const ph = seq[state.phase];
+    const t0 = Date.now();
+    const next = () => {
+      if (my !== loopToken || !state.player) return;
+      const wait = Math.max(LOOP_HOLD_MS, LOOP_MIN_MS - (Date.now()-t0));
+      state.loopTimer = setTimeout(() => {
+        if (my !== loopToken || !state.player) return;
+        state.phase = (state.phase + 1) % seq.length;
+        runLoopPhase();
+      }, wait);
+    };
+    const badge = $('#speakBadge');
+    if (state.voiceOn && 'speechSynthesis' in window && ph.voice) {
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(ph.voice);
+      u.lang='es-AR'; u.rate=LOOP_RATE; u.pitch=1;
+      if (badge) badge.classList.add('on');
+      u.onend = () => { if(badge) badge.classList.remove('on'); next(); };
+      u.onerror = () => { if(badge) badge.classList.remove('on'); next(); };
+      speechSynthesis.speak(u);
+      setTimeout(() => { if (my===loopToken && !speechSynthesis.speaking) next(); }, 400);
+    } else next();
+  }
+  function startLoop() {
+    if (state.voiceOn === undefined) state.voiceOn = true;
+    state.phase = 0; loopUseA = true; state.player = true;
+    const btn = $('[data-play]');
+    if (btn) btn.textContent = 'Ⅱ Pausar';
+    runLoopPhase();
+  }
+  function toggleLoop() {
+    const btn = $('[data-play]');
+    if (state.player) {
+      clearPlayer();
+      if (btn) btn.textContent = '▶ Reanudar';
+    } else {
+      state.player = true;
+      if (btn) btn.textContent = 'Ⅱ Pausar';
+      runLoopPhase();
+    }
+  }
+  function toggleVoice() {
+    state.voiceOn = state.voiceOn === undefined ? false : !state.voiceOn;
+    const btn = $('[data-voice]');
+    if (btn) btn.textContent = state.voiceOn ? '🔊 Voz' : '🔇 Voz';
+    if (!state.voiceOn) speechSynthesis.cancel();
+    if (state.player) { loopToken++; clearTimeout(state.loopTimer); runLoopPhase(); }
+  }
+  function clearPlayer(){ state.player=false; loopToken++; clearTimeout(state.loopTimer); if('speechSynthesis'in window)speechSynthesis.cancel(); const badge=$('#speakBadge'); if(badge)badge.classList.remove('on'); }
   function beep(freq=720,duration=.18){try{const C=window.AudioContext||window.webkitAudioContext,a=new C(),o=a.createOscillator(),g=a.createGain();o.frequency.value=freq;o.type='sine';g.gain.setValueAtTime(.12,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+duration);o.connect(g).connect(a.destination);o.start();o.stop(a.currentTime+duration)}catch{}}
   async function completeExercise(){
     const item={id:state.currentExercise,at:Date.now()};
