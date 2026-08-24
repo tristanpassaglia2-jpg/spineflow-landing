@@ -1,1 +1,12 @@
-<!doctype html><html lang="es-AR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#07151a"><title>SpineFlow</title><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="assets/css/app.css"></head><body><div id="app"><div class="boot"><span class="boot-mark">SF</span><p>Preparando SpineFlow…</p></div></div><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script><script src="assets/js/exercises-json-hotfix.js"></script><script src="assets/js/plus60-loader.js" defer></script><script src="assets/js/rc9-audit-fixes.js" defer></script><script src="assets/js/app.js" defer></script><script src="assets/js/v11-static-sequences.js" defer></script></body></html>
+<!doctype html><html lang="es-AR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#07151a"><title>SpineFlow</title><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="assets/css/app.css"><style>
+/* ===== Reproductor en loop (crossfade + voz) ===== */
+.loop-stage{position:relative;width:100%;aspect-ratio:4/3;border-radius:18px;overflow:hidden;background:#0B1418;margin:12px 0}
+.loop-layer{position:absolute;inset:0;opacity:0;transition:opacity .6s ease}
+.loop-layer.on{opacity:1}
+.loop-layer img{width:100%;height:100%;object-fit:contain;display:block;background:#0a1a20}
+.loop-dots{position:absolute;top:12px;left:0;right:0;display:flex;gap:6px;justify-content:center;z-index:3}
+.loop-dot{width:24px;height:4px;border-radius:3px;background:rgba(255,255,255,.28)}
+.loop-dot.act{background:#fff}
+.speak-badge{font-size:10px;font-weight:800;letter-spacing:.1em;color:#0B1418;background:var(--teal,#0F8B84);padding:4px 9px;border-radius:7px;opacity:0;transition:.2s;margin-left:auto}
+.speak-badge.on{opacity:1}
+</style></head><body><div id="app"><div class="boot"><span class="boot-mark">SF</span><p>Preparando SpineFlow…</p></div></div><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script><script src="assets/js/exercises-json-hotfix.js"></script><script src="assets/js/plus60-loader.js" defer></script><script src="assets/js/rc9-audit-fixes.js" defer></script><script src="assets/js/app.js" defer></script><script src="assets/js/v11-static-sequences.js" defer></script></body></html>
