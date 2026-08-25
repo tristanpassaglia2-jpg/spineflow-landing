@@ -16,10 +16,10 @@
 
   /* ── State ── */
   const state = {
-    user: null, displayName: '', exercises: {}, regions: [], sequences: {}, view: 'landing',
-    currentRegion: null, currentPath: null, currentExercise: null, phase: 0,
+    user: null, displayName: '', exercises: {}, regions: [], sequences: {}, programs: {}, view: 'landing',
+    currentRegion: null, currentPath: null, currentExercise: null, currentWeek: null, currentSession: null, sessionQueue: [], sessionIndex: 0, phase: 0,
     premium: false, trialPathologies: [], dark: store.get('dark', false),
-    favorites: [], history: [],
+    favorites: [], history: [], completedSessions: [],
     scores: { eva: 3, odi: 18, ndi: 14 },
     player: null, seconds: 30, authView: 'login', scoreTimer: null, voiceOn: true, loopTimer: null
   };
@@ -39,14 +39,16 @@
         await loadUserData();
         state.view = 'dashboard';
       }
-      const [e, r, seq] = await Promise.all([
+      const [e, r, seq, prg] = await Promise.all([
         fetch('data/exercises.json'),
         fetch('data/regions.json'),
-        fetch('data/v11-static-sequences.json').catch(() => null)
+        fetch('data/v11-static-sequences.json').catch(() => null),
+        fetch('data/programs.json').catch(() => null)
       ]);
       if (!e.ok || !r.ok) throw new Error('No se pudieron cargar los datos clínicos');
       state.exercises = await e.json(); state.regions = await r.json();
       try { if (seq && seq.ok) state.sequences = await seq.json(); } catch { state.sequences = {}; }
+      try { if (prg && prg.ok) { const p = await prg.json(); state.programs = p.programs || {}; } } catch { state.programs = {}; }
       render();
       if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});
     } catch (error) {
@@ -65,12 +67,13 @@
   ══════════════════════════════════════ */
   async function loadUserData() {
     try {
-      const { data: profile } = await sb.from('profiles').select('favorites, scores, is_premium, display_name').eq('id', state.user.id).single();
+      const { data: profile } = await sb.from('profiles').select('favorites, scores, is_premium, display_name, completed_sessions').eq('id', state.user.id).single();
       if (profile) {
         state.favorites = profile.favorites || [];
         state.scores = profile.scores || { eva: 3, odi: 18, ndi: 14 };
         state.premium = profile.is_premium || false;
         state.displayName = profile.display_name || state.user.user_metadata?.display_name || '';
+        state.completedSessions = profile.completed_sessions || [];
       }
       /* ── Verificar suscripción MP activa ── */
       if (!state.premium) {
@@ -94,11 +97,13 @@
       store.set('history', state.history);
       store.set('scores', state.scores);
       store.set('premium', state.premium);
+      store.set('completedSessions', state.completedSessions);
     } catch {
       state.favorites = store.get('favorites', []);
       state.history = store.get('history', []);
       state.scores = store.get('scores', { eva: 3, odi: 18, ndi: 14 });
       state.premium = store.get('premium', false);
+      state.completedSessions = store.get('completedSessions', []);
       state.displayName = '';
     }
   }
@@ -307,9 +312,46 @@
   }
   function pathology() {
     const region = regionById(state.currentRegion) || state.regions[0];
-    if (!state.currentPath) return `<button class="btn btn-dark back-button" data-view="modules">← Volver a módulos</button><div class="page-head"><div><p class="eyebrow">Módulo ${region.label}</p><h1>Seleccioná tu programa</h1><p>${region.subtitle}</p></div></div><div class="grid grid-2">${region.pathologies.map(p=>`<article class="card path-card"><span class="pill">${p.ex.length} ejercicios</span><h3>${p.title}</h3><p>${p.desc}</p><div class="path-meta"><span class="free-badge">2 gratuitos · ${p.ex.length-2} Premium</span><button class="btn btn-primary" data-path="${p.id}">Abrir</button></div></article>`).join('')}</div>`;
+    if (!state.currentPath) return `<button class="btn btn-dark back-button" data-view="modules">← Volver a módulos</button><div class="page-head"><div><p class="eyebrow">Módulo ${region.label}</p><h1>Seleccioná tu programa</h1><p>${region.subtitle}</p></div></div><div class="grid grid-2">${region.pathologies.map(p=>`<article class="card path-card"><span class="pill">${p.ex.length} ejercicios</span><h3>${p.title}</h3><p>${p.desc}</p><div class="path-meta"><span class="free-badge">Semana 1 gratis · resto Premium</span><button class="btn btn-primary" data-path="${p.id}">Abrir</button></div></article>`).join('')}</div>`;
     const path = pathById(state.currentPath); if (!path) return modules();
+    const program = state.programs[state.currentPath];
+    if (program) return renderProgram(region, path, program);
+    // Sin programa: modo lista de ejercicios (backwards compat, ej: módulo +60)
     return `<button class="btn btn-dark back-button" data-back-path>← Volver a patologías</button><div class="page-head"><div><p class="eyebrow">Módulo ${region.label}</p><h1>${path.title}</h1><p>${path.desc}. Los dos primeros ejercicios son de acceso gratuito.</p></div></div><div class="exercise-list">${path.ex.map((id,i)=>exerciseRow(id,i,path)).join('')}</div>`;
+  }
+  function isSessionUnlocked(session, week) {
+    // Semana 1 completa gratis, resto Premium (a menos que tenga trial o suscripción)
+    if (week.number === 1) return true;
+    if (state.premium) return true;
+    if (state.trialPathologies.includes(state.currentPath)) return true;
+    return false;
+  }
+  function isSessionCompleted(sessionId) {
+    return state.completedSessions.includes(sessionId);
+  }
+  function weekCompleted(week) {
+    return week.sessions.every(s => isSessionCompleted(s.id));
+  }
+  function renderProgram(region, path, program) {
+    const totalSessions = program.weeks.reduce((n,w)=>n+w.sessions.length, 0);
+    const doneCount = program.weeks.reduce((n,w)=>n+w.sessions.filter(s=>isSessionCompleted(s.id)).length, 0);
+    const pct = Math.round((doneCount/totalSessions)*100);
+    const weeksHtml = program.weeks.map((w,wi) => {
+      const prevDone = wi === 0 || weekCompleted(program.weeks[wi-1]);
+      const sessionsHtml = w.sessions.map(s => {
+        const unlocked = isSessionUnlocked(s, w);
+        const done = isSessionCompleted(s.id);
+        const badge = done ? '<span class="pill free">✓ Completada</span>' : (unlocked ? '<span class="pill free">Disponible</span>' : '<span class="pill pill-premium">Premium</span>');
+        const btnClass = unlocked ? 'btn-primary' : 'btn-light';
+        const btnText = done ? 'Volver a hacer' : (unlocked ? 'Comenzar' : 'Ver Premium');
+        return `<article class="exercise-row"><div style="width:44px;height:44px;border-radius:50%;background:var(--teal,#0f8b84);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;flex-shrink:0">${s.number}</div><div style="flex:1"><div class="exercise-tags">${badge}<span class="pill">${s.duration_min} min</span><span class="pill">${s.exercises.length} ejercicios</span></div><h3 style="margin:6px 0 2px">${s.title}</h3></div><div class="exercise-status"><button class="btn ${btnClass}" data-session="${s.id}" data-week="${w.number}" data-unlocked="${unlocked}" data-warn="${!prevDone && wi>0}">${btnText}</button></div></article>`;
+      }).join('');
+      return `<section class="card" style="margin-bottom:16px"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap"><div><span class="pill">Semana ${w.number} · ${w.title}</span><h2 style="margin:8px 0 4px">${w.goal}</h2><p class="muted" style="margin:0">${w.dose}</p></div>${weekCompleted(w)?'<span class="pill free">✓ Semana completada</span>':''}</div>${w.note?`<div class="info-box" style="margin-top:12px"><p style="margin:0"><strong>Nota:</strong> ${w.note}</p></div>`:''}<div class="exercise-list" style="margin-top:14px">${sessionsHtml}</div>${w.pacing?`<p class="muted" style="margin-top:14px;font-size:.85rem;font-style:italic">${w.pacing}</p>`:''}</section>`;
+    }).join('');
+    return `<button class="btn btn-dark back-button" data-back-path>← Volver a patologías</button>
+      <div class="page-head"><div><p class="eyebrow">Módulo ${region.label}</p><h1>${path.title}</h1><p>${program.intro}</p></div></div>
+      <div class="card" style="margin-bottom:20px;background:linear-gradient(135deg,#0f8b84,#0d7772);color:#fff"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px"><div><p style="opacity:.85;font-size:.85rem;margin:0">Tu progreso</p><h2 style="margin:4px 0;color:#fff">${doneCount} de ${totalSessions} sesiones</h2></div><div style="min-width:120px"><div style="height:8px;background:rgba(255,255,255,.25);border-radius:10px;overflow:hidden"><div style="height:100%;width:${pct}%;background:#fff;transition:width .3s"></div></div><p style="margin:6px 0 0;font-size:.8rem;opacity:.9;text-align:right">${pct}%</p></div></div></div>
+      ${weeksHtml}`;
   }
   function exerciseRow(id,index,path) {
     const ex=state.exercises[id];
@@ -366,8 +408,21 @@
     document.querySelectorAll('[data-path]').forEach(b=>b.onclick=()=>{state.currentPath=b.dataset.path;render()});
     $('[data-back-path]')?.addEventListener('click',()=>{state.currentPath=null;render()});
     document.querySelectorAll('[data-exercise]').forEach(b=>b.onclick=()=>{ if(b.dataset.locked==='true') return premiumModal(); const id=b.dataset.exercise,ctx=contextForExercise(id); go('exercise',{currentExercise:id,currentRegion:state.currentRegion||ctx.region.id,currentPath:state.currentPath||ctx.path.id,phase:0,seconds:30}); });
+    document.querySelectorAll('[data-session]').forEach(b=>b.onclick=()=>{
+      if(b.dataset.unlocked==='false') return premiumModal();
+      const sessionId = b.dataset.session;
+      const weekNum = parseInt(b.dataset.week);
+      const program = state.programs[state.currentPath];
+      const week = program?.weeks.find(w => w.number === weekNum);
+      const session = week?.sessions.find(s => s.id === sessionId);
+      if (!session) return;
+      if (b.dataset.warn === 'true') {
+        if (!confirm('Recomendamos completar la semana anterior antes de esta. ¿Querés continuar igual?')) return;
+      }
+      startSession(session, week);
+    });
     document.querySelectorAll('[data-open-first]').forEach(b=>b.onclick=()=>{const r=state.regions[0],p=r.pathologies[0];go('exercise',{currentRegion:r.id,currentPath:p.id,currentExercise:p.ex[0],phase:0,seconds:30})});
-    $('[data-exercise-back]')?.addEventListener('click',()=>go('pathology'));
+    $('[data-exercise-back]')?.addEventListener('click',()=>{ if(state.sessionQueue.length){state.sessionQueue=[];state.sessionIndex=0;state.currentSession=null;} go('pathology'); });
     $('[data-play]')?.addEventListener('click',toggleLoop); $('[data-voice]')?.addEventListener('click',toggleVoice); $('[data-complete]')?.addEventListener('click',completeExercise); $('[data-favorite]')?.addEventListener('click',toggleFavorite);
     if(state.view==='exercise') startLoop();
     document.querySelectorAll('[data-score]').forEach(input=>input.oninput=()=>{
@@ -378,6 +433,14 @@
       state.scoreTimer=setTimeout(()=>saveProfile({scores:state.scores}),1000);
     });
     document.querySelectorAll('[data-article]').forEach(b=>b.onclick=()=>toast('Artículo educativo disponible próximamente'));
+  }
+  function startSession(session, week) {
+    state.sessionQueue = session.exercises.slice();
+    state.sessionIndex = 0;
+    state.currentSession = session;
+    state.currentWeek = week;
+    const firstExId = state.sessionQueue[0];
+    go('exercise', { currentExercise: firstExId, phase: 0, seconds: 30 });
   }
 
   /* ══════════════════════════════════════
@@ -474,7 +537,40 @@
     const item={id:state.currentExercise,at:Date.now()};
     state.history.push(item);store.set('history',state.history);
     if(state.user){try{await sb.from('exercise_progress').insert({user_id:state.user.id,exercise_id:state.currentExercise,pathology_id:state.currentPath||'',duration_seconds:Math.max(0,30-state.seconds)})}catch{}}
-    clearPlayer();beep(760,.18);setTimeout(()=>beep(980,.25),170);toast('Ejercicio completado y guardado');
+    clearPlayer();beep(760,.18);setTimeout(()=>beep(980,.25),170);
+    // ¿Estamos dentro de una sesión guiada?
+    if (state.sessionQueue.length > 0 && state.currentSession) {
+      state.sessionIndex++;
+      if (state.sessionIndex < state.sessionQueue.length) {
+        const next = state.sessionIndex + 1;
+        const total = state.sessionQueue.length;
+        showSessionModal(`Ejercicio ${state.sessionIndex} de ${total} completado`, `Siguiente: ejercicio ${next} de ${total}`, [
+          {text: 'Pasar al siguiente', primary: true, action: () => { const nextId = state.sessionQueue[state.sessionIndex]; go('exercise', {currentExercise: nextId, phase: 0, seconds: 30}); }},
+          {text: 'Pausar sesión', action: () => { /* queda parado en este ejercicio */ }}
+        ]);
+      } else {
+        // Sesión completa
+        const doneSessionId = state.currentSession.id;
+        if (!state.completedSessions.includes(doneSessionId)) {
+          state.completedSessions.push(doneSessionId);
+          store.set('completedSessions', state.completedSessions);
+          if (state.user) { try { await saveProfile({ completed_sessions: state.completedSessions }); } catch {} }
+        }
+        state.sessionQueue = []; state.sessionIndex = 0; state.currentSession = null; state.currentWeek = null;
+        showSessionModal('✅ ¡Sesión completada!', 'Buen trabajo. Descansá y volvé mañana para la próxima.', [
+          {text: 'Volver al programa', primary: true, action: () => go('pathology')}
+        ]);
+      }
+    } else {
+      toast('Ejercicio completado y guardado');
+    }
+  }
+  function showSessionModal(title, text, actions) {
+    const layer = document.createElement('div'); layer.className = 'modal-layer';
+    const btns = actions.map((a,i)=>`<button class="btn ${a.primary?'btn-primary':'btn-light'}" data-action="${i}">${a.text}</button>`).join('');
+    layer.innerHTML = `<div class="modal"><h2>${title}</h2><p class="muted">${text}</p><div class="modal-actions">${btns}</div></div>`;
+    document.body.append(layer);
+    layer.querySelectorAll('[data-action]').forEach(b => b.onclick = () => { const i = parseInt(b.dataset.action); layer.remove(); actions[i].action(); });
   }
   async function toggleFavorite(){
     const id=state.currentExercise,i=state.favorites.indexOf(id);
