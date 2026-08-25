@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planes - SpineFlow</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:#f8fafc; color:#0f172a; line-height:1.6; }
+  .header { background:#fff; padding:1.5rem 2rem; border-bottom:1px solid #e2e8f0; text-align:center; }
+  .header h1 { font-size:1.5rem; color:#0891b2; }
+  .header a { color:#64748b; text-decoration:none; font-size:0.9rem; }
+  .hero { text-align:center; padding:3rem 1.5rem 2rem; max-width:800px; margin:0 auto; }
+  .hero h2 { font-size:2rem; margin-bottom:0.5rem; }
+  .hero p { color:#475569; font-size:1.1rem; }
+  .planes { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; max-width:1100px; margin:2rem auto; padding:0 1.5rem; }
+  .plan { background:#fff; border:2px solid #e2e8f0; border-radius:16px; padding:2rem 1.5rem; text-align:center; display:flex; flex-direction:column; position:relative; transition:transform 0.2s,box-shadow 0.2s; }
+  .plan:hover { transform:translateY(-4px); box-shadow:0 10px 30px rgba(0,0,0,0.08); }
+  .plan.destacado { border-color:#0891b2; box-shadow:0 8px 24px rgba(8,145,178,0.15); }
+  .badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:#0891b2; color:#fff; padding:0.3rem 1rem; border-radius:20px; font-size:0.75rem; font-weight:600; letter-spacing:0.5px; }
+  .plan h3 { font-size:1.4rem; margin-bottom:0.5rem; }
+  .plan .precio { font-size:2.5rem; font-weight:700; color:#0f172a; margin:1rem 0 0.25rem; }
+  .plan .periodo { color:#64748b; font-size:0.95rem; margin-bottom:0.5rem; }
+  .plan .equivalencia { color:#475569; font-size:0.85rem; margin-bottom:1.5rem; min-height:1.5rem; }
+  .plan ul { list-style:none; text-align:left; margin-bottom:2rem; flex-grow:1; }
+  .plan li { padding:0.4rem 0; font-size:0.95rem; padding-left:1.5rem; position:relative; }
+  .plan li::before { content:"✓"; color:#059669; font-weight:700; position:absolute; left:0; }
+  .btn { display:block; width:100%; padding:0.9rem 1.5rem; background:#0891b2; color:#fff; text-decoration:none; border-radius:10px; font-weight:600; font-size:1rem; transition:background 0.2s; }
+  .btn:hover { background:#0e7490; }
+  .btn.gratis { background:#059669; }
+  .btn.gratis:hover { background:#047857; }
+  .info { max-width:800px; margin:2rem auto 4rem; padding:2rem 1.5rem; text-align:center; color:#64748b; font-size:0.95rem; }
+  .info strong { color:#0f172a; }
+  .footer { text-align:center; padding:2rem; color:#94a3b8; font-size:0.85rem; border-top:1px solid #e2e8f0; }
+  .footer a { color:#64748b; text-decoration:none; margin:0 0.5rem; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <h1>SpineFlow</h1>
+  <a href="/">← Volver al inicio</a>
+</header>
+
+<section class="hero">
+  <h2>Elegí tu plan</h2>
+  <p>Rehabilitación digital para tu columna, guiada por un equipo médico especializado.</p>
+</section>
+
+<section class="planes">
+
+  <div class="plan">
+    <h3>Mensual</h3>
+    <div class="precio">$9.800</div>
+    <div class="periodo">por mes</div>
+    <div class="equivalencia">Menos que una sesión de kinesiología</div>
+    <ul>
+      <li>Acceso a todas las patologías</li>
+      <li>Programa progresivo de 4 semanas</li>
+      <li>100 ejercicios con voz guiada</li>
+      <li>Historial de dolor y progreso</li>
+      <li>Cancelás cuando quieras</li>
+    </ul>
+    <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=a1980c58e40b4c169d742e5b659ab7ff" class="btn">Suscribirme</a>
+  </div>
+
+  <div class="plan destacado">
+    <div class="badge">MÁS ELEGIDO</div>
+    <h3>Trimestral</h3>
+    <div class="precio">$23.900</div>
+    <div class="periodo">cada 3 meses</div>
+    <div class="equivalencia">Ahorrás $5.500 vs mensual</div>
+    <ul>
+      <li>Todo lo del plan Mensual</li>
+      <li>Precio congelado 3 meses</li>
+      <li>Ideal para completar el programa</li>
+      <li>Renovación automática</li>
+      <li>Cancelás cuando quieras</li>
+    </ul>
+    <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=cdd410bdc22a448d82d38b04066e8c45" class="btn">Suscribirme</a>
+  </div>
+
+  <div class="plan">
+    <h3>Anual</h3>
+    <div class="precio">$69.800</div>
+    <div class="periodo">por año</div>
+    <div class="equivalencia">Ahorrás $47.800 vs mensual</div>
+    <ul>
+      <li>Todo lo del plan Mensual</li>
+      <li>2 meses gratis</li>
+      <li>Precio congelado 12 meses</li>
+      <li>Para uso sostenido en el tiempo</li>
+      <li>Cancelás cuando quieras</li>
+    </ul>
+    <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=51c086db731645f4bf447cbd1802a77a" class="btn">Suscribirme</a>
+  </div>
+
+</section>
+
+<section class="info">
+  <p><strong>💳 Pago 100% seguro con Mercado Pago.</strong> Aceptamos todas las tarjetas de crédito y débito.</p>
+  <br>
+  <p>¿Tenés un código de tu médico? <a href="/activar" style="color:#0891b2;font-weight:600;">Activá tu acceso gratuito acá</a></p>
+</section>
+
+<footer class="footer">
+  <a href="/terminos.html">Términos</a> |
+  <a href="/privacidad.html">Privacidad</a> |
+  <a href="/aviso-medico.html">Aviso médico</a>
+  <br><br>
+  © 2026 SpineFlow — Desarrollado por Dr. Tristan Passaglia
+</footer>
+
+</body>
+</html>
