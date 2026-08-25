@@ -72,6 +72,17 @@
         state.premium = profile.is_premium || false;
         state.displayName = profile.display_name || state.user.user_metadata?.display_name || '';
       }
+      /* ── Verificar suscripción MP activa ── */
+      if (!state.premium) {
+        const { data: sub } = await sb.from('subscriptions').select('status').eq('user_id', state.user.id).order('updated_at', { ascending: false }).limit(1).maybeSingle();
+        if (sub && sub.status === 'authorized') state.premium = true;
+      }
+      /* ── Verificar acceso por QR médico (trial_access) ── */
+      if (!state.premium) {
+        const { data: trial } = await sb.from('trial_access').select('expires_at').eq('user_id', state.user.id).gt('expires_at', new Date().toISOString()).limit(1);
+        if (trial && trial.length > 0) state.premium = true;
+      }
+
       const { data: progress } = await sb.from('exercise_progress').select('exercise_id, completed_at').eq('user_id', state.user.id).order('completed_at', { ascending: false }).limit(500);
       if (progress) {
         state.history = progress.map(p => ({ id: p.exercise_id, at: new Date(p.completed_at).getTime() }));
@@ -463,7 +474,15 @@
     if(state.user) await saveProfile({favorites:state.favorites});
     render();toast(i>=0?'Eliminado de favoritos':'Guardado en favoritos');
   }
-  function premiumModal(){const layer=document.createElement('div');layer.className='modal-layer';layer.innerHTML=`<div class="modal"><span class="pill pill-premium">SpineFlow Premium</span><h2>Desbloqueá el programa completo</h2><p class="muted">Accedé a los 100 ejercicios distribuidos en las 14 patologías, seguimiento e historial completo.</p><div class="modal-actions"><button class="btn btn-gold" data-activate>${state.premium?'Desactivar Premium':'Activar Premium demo'}</button><button class="btn btn-light" data-close>Ahora no</button></div></div>`;document.body.append(layer);$('[data-close]',layer).onclick=()=>layer.remove();$('[data-activate]',layer).onclick=()=>{state.premium=!state.premium;store.set('premium',state.premium);if(state.user)saveProfile({is_premium:state.premium});layer.remove();render();toast(state.premium?'Premium activado':'Premium desactivado')}}
+  function premiumModal(){
+    if(state.premium){
+      const layer=document.createElement('div');layer.className='modal-layer';
+      layer.innerHTML=`<div class="modal"><span class="pill pill-premium">SpineFlow Premium</span><h2>Tu plan está activo</h2><p class="muted">Tenés acceso completo a los 100 ejercicios y las 14 patologías. Si necesitás gestionar tu suscripción, ingresá a tu cuenta de Mercado Pago.</p><div class="modal-actions"><button class="btn btn-light" data-close>Cerrar</button></div></div>`;
+      document.body.append(layer);$('[data-close]',layer).onclick=()=>layer.remove();
+    } else {
+      window.location.href='/planes.html';
+    }
+  }
   function toast(message){document.querySelector('.toast')?.remove();const el=document.createElement('div');el.className='toast';el.textContent=message;document.body.append(el);setTimeout(()=>el.remove(),2800)}
   init();
 })();
