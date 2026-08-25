@@ -346,5 +346,70 @@
         "free_count": 2
       }
     ]
+  },
+  {
+    "id": "+60",
+    "label": "+60",
+    "icon": "✦",
+    "color": "#7C3AED",
+    "light": "#EDE9FE",
+    "subtitle": "Fuerza, core, equilibrio y postura",
+    "pathologies": [
+      {
+        "id": "plus60_fuerza",
+        "title": "Fuerza funcional",
+        "desc": "Piernas, cadera y pantorrillas para levantarse, caminar y subir escalones.",
+        "ex": [
+          "s60_01",
+          "s60_02",
+          "s60_03",
+          "s60_04",
+          "s60_05",
+          "s60_06",
+          "s60_07",
+          "s60_16",
+          "s60_17",
+          "s60_18",
+          "s60_20",
+          "s60_22"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "plus60_equilibrio",
+        "title": "Equilibrio y marcha",
+        "desc": "Control postural, coordinación y prevención de caídas.",
+        "ex": [
+          "s60_08",
+          "s60_09",
+          "s60_10",
+          "s60_19"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "plus60_core",
+        "title": "Core y estabilidad",
+        "desc": "Estabilidad abdominal y control lumbopélvico.",
+        "ex": [
+          "s60_11",
+          "s60_12",
+          "s60_21",
+          "s60_23"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "plus60_postura",
+        "title": "Postura y columna dorsal",
+        "desc": "Hombros, escápulas y movilidad torácica.",
+        "ex": [
+          "s60_13",
+          "s60_14",
+          "s60_15"
+        ],
+        "free_count": 2
+      }
+    ]
   }
 ]
