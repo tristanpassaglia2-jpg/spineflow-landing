@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Planes - SpineFlow</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:#f8fafc; color:#0f172a; line-height:1.6; }
@@ -25,12 +26,27 @@
   .plan ul { list-style:none; text-align:left; margin-bottom:2rem; flex-grow:1; }
   .plan li { padding:0.4rem 0; font-size:0.95rem; padding-left:1.5rem; position:relative; }
   .plan li::before { content:"✓"; color:#059669; font-weight:700; position:absolute; left:0; }
-  .btn { display:block; width:100%; padding:0.9rem 1.5rem; background:#0891b2; color:#fff; text-decoration:none; border-radius:10px; font-weight:600; font-size:1rem; transition:background 0.2s; }
+  .btn { display:block; width:100%; padding:0.9rem 1.5rem; background:#0891b2; color:#fff; text-decoration:none; border-radius:10px; font-weight:600; font-size:1rem; transition:background 0.2s; cursor:pointer; border:none; text-align:center; }
   .btn:hover { background:#0e7490; }
   .info { max-width:800px; margin:2rem auto 4rem; padding:2rem 1.5rem; text-align:center; color:#64748b; font-size:0.95rem; }
   .info strong { color:#0f172a; }
   .footer { text-align:center; padding:2rem; color:#94a3b8; font-size:0.85rem; border-top:1px solid #e2e8f0; }
   .footer a { color:#64748b; text-decoration:none; margin:0 0.5rem; }
+  .user-info { background:#ecfdf5; border:1px solid #a7f3d0; border-radius:12px; padding:1rem 1.5rem; max-width:600px; margin:2rem auto 0; text-align:center; color:#065f46; font-size:0.95rem; display:none; }
+  .user-info strong { font-weight:600; }
+  .modal-bg { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center; padding:1rem; }
+  .modal-bg.show { display:flex; }
+  .modal { background:#fff; border-radius:16px; padding:2rem; max-width:400px; width:100%; }
+  .modal h3 { margin-bottom:1rem; }
+  .modal p { color:#475569; margin-bottom:1.5rem; font-size:0.95rem; }
+  .modal input { width:100%; padding:0.75rem; border:1px solid #cbd5e1; border-radius:8px; margin-bottom:1rem; font-size:1rem; }
+  .modal .btn { margin-bottom:0.75rem; }
+  .modal .btn-link { background:none; color:#0891b2; padding:0.5rem; text-decoration:underline; font-size:0.9rem; }
+  .modal .close { text-align:right; margin-bottom:-0.5rem; }
+  .modal .close button { background:none; border:none; font-size:1.5rem; cursor:pointer; color:#94a3b8; }
+  .modal .error { color:#dc2626; font-size:0.85rem; margin-top:-0.5rem; margin-bottom:1rem; min-height:1rem; }
+  .loading { display:none; text-align:center; color:#475569; margin-top:1rem; }
+  .loading.show { display:block; }
 </style>
 </head>
 <body>
@@ -44,6 +60,10 @@
   <h2>Elegí tu plan</h2>
   <p>Rehabilitación digital para tu columna, guiada por un equipo médico especializado.</p>
 </section>
+
+<div id="userInfo" class="user-info">
+  Estás ingresado como <strong id="userEmail"></strong> · <a href="#" onclick="cerrarSesion();return false;" style="color:#0891b2;">Cerrar sesión</a>
+</div>
 
 <section class="planes">
 
@@ -59,7 +79,7 @@
       <li>Historial de dolor y progreso</li>
       <li>Cancelás cuando quieras</li>
     </ul>
-    <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=a1980c58e40b4c169d742e5b659ab7ff" class="btn">Suscribirme</a>
+    <button class="btn" onclick="suscribirse('a1980c58e40b4c169d742e5b659ab7ff')">Suscribirme</button>
   </div>
 
   <div class="plan destacado">
@@ -75,7 +95,7 @@
       <li>Renovación automática</li>
       <li>Cancelás cuando quieras</li>
     </ul>
-    <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=cdd410bdc22a448d82d38b04066e8c45" class="btn">Suscribirme</a>
+    <button class="btn" onclick="suscribirse('cdd410bdc22a448d82d38b04066e8c45')">Suscribirme</button>
   </div>
 
   <div class="plan">
@@ -90,7 +110,7 @@
       <li>Para uso sostenido en el tiempo</li>
       <li>Cancelás cuando quieras</li>
     </ul>
-    <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=51c086db731645f4bf447cbd1802a77a" class="btn">Suscribirme</a>
+    <button class="btn" onclick="suscribirse('51c086db731645f4bf447cbd1802a77a')">Suscribirme</button>
   </div>
 
 </section>
@@ -101,6 +121,20 @@
   <p>¿Tenés un código de tu médico? <a href="/activar" style="color:#0891b2;font-weight:600;">Activá tu acceso gratuito acá</a></p>
 </section>
 
+<div id="modalLogin" class="modal-bg">
+  <div class="modal">
+    <div class="close"><button onclick="cerrarModal()">×</button></div>
+    <h3 id="modalTitulo">Iniciá sesión para suscribirte</h3>
+    <p id="modalTexto">Necesitamos tu cuenta para activar el acceso una vez que pagues.</p>
+    <input type="email" id="modalEmail" placeholder="Tu email" autocomplete="email">
+    <input type="password" id="modalPassword" placeholder="Contraseña (mínimo 6 caracteres)" autocomplete="current-password">
+    <div class="error" id="modalError"></div>
+    <button class="btn" onclick="hacerLogin()" id="btnLogin">Ingresar</button>
+    <button class="btn btn-link" onclick="cambiarModo()" id="btnCambio">¿No tenés cuenta? Registrate acá</button>
+    <div class="loading" id="modalLoading">Procesando...</div>
+  </div>
+</div>
+
 <footer class="footer">
   <a href="/terminos.html">Términos</a> |
   <a href="/privacidad.html">Privacidad</a> |
@@ -109,5 +143,33 @@
   &copy; 2026 SpineFlow &mdash; Desarrollado por cirujanos y kinesi&oacute;logos especialistas en patolog&iacute;a de columna vertebral
 </footer>
 
-</body>
-</html>
+<script>
+  const SUPABASE_URL = 'https://atefklvwshuwrmeasrnq.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_KEY_PLACEHOLDER';
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  let modoRegistro = false;
+  let planPendiente = null;
+
+  window.addEventListener('load', async () => {
+    const { data: { session } } = await sb.auth.getSession();
+    if (session) {
+      document.getElementById('userInfo').style.display = 'block';
+      document.getElementById('userEmail').textContent = session.user.email;
+    }
+  });
+
+  async function cerrarSesion() {
+    await sb.auth.signOut();
+    location.reload();
+  }
+
+  async function suscribirse(planId) {
+    const { data: { session } } = await sb.auth.getSession();
+    if (session) {
+      irAlCheckout(session.user.id, planId);
+    } else {
+      planPendiente = planId;
+      abrirModal();
+    }
+  }
