@@ -389,7 +389,7 @@
     return imgs.map((src, i) => ({
       img: src,
       cap: ex.steps?.[i] || ex.position || ex.name || '',
-      voice: ex.steps?.[i] || ex.position || ''
+      voice: ((ex.steps?.[i] || ex.position || '').match(/^[^.!]+[.!]/) || [ex.steps?.[i] || ex.position || ''])[0]
     }));
   }
   function paintPhase() {
