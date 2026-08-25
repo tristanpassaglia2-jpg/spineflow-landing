@@ -1,6 +1,6 @@
 {
   "version": "v12-programs",
-  "updated": "2026-08-13",
+  "updated": "2026-08-26",
   "config": {
     "sessions_per_week": 3,
     "free_rule": "La sesion 1 completa es gratis. El resto requiere Premium.",
@@ -3212,6 +3212,790 @@
                 "p19",
                 "p20",
                 "p8"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "plus60_fuerza": {
+      "name": "Fuerza funcional",
+      "module": "+60",
+      "duration_weeks": 4,
+      "intro": "Programa progresivo de 4 semanas para recuperar y mantener la fuerza necesaria para levantarse, caminar y subir escaleras con seguridad. Cada semana suma dificultad de forma controlada.",
+      "weeks": [
+        {
+          "number": 1,
+          "title": "Familiarización",
+          "goal": "Aprender los movimientos básicos con seguridad y apoyo.",
+          "note": "Empezá con calma. Es preferible hacer menos repeticiones bien hechas que muchas mal.",
+          "dose": "Series cortas, con apoyo firme siempre disponible.",
+          "pacing": "Esta semana es de aprendizaje. Si algún ejercicio te cuesta mucho, quedate en él más días antes de avanzar.",
+          "sessions": [
+            {
+              "id": "plus60_fuerza-w1-s1",
+              "number": 1,
+              "title": "Primer contacto",
+              "free": true,
+              "duration_min": 10,
+              "exercises": [
+                "s60_01",
+                "s60_07",
+                "s60_20"
+              ]
+            },
+            {
+              "id": "plus60_fuerza-w1-s2",
+              "number": 2,
+              "title": "Piernas con apoyo",
+              "free": false,
+              "duration_min": 12,
+              "exercises": [
+                "s60_03",
+                "s60_06",
+                "s60_07",
+                "s60_20"
+              ]
+            },
+            {
+              "id": "plus60_fuerza-w1-s3",
+              "number": 3,
+              "title": "Empuje suave",
+              "free": false,
+              "duration_min": 12,
+              "exercises": [
+                "s60_01",
+                "s60_18",
+                "s60_20",
+                "s60_07"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Base de fuerza",
+          "goal": "Consolidar los movimientos aprendidos y aumentar levemente el volumen.",
+          "note": "Si te falta el aire, pausá y respirá. La calidad es lo primero.",
+          "dose": "3 series de cada ejercicio. Descansos de 45-60 segundos.",
+          "pacing": "Si te levantás al día siguiente sin dolor ni cansancio excesivo, podés pasar a la Semana 3.",
+          "sessions": [
+            {
+              "id": "plus60_fuerza-w2-s1",
+              "number": 1,
+              "title": "Piernas y glúteos",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "s60_01",
+                "s60_03",
+                "s60_06",
+                "s60_22"
+              ]
+            },
+            {
+              "id": "plus60_fuerza-w2-s2",
+              "number": 2,
+              "title": "Empuje tren superior",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "s60_18",
+                "s60_13",
+                "s60_20"
+              ]
+            },
+            {
+              "id": "plus60_fuerza-w2-s3",
+              "number": 3,
+              "title": "Circuito completo",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "s60_01",
+                "s60_07",
+                "s60_18",
+                "s60_20",
+                "s60_06"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Progresión",
+          "goal": "Incorporar variantes de mayor exigencia manteniendo la técnica.",
+          "note": "Podés reducir el apoyo si te sentís seguro. Nunca soltes el apoyo si tenés duda.",
+          "dose": "3 series de 8-12 repeticiones según el ejercicio.",
+          "pacing": "Ojo con la fatiga acumulada. Si dormiste mal o comiste poco, hacé una versión más corta.",
+          "sessions": [
+            {
+              "id": "plus60_fuerza-w3-s1",
+              "number": 1,
+              "title": "Escalón y estocada",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "s60_05",
+                "s60_04",
+                "s60_07",
+                "s60_22"
+              ]
+            },
+            {
+              "id": "plus60_fuerza-w3-s2",
+              "number": 2,
+              "title": "Sentadilla completa",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "s60_16",
+                "s60_20",
+                "s60_18"
+              ]
+            },
+            {
+              "id": "plus60_fuerza-w3-s3",
+              "number": 3,
+              "title": "Fuerza integral",
+              "free": false,
+              "duration_min": 20,
+              "exercises": [
+                "s60_16",
+                "s60_05",
+                "s60_18",
+                "s60_22",
+                "s60_06"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Autonomía",
+          "goal": "Consolidar la fuerza funcional para la vida diaria.",
+          "note": "Este es el nivel que tenés que sostener a lo largo del tiempo. La constancia es más importante que la intensidad.",
+          "dose": "3-4 series completas. Podés hacer cada sesión 2-3 veces por semana.",
+          "pacing": "Al completar la Semana 4 volvé a hacer la Semana 3 o 4 como mantenimiento indefinido.",
+          "sessions": [
+            {
+              "id": "plus60_fuerza-w4-s1",
+              "number": 1,
+              "title": "Levantarse sin manos",
+              "free": false,
+              "duration_min": 20,
+              "exercises": [
+                "s60_02",
+                "s60_17",
+                "s60_18",
+                "s60_22"
+              ]
+            },
+            {
+              "id": "plus60_fuerza-w4-s2",
+              "number": 2,
+              "title": "Fuerza avanzada",
+              "free": false,
+              "duration_min": 22,
+              "exercises": [
+                "s60_16",
+                "s60_04",
+                "s60_05",
+                "s60_18"
+              ]
+            },
+            {
+              "id": "plus60_fuerza-w4-s3",
+              "number": 3,
+              "title": "Circuito de autonomía",
+              "free": false,
+              "duration_min": 25,
+              "exercises": [
+                "s60_02",
+                "s60_16",
+                "s60_17",
+                "s60_22",
+                "s60_18"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "plus60_equilibrio": {
+      "name": "Equilibrio y marcha",
+      "module": "+60",
+      "duration_weeks": 4,
+      "intro": "Programa progresivo para mejorar el equilibrio, la coordinación y prevenir caídas. Cada semana desafía más el control postural de forma segura.",
+      "weeks": [
+        {
+          "number": 1,
+          "title": "Base propioceptiva",
+          "goal": "Familiarizarse con transferencias de peso y marcha estacionaria.",
+          "note": "Siempre con apoyo lateral disponible. Si sentís mareo, pausá y sentate.",
+          "dose": "Series suaves. Foco en la calidad del control postural, no en la intensidad.",
+          "pacing": "Si te sentís estable al final de la semana, avanzá. Si dudás, repetí la Semana 1.",
+          "sessions": [
+            {
+              "id": "plus60_equilibrio-w1-s1",
+              "number": 1,
+              "title": "Transferencia lateral",
+              "free": true,
+              "duration_min": 10,
+              "exercises": [
+                "s60_09",
+                "s60_08"
+              ]
+            },
+            {
+              "id": "plus60_equilibrio-w1-s2",
+              "number": 2,
+              "title": "Marcha activa",
+              "free": false,
+              "duration_min": 12,
+              "exercises": [
+                "s60_08",
+                "s60_19"
+              ]
+            },
+            {
+              "id": "plus60_equilibrio-w1-s3",
+              "number": 3,
+              "title": "Coordinación básica",
+              "free": false,
+              "duration_min": 12,
+              "exercises": [
+                "s60_09",
+                "s60_19",
+                "s60_08"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Control postural",
+          "goal": "Incorporar equilibrio unipodal con asistencia y sumar carga coordinativa.",
+          "note": "El objetivo NO es fuerza, es control fino. Movimientos lentos y precisos.",
+          "dose": "Series de 30-60 segundos con descansos.",
+          "pacing": "Si dormiste mal o estás muy cansado, hacé solo Sesión 1 del día.",
+          "sessions": [
+            {
+              "id": "plus60_equilibrio-w2-s1",
+              "number": 1,
+              "title": "Unipodal asistido",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "s60_10",
+                "s60_09",
+                "s60_08"
+              ]
+            },
+            {
+              "id": "plus60_equilibrio-w2-s2",
+              "number": 2,
+              "title": "Marcha coordinada",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "s60_19",
+                "s60_08",
+                "s60_10"
+              ]
+            },
+            {
+              "id": "plus60_equilibrio-w2-s3",
+              "number": 3,
+              "title": "Circuito equilibrio",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "s60_09",
+                "s60_10",
+                "s60_19",
+                "s60_08"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Desafío controlado",
+          "goal": "Aumentar el tiempo en apoyo unipodal y complejizar los estímulos.",
+          "note": "Nunca cierres los ojos ni soltés el apoyo si no te sentís muy seguro.",
+          "dose": "Aumentar duración del unipodal a 30-45 segundos por pierna.",
+          "pacing": "Al día siguiente deberías sentirte más ágil, no más cansado.",
+          "sessions": [
+            {
+              "id": "plus60_equilibrio-w3-s1",
+              "number": 1,
+              "title": "Unipodal prolongado",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "s60_10",
+                "s60_10",
+                "s60_09"
+              ]
+            },
+            {
+              "id": "plus60_equilibrio-w3-s2",
+              "number": 2,
+              "title": "Marcha con desafío",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "s60_19",
+                "s60_08",
+                "s60_10"
+              ]
+            },
+            {
+              "id": "plus60_equilibrio-w3-s3",
+              "number": 3,
+              "title": "Integración funcional",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "s60_10",
+                "s60_19",
+                "s60_09",
+                "s60_08"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Prevención de caídas",
+          "goal": "Consolidar el control postural con menor apoyo y mayor autonomía.",
+          "note": "Este nivel de equilibrio te protege de caídas. Sostenelo a lo largo del tiempo.",
+          "dose": "3 sesiones semanales de mantenimiento indefinido.",
+          "pacing": "Este es tu piso funcional. Nunca dejes de entrenar equilibrio.",
+          "sessions": [
+            {
+              "id": "plus60_equilibrio-w4-s1",
+              "number": 1,
+              "title": "Autonomía postural",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "s60_10",
+                "s60_19",
+                "s60_09"
+              ]
+            },
+            {
+              "id": "plus60_equilibrio-w4-s2",
+              "number": 2,
+              "title": "Marcha compleja",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "s60_19",
+                "s60_08",
+                "s60_10"
+              ]
+            },
+            {
+              "id": "plus60_equilibrio-w4-s3",
+              "number": 3,
+              "title": "Circuito preventivo",
+              "free": false,
+              "duration_min": 20,
+              "exercises": [
+                "s60_10",
+                "s60_19",
+                "s60_08",
+                "s60_09"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "plus60_core": {
+      "name": "Core y estabilidad",
+      "module": "+60",
+      "duration_weeks": 4,
+      "intro": "Programa para activar el core profundo y estabilizar la zona lumbo-pélvica. Sin abdominales tradicionales — todo desde silla o con apoyo.",
+      "weeks": [
+        {
+          "number": 1,
+          "title": "Activación consciente",
+          "goal": "Aprender a activar el core desde una postura sentada.",
+          "note": "La activación es SUAVE, no de máxima fuerza. Si contenés el aire, estás forzando.",
+          "dose": "Series cortas de 5-10 segundos de sostén.",
+          "pacing": "El core se entrena TODOS los días. Idealmente hacé una sesión diaria.",
+          "sessions": [
+            {
+              "id": "plus60_core-w1-s1",
+              "number": 1,
+              "title": "Descubrir el core",
+              "free": true,
+              "duration_min": 10,
+              "exercises": [
+                "s60_11",
+                "s60_12"
+              ]
+            },
+            {
+              "id": "plus60_core-w1-s2",
+              "number": 2,
+              "title": "Activación en silla",
+              "free": false,
+              "duration_min": 12,
+              "exercises": [
+                "s60_11",
+                "s60_23"
+              ]
+            },
+            {
+              "id": "plus60_core-w1-s3",
+              "number": 3,
+              "title": "Coordinación core-respiración",
+              "free": false,
+              "duration_min": 12,
+              "exercises": [
+                "s60_11",
+                "s60_12",
+                "s60_23"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Estabilidad dinámica",
+          "goal": "Coordinar la activación del core con movimientos de piernas y brazos.",
+          "note": "La lumbar NO debe despegarse del respaldo. Si se despega, reducí el rango.",
+          "dose": "3 series de 10-12 repeticiones controladas.",
+          "pacing": "Si tenés molestia lumbar al terminar, reducí el rango o volvé a Semana 1.",
+          "sessions": [
+            {
+              "id": "plus60_core-w2-s1",
+              "number": 1,
+              "title": "Dead bug sentado",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "s60_23",
+                "s60_11",
+                "s60_12"
+              ]
+            },
+            {
+              "id": "plus60_core-w2-s2",
+              "number": 2,
+              "title": "Elevación de rodillas",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "s60_12",
+                "s60_23",
+                "s60_11"
+              ]
+            },
+            {
+              "id": "plus60_core-w2-s3",
+              "number": 3,
+              "title": "Circuito estabilizador",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "s60_11",
+                "s60_23",
+                "s60_12"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Progresión con resistencia",
+          "goal": "Sumar banda elástica y variantes para mayor demanda controlada.",
+          "note": "Si no tenés banda elástica, hacé la versión sin banda — el ejercicio funciona igual.",
+          "dose": "3 series de 10-15 repeticiones por lado.",
+          "pacing": "El core suele demorar más en fortalecerse. Sé paciente.",
+          "sessions": [
+            {
+              "id": "plus60_core-w3-s1",
+              "number": 1,
+              "title": "Core con banda",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "s60_21",
+                "s60_23",
+                "s60_11"
+              ]
+            },
+            {
+              "id": "plus60_core-w3-s2",
+              "number": 2,
+              "title": "Estabilización anti-rotación",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "s60_23",
+                "s60_21",
+                "s60_12"
+              ]
+            },
+            {
+              "id": "plus60_core-w3-s3",
+              "number": 3,
+              "title": "Circuito avanzado",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "s60_21",
+                "s60_23",
+                "s60_12",
+                "s60_11"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Core funcional",
+          "goal": "Consolidar el control lumbo-pélvico para actividades diarias.",
+          "note": "Un core estable te protege la espalda al agacharte, girar y levantar objetos.",
+          "dose": "3-4 series completas. Ideal hacer una sesión corta diaria.",
+          "pacing": "Este es el nivel de mantenimiento. Sostenerlo previene lumbalgias.",
+          "sessions": [
+            {
+              "id": "plus60_core-w4-s1",
+              "number": 1,
+              "title": "Core integrado",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "s60_21",
+                "s60_23",
+                "s60_11",
+                "s60_12"
+              ]
+            },
+            {
+              "id": "plus60_core-w4-s2",
+              "number": 2,
+              "title": "Estabilidad funcional",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "s60_23",
+                "s60_21",
+                "s60_12"
+              ]
+            },
+            {
+              "id": "plus60_core-w4-s3",
+              "number": 3,
+              "title": "Circuito completo",
+              "free": false,
+              "duration_min": 20,
+              "exercises": [
+                "s60_11",
+                "s60_21",
+                "s60_23",
+                "s60_12"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "plus60_postura": {
+      "name": "Postura y columna dorsal",
+      "module": "+60",
+      "duration_weeks": 4,
+      "intro": "Programa para abrir el pecho, movilizar la columna dorsal y contrarrestar la postura encorvada típica del envejecimiento. Combate el 'joroba' desde su origen.",
+      "weeks": [
+        {
+          "number": 1,
+          "title": "Consciencia postural",
+          "goal": "Aprender a activar los músculos que sostienen la postura erguida.",
+          "note": "El objetivo es que sientas los músculos entre las escápulas, no el cuello.",
+          "dose": "Series cortas y controladas de 10-12 repeticiones.",
+          "pacing": "Estos cambios se ven a las 3-4 semanas. Sé constante.",
+          "sessions": [
+            {
+              "id": "plus60_postura-w1-s1",
+              "number": 1,
+              "title": "Apertura torácica",
+              "free": true,
+              "duration_min": 10,
+              "exercises": [
+                "s60_13",
+                "s60_15"
+              ]
+            },
+            {
+              "id": "plus60_postura-w1-s2",
+              "number": 2,
+              "title": "Movilidad dorsal",
+              "free": false,
+              "duration_min": 12,
+              "exercises": [
+                "s60_15",
+                "s60_13"
+              ]
+            },
+            {
+              "id": "plus60_postura-w1-s3",
+              "number": 3,
+              "title": "Coordinación escapular",
+              "free": false,
+              "duration_min": 12,
+              "exercises": [
+                "s60_13",
+                "s60_15",
+                "s60_18"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "title": "Movilidad progresiva",
+          "goal": "Ganar rango de movimiento en la columna dorsal.",
+          "note": "El movimiento parte del pecho, no de la lumbar. Si te duele la baja espalda, reducí el rango.",
+          "dose": "3 series de 10 repeticiones por lado.",
+          "pacing": "Si mejora tu sensación de postura al final de la semana, avanzá.",
+          "sessions": [
+            {
+              "id": "plus60_postura-w2-s1",
+              "number": 1,
+              "title": "Rotación torácica",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "s60_15",
+                "s60_13",
+                "s60_18"
+              ]
+            },
+            {
+              "id": "plus60_postura-w2-s2",
+              "number": 2,
+              "title": "Apertura activa",
+              "free": false,
+              "duration_min": 14,
+              "exercises": [
+                "s60_13",
+                "s60_15",
+                "s60_18"
+              ]
+            },
+            {
+              "id": "plus60_postura-w2-s3",
+              "number": 3,
+              "title": "Circuito postural",
+              "free": false,
+              "duration_min": 16,
+              "exercises": [
+                "s60_13",
+                "s60_15",
+                "s60_18"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Activación con pared",
+          "goal": "Incorporar el wall slide para fortalecer la musculatura postural.",
+          "note": "Toda la espalda pegada a la pared. Si se despega la lumbar, alejá los pies.",
+          "dose": "3 series de 8-10 repeticiones controladas.",
+          "pacing": "Este es el ejercicio clave. Hacelo aunque saltes otros.",
+          "sessions": [
+            {
+              "id": "plus60_postura-w3-s1",
+              "number": 1,
+              "title": "Wall slide inicial",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "s60_14",
+                "s60_13",
+                "s60_15"
+              ]
+            },
+            {
+              "id": "plus60_postura-w3-s2",
+              "number": 2,
+              "title": "Fortalecimiento escapular",
+              "free": false,
+              "duration_min": 15,
+              "exercises": [
+                "s60_14",
+                "s60_18",
+                "s60_13"
+              ]
+            },
+            {
+              "id": "plus60_postura-w3-s3",
+              "number": 3,
+              "title": "Postural integrado",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "s60_14",
+                "s60_13",
+                "s60_15",
+                "s60_18"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "title": "Postura sostenida",
+          "goal": "Consolidar el hábito postural para toda la vida.",
+          "note": "La postura es un hábito, no un ejercicio puntual. Cada vez que te acordás, corregí.",
+          "dose": "3 sesiones semanales de mantenimiento indefinido.",
+          "pacing": "Este es el nivel a sostener. La postura sostenida previene dolor cervical y dorsal.",
+          "sessions": [
+            {
+              "id": "plus60_postura-w4-s1",
+              "number": 1,
+              "title": "Rutina postural completa",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "s60_14",
+                "s60_13",
+                "s60_15",
+                "s60_18"
+              ]
+            },
+            {
+              "id": "plus60_postura-w4-s2",
+              "number": 2,
+              "title": "Fortalecimiento avanzado",
+              "free": false,
+              "duration_min": 18,
+              "exercises": [
+                "s60_14",
+                "s60_18",
+                "s60_13",
+                "s60_15"
+              ]
+            },
+            {
+              "id": "plus60_postura-w4-s3",
+              "number": 3,
+              "title": "Circuito postural avanzado",
+              "free": false,
+              "duration_min": 20,
+              "exercises": [
+                "s60_14",
+                "s60_18",
+                "s60_13",
+                "s60_15"
               ]
             }
           ]
