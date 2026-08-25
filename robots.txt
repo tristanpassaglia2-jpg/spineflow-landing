@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /medico
+Disallow: /activar
+
+Sitemap: https://spineflow.com/sitemap.xml
