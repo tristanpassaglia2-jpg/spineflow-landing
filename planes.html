@@ -25,7 +25,7 @@
   .plan .equivalencia { color:#475569; font-size:0.85rem; margin-bottom:1.5rem; min-height:1.5rem; }
   .plan ul { list-style:none; text-align:left; margin-bottom:2rem; flex-grow:1; }
   .plan li { padding:0.4rem 0; font-size:0.95rem; padding-left:1.5rem; position:relative; }
-  .plan li::before { content:"✓"; color:#059669; font-weight:700; position:absolute; left:0; }
+  .plan li::before { content:"\2713"; color:#059669; font-weight:700; position:absolute; left:0; }
   .btn { display:block; width:100%; padding:0.9rem 1.5rem; background:#0891b2; color:#fff; text-decoration:none; border-radius:10px; font-weight:600; font-size:1rem; transition:background 0.2s; cursor:pointer; border:none; text-align:center; }
   .btn:hover { background:#0e7490; }
   .info { max-width:800px; margin:2rem auto 4rem; padding:2rem 1.5rem; text-align:center; color:#64748b; font-size:0.95rem; }
@@ -53,16 +53,16 @@
 
 <header class="header">
   <h1>SpineFlow</h1>
-  <a href="/">← Volver al inicio</a>
+  <a href="/">&larr; Volver al inicio</a>
 </header>
 
 <section class="hero">
-  <h2>Elegí tu plan</h2>
-  <p>Rehabilitación digital para tu columna, guiada por un equipo médico especializado.</p>
+  <h2>Eleg&iacute; tu plan</h2>
+  <p>Rehabilitaci&oacute;n digital para tu columna, guiada por un equipo m&eacute;dico especializado.</p>
 </section>
 
 <div id="userInfo" class="user-info">
-  Estás ingresado como <strong id="userEmail"></strong> · <a href="#" onclick="cerrarSesion();return false;" style="color:#0891b2;">Cerrar sesión</a>
+  Est&aacute;s ingresado como <strong id="userEmail"></strong> &middot; <a href="#" onclick="cerrarSesion();return false;" style="color:#0891b2;">Cerrar sesi&oacute;n</a>
 </div>
 
 <section class="planes">
@@ -71,29 +71,29 @@
     <h3>Mensual</h3>
     <div class="precio">$9.800</div>
     <div class="periodo">por mes</div>
-    <div class="equivalencia">Menos que una sesión de kinesiología</div>
+    <div class="equivalencia">Menos que una sesi&oacute;n de kinesiolog&iacute;a</div>
     <ul>
-      <li>Acceso a todas las patologías</li>
+      <li>Acceso a todas las patolog&iacute;as</li>
       <li>Programa progresivo de 4 semanas</li>
       <li>100 ejercicios con voz guiada</li>
       <li>Historial de dolor y progreso</li>
-      <li>Cancelás cuando quieras</li>
+      <li>Cancel&aacute;s cuando quieras</li>
     </ul>
     <button class="btn" onclick="suscribirse('a1980c58e40b4c169d742e5b659ab7ff')">Suscribirme</button>
   </div>
 
   <div class="plan destacado">
-    <div class="badge">MÁS ELEGIDO</div>
+    <div class="badge">M&Aacute;S ELEGIDO</div>
     <h3>Trimestral</h3>
     <div class="precio">$23.900</div>
     <div class="periodo">cada 3 meses</div>
-    <div class="equivalencia">Ahorrás $5.500 vs mensual</div>
+    <div class="equivalencia">Ahorr&aacute;s $5.500 vs mensual</div>
     <ul>
       <li>Todo lo del plan Mensual</li>
       <li>Precio congelado 3 meses</li>
       <li>Ideal para completar el programa</li>
-      <li>Renovación automática</li>
-      <li>Cancelás cuando quieras</li>
+      <li>Renovaci&oacute;n autom&aacute;tica</li>
+      <li>Cancel&aacute;s cuando quieras</li>
     </ul>
     <button class="btn" onclick="suscribirse('cdd410bdc22a448d82d38b04066e8c45')">Suscribirme</button>
   </div>
@@ -101,14 +101,14 @@
   <div class="plan">
     <h3>Anual</h3>
     <div class="precio">$69.800</div>
-    <div class="periodo">por año</div>
-    <div class="equivalencia">Ahorrás $47.800 vs mensual</div>
+    <div class="periodo">por a&ntilde;o</div>
+    <div class="equivalencia">Ahorr&aacute;s $47.800 vs mensual</div>
     <ul>
       <li>Todo lo del plan Mensual</li>
       <li>2 meses gratis</li>
       <li>Precio congelado 12 meses</li>
       <li>Para uso sostenido en el tiempo</li>
-      <li>Cancelás cuando quieras</li>
+      <li>Cancel&aacute;s cuando quieras</li>
     </ul>
     <button class="btn" onclick="suscribirse('51c086db731645f4bf447cbd1802a77a')">Suscribirme</button>
   </div>
@@ -116,60 +116,26 @@
 </section>
 
 <section class="info">
-  <p><strong>💳 Pago 100% seguro con Mercado Pago.</strong> Aceptamos todas las tarjetas de crédito y débito.</p>
+  <p><strong>Pago 100% seguro con Mercado Pago.</strong> Aceptamos todas las tarjetas de cr&eacute;dito y d&eacute;bito.</p>
   <br>
-  <p>¿Tenés un código de tu médico? <a href="/activar" style="color:#0891b2;font-weight:600;">Activá tu acceso gratuito acá</a></p>
+  <p>&iquest;Ten&eacute;s un c&oacute;digo de tu m&eacute;dico? <a href="/activar" style="color:#0891b2;font-weight:600;">Activ&aacute; tu acceso gratuito ac&aacute;</a></p>
 </section>
 
 <div id="modalLogin" class="modal-bg">
   <div class="modal">
-    <div class="close"><button onclick="cerrarModal()">×</button></div>
-    <h3 id="modalTitulo">Iniciá sesión para suscribirte</h3>
+    <div class="close"><button onclick="cerrarModal()">&times;</button></div>
+    <h3 id="modalTitulo">Inici&aacute; sesi&oacute;n para suscribirte</h3>
     <p id="modalTexto">Necesitamos tu cuenta para activar el acceso una vez que pagues.</p>
     <input type="email" id="modalEmail" placeholder="Tu email" autocomplete="email">
-    <input type="password" id="modalPassword" placeholder="Contraseña (mínimo 6 caracteres)" autocomplete="current-password">
+    <input type="password" id="modalPassword" placeholder="Contrase&ntilde;a (m&iacute;nimo 6 caracteres)" autocomplete="current-password">
     <div class="error" id="modalError"></div>
     <button class="btn" onclick="hacerLogin()" id="btnLogin">Ingresar</button>
-    <button class="btn btn-link" onclick="cambiarModo()" id="btnCambio">¿No tenés cuenta? Registrate acá</button>
+    <button class="btn btn-link" onclick="cambiarModo()" id="btnCambio">&iquest;No ten&eacute;s cuenta? Registrate ac&aacute;</button>
     <div class="loading" id="modalLoading">Procesando...</div>
   </div>
 </div>
 
 <footer class="footer">
-  <a href="/terminos.html">Términos</a> |
+  <a href="/terminos.html">T&eacute;rminos</a> |
   <a href="/privacidad.html">Privacidad</a> |
-  <a href="/aviso-medico.html">Aviso médico</a>
-  <br><br>
-  &copy; 2026 SpineFlow &mdash; Desarrollado por cirujanos y kinesi&oacute;logos especialistas en patolog&iacute;a de columna vertebral
-</footer>
-
-<script>
-  const SUPABASE_URL = 'https://atefklvwshuwrmeasrnq.supabase.co';
-  const SUPABASE_ANON_KEY = 'sb_publishable_KEY_PLACEHOLDER';
-  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-  let modoRegistro = false;
-  let planPendiente = null;
-
-  window.addEventListener('load', async () => {
-    const { data: { session } } = await sb.auth.getSession();
-    if (session) {
-      document.getElementById('userInfo').style.display = 'block';
-      document.getElementById('userEmail').textContent = session.user.email;
-    }
-  });
-
-  async function cerrarSesion() {
-    await sb.auth.signOut();
-    location.reload();
-  }
-
-  async function suscribirse(planId) {
-    const { data: { session } } = await sb.auth.getSession();
-    if (session) {
-      irAlCheckout(session.user.id, planId);
-    } else {
-      planPendiente = planId;
-      abrirModal();
-    }
-  }
+  <a href="/aviso-medico.html">Aviso m&eacute;dico</a>
