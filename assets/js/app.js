@@ -18,7 +18,7 @@
   const state = {
     user: null, displayName: '', exercises: {}, regions: [], sequences: {}, view: 'landing',
     currentRegion: null, currentPath: null, currentExercise: null, phase: 0,
-    premium: false, dark: store.get('dark', false),
+    premium: false, trialPathologies: [], dark: store.get('dark', false),
     favorites: [], history: [],
     scores: { eva: 3, odi: 18, ndi: 14 },
     player: null, seconds: 30, authView: 'login', scoreTimer: null, voiceOn: true, loopTimer: null
@@ -77,10 +77,13 @@
         const { data: sub } = await sb.from('subscriptions').select('status').eq('user_id', state.user.id).order('updated_at', { ascending: false }).limit(1).maybeSingle();
         if (sub && sub.status === 'authorized') state.premium = true;
       }
-      /* ── Verificar acceso por QR médico (trial_access) ── */
+      /* ── Verificar acceso por QR médico (trial_access): desbloquea SOLO las patologías del código, no toda la app ── */
+      state.trialPathologies = [];
       if (!state.premium) {
-        const { data: trial } = await sb.from('trial_access').select('expires_at').eq('user_id', state.user.id).gt('expires_at', new Date().toISOString()).limit(1);
-        if (trial && trial.length > 0) state.premium = true;
+        const { data: trial } = await sb.from('trial_access').select('pathology').eq('user_id', state.user.id).gt('expires_at', new Date().toISOString());
+        if (trial && trial.length > 0) {
+          state.trialPathologies = trial.map(t => t.pathology).filter(Boolean);
+        }
       }
 
       const { data: progress } = await sb.from('exercise_progress').select('exercise_id, completed_at').eq('user_id', state.user.id).order('completed_at', { ascending: false }).limit(500);
@@ -177,7 +180,7 @@
     await sb.auth.signOut();
     state.user = null; state.displayName = '';
     state.favorites = []; state.history = [];
-    state.scores = { eva: 3, odi: 18, ndi: 14 }; state.premium = false;
+    state.scores = { eva: 3, odi: 18, ndi: 14 }; state.premium = false; state.trialPathologies = [];
     go('landing');
     toast('Sesión cerrada');
   }
@@ -264,7 +267,11 @@
     const nav = Object.keys(labels).map(v => `<button class="nav-item ${state.view===v?'active':''}" data-view="${v}"><span class="nav-icon">${icons[v]}</span>${labels[v]}</button>`).join('');
     const name = state.displayName || state.user?.email?.split('@')[0] || '';
     const initial = name.charAt(0).toUpperCase() || 'U';
-    return `<div class="shell"><aside class="sidebar" id="sidebar"><div class="brand"><span class="brand-mark">SF</span>SpineFlow</div><nav class="nav-list">${nav}</nav><div class="side-plan"><small>Plan actual</small><strong>${state.premium?'Premium activo':'Plan gratuito'}</strong><button class="btn ${state.premium?'btn-light':'btn-gold'} btn-wide" data-premium>${state.premium?'Gestionar plan':'Ver Premium'}</button><button class="btn btn-light btn-wide" data-logout style="margin-top:8px;font-size:.8rem;opacity:.7">Cerrar sesión</button></div></aside><main class="main"><header class="topbar"><button class="btn btn-light mobile-menu" data-menu>☰</button><div><strong>${labels[state.view] || 'SpineFlow'}</strong></div><div class="top-actions"><button class="btn btn-light" data-dark title="Cambiar tema">${state.dark?'☀':'☾'}</button><div class="profile-dot" aria-label="Perfil" title="${name}">${initial}</div></div></header><div class="content">${content}</div></main></div>`;
+    const hasTrial = state.trialPathologies.length > 0;
+    const planLabel = state.premium ? 'Premium activo' : (hasTrial ? 'Acceso prescrito' : 'Plan gratuito');
+    const planCta = state.premium ? 'Gestionar plan' : (hasTrial ? 'Suscribirme' : 'Ver Premium');
+    const planClass = state.premium ? 'btn-light' : 'btn-gold';
+    return `<div class="shell"><aside class="sidebar" id="sidebar"><div class="brand"><span class="brand-mark">SF</span>SpineFlow</div><nav class="nav-list">${nav}</nav><div class="side-plan"><small>Plan actual</small><strong>${planLabel}</strong><button class="btn ${planClass} btn-wide" data-premium>${planCta}</button><button class="btn btn-light btn-wide" data-logout style="margin-top:8px;font-size:.8rem;opacity:.7">Cerrar sesión</button></div></aside><main class="main"><header class="topbar"><button class="btn btn-light mobile-menu" data-menu>☰</button><div><strong>${labels[state.view] || 'SpineFlow'}</strong></div><div class="top-actions"><button class="btn btn-light" data-dark title="Cambiar tema">${state.dark?'☀':'☾'}</button><div class="profile-dot" aria-label="Perfil" title="${name}">${initial}</div></div></header><div class="content">${content}</div></main></div>`;
   }
   function bindShell() {
     document.querySelectorAll('[data-view]').forEach(b => b.onclick = () => go(b.dataset.view));
@@ -305,8 +312,10 @@
     return `<button class="btn btn-dark back-button" data-back-path>← Volver a patologías</button><div class="page-head"><div><p class="eyebrow">Módulo ${region.label}</p><h1>${path.title}</h1><p>${path.desc}. Los dos primeros ejercicios son de acceso gratuito.</p></div></div><div class="exercise-list">${path.ex.map((id,i)=>exerciseRow(id,i,path)).join('')}</div>`;
   }
   function exerciseRow(id,index,path) {
-    const ex=state.exercises[id], locked=index>=path.free_count&&!state.premium;
-    return `<article class="exercise-row"><div class="exercise-thumb" style="background-image:url('media/exercises/${id}.webp')"></div><div><div class="exercise-tags"><span class="pill">${ex.level}</span>${index<path.free_count?'<span class="pill free">Gratis</span>':'<span class="pill pill-premium">Premium</span>'}</div><h3>${ex.name}</h3><p>${ex.position} · ${ex.reps}</p></div><div class="exercise-status"><span class="lock ${locked?'':'free'}">${locked?'🔒':'✓'}</span><button class="btn ${locked?'btn-light':'btn-primary'}" data-exercise="${id}" data-locked="${locked}">${locked?'Ver Premium':'Comenzar'}</button></div></article>`;
+    const ex=state.exercises[id];
+    const hasTrialForThisPath = state.trialPathologies.includes(path.id);
+    const locked=index>=path.free_count&&!state.premium&&!hasTrialForThisPath;
+    return `<article class="exercise-row"><div class="exercise-thumb" style="background-image:url('media/exercises/${id}.webp')"></div><div><div class="exercise-tags"><span class="pill">${ex.level}</span>${index<path.free_count?'<span class="pill free">Gratis</span>':(hasTrialForThisPath?'<span class="pill free">Prescrito</span>':'<span class="pill pill-premium">Premium</span>')}</div><h3>${ex.name}</h3><p>${ex.position} · ${ex.reps}</p></div><div class="exercise-status"><span class="lock ${locked?'':'free'}">${locked?'🔒':'✓'}</span><button class="btn ${locked?'btn-light':'btn-primary'}" data-exercise="${id}" data-locked="${locked}">${locked?'Ver Premium':'Comenzar'}</button></div></article>`;
   }
   /* Resuelve las láminas de secuencia (loop) de un ejercicio.
      Formato del JSON: {"l1":{files:[...]}} o alias {"p2":{type:"alias",alias_of:"k8"}} */
@@ -389,7 +398,7 @@
     return imgs.map((src, i) => ({
       img: src,
       cap: ex.steps?.[i] || ex.position || ex.name || '',
-      voice: ((ex.steps?.[i] || ex.position || '').match(/^[^.!]+[.!]/) || [ex.steps?.[i] || ex.position || ''])[0]
+      voice: ex.steps?.[i] || ex.position || ''
     }));
   }
   function paintPhase() {
