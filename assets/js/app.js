@@ -14,6 +14,43 @@
     set(key, value) { localStorage.setItem(`sf9_${key}`, JSON.stringify(value)); }
   };
 
+  /* ── Dispositivo: máx 2 por cuenta ── */
+  const MAX_DEVICES = 2;
+  function getDeviceId() {
+    let id = store.get('device_id', null);
+    if (!id) { id = crypto.randomUUID(); store.set('device_id', id); }
+    return id;
+  }
+  function getDeviceName() {
+    const ua = navigator.userAgent;
+    if (/iPhone|iPad/.test(ua)) return 'iPhone/iPad';
+    if (/Android/.test(ua)) return 'Android';
+    if (/Windows/.test(ua)) return 'PC Windows';
+    if (/Mac/.test(ua)) return 'Mac';
+    return 'Navegador';
+  }
+  async function checkDeviceLimit(userId) {
+    const deviceId = getDeviceId();
+    // Registrar/actualizar este dispositivo
+    await sb.from('user_devices').upsert({
+      user_id: userId, device_id: deviceId,
+      device_name: getDeviceName(), last_seen_at: new Date().toISOString()
+    }, { onConflict: 'user_id,device_id' });
+    // Contar dispositivos activos (vistos en los últimos 30 días)
+    const since = new Date(Date.now() - 30*24*60*60*1000).toISOString();
+    const { data } = await sb.from('user_devices')
+      .select('device_id, device_name, last_seen_at')
+      .eq('user_id', userId)
+      .gte('last_seen_at', since)
+      .order('last_seen_at', { ascending: false });
+    if (data && data.length > MAX_DEVICES) {
+      const mine = data.find(d => d.device_id === deviceId);
+      const isAllowed = data.slice(0, MAX_DEVICES).some(d => d.device_id === deviceId);
+      if (!isAllowed) return false; // este dispositivo es el 3°+
+    }
+    return true;
+  }
+
   /* ── State ── */
   const state = {
     user: null, displayName: '', exercises: {}, regions: [], sequences: {}, programs: {}, view: 'landing',
@@ -67,6 +104,14 @@
   ══════════════════════════════════════ */
   async function loadUserData() {
     try {
+      /* ── Chequeo de dispositivos (máx 2) ── */
+      const deviceOk = await checkDeviceLimit(state.user.id);
+      if (!deviceOk) {
+        state.deviceBlocked = true;
+        return;
+      }
+      state.deviceBlocked = false;
+
       const { data: profile } = await sb.from('profiles').select('favorites, scores, is_premium, display_name, completed_sessions').eq('id', state.user.id).single();
       if (profile) {
         state.favorites = profile.favorites || [];
@@ -200,7 +245,12 @@
     if (state.view === 'landing') return renderLanding();
     if (state.view === 'login') return renderLogin();
     if (!state.user) { state.view = 'login'; return renderLogin(); }
+    if (state.deviceBlocked) return renderDeviceBlocked();
     app.innerHTML = shell(page()); bindShell(); bindPage();
+  }
+  function renderDeviceBlocked() {
+    app.innerHTML = `<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:#f0fafa"><div style="background:#fff;border-radius:20px;box-shadow:0 8px 32px rgba(0,128,128,0.10);max-width:480px;width:100%;text-align:center;padding:48px 32px"><div style="width:64px;height:64px;background:#fef3c7;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.8rem">⚠️</div><h1 style="font-size:1.4rem;color:#92400e;margin-bottom:12px">Límite de dispositivos</h1><p style="color:#475569;line-height:1.6;margin-bottom:24px">Ya tenés <strong>2 dispositivos</strong> conectados a tu cuenta.<br>Para usar SpineFlow acá, cerrá sesión en otro dispositivo.</p><button class="btn btn-primary" style="padding:14px 32px;border-radius:12px;font-size:1rem" onclick="location.reload()">Reintentar</button><br><button class="btn btn-light" style="margin-top:12px;padding:10px 24px;font-size:.9rem" id="btnLogoutDevice">Cerrar sesión acá</button></div></div>`;
+    document.getElementById('btnLogoutDevice')?.addEventListener('click', logout);
   }
 
   /* ── Landing ── */
