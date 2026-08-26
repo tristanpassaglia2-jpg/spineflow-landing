@@ -143,7 +143,7 @@ var modoRegistro = false;
 var planPendiente = null;
 
 function irAlCheckout(userId, planId) {
-  var url = 'https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=' + planId + '&external_reference=' + userId + '&back_url=' + encodeURIComponent('https://spineflow.com/gracias.html');
+  var url = 'https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=' + planId + '&external_reference=' + userId + '&back_url=' + encodeURIComponent('https://spineflow.org/gracias.html');
   window.location.href = url;
 }
 
