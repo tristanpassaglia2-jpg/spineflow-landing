@@ -3,4 +3,4 @@ Allow: /
 Disallow: /medico
 Disallow: /activar
 
-Sitemap: https://spineflow.com/sitemap.xml
+Sitemap: https://spineflow.org/sitemap.xml
