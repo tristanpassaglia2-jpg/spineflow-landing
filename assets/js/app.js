@@ -403,11 +403,25 @@
       <div class="card" style="margin-bottom:20px;background:linear-gradient(135deg,#0f8b84,#0d7772);color:#fff"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px"><div><p style="opacity:.85;font-size:.85rem;margin:0">Tu progreso</p><h2 style="margin:4px 0;color:#fff">${doneCount} de ${totalSessions} sesiones</h2></div><div style="min-width:120px"><div style="height:8px;background:rgba(255,255,255,.25);border-radius:10px;overflow:hidden"><div style="height:100%;width:${pct}%;background:#fff;transition:width .3s"></div></div><p style="margin:6px 0 0;font-size:.8rem;opacity:.9;text-align:right">${pct}%</p></div></div></div>
       ${weeksHtml}`;
   }
+  /* Miniatura: usa la 1ª fase del loop si existe; si no, la lámina suelta. */
+  function thumbFor(id) {
+    const imgs = imagesFor(id);
+    if (imgs && imgs.length) return imgs[0];
+    return `media/exercises/${id}.webp`;
+  }
+  /* Voz: lee sólo la 1ª oración del paso (el texto completo queda en el panel). */
+  function firstSentence(txt) {
+    if (!txt) return '';
+    const m = String(txt).match(/^[\s\S]*?[.!?](\s|$)/);
+    let out = (m ? m[0] : String(txt)).trim();
+    if (out.length > 140) out = out.slice(0, 140).replace(/\s+\S*$/, '') + '.';
+    return out;
+  }
   function exerciseRow(id,index,path) {
     const ex=state.exercises[id];
     const hasTrialForThisPath = state.trialPathologies.includes(path.id);
     const locked=index>=path.free_count&&!state.premium&&!hasTrialForThisPath;
-    return `<article class="exercise-row"><div class="exercise-thumb" style="background-image:url('media/exercises/${id}.webp')"></div><div><div class="exercise-tags"><span class="pill">${ex.level}</span>${index<path.free_count?'<span class="pill free">Gratis</span>':(hasTrialForThisPath?'<span class="pill free">Prescrito</span>':'<span class="pill pill-premium">Premium</span>')}</div><h3>${ex.name}</h3><p>${ex.position} · ${ex.reps}</p></div><div class="exercise-status"><span class="lock ${locked?'':'free'}">${locked?'🔒':'✓'}</span><button class="btn ${locked?'btn-light':'btn-primary'}" data-exercise="${id}" data-locked="${locked}">${locked?'Ver Premium':'Comenzar'}</button></div></article>`;
+    return `<article class="exercise-row"><div class="exercise-thumb" style="background-image:url('${thumbFor(id)}')"></div><div><div class="exercise-tags"><span class="pill">${ex.level}</span>${index<path.free_count?'<span class="pill free">Gratis</span>':(hasTrialForThisPath?'<span class="pill free">Prescrito</span>':'<span class="pill pill-premium">Premium</span>')}</div><h3>${ex.name}</h3><p>${ex.position}${ex.reps ? ' · ' + ex.reps : ''}</p></div><div class="exercise-status"><span class="lock ${locked?'':'free'}">${locked?'🔒':'✓'}</span><button class="btn ${locked?'btn-light':'btn-primary'}" data-exercise="${id}" data-locked="${locked}">${locked?'Ver Premium':'Comenzar'}</button></div></article>`;
   }
   /* Resuelve las láminas de secuencia (loop) de un ejercicio.
      Formato del JSON: {"l1":{files:[...]}} o alias {"p2":{type:"alias",alias_of:"k8"}} */
@@ -424,7 +438,7 @@
     const fav=state.favorites.includes(state.currentExercise);
     const imgs = imagesFor(state.currentExercise);
     const firstImg = imgs ? imgs[0] : `media/exercises/${state.currentExercise}.webp`;
-    return `<button class="btn btn-dark back-button" data-exercise-back>← Volver al programa</button><div class="exercise-layout"><section class="card exercise-main"><div class="exercise-title-row"><div><p class="eyebrow">Ejercicio guiado por Mis profes</p><h1>${ex.name}</h1></div><button class="btn btn-light" data-favorite>${fav?'♥ Guardado':'♡ Favorito'}</button></div><div class="exercise-tags"><span class="pill">${ex.level}</span><span class="pill">${ex.series}</span><span class="pill">${ex.reps}</span></div>
+    return `<button class="btn btn-dark back-button" data-exercise-back>← Volver al programa</button><div class="exercise-layout"><section class="card exercise-main"><div class="exercise-title-row"><div><p class="eyebrow">Ejercicio guiado por Mis profes</p><h1>${ex.name}</h1></div><button class="btn btn-light" data-favorite>${fav?'♥ Guardado':'♡ Favorito'}</button></div><div class="exercise-tags"><span class="pill">${ex.level}</span>${ex.series?`<span class="pill">${ex.series}</span>`:''}${ex.reps?`<span class="pill">${ex.reps}</span>`:''}</div>
       <div class="player"><div class="player-head"><div class="coach-mini"><span class="coach-avatar"><img src="media/coach/mi-profe.webp" alt="Retrato de Mis profes"></span><div><strong>Mis profes</strong><span>Guía de movimiento</span></div></div><span class="speak-badge" id="speakBadge">● GUÍA</span></div>
         <div class="loop-stage" id="loopStage"><div class="loop-layer on" id="loopA"><img src="${firstImg}" alt="${ex.name}" onerror="this.style.opacity=0"></div><div class="loop-layer" id="loopB"><img src="" alt=""></div><div class="loop-dots" id="loopDots"></div></div>
         <div class="player-controls"><button class="btn btn-light" data-play>Ⅱ Pausar</button><button class="btn btn-light" data-voice>🔊 Voz</button><button class="btn btn-primary" data-complete>✓ Completar</button></div></div><div class="instruction"><small id="stepLabel">Indicación · fase 1</small><p id="stepText">${ex.steps[0]||ex.position||''}</p></div></section>
@@ -511,7 +525,7 @@
     return imgs.map((src, i) => ({
       img: src,
       cap: ex.steps?.[i] || ex.position || ex.name || '',
-      voice: ex.steps?.[i] || ex.position || ''
+      voice: firstSentence(ex.steps?.[i] || ex.position || '')
     }));
   }
   function paintPhase() {
