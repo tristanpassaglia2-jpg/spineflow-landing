@@ -54,7 +54,7 @@
   /* ── State ── */
   const state = {
     user: null, displayName: '', exercises: {}, regions: [], sequences: {}, programs: {}, view: 'landing',
-    currentRegion: null, currentPath: null, currentExercise: null, currentWeek: null, currentSession: null, sessionQueue: [], sessionIndex: 0, phase: 0,
+    currentRegion: null, currentPath: null, painLog: {}, currentExercise: null, currentWeek: null, currentSession: null, sessionQueue: [], sessionIndex: 0, phase: 0,
     premium: false, trialPathologies: [], dark: store.get('dark', false),
     favorites: [], history: [], completedSessions: [],
     scores: { eva: 3, odi: 18, ndi: 14 },
@@ -386,6 +386,7 @@
     const totalSessions = program.weeks.reduce((n,w)=>n+w.sessions.length, 0);
     const doneCount = program.weeks.reduce((n,w)=>n+w.sessions.filter(s=>isSessionCompleted(s.id)).length, 0);
     const pct = Math.round((doneCount/totalSessions)*100);
+    const evaChart = evaChartSVG(state.currentPath);
     const weeksHtml = program.weeks.map((w,wi) => {
       const prevDone = wi === 0 || weekCompleted(program.weeks[wi-1]);
       const sessionsHtml = w.sessions.map(s => {
@@ -401,7 +402,7 @@
     return `<button class="btn btn-dark back-button" data-back-path>← Volver a patologías</button>
       <div class="page-head"><div><p class="eyebrow">Módulo ${region.label}</p><h1>${path.title}</h1><p>${program.intro}</p></div></div>
       <div class="card" style="margin-bottom:20px;background:linear-gradient(135deg,#0f8b84,#0d7772);color:#fff"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px"><div><p style="opacity:.85;font-size:.85rem;margin:0">Tu progreso</p><h2 style="margin:4px 0;color:#fff">${doneCount} de ${totalSessions} sesiones</h2></div><div style="min-width:120px"><div style="height:8px;background:rgba(255,255,255,.25);border-radius:10px;overflow:hidden"><div style="height:100%;width:${pct}%;background:#fff;transition:width .3s"></div></div><p style="margin:6px 0 0;font-size:.8rem;opacity:.9;text-align:right">${pct}%</p></div></div></div>
-      ${weeksHtml}`;
+      ${evaChart}${weeksHtml}`;
   }
   /* Miniatura: usa la 1ª fase del loop si existe; si no, la lámina suelta. */
   function thumbFor(id) {
@@ -503,8 +504,84 @@
     state.sessionIndex = 0;
     state.currentSession = session;
     state.currentWeek = week;
-    const firstExId = state.sessionQueue[0];
-    go('exercise', { currentExercise: firstExId, phase: 0, seconds: 30 });
+    showEvaModal(() => {
+      const firstExId = state.sessionQueue[0];
+      go('exercise', { currentExercise: firstExId, phase: 0, seconds: 30 });
+    });
+  }
+
+  /* ══════ DIARIO EVA (escala visual analógica de dolor) ══════ */
+  function showEvaModal(onDone) {
+    const path = state.currentPath || '';
+    let score = 5;
+    const layer = document.createElement('div'); layer.className = 'modal-layer';
+    layer.innerHTML = '<div class="modal eva-modal">'
+      + '<h2>\u00bfC\u00f3mo est\u00e1 tu dolor hoy?</h2>'
+      + '<p class="muted">Desliz\u00e1 para marcar tu nivel de dolor antes de empezar.</p>'
+      + '<div class="eva-scale">'
+      + '<div class="eva-labels"><span>\ud83d\ude0a Sin dolor</span><span>\ud83d\ude23 M\u00e1ximo dolor</span></div>'
+      + '<input type="range" min="0" max="10" value="5" class="eva-slider" id="evaSlider">'
+      + '<div class="eva-value" id="evaValue"><span class="eva-number">5</span><span class="eva-label">/10</span></div>'
+      + '<div class="eva-ticks"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div>'
+      + '</div>'
+      + '<div class="modal-actions">'
+      + '<button class="btn btn-primary" id="evaConfirm">Registrar y empezar</button>'
+      + '<button class="btn btn-light" id="evaSkip">Saltar</button>'
+      + '</div></div>';
+    document.body.append(layer);
+    const slider = layer.querySelector('#evaSlider');
+    const numEl = layer.querySelector('.eva-number');
+    slider.oninput = () => { score = Number(slider.value); numEl.textContent = score; };
+    layer.querySelector('#evaConfirm').onclick = async () => {
+      layer.remove();
+      if (state.user) {
+        try { await sb.from('pain_log').insert({ user_id: state.user.id, pathology_id: path, score }); } catch {}
+      }
+      if (!state.painLog[path]) state.painLog[path] = [];
+      state.painLog[path].push({ score, created_at: new Date().toISOString() });
+      onDone();
+    };
+    layer.querySelector('#evaSkip').onclick = () => { layer.remove(); onDone(); };
+  }
+
+  async function loadPainLog() {
+    if (!state.user) return;
+    try {
+      const { data } = await sb.from('pain_log').select('pathology_id,score,created_at').eq('user_id', state.user.id).order('created_at', { ascending: true });
+      state.painLog = {};
+      (data || []).forEach(e => {
+        if (!state.painLog[e.pathology_id]) state.painLog[e.pathology_id] = [];
+        state.painLog[e.pathology_id].push(e);
+      });
+    } catch { state.painLog = {}; }
+  }
+
+  function evaChartSVG(pathId) {
+    const entries = (state.painLog || {})[pathId];
+    if (!entries || entries.length < 2) return '';
+    const w = 280, h = 100, pad = 24;
+    const n = Math.min(entries.length, 30);
+    const recent = entries.slice(-n);
+    const xStep = (w - pad * 2) / (n - 1);
+    const points = recent.map((e, i) => ({
+      x: pad + i * xStep,
+      y: pad + (1 - e.score / 10) * (h - pad * 2)
+    }));
+    const polyline = points.map(p => p.x + ',' + p.y).join(' ');
+    const area = pad + ',' + (h - pad) + ' ' + polyline + ' ' + points[points.length-1].x + ',' + (h - pad);
+    const first = recent[0].score, last = recent[recent.length - 1].score;
+    const diff = first - last;
+    const trend = diff > 0 ? '\u2193 ' + diff + ' puntos' : diff < 0 ? '\u2191 ' + Math.abs(diff) + ' puntos' : 'Sin cambio';
+    const color = diff > 0 ? '#087f79' : diff < 0 ? '#a24b2a' : '#5c7176';
+    return '<div class="eva-chart-wrap"><h4 class="eva-chart-title">Evoluci\u00f3n del dolor</h4>'
+      + '<svg viewBox="0 0 ' + w + ' ' + h + '" class="eva-chart">'
+      + '<polygon points="' + area + '" fill="' + color + '" opacity=".1"/>'
+      + '<polyline points="' + polyline + '" fill="none" stroke="' + color + '" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>'
+      + points.map(p => '<circle cx="' + p.x + '" cy="' + p.y + '" r="3.5" fill="' + color + '"/>').join('')
+      + '<text x="' + pad + '" y="14" font-size="10" fill="#5c7176">10</text>'
+      + '<text x="' + pad + '" y="' + (h - 6) + '" font-size="10" fill="#5c7176">0</text>'
+      + '</svg>'
+      + '<p class="eva-trend" style="color:' + color + '">' + trend + ' desde tu primer registro</p></div>';
   }
 
   /* ══════════════════════════════════════
