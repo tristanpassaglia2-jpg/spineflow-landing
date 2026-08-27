@@ -34,4 +34,32 @@
 .loop-dot.act{background:#fff}
 .speak-badge{font-size:10px;font-weight:800;letter-spacing:.1em;color:#0B1418;background:var(--teal,#0F8B84);padding:4px 9px;border-radius:7px;opacity:0;transition:.2s;margin-left:auto}
 .speak-badge.on{opacity:1}
+
+/* ===== Onboarding de 3 preguntas ===== */
+.onb-card{background:#fff;border-radius:24px;max-width:480px;width:92%;margin:auto;padding:40px 28px 32px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.35);animation:onbFadeIn .35s ease}
+@keyframes onbFadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.dark .onb-card{background:#1a2630;color:#e0eaea}
+.onb-step-dots{display:flex;gap:8px;justify-content:center;margin-bottom:20px}
+.onb-dot{width:32px;height:5px;border-radius:4px;background:#d1dfe0}
+.onb-dot.act{background:var(--teal,#0f8b84)}
+.onb-dot.done{background:#0f8b84;opacity:.5}
+.onb-eyebrow{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:#0f8b84;margin:0 0 8px;font-weight:700}
+.onb-title{font-size:1.4rem;margin:0 0 6px;line-height:1.2}
+.onb-sub{color:#5c7176;font-size:.9rem;margin:0 0 24px;line-height:1.5}
+.dark .onb-sub{color:#8fa8af}
+.onb-zones{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.onb-zone{display:flex;flex-direction:column;align-items:center;gap:6px;padding:20px 12px;border-radius:16px;border:2px solid #e0eaea;background:#f7fafa;cursor:pointer;transition:.2s;font-size:.9rem}
+.dark .onb-zone{background:#1e2d38;border-color:#2a3d4a}
+.onb-zone:hover,.onb-zone:focus{border-color:#0f8b84;background:#e6f5f4;transform:translateY(-2px)}
+.dark .onb-zone:hover{background:#1a3535;border-color:#0f8b84}
+.onb-zone-icon{font-size:2rem}
+.onb-zone-label{font-weight:700;font-size:1rem}
+.onb-zone-sub{font-size:.75rem;color:#5c7176}
+.onb-options{display:flex;flex-direction:column;gap:10px}
+.onb-option{display:flex;align-items:center;gap:12px;padding:16px 20px;border-radius:14px;border:2px solid #e0eaea;background:#f7fafa;cursor:pointer;transition:.2s;font-size:1rem;font-weight:500;text-align:left}
+.dark .onb-option{background:#1e2d38;border-color:#2a3d4a;color:#e0eaea}
+.onb-option:hover{border-color:#0f8b84;background:#e6f5f4;transform:translateY(-1px)}
+.dark .onb-option:hover{background:#1a3535;border-color:#0f8b84}
+.onb-opt-icon{font-size:1.4rem}
+.onb-back{margin-top:16px;font-size:.85rem}
 </style></head><body><div id="app"><div class="boot"><span class="boot-mark">SF</span><p>Preparando SpineFlow…</p></div></div><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script><script src="assets/js/app.js" defer></script></body></html>
