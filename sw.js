@@ -1,5 +1,5 @@
-const CACHE='spineflow-v12-clean';
-const CORE=['/','/index.html','/assets/css/app.css','/assets/js/app.js','/data/exercises.json','/data/regions.json','/data/v11-static-sequences.json','/manifest.webmanifest','/media/coach/mi-profe.webp','/planes.html','/gracias.html'];
+const CACHE='spineflow-v13-routing';
+const CORE=['/app','/app.html','/','/index.html','/assets/css/app.css','/assets/js/app.js','/data/exercises.json','/data/regions.json','/data/v11-static-sequences.json','/manifest.webmanifest','/media/coach/mi-profe.webp','/planes.html','/gracias.html'];
 
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
 
@@ -22,7 +22,7 @@ self.addEventListener('fetch',e=>{
         const copy=r.clone();                                    // clonar ANTES de devolver
         caches.open(CACHE).then(c=>c.put(e.request,copy));       // guardar el clon
         return r;                                                 // devolver el original intacto
-      }).catch(()=>caches.match(e.request).then(h=>h||caches.match('/index.html')))
+      }).catch(()=>caches.match(e.request).then(h=>h||caches.match('/app.html','/','/index.html')))
     );
     return;
   }
