@@ -60,9 +60,22 @@
     scores: { eva: 3, odi: 18, ndi: 14 },
     player: null, seconds: 30, authView: 'login', scoreTimer: null, voiceOn: true, loopTimer: null
   };
+  /* ── Onboarding: patología default por zona ── */
+  const ONBOARDING_DEFAULTS = {
+    cervical: 'cervicalgia_espasmo',
+    dorsal: 'dorsalgia',
+    lumbar: 'lumbalgia',
+    '+60': 'plus60_fuerza'
+  };
+  function needsOnboarding() {
+    if (store.get('onboardingDone', false)) return false;
+    if (state.completedSessions && state.completedSessions.length > 0) return false;
+    return true;
+  }
+
   const phases = ['Posición inicial', 'Movimiento', 'Pausa', 'Retorno', 'Repetición'];
-  const icons = { dashboard:'⌂', modules:'◫', progress:'↗', calendar:'▦', education:'◇', favorites:'♡' };
-  const labels = { dashboard:'Inicio', modules:'Mi programa', progress:'Progreso clínico', calendar:'Calendario', education:'Biblioteca', favorites:'Favoritos' };
+  const icons = { dashboard:'⌂', modules:'◫', progress:'↗', calendar:'▦', favorites:'♡' };
+  const labels = { dashboard:'Inicio', modules:'Mi programa', progress:'Mi progreso', calendar:'Calendario', favorites:'Favoritos' };
 
   /* ══════════════════════════════════════
      INIT
@@ -74,6 +87,7 @@
       if (session?.user) {
         state.user = session.user;
         await loadUserData();
+        await loadPainLog();
         state.view = 'dashboard';
       }
       const [e, r, seq, prg] = await Promise.all([
@@ -87,6 +101,7 @@
       try { if (seq && seq.ok) state.sequences = await seq.json(); } catch { state.sequences = {}; }
       try { if (prg && prg.ok) { const p = await prg.json(); state.programs = p.programs || {}; } } catch { state.programs = {}; }
       render();
+      if (state.user && needsOnboarding()) setTimeout(showOnboarding, 400);
       if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});
     } catch (error) {
       app.innerHTML = `<div class="boot"><span class="boot-mark">!</span><h2>No pudimos iniciar SpineFlow</h2><p>${error.message}. Usá un servidor local o Vercel, no abras el HTML con doble clic.</p></div>`;
@@ -94,7 +109,11 @@
     sb.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN' && session?.user && !state.user) {
         state.user = session.user;
-        loadUserData().then(() => { state.view = 'dashboard'; render(); toast('¡Bienvenido/a!'); });
+        loadUserData().then(() => loadPainLog()).then(() => {
+          state.view = 'dashboard'; render();
+          if (needsOnboarding()) setTimeout(showOnboarding, 400);
+          else toast('¡Bienvenido/a!');
+        });
       }
     });
   }
@@ -339,7 +358,7 @@
     switch (state.view) {
       case 'dashboard': return dashboard(); case 'modules': return modules(); case 'pathology': return pathology();
       case 'exercise': return exercise(); case 'progress': return progress(); case 'calendar': return calendarPage();
-      case 'education': return education(); case 'favorites': return favorites(); default: return dashboard();
+      case 'favorites': return favorites(); default: return dashboard();
     }
   }
 
@@ -448,17 +467,121 @@
   function muscleChips(text) { return text.split(/,|—|\(|\)/).map(x=>x.trim()).filter(Boolean).slice(0,6).map(x=>`<span class="muscle-chip">${x}</span>`).join(''); }
 
   function progress() {
-    const adherence=Math.min(100,Math.round((state.history.filter(h=>Date.now()-h.at<7*864e5).length/5)*100));
-    return `<div class="page-head"><div><p class="eyebrow">Resultados reportados por el paciente</p><h1>Progreso clínico</h1><p>Registrá tus valores y compartilos con tu profesional tratante.</p></div></div><div class="grid grid-3"><div class="card score-card"><h3>Dolor EVA</h3><p class="muted">0 sin dolor · 10 máximo</p><div class="range-row"><input type="range" min="0" max="10" value="${state.scores.eva}" data-score="eva"><span class="range-value">${state.scores.eva}</span></div></div><div class="card score-card"><h3>ODI</h3><p class="muted">Discapacidad lumbar</p><div class="range-row"><input type="range" min="0" max="100" value="${state.scores.odi}" data-score="odi"><span class="range-value">${state.scores.odi}%</span></div></div><div class="card score-card"><h3>NDI</h3><p class="muted">Discapacidad cervical</p><div class="range-row"><input type="range" min="0" max="100" value="${state.scores.ndi}" data-score="ndi"><span class="range-value">${state.scores.ndi}%</span></div></div></div><div class="section-title"><h2>Resumen de adherencia</h2></div><div class="grid grid-2"><div class="card metric"><div class="metric-top"><span>Últimos 7 días</span></div><strong>${adherence}%</strong><div style="height:10px;background:#e6efed;border-radius:10px;overflow:hidden"><div style="height:100%;width:${adherence}%;background:var(--teal)"></div></div></div><div class="card metric"><div class="metric-top"><span>Sesiones registradas</span></div><strong>${state.history.length}</strong><span class="muted">Datos sincronizados con tu cuenta.</span></div></div>`;
+    /* ── Métricas base ── */
+    const now = Date.now();
+    const week7 = 7 * 864e5;
+    const weekExercises = state.history.filter(h => now - h.at < week7).length;
+    const adherence = Math.min(100, Math.round((weekExercises / 5) * 100));
+    const totalExercises = state.history.length;
+    const uniqueExercises = new Set(state.history.map(h => h.id)).size;
+    const totalSessions = state.completedSessions.length;
+
+    /* ── Racha de días consecutivos ── */
+    const daySet = new Set(state.history.map(h => {
+      const d = new Date(h.at); return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+    }));
+    let streak = 0;
+    const today = new Date();
+    for (let i = 0; i < 365; i++) {
+      const d = new Date(today.getFullYear(), today.getMonth(), today.getDate() - i);
+      if (daySet.has(`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`)) streak++;
+      else if (i > 0) break; // el día 0 (hoy) puede no tener aún
+    }
+
+    /* ── Gráfico EVA (todas las patologías juntas) ── */
+    let evaSection = '';
+    const allEva = [];
+    Object.entries(state.painLog || {}).forEach(([pid, entries]) => {
+      entries.forEach(e => allEva.push(e));
+    });
+    allEva.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+    if (allEva.length >= 2) {
+      const w = 280, h = 100, pad = 24;
+      const n = Math.min(allEva.length, 30);
+      const recent = allEva.slice(-n);
+      const xStep = (w - pad * 2) / (n - 1);
+      const points = recent.map((e, i) => ({
+        x: pad + i * xStep,
+        y: pad + (1 - e.score / 10) * (h - pad * 2)
+      }));
+      const polyline = points.map(p => p.x + ',' + p.y).join(' ');
+      const area = pad + ',' + (h - pad) + ' ' + polyline + ' ' + points[points.length-1].x + ',' + (h - pad);
+      const first = recent[0].score, last = recent[recent.length - 1].score;
+      const diff = first - last;
+      const trend = diff > 0 ? '\u2193 ' + diff + ' puntos desde tu primer registro' : diff < 0 ? '\u2191 ' + Math.abs(diff) + ' puntos desde tu primer registro' : 'Sin cambio';
+      const color = diff > 0 ? '#087f79' : diff < 0 ? '#a24b2a' : '#5c7176';
+      evaSection = `<section class="card" style="margin-bottom:20px">
+        <h3 style="margin:0 0 4px">Evolución del dolor</h3>
+        <p class="muted" style="margin:0 0 14px">${allEva.length} registros</p>
+        <svg viewBox="0 0 ${w} ${h}" style="width:100%;max-width:400px;display:block">
+          <polygon points="${area}" fill="${color}" opacity=".1"/>
+          <polyline points="${polyline}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          ${points.map(p => '<circle cx="'+p.x+'" cy="'+p.y+'" r="3.5" fill="'+color+'"/>').join('')}
+          <text x="${pad}" y="14" font-size="10" fill="#5c7176">10</text>
+          <text x="${pad}" y="${h - 6}" font-size="10" fill="#5c7176">0</text>
+        </svg>
+        <p style="margin:10px 0 0;font-size:.9rem;font-weight:600;color:${color}">${trend}</p>
+      </section>`;
+    } else {
+      evaSection = `<section class="card" style="margin-bottom:20px">
+        <h3 style="margin:0 0 4px">Evolución del dolor</h3>
+        <p class="muted" style="margin:0">Completá al menos 2 sesiones para ver tu gráfico de dolor.</p>
+      </section>`;
+    }
+
+    /* ── Sesiones completadas por programa ── */
+    let sessionsSection = '';
+    if (totalSessions > 0) {
+      const byProgram = {};
+      state.completedSessions.forEach(sid => {
+        for (const [pid, prog] of Object.entries(state.programs)) {
+          for (const w of prog.weeks) {
+            const s = w.sessions.find(x => x.id === sid);
+            if (s) { if (!byProgram[pid]) byProgram[pid] = { name: prog.name || pathById(pid)?.title || pid, done: 0, total: 0 }; byProgram[pid].done++; }
+          }
+        }
+      });
+      for (const [pid, prog] of Object.entries(state.programs)) {
+        if (!byProgram[pid]) continue;
+        byProgram[pid].total = prog.weeks.reduce((n, w) => n + w.sessions.length, 0);
+      }
+      const progCards = Object.entries(byProgram).map(([pid, p]) => {
+        const pct = Math.round((p.done / p.total) * 100);
+        return `<div class="card" style="padding:16px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <strong style="font-size:.9rem">${p.name}</strong>
+            <span class="pill">${p.done}/${p.total}</span>
+          </div>
+          <div style="height:8px;background:#e6efed;border-radius:10px;overflow:hidden">
+            <div style="height:100%;width:${pct}%;background:var(--teal,#0f8b84);transition:width .3s"></div>
+          </div>
+          <p class="muted" style="margin:6px 0 0;font-size:.8rem">${pct}% completado</p>
+        </div>`;
+      }).join('');
+      sessionsSection = `<div class="section-title" style="margin-top:24px"><h2>Programas activos</h2></div><div class="grid grid-2">${progCards}</div>`;
+    }
+
+    /* ── Scores manuales (EVA/ODI/NDI) ── */
+    const scoresSection = `<div class="section-title" style="margin-top:24px"><h2>Escalas clínicas</h2></div>
+      <div class="grid grid-3">
+        <div class="card score-card"><h3>Dolor EVA</h3><p class="muted">0 sin dolor · 10 máximo</p><div class="range-row"><input type="range" min="0" max="10" value="${state.scores.eva}" data-score="eva"><span class="range-value">${state.scores.eva}</span></div></div>
+        <div class="card score-card"><h3>ODI</h3><p class="muted">Discapacidad lumbar</p><div class="range-row"><input type="range" min="0" max="100" value="${state.scores.odi}" data-score="odi"><span class="range-value">${state.scores.odi}%</span></div></div>
+        <div class="card score-card"><h3>NDI</h3><p class="muted">Discapacidad cervical</p><div class="range-row"><input type="range" min="0" max="100" value="${state.scores.ndi}" data-score="ndi"><span class="range-value">${state.scores.ndi}%</span></div></div>
+      </div>`;
+
+    return `<div class="page-head"><div><p class="eyebrow">Tu recorrido</p><h1>Mi progreso</h1><p>Todo tu avance en un solo lugar: ejercicios, sesiones, dolor y constancia.</p></div></div>
+      <div class="grid grid-4">
+        <div class="card metric"><div class="metric-top"><span>Racha</span><span>🔥</span></div><strong>${streak} día${streak !== 1 ? 's' : ''}</strong><span class="trend">${streak >= 7 ? '¡Gran constancia!' : streak >= 3 ? 'Vas bien, seguí así' : 'Cada día suma'}</span></div>
+        <div class="card metric"><div class="metric-top"><span>Sesiones</span><span>✓</span></div><strong>${totalSessions}</strong><span class="trend">completadas</span></div>
+        <div class="card metric"><div class="metric-top"><span>Ejercicios</span><span>↗</span></div><strong>${totalExercises}</strong><span class="trend">${uniqueExercises} diferentes</span></div>
+        <div class="card metric"><div class="metric-top"><span>Adherencia 7d</span><span>◎</span></div><strong>${adherence}%</strong><div style="height:6px;background:#e6efed;border-radius:10px;overflow:hidden;margin-top:6px"><div style="height:100%;width:${adherence}%;background:var(--teal)"></div></div></div>
+      </div>
+      ${evaSection}${sessionsSection}${scoresSection}`;
   }
   function calendarPage() {
     const doneDays=new Set(state.history.map(h=>new Date(h.at).getDate())); const now=new Date(); const y=now.getFullYear(),m=now.getMonth(), days=new Date(y,m+1,0).getDate(), first=(new Date(y,m,1).getDay()+6)%7;
     const cells=Array(first).fill('<span></span>').concat(Array.from({length:days},(_,i)=>`<span class="day ${doneDays.has(i+1)?'done':''} ${i+1===now.getDate()?'today':''}">${i+1}</span>`));
     return `<div class="page-head"><div><p class="eyebrow">Planificación</p><h1>Calendario</h1><p>Los días verdes contienen actividad completada.</p></div></div><section class="card calendar"><div class="section-title"><h2>${now.toLocaleDateString('es-AR',{month:'long',year:'numeric'})}</h2><span class="pill">${doneDays.size} días activos</span></div><div class="calendar-grid">${['L','M','X','J','V','S','D'].map(d=>`<span class="day head">${d}</span>`).join('')}${cells.join('')}</div></section>`;
-  }
-  function education() {
-    const articles=[['Dolor no siempre significa daño','Cómo interpretar las señales del cuerpo durante una recuperación progresiva.',''],['Respirar para moverse mejor','La coordinación respiratoria como herramienta de control y relajación.','alt'],['Adherencia: el factor silencioso','Pequeñas sesiones sostenidas suelen ser más útiles que esfuerzos aislados.','gold']];
-    return `<div class="page-head"><div><p class="eyebrow">Educación del paciente</p><h1>Biblioteca SpineFlow</h1><p>Contenido breve para tomar decisiones más claras durante tu recuperación.</p></div></div><div class="grid grid-3">${articles.map((a,i)=>`<article class="card article-card"><div class="article-cover ${a[2]}"><span>Lectura · ${4+i} min</span></div><div class="article-body"><h3>${a[0]}</h3><p>${a[1]}</p><button class="btn btn-light" data-article>Leer resumen</button></div></article>`).join('')}</div>`;
   }
   function favorites() {
     if(!state.favorites.length) return `<div class="page-head"><div><p class="eyebrow">Acceso rápido</p><h1>Favoritos</h1><p>Todavía no guardaste ejercicios.</p></div></div><button class="btn btn-primary" data-view="modules">Explorar módulos</button>`;
@@ -497,7 +620,6 @@
       clearTimeout(state.scoreTimer);
       state.scoreTimer=setTimeout(()=>saveProfile({scores:state.scores}),1000);
     });
-    document.querySelectorAll('[data-article]').forEach(b=>b.onclick=()=>toast('Artículo educativo disponible próximamente'));
   }
   function startSession(session, week) {
     state.sessionQueue = session.exercises.slice();
@@ -554,6 +676,108 @@
         state.painLog[e.pathology_id].push(e);
       });
     } catch { state.painLog = {}; }
+  }
+
+  /* ══════ ONBOARDING DE 3 PREGUNTAS ══════ */
+  function showOnboarding() {
+    let step = 1, chosenZone = '', chosenDuration = '', evaScore = 5;
+
+    const layer = document.createElement('div');
+    layer.className = 'modal-layer';
+    layer.style.cssText = 'z-index:9999;background:rgba(11,20,24,.92)';
+
+    function renderStep() {
+      if (step === 1) {
+        const zones = state.regions.map(r =>
+          `<button class="onb-zone" data-zone="${r.id}" style="--zone-color:${r.light || '#0f8b84'}">
+            <span class="onb-zone-icon">${r.icon}</span>
+            <span class="onb-zone-label">${r.id === '+60' ? 'Adultos +60' : r.label}</span>
+            <span class="onb-zone-sub">${r.pathologies.length} programas</span>
+          </button>`
+        ).join('');
+        layer.innerHTML = `<div class="onb-card">
+          <div class="onb-step-dots"><span class="onb-dot act"></span><span class="onb-dot"></span><span class="onb-dot"></span></div>
+          <p class="onb-eyebrow">Paso 1 de 3</p>
+          <h2 class="onb-title">¿Dónde te duele?</h2>
+          <p class="onb-sub">Elegí la zona principal de tu molestia.</p>
+          <div class="onb-zones">${zones}</div>
+        </div>`;
+        layer.querySelectorAll('[data-zone]').forEach(b => b.onclick = () => {
+          chosenZone = b.dataset.zone;
+          step = 2;
+          renderStep();
+        });
+      } else if (step === 2) {
+        const options = [
+          { val: 'lt1m', label: 'Menos de 1 mes', icon: '⚡' },
+          { val: '1to6m', label: '1 a 6 meses', icon: '📆' },
+          { val: 'gt6m', label: 'Más de 6 meses', icon: '🕐' }
+        ];
+        layer.innerHTML = `<div class="onb-card">
+          <div class="onb-step-dots"><span class="onb-dot done"></span><span class="onb-dot act"></span><span class="onb-dot"></span></div>
+          <p class="onb-eyebrow">Paso 2 de 3</p>
+          <h2 class="onb-title">¿Hace cuánto te duele?</h2>
+          <p class="onb-sub">Esto nos ayuda a ajustar tu programa a futuro.</p>
+          <div class="onb-options">${options.map(o =>
+            `<button class="onb-option" data-dur="${o.val}"><span class="onb-opt-icon">${o.icon}</span>${o.label}</button>`
+          ).join('')}</div>
+          <button class="btn btn-ghost onb-back" data-back>← Volver</button>
+        </div>`;
+        layer.querySelectorAll('[data-dur]').forEach(b => b.onclick = () => {
+          chosenDuration = b.dataset.dur;
+          step = 3;
+          renderStep();
+        });
+        layer.querySelector('[data-back]').onclick = () => { step = 1; renderStep(); };
+      } else if (step === 3) {
+        layer.innerHTML = `<div class="onb-card">
+          <div class="onb-step-dots"><span class="onb-dot done"></span><span class="onb-dot done"></span><span class="onb-dot act"></span></div>
+          <p class="onb-eyebrow">Paso 3 de 3</p>
+          <h2 class="onb-title">¿Cuánto te duele ahora?</h2>
+          <p class="onb-sub">Deslizá para marcar tu dolor actual. Esto queda registrado para medir tu progreso.</p>
+          <div class="eva-scale">
+            <div class="eva-labels"><span>😊 Sin dolor</span><span>😣 Máximo dolor</span></div>
+            <input type="range" min="0" max="10" value="5" class="eva-slider" id="onbEva">
+            <div class="eva-value" id="onbEvaVal"><span class="eva-number">5</span><span class="eva-label">/10</span></div>
+            <div class="eva-ticks"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div>
+          </div>
+          <button class="btn btn-primary btn-wide onb-finish" id="onbDone" style="margin-top:20px">Ver mi programa →</button>
+          <button class="btn btn-ghost onb-back" data-back>← Volver</button>
+        </div>`;
+        const slider = layer.querySelector('#onbEva');
+        const numEl = layer.querySelector('.eva-number');
+        slider.oninput = () => { evaScore = Number(slider.value); numEl.textContent = evaScore; };
+        layer.querySelector('#onbDone').onclick = async () => {
+          /* Guardar onboarding data */
+          store.set('onboardingDone', true);
+          store.set('onboardingZone', chosenZone);
+          store.set('onboardingDuration', chosenDuration);
+
+          /* Guardar EVA inicial en pain_log */
+          const defaultPath = ONBOARDING_DEFAULTS[chosenZone] || '';
+          if (state.user && defaultPath) {
+            try { await sb.from('pain_log').insert({ user_id: state.user.id, pathology_id: defaultPath, score: evaScore }); } catch {}
+            if (!state.painLog[defaultPath]) state.painLog[defaultPath] = [];
+            state.painLog[defaultPath].push({ score: evaScore, created_at: new Date().toISOString() });
+          }
+
+          /* Guardar en profiles para futuras sesiones */
+          if (state.user) {
+            try { await saveProfile({ onboarding_zone: chosenZone, onboarding_duration: chosenDuration }); } catch {}
+          }
+
+          layer.remove();
+
+          /* Navegar al programa asignado */
+          go('pathology', { currentRegion: chosenZone, currentPath: defaultPath });
+          toast('¡Listo! Si no es tu problema, podés cambiar de programa desde los módulos.');
+        };
+        layer.querySelector('[data-back]').onclick = () => { step = 2; renderStep(); };
+      }
+    }
+
+    renderStep();
+    document.body.append(layer);
   }
 
   function evaChartSVG(pathId) {
