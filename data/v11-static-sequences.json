@@ -893,5 +893,28 @@
       "media/sequences/p1/02.webp"
     ],
     "status": "ready"
+  },
+  "c7": {
+    "name": "Movilización de cintura escapular",
+    "phases": 1,
+    "files": [
+      "media/sequences/c7/01.webp"
+    ],
+    "status": "partial",
+    "pending": [
+      "02.webp (hombros elevados hacia orejas)",
+      "03.webp (completar círculo hacia adelante)"
+    ]
+  },
+  "s8": {
+    "name": "Estiramiento de cadera en figura 4 sentado",
+    "phases": 1,
+    "files": [
+      "media/sequences/s8/01.webp"
+    ],
+    "status": "partial",
+    "pending": [
+      "02.webp (tobillo cruzado sobre rodilla, tronco inclinado desde cadera)"
+    ]
   }
 }
