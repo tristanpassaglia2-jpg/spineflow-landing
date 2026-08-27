@@ -229,12 +229,12 @@ footer{background:var(--nav);color:#8fa5a8;padding:56px 0 34px}
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow">Diseñado con criterio clínico de traumatología</span>
+      <span class="eyebrow">Diseñado por médicos y kinesiólogos especialistas en patología de columna vertebral</span>
       <h1>Tu columna, con <em>seguimiento clínico</em> real — no un video más de YouTube</h1>
       <p class="lede">18 programas progresivos de rehabilitación de columna, indicados por tu médico y guiados paso a paso — <strong>sin moverte de tu casa, solo necesitás una colchoneta</strong>. Cada semana avanza según cómo responde tu cuerpo.</p>
       <div class="hero-actions">
         <a href="/app" class="btn btn-primary btn-lg">Empezá gratis</a>
-        <button type="button" class="btn btn-install-hero btn-lg" data-install-trigger>📲 Instalar app</button>
+        <a href="#instalar" class="btn btn-install-hero btn-lg">📲 Instalar app</a>
       </div>
       <div class="trust-row">
         <span>100 ejercicios con imagen real</span>
@@ -377,13 +377,13 @@ footer{background:var(--nav);color:#8fa5a8;padding:56px 0 34px}
     <h2>Dejá SpineFlow en tu pantalla, como cualquier app</h2>
     <p class="sub">No ocupa espacio ni pasa por ninguna tienda. Se instala directo desde acá y queda con su ícono, lista para abrir con un toque.</p>
     <div class="install-cards">
-      <div class="install-card" data-install-trigger>
+      <div class="install-card" data-install-android>
         <div class="install-card-ico">🤖</div>
         <h3>Android</h3>
         <p>Un toque y queda instalada. Sin Play Store.</p>
         <span class="install-go">Instalar ahora →</span>
       </div>
-      <div class="install-card" data-install-trigger>
+      <div class="install-card" data-install-windows>
         <div class="install-card-ico">💻</div>
         <h3>Windows</h3>
         <p>Se instala como programa de escritorio, con su ícono.</p>
@@ -422,7 +422,7 @@ footer{background:var(--nav);color:#8fa5a8;padding:56px 0 34px}
     <div class="footer-grid">
       <div>
         <div class="footer-brand"><span class="brand-mark">SF</span>SpineFlow</div>
-        <p>Programa clínico de rehabilitación de columna, diseñado con criterio clínico de traumatología. Córdoba, Argentina.</p>
+        <p>Programa clínico de rehabilitación de columna, diseñado por médicos y kinesiólogos especialistas en patología de columna vertebral. Córdoba, Argentina.</p>
       </div>
       <div class="footer-col">
         <h4>Producto</h4>
@@ -527,20 +527,50 @@ footer{background:var(--nav);color:#8fa5a8;padding:56px 0 34px}
     layer.addEventListener('click',function(e){ if(e.target===layer||e.target.hasAttribute('data-ios-close')) layer.remove(); });
   }
 
-  function triggerInstall(){
+  function showPlatformGuide(platform){
+    var content = '';
+    if(platform === 'android'){
+      content = '<h2 style="font-family:Fraunces,Georgia,serif;font-size:23px;font-weight:560;color:#0c2026;margin-bottom:6px">Instalar en Android</h2>'
+        +'<p style="color:#5c7176;font-size:14px;margin-bottom:14px">Desde Chrome:</p>'
+        +'<ol>'
+        +'<li><span>Tocá los <strong>tres puntos</strong> ⋮ arriba a la derecha del navegador</span></li>'
+        +'<li><span>Elegí <strong>"Instalar app"</strong> o <strong>"Agregar a pantalla de inicio"</strong></span></li>'
+        +'<li><span>Confirmá <strong>"Instalar"</strong> y listo</span></li>'
+        +'</ol>';
+    } else if(platform === 'windows'){
+      content = '<h2 style="font-family:Fraunces,Georgia,serif;font-size:23px;font-weight:560;color:#0c2026;margin-bottom:6px">Instalar en Windows</h2>'
+        +'<p style="color:#5c7176;font-size:14px;margin-bottom:14px">Desde Chrome o Edge:</p>'
+        +'<ol>'
+        +'<li><span>Mirá la barra de direcciones arriba: a la derecha vas a ver un ícono <strong>⊕</strong> o <strong>💻</strong> de "Instalar"</span></li>'
+        +'<li><span>Tocalo y confirmá <strong>"Instalar"</strong></span></li>'
+        +'<li><span>Si no lo ves, andá al menú (tres puntos ⋮) → <strong>"Instalar SpineFlow"</strong></span></li>'
+        +'</ol>';
+    }
+    var layer=document.createElement('div');
+    layer.style.cssText='position:fixed;inset:0;background:rgba(5,20,24,.6);backdrop-filter:blur(4px);z-index:9998;display:grid;place-items:center;padding:20px';
+    layer.innerHTML='<div class="modal ios-guide" style="background:#fff;border-radius:22px;padding:30px 26px;max-width:380px;box-shadow:0 30px 70px rgba(0,0,0,.4)">'
+      + content
+      +'<button class="btn btn-primary" style="width:100%;justify-content:center;padding:13px;border-radius:13px;background:#087f79;color:#fff;font-weight:700;border:0;cursor:pointer;margin-top:14px" data-modal-close>Entendido</button>'
+      +'</div>';
+    document.body.appendChild(layer);
+    layer.addEventListener('click',function(e){ if(e.target===layer||e.target.hasAttribute('data-modal-close')) layer.remove(); });
+  }
+
+  function triggerInstallForPlatform(platform){
     if(isStandalone()){ toast('Ya tenés SpineFlow instalada 🎉'); return; }
-    if(isIOS()){ showIOSGuide(); return; }
     if(deferredPrompt){
       deferredPrompt.prompt();
       deferredPrompt.userChoice.then(function(){ deferredPrompt=null; });
       return;
     }
-    // Fallback: navegador que no soporta prompt (o ya dispo)
-    toast('Abrí el menú de tu navegador y elegí "Instalar app" o "Agregar a pantalla de inicio".');
+    showPlatformGuide(platform);
   }
 
-  document.querySelectorAll('[data-install-trigger]').forEach(function(el){
-    el.addEventListener('click', triggerInstall);
+  document.querySelectorAll('[data-install-android]').forEach(function(el){
+    el.addEventListener('click', function(){ triggerInstallForPlatform('android'); });
+  });
+  document.querySelectorAll('[data-install-windows]').forEach(function(el){
+    el.addEventListener('click', function(){ triggerInstallForPlatform('windows'); });
   });
   document.querySelectorAll('[data-install-ios]').forEach(function(el){
     el.addEventListener('click', showIOSGuide);
