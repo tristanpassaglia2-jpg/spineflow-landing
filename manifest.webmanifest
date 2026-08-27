@@ -3,7 +3,7 @@
   "short_name": "SpineFlow",
   "description": "Rehabilitación de columna guiada y progresiva.",
   "lang": "es-AR",
-  "start_url": "/",
+  "start_url": "/app",
   "scope": "/",
   "display": "standalone",
   "background_color": "#07151a",
