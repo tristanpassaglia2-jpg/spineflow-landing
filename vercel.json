@@ -3,8 +3,13 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/pages/:path*",
+      "source": "/landing",
       "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/pages/:path*",
+      "destination": "/app",
       "permanent": true
     },
     {
