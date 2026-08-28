@@ -490,6 +490,12 @@ footer{background:var(--nav);color:#8fa5a8;padding:56px 0 34px}
   var deferredPrompt = null;
   var installed = false;
 
+  // Registrar el Service Worker: requisito para que el navegador
+  // considere la app "instalable" y dispare beforeinstallprompt.
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/sw.js').catch(function(){});
+  }
+
   // Capturar el evento de instalación de Android/Windows
   window.addEventListener('beforeinstallprompt', function(e){
     e.preventDefault();
