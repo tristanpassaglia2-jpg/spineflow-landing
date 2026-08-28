@@ -51,7 +51,7 @@
   },
   "k1": {
     "type": "alias",
-    "alias_of": "l4",
+    "alias_of": "bp",
     "status": "ready"
   },
   "l9": {
