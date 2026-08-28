@@ -149,12 +149,8 @@
   },
   "l13": {
     "name": "Cuadrado lumbar lateral",
-    "phases": 2,
-    "files": [
-      "media/sequences/l13/01.webp",
-      "media/sequences/l13/02.webp"
-    ],
-    "status": "ready"
+    "status": "pending_image",
+    "note": "Sin lámina: el texto pide pierna inferior extendida + curva lateral activa del tronco ('como una banana'). La imagen generada mostraba ambas piernas flexionadas y sin la curva marcada — no coincidía. Regenerar cuando haya créditos."
   },
   "l14": {
     "name": "Cuadrado lumbar sentado",
