@@ -75,9 +75,8 @@
     "status": "ready"
   },
   "dp": {
-    "type": "alias",
-    "alias_of": "c10",
-    "status": "ready"
+    "status": "pending_image",
+    "note": "Sin lámina: el ejercicio es apoyo LATERAL (cadera del lado doloroso contra la pared). El alias anterior a c10 mostraba a la persona de espaldas contra la pared, no coincidía. Regenerar imagen propia cuando haya créditos."
   },
   "l11": {
     "type": "alias",
