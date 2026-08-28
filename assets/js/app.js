@@ -815,9 +815,9 @@
   function pathById(id){for(const r of state.regions){const p=r.pathologies.find(x=>x.id===id);if(p)return p}return null}
   function contextForExercise(id){for(const region of state.regions){for(const path of region.pathologies){const index=path.ex.indexOf(id);if(index>=0)return{region,path,index}}}return{region:state.regions[0],path:state.regions[0].pathologies[0],index:0}}
   /* ══════ MOTOR DEL REPRODUCTOR EN LOOP (crossfade + voz sincronizada) ══════ */
-  const LOOP_MIN_MS = 3200;   // tiempo mínimo por fase
-  const LOOP_HOLD_MS = 2600;  // pausa después de la voz (para ejecutar)
-  const LOOP_RATE = 0.78;     // velocidad de voz (lenta, público +60)
+  const LOOP_MIN_MS = 1800;   // tiempo mínimo por fase
+  const LOOP_HOLD_MS = 1200;  // pausa después de la voz (para ejecutar)
+  const LOOP_RATE = 0.92;     // velocidad de voz
   let loopUseA = true, loopToken = 0;
 
   function loopPhases() {
