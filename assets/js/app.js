@@ -644,11 +644,10 @@
       + '<div class="eva-labels"><span>\ud83d\ude0a Sin dolor</span><span>\ud83d\ude23 M\u00e1ximo dolor</span></div>'
       + '<input type="range" min="0" max="10" value="5" class="eva-slider" id="evaSlider">'
       + '<div class="eva-value" id="evaValue"><span class="eva-number">5</span><span class="eva-label">/10</span></div>'
-      + '<div class="eva-ticks"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div>'
       + '</div>'
       + '<div class="modal-actions">'
       + '<button class="btn btn-primary" id="evaConfirm">Registrar y empezar</button>'
-      + '<button class="btn btn-light" id="evaSkip">Saltar</button>'
+      + '<button class="btn btn-light" id="evaSkip">Empezar sin registrar</button>'
       + '</div></div>';
     document.body.append(layer);
     const slider = layer.querySelector('#evaSlider');
@@ -739,7 +738,6 @@
             <div class="eva-labels"><span>😊 Sin dolor</span><span>😣 Máximo dolor</span></div>
             <input type="range" min="0" max="10" value="5" class="eva-slider" id="onbEva">
             <div class="eva-value" id="onbEvaVal"><span class="eva-number">5</span><span class="eva-label">/10</span></div>
-            <div class="eva-ticks"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div>
           </div>
           <button class="btn btn-primary btn-wide onb-finish" id="onbDone" style="margin-top:20px">Ver mi programa →</button>
           <button class="btn btn-ghost onb-back" data-back>← Volver</button>
