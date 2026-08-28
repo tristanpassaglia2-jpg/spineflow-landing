@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SpineFlow — Panel Médico</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
   :root{--teal:#18a89f;--teal-dark:#0d8f87;--bg:#f0f4f8;--card:#fff;--text:#1a2332;--muted:#6b7a90;--red:#e53e3e}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -28,7 +28,7 @@
   .tipo-btn.active{border-color:var(--teal);background:#e8f9f8;color:var(--teal)}
   .tipo-info{font-size:.8rem;color:var(--muted);margin-top:4px}
   #qr-section{display:none;text-align:center}
-  #qr-canvas{margin:20px auto;display:block}
+  #qr-canvas{margin:20px auto;display:flex;justify-content:center}
   .code-display{font-family:monospace;font-size:2rem;font-weight:900;letter-spacing:.15em;color:var(--teal);margin:12px 0}
   .timer{font-size:.85rem;color:var(--muted);margin-bottom:16px}
   .timer b{color:var(--red)}
@@ -111,7 +111,7 @@
   <div class="card" id="qr-section">
     <h2>Código generado</h2>
     <div class="code-display" id="code-text"></div>
-    <canvas id="qr-canvas"></canvas>
+    <div id="qr-canvas"></div>
     <div class="timer" id="timer-txt"></div>
     <p style="font-size:.8rem;color:var(--muted);margin-bottom:16px">El paciente escanea el QR o tipea el código en spineflow.org/activar</p>
     <button class="btn btn-outline" onclick="nuevoQR()">Generar otro</button>
@@ -180,7 +180,9 @@ function mostrarQR(code) {
   document.getElementById('code-text').textContent = code;
 
   const activarUrl = `${window.location.origin}/activar?code=${code}`;
-  QRCode.toCanvas(document.getElementById('qr-canvas'), activarUrl, { width: 220, margin: 2 });
+  const qrBox = document.getElementById('qr-canvas');
+  qrBox.innerHTML = '';
+  new QRCode(qrBox, { text: activarUrl, width: 220, height: 220, colorDark: '#0c2026', colorLight: '#ffffff' });
 
   // Timer de 10 minutos
   let secs = 600;
