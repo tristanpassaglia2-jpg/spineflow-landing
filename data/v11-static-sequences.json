@@ -1,0 +1,914 @@
+{
+  "p2": {
+    "type": "alias",
+    "alias_of": "k8",
+    "status": "ready"
+  },
+  "p6": {
+    "type": "alias",
+    "alias_of": "l2",
+    "status": "ready"
+  },
+  "p11": {
+    "type": "alias",
+    "alias_of": "l1",
+    "status": "ready"
+  },
+  "p12": {
+    "type": "alias",
+    "alias_of": "bp",
+    "status": "ready"
+  },
+  "p13": {
+    "type": "alias",
+    "alias_of": "l8",
+    "status": "ready"
+  },
+  "p14": {
+    "type": "alias",
+    "alias_of": "k5",
+    "status": "ready"
+  },
+  "p15": {
+    "type": "alias",
+    "alias_of": "l4",
+    "status": "ready"
+  },
+  "p16": {
+    "type": "alias",
+    "alias_of": "k3",
+    "status": "ready"
+  },
+  "p18": {
+    "type": "alias",
+    "alias_of": "k4",
+    "status": "ready"
+  },
+  "s3": {
+    "type": "alias",
+    "alias_of": "em",
+    "status": "ready"
+  },
+  "k1": {
+    "type": "alias",
+    "alias_of": "bp",
+    "status": "ready"
+  },
+  "l9": {
+    "type": "alias",
+    "alias_of": "l5",
+    "status": "ready"
+  },
+  "p19": {
+    "type": "alias",
+    "alias_of": "k5",
+    "status": "ready"
+  },
+  "p20": {
+    "type": "alias",
+    "alias_of": "s60_03",
+    "status": "ready"
+  },
+  "n2": {
+    "type": "alias",
+    "alias_of": "pect01",
+    "status": "ready"
+  },
+  "dp": {
+    "status": "pending_image",
+    "note": "Sin lámina: el ejercicio es apoyo LATERAL (cadera del lado doloroso contra la pared). El alias anterior a c10 mostraba a la persona de espaldas contra la pared, no coincidía. Regenerar imagen propia cuando haya créditos."
+  },
+  "l11": {
+    "type": "alias",
+    "alias_of": "openbook",
+    "status": "ready"
+  },
+  "l1": {
+    "name": "Rodilla al pecho",
+    "phases": 2,
+    "files": [
+      "media/sequences/l1/01.webp",
+      "media/sequences/l1/02.webp"
+    ],
+    "status": "ready"
+  },
+  "bp": {
+    "name": "Báscula pélvica",
+    "phases": 2,
+    "files": [
+      "media/sequences/bp/01.webp",
+      "media/sequences/bp/02.webp"
+    ],
+    "status": "ready"
+  },
+  "l5": {
+    "name": "Puente unipodal",
+    "phases": 3,
+    "files": [
+      "media/sequences/l5/01.webp",
+      "media/sequences/l5/02.webp",
+      "media/sequences/l5/03.webp"
+    ],
+    "status": "ready"
+  },
+  "l6": {
+    "name": "SLR isquios",
+    "phases": 2,
+    "files": [
+      "media/sequences/l6/01.webp",
+      "media/sequences/l6/02.webp"
+    ],
+    "status": "ready"
+  },
+  "l8": {
+    "name": "Plancha de rodillas",
+    "phases": 2,
+    "files": [
+      "media/sequences/l8/01.webp",
+      "media/sequences/l8/02.webp"
+    ],
+    "status": "ready"
+  },
+  "l10": {
+    "name": "Psoas half-kneeling",
+    "phases": 2,
+    "files": [
+      "media/sequences/l10/01.webp",
+      "media/sequences/l10/02.webp"
+    ],
+    "status": "ready"
+  },
+  "l12": {
+    "name": "Child's pose",
+    "phases": 2,
+    "files": [
+      "media/sequences/l12/01.webp",
+      "media/sequences/l12/02.webp"
+    ],
+    "status": "ready"
+  },
+  "l13": {
+    "name": "Cuadrado lumbar lateral",
+    "status": "pending_image",
+    "note": "Sin lámina: el texto pide pierna inferior extendida + curva lateral activa del tronco ('como una banana'). La imagen generada mostraba ambas piernas flexionadas y sin la curva marcada — no coincidía. Regenerar cuando haya créditos."
+  },
+  "l14": {
+    "name": "Cuadrado lumbar sentado",
+    "phases": 2,
+    "files": [
+      "media/sequences/l14/01.webp",
+      "media/sequences/l14/02.webp"
+    ],
+    "status": "ready"
+  },
+  "l2": {
+    "name": "Puente glúteos",
+    "phases": 3,
+    "files": [
+      "media/sequences/l2/01.webp",
+      "media/sequences/l2/02.webp",
+      "media/sequences/l2/03.webp"
+    ],
+    "status": "ready"
+  },
+  "l3": {
+    "name": "Superman",
+    "phases": 3,
+    "files": [
+      "media/sequences/l3/01.webp",
+      "media/sequences/l3/02.webp",
+      "media/sequences/l3/03.webp"
+    ],
+    "status": "ready"
+  },
+  "l4": {
+    "name": "Gato-Camello",
+    "phases": 3,
+    "files": [
+      "media/sequences/l4/01.webp",
+      "media/sequences/l4/02.webp",
+      "media/sequences/l4/03.webp"
+    ],
+    "status": "ready"
+  },
+  "l7": {
+    "name": "Rotaciones lumbares",
+    "phases": 3,
+    "files": [
+      "media/sequences/l7/01.webp",
+      "media/sequences/l7/02.webp",
+      "media/sequences/l7/03.webp"
+    ],
+    "status": "ready"
+  },
+  "c2": {
+    "name": "Lateral cervical sentada",
+    "phases": 3,
+    "files": [
+      "media/sequences/c2/01.webp",
+      "media/sequences/c2/02.webp",
+      "media/sequences/c2/03.webp"
+    ],
+    "status": "ready"
+  },
+  "c3": {
+    "name": "Rotación cervical asistida",
+    "phases": 3,
+    "files": [
+      "media/sequences/c3/01.webp",
+      "media/sequences/c3/02.webp",
+      "media/sequences/c3/03.webp"
+    ],
+    "status": "ready"
+  },
+  "c4": {
+    "name": "Flexo-extensión cervical",
+    "phases": 3,
+    "files": [
+      "media/sequences/c4/01.webp",
+      "media/sequences/c4/02.webp",
+      "media/sequences/c4/03.webp"
+    ],
+    "status": "ready"
+  },
+  "c8": {
+    "name": "Retracción con banda roja",
+    "phases": 3,
+    "files": [
+      "media/sequences/c8/01.webp",
+      "media/sequences/c8/02.webp",
+      "media/sequences/c8/03.webp"
+    ],
+    "status": "ready"
+  },
+  "c1": {
+    "name": "Chin Tuck",
+    "phases": 3,
+    "files": [
+      "media/sequences/c1/01.webp",
+      "media/sequences/c1/02.webp",
+      "media/sequences/c1/03.webp"
+    ],
+    "status": "ready"
+  },
+  "c5": {
+    "name": "Trapecio superior stretch",
+    "phases": 3,
+    "files": [
+      "media/sequences/c5/01.webp",
+      "media/sequences/c5/02.webp",
+      "media/sequences/c5/03.webp"
+    ],
+    "status": "ready"
+  },
+  "c6": {
+    "name": "Trapecio superior fortalecimiento",
+    "phases": 3,
+    "files": [
+      "media/sequences/c6/01.webp",
+      "media/sequences/c6/02.webp",
+      "media/sequences/c6/03.webp"
+    ],
+    "status": "ready"
+  },
+  "c9": {
+    "name": "Retracción escapular isométrica",
+    "phases": 3,
+    "files": [
+      "media/sequences/c9/01.webp",
+      "media/sequences/c9/02.webp",
+      "media/sequences/c9/03.webp"
+    ],
+    "status": "ready"
+  },
+  "c10": {
+    "name": "Wall angel",
+    "phases": 3,
+    "files": [
+      "media/sequences/c10/01.webp",
+      "media/sequences/c10/02.webp",
+      "media/sequences/c10/03.webp"
+    ],
+    "status": "ready"
+  },
+  "c11": {
+    "name": "1ª costilla con toalla",
+    "phases": 3,
+    "files": [
+      "media/sequences/c11/01.webp",
+      "media/sequences/c11/02.webp",
+      "media/sequences/c11/03.webp"
+    ],
+    "status": "ready"
+  },
+  "g2": {
+    "name": "Rolls de hombros",
+    "phases": 3,
+    "files": [
+      "media/sequences/g2/01.webp",
+      "media/sequences/g2/02.webp",
+      "media/sequences/g2/03.webp"
+    ],
+    "status": "ready"
+  },
+  "g4": {
+    "name": "Prone Y raise",
+    "phases": 3,
+    "files": [
+      "media/sequences/g4/01.webp",
+      "media/sequences/g4/02.webp",
+      "media/sequences/g4/03.webp"
+    ],
+    "status": "ready"
+  },
+  "g6": {
+    "name": "Rotación de tronco parada",
+    "phases": 3,
+    "files": [
+      "media/sequences/g6/01.webp",
+      "media/sequences/g6/02.webp",
+      "media/sequences/g6/03.webp"
+    ],
+    "status": "ready"
+  },
+  "g8": {
+    "name": "Jacobson savasana",
+    "phases": 2,
+    "files": [
+      "media/sequences/g8/01.webp",
+      "media/sequences/g8/02.webp"
+    ],
+    "status": "ready"
+  },
+  "pect01": {
+    "name": "Pectoral pared",
+    "phases": 2,
+    "files": [
+      "media/sequences/pect01/01.webp",
+      "media/sequences/pect01/02.webp"
+    ],
+    "status": "ready"
+  },
+  "openbook": {
+    "name": "Rotación torácica cuadrupedia",
+    "phases": 3,
+    "files": [
+      "media/sequences/openbook/01.webp",
+      "media/sequences/openbook/02.webp",
+      "media/sequences/openbook/03.webp"
+    ],
+    "status": "ready"
+  },
+  "em": {
+    "name": "McKenzie",
+    "phases": 3,
+    "files": [
+      "media/sequences/em/01.webp",
+      "media/sequences/em/02.webp",
+      "media/sequences/em/03.webp"
+    ],
+    "status": "ready"
+  },
+  "g3": {
+    "name": "Extensión torácica sentada",
+    "phases": 3,
+    "files": [
+      "media/sequences/g3/01.webp",
+      "media/sequences/g3/02.webp",
+      "media/sequences/g3/03.webp"
+    ],
+    "status": "ready"
+  },
+  "k3": {
+    "name": "Dead bug (anatómico 3D)",
+    "phases": 3,
+    "files": [
+      "media/sequences/k3/01.webp",
+      "media/sequences/k3/02.webp",
+      "media/sequences/k3/03.webp"
+    ],
+    "status": "ready"
+  },
+  "k4": {
+    "name": "Bird Dog (anatómico 3D)",
+    "phases": 3,
+    "files": [
+      "media/sequences/k4/01.webp",
+      "media/sequences/k4/02.webp",
+      "media/sequences/k4/03.webp"
+    ],
+    "status": "ready"
+  },
+  "k5": {
+    "name": "Plancha lateral rodillas",
+    "phases": 3,
+    "files": [
+      "media/sequences/k5/01.webp",
+      "media/sequences/k5/02.webp",
+      "media/sequences/k5/03.webp"
+    ],
+    "status": "ready"
+  },
+  "k8": {
+    "name": "Respiración diafragmática",
+    "phases": 2,
+    "files": [
+      "media/sequences/k8/01.webp",
+      "media/sequences/k8/02.webp"
+    ],
+    "status": "ready"
+  },
+  "s1": {
+    "name": "Figura 4 (piriforme)",
+    "phases": 2,
+    "files": [
+      "media/sequences/s1/02.webp",
+      "media/sequences/s1/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s2": {
+    "name": "Nerve floss sentada",
+    "phases": 3,
+    "files": [
+      "media/sequences/s2/01.webp",
+      "media/sequences/s2/02.webp",
+      "media/sequences/s2/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s5": {
+    "name": "Glúteo medio side-lying",
+    "phases": 3,
+    "files": [
+      "media/sequences/s5/01.webp",
+      "media/sequences/s5/02.webp",
+      "media/sequences/s5/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s6": {
+    "name": "Descompresión 90-90",
+    "phases": 2,
+    "files": [
+      "media/sequences/s6/01.webp",
+      "media/sequences/s6/02.webp"
+    ],
+    "status": "ready"
+  },
+  "cl": {
+    "name": "Clamshell",
+    "phases": 2,
+    "files": [
+      "media/sequences/cl/01.webp",
+      "media/sequences/cl/02.webp"
+    ],
+    "status": "ready"
+  },
+  "sac1": {
+    "name": "Isométrico aductores con pelota",
+    "phases": 2,
+    "files": [
+      "media/sequences/sac1/01.webp",
+      "media/sequences/sac1/02.webp"
+    ],
+    "status": "ready"
+  },
+  "sac2": {
+    "name": "Puente con banda",
+    "phases": 3,
+    "files": [
+      "media/sequences/sac2/01.webp",
+      "media/sequences/sac2/02.webp",
+      "media/sequences/sac2/03.webp"
+    ],
+    "status": "ready"
+  },
+  "sac3": {
+    "name": "Movilización SI",
+    "phases": 3,
+    "files": [
+      "media/sequences/sac3/01.webp",
+      "media/sequences/sac3/02.webp",
+      "media/sequences/sac3/03.webp"
+    ],
+    "status": "ready"
+  },
+  "pub2": {
+    "name": "Mariposa",
+    "phases": 2,
+    "files": [
+      "media/sequences/pub2/01.webp",
+      "media/sequences/pub2/02.webp"
+    ],
+    "status": "ready"
+  },
+  "pub3": {
+    "name": "Copenhagen (anatómico 3D)",
+    "phases": 3,
+    "files": [
+      "media/sequences/pub3/01.webp",
+      "media/sequences/pub3/02.webp",
+      "media/sequences/pub3/03.webp"
+    ],
+    "status": "ready"
+  },
+  "pub4": {
+    "name": "Puente con pelota",
+    "phases": 3,
+    "files": [
+      "media/sequences/pub4/01.webp",
+      "media/sequences/pub4/02.webp",
+      "media/sequences/pub4/03.webp"
+    ],
+    "status": "ready"
+  },
+  "n1": {
+    "name": "Suboccipital con pelota",
+    "phases": 2,
+    "files": [
+      "media/sequences/n1/01.webp",
+      "media/sequences/n1/02.webp"
+    ],
+    "status": "ready"
+  },
+  "n3": {
+    "name": "Nerve glide mediano",
+    "phases": 3,
+    "files": [
+      "media/sequences/n3/01.webp",
+      "media/sequences/n3/02.webp",
+      "media/sequences/n3/03.webp"
+    ],
+    "status": "ready"
+  },
+  "n4": {
+    "name": "Piriforme con pelota sentada",
+    "phases": 3,
+    "files": [
+      "media/sequences/n4/01.webp",
+      "media/sequences/n4/02.webp",
+      "media/sequences/n4/03.webp"
+    ],
+    "status": "ready"
+  },
+  "p3": {
+    "name": "Isométrico cuádriceps",
+    "phases": 2,
+    "files": [
+      "media/sequences/p3/01.webp",
+      "media/sequences/p3/02.webp"
+    ],
+    "status": "ready"
+  },
+  "p4": {
+    "name": "Log-roll",
+    "phases": 3,
+    "files": [
+      "media/sequences/p4/01.webp",
+      "media/sequences/p4/02.webp",
+      "media/sequences/p4/03.webp"
+    ],
+    "status": "ready"
+  },
+  "p5": {
+    "name": "Deambulación con silla",
+    "phases": 3,
+    "files": [
+      "media/sequences/p5/01.webp",
+      "media/sequences/p5/02.webp",
+      "media/sequences/p5/03.webp"
+    ],
+    "status": "ready"
+  },
+  "p7": {
+    "name": "Movilización neural ciático",
+    "phases": 3,
+    "files": [
+      "media/sequences/p7/01.webp",
+      "media/sequences/p7/02.webp",
+      "media/sequences/p7/03.webp"
+    ],
+    "status": "ready"
+  },
+  "p8": {
+    "name": "Estabilización bipedestación",
+    "phases": 3,
+    "files": [
+      "media/sequences/p8/01.webp",
+      "media/sequences/p8/02.webp",
+      "media/sequences/p8/03.webp"
+    ],
+    "status": "ready"
+  },
+  "p9": {
+    "name": "Talones con apoyo",
+    "phases": 3,
+    "files": [
+      "media/sequences/p9/01.webp",
+      "media/sequences/p9/02.webp",
+      "media/sequences/p9/03.webp"
+    ],
+    "status": "ready"
+  },
+  "p10": {
+    "name": "Puntas de pie sentado",
+    "phases": 3,
+    "files": [
+      "media/sequences/p10/01.webp",
+      "media/sequences/p10/02.webp",
+      "media/sequences/p10/03.webp"
+    ],
+    "status": "ready"
+  },
+  "p17": {
+    "name": "Plancha completa",
+    "phases": 3,
+    "files": [
+      "media/sequences/p17/01.webp",
+      "media/sequences/p17/02.webp",
+      "media/sequences/p17/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s4": {
+    "name": "Isquios con toalla",
+    "phases": 3,
+    "files": [
+      "media/sequences/s4/01.webp",
+      "media/sequences/s4/02.webp",
+      "media/sequences/s4/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s7": {
+    "name": "Caminata terapéutica",
+    "phases": 3,
+    "files": [
+      "media/sequences/s7/01.webp",
+      "media/sequences/s7/02.webp",
+      "media/sequences/s7/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_01": {
+    "name": "Sentarse/levantarse con apoyo",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_01/01.webp",
+      "media/sequences/s60_01/02.webp",
+      "media/sequences/s60_01/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_02": {
+    "name": "Sentarse/levantarse sin manos",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_02/01.webp",
+      "media/sequences/s60_02/02.webp",
+      "media/sequences/s60_02/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_03": {
+    "name": "Mini sentadilla con apoyo",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_03/01.webp",
+      "media/sequences/s60_03/02.webp",
+      "media/sequences/s60_03/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_04": {
+    "name": "Estocada asistida",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_04/01.webp",
+      "media/sequences/s60_04/02.webp",
+      "media/sequences/s60_04/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_05": {
+    "name": "Step-up escalón bajo",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_05/01.webp",
+      "media/sequences/s60_05/02.webp",
+      "media/sequences/s60_05/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_06": {
+    "name": "Elevación bilateral talones",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_06/01.webp",
+      "media/sequences/s60_06/02.webp",
+      "media/sequences/s60_06/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_07": {
+    "name": "Abducción cadera con apoyo",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_07/01.webp",
+      "media/sequences/s60_07/02.webp",
+      "media/sequences/s60_07/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_08": {
+    "name": "Marcha con rodillas",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_08/01.webp",
+      "media/sequences/s60_08/02.webp",
+      "media/sequences/s60_08/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_09": {
+    "name": "Transferencia peso lateral",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_09/01.webp",
+      "media/sequences/s60_09/02.webp",
+      "media/sequences/s60_09/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_10": {
+    "name": "Equilibrio unipodal asistido",
+    "phases": 2,
+    "files": [
+      "media/sequences/s60_10/01.webp",
+      "media/sequences/s60_10/02.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_11": {
+    "name": "Abdominal isométrico en silla",
+    "phases": 2,
+    "files": [
+      "media/sequences/s60_11/01.webp",
+      "media/sequences/s60_11/02.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_12": {
+    "name": "Elevación alternada rodillas sentado",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_12/01.webp",
+      "media/sequences/s60_12/02.webp",
+      "media/sequences/s60_12/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_13": {
+    "name": "Retracción escapular + apertura torácica",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_13/01.webp",
+      "media/sequences/s60_13/02.webp",
+      "media/sequences/s60_13/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_14": {
+    "name": "Wall slide",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_14/01.webp",
+      "media/sequences/s60_14/02.webp",
+      "media/sequences/s60_14/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_15": {
+    "name": "Rotación torácica controlada",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_15/01.webp",
+      "media/sequences/s60_15/02.webp",
+      "media/sequences/s60_15/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_16": {
+    "name": "Chair squat (sentadilla en silla)",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_16/01.webp",
+      "media/sequences/s60_16/02.webp",
+      "media/sequences/s60_16/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_17": {
+    "name": "Estocada reversa con silla",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_17/01.webp",
+      "media/sequences/s60_17/02.webp",
+      "media/sequences/s60_17/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_18": {
+    "name": "Push-up en pared",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_18/01.webp",
+      "media/sequences/s60_18/02.webp",
+      "media/sequences/s60_18/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_19": {
+    "name": "Marcha con brazos",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_19/01.webp",
+      "media/sequences/s60_19/02.webp",
+      "media/sequences/s60_19/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_20": {
+    "name": "Extensión de rodilla sentado",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_20/01.webp",
+      "media/sequences/s60_20/02.webp",
+      "media/sequences/s60_20/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_21": {
+    "name": "Elevación rodillas con banda",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_21/01.webp",
+      "media/sequences/s60_21/02.webp",
+      "media/sequences/s60_21/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_22": {
+    "name": "Puente en silla",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_22/01.webp",
+      "media/sequences/s60_22/02.webp",
+      "media/sequences/s60_22/03.webp"
+    ],
+    "status": "ready"
+  },
+  "s60_23": {
+    "name": "Dead bug en silla",
+    "phases": 3,
+    "files": [
+      "media/sequences/s60_23/01.webp",
+      "media/sequences/s60_23/02.webp",
+      "media/sequences/s60_23/03.webp"
+    ],
+    "status": "ready"
+  },
+  "p1": {
+    "name": "Bombeo de tobillos",
+    "phases": 2,
+    "files": [
+      "media/sequences/p1/01.webp",
+      "media/sequences/p1/02.webp"
+    ],
+    "status": "ready"
+  },
+  "c7": {
+    "name": "Movilización de cintura escapular",
+    "phases": 1,
+    "files": [
+      "media/sequences/c7/01.webp"
+    ],
+    "status": "partial",
+    "pending": [
+      "02.webp (hombros elevados hacia orejas)",
+      "03.webp (completar círculo hacia adelante)"
+    ]
+  },
+  "s8": {
+    "name": "Estiramiento de cadera en figura 4 sentado",
+    "phases": 1,
+    "files": [
+      "media/sequences/s8/01.webp"
+    ],
+    "status": "partial",
+    "pending": [
+      "02.webp (tobillo cruzado sobre rodilla, tronco inclinado desde cadera)"
+    ]
+  }
+}

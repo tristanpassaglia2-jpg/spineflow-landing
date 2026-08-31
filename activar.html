@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SpineFlow — Activar acceso</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<style>
+  :root{--teal:#18a89f;--teal-dark:#0d8f87;--bg:#f0f4f8;--card:#fff;--text:#1a2332;--muted:#6b7a90;--red:#e53e3e;--green:#38a169}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
+  .card{background:var(--card);border-radius:20px;padding:32px 24px;box-shadow:0 4px 24px rgba(0,0,0,.1);width:100%;max-width:420px;text-align:center}
+  .logo{font-size:2rem;margin-bottom:8px}
+  h1{font-size:1.3rem;font-weight:800;color:var(--teal);margin-bottom:6px}
+  .subtitle{font-size:.9rem;color:var(--muted);margin-bottom:28px}
+  label{display:block;text-align:left;font-size:.85rem;font-weight:600;color:var(--muted);margin-bottom:6px}
+  input{width:100%;padding:14px;border:1.5px solid #dde3eb;border-radius:12px;font-size:1rem;color:var(--text);text-align:center;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+  input:focus{outline:none;border-color:var(--teal)}
+  .btn{display:block;width:100%;padding:14px;background:var(--teal);color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;transition:background .2s;margin-bottom:10px}
+  .btn:hover{background:var(--teal-dark)}
+  .btn:disabled{background:#b0c4c2;cursor:not-allowed}
+  .btn-link{background:none;border:none;color:var(--teal);font-size:.85rem;cursor:pointer;text-decoration:underline;margin-top:4px}
+  #error-msg{display:none;background:#fff5f5;color:var(--red);border:1px solid #fed7d7;padding:12px;border-radius:10px;font-size:.85rem;margin-bottom:14px}
+  #success-section{display:none}
+  .success-icon{font-size:3rem;margin-bottom:12px}
+  .access-card{background:#e8f9f8;border-radius:12px;padding:16px;margin:16px 0;text-align:left}
+  .access-card p{font-size:.85rem;color:var(--muted);margin-bottom:4px}
+  .access-card strong{font-size:1rem;color:var(--teal)}
+  .days-badge{display:inline-block;background:var(--teal);color:#fff;padding:4px 12px;border-radius:20px;font-size:.9rem;font-weight:700;margin-bottom:8px}
+  #login-required{display:none}
+  #code-step{display:none}
+  #loading{color:var(--muted);font-size:.9rem;padding:20px 0}
+  a.back{display:inline-block;margin-top:16px;color:var(--muted);font-size:.85rem;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo" style="width:48px;height:48px;margin:0 auto 8px;background:var(--teal);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:900;color:#fff;letter-spacing:.05em">SF</div>
+  <h1>Activar acceso SpineFlow</h1>
+  <p class="subtitle">Tu médico generó un código de acceso para vos</p>
+
+  <div id="loading">Verificando…</div>
+
+  <!-- Login requerido primero -->
+  <div id="login-required">
+    <p style="color:var(--muted);font-size:.85rem;margin-bottom:20px">Necesitás estar registrado en SpineFlow para activar tu acceso.</p>
+    <button class="btn" onclick="window.location.href='/login?redirect=/activar' + (codeParam ? '?code='+codeParam : '')">Crear cuenta / Iniciar sesión</button>
+  </div>
+
+  <!-- Ingresar código -->
+  <div id="code-step">
+    <div id="error-msg"></div>
+    <label>Código de acceso</label>
+    <input type="text" id="code-input" maxlength="7" placeholder="SF-XXXX" oninput="formatCode(this)">
+    <button class="btn" id="activar-btn" onclick="activarCodigo()">Activar mi acceso</button>
+    <a href="/app" class="back">← Volver al inicio</a>
+  </div>
+
+  <!-- Éxito -->
+  <div id="success-section">
+    <div class="success-icon">✅</div>
+    <h1 style="color:var(--green)">¡Acceso activado!</h1>
+    <div class="access-card">
+      <p>Patología desbloqueada</p>
+      <strong id="suc-pathology"></strong>
+    </div>
+    <div class="days-badge" id="suc-days"></div>
+    <p style="font-size:.85rem;color:var(--muted);margin:12px 0">Empezá tu programa personalizado ahora mismo.</p>
+    <button class="btn" onclick="window.location.href='/'">Ir a SpineFlow</button>
+  </div>
+</div>
+
+<script>
+const SB_URL = 'https://atefklvwshuwrmeasrnq.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0ZWZrbHZ3c2h1d3JtZWFzcm5xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM2MDY3MjgsImV4cCI6MjA1OTE4MjcyOH0.fk1Uph1wqY5RUkJx0o72QLBioSKXF5h_6SHfB1AAHGI';
+const sb = supabase.createClient(SB_URL, SB_KEY);
+
+const PATHOLOGY_NAMES = {
+  hernia_cervical:'Hernia de disco cervical', occipital:'Síndrome occipital (Arnold)',
+  cervicalgia_espasmo:'Cervicalgia por espasmo', desfiladero:'Síndrome del desfiladero torácico',
+  espasmo_dorsal:'Espasmo dorsal', escoliosis:'Escoliosis', dorsalgia:'Dorsalgia',
+  hernia_lumbar:'Hernia lumbar con ciatalgia', lumbalgia:'Lumbalgia mecánica',
+  piramidal:'Síndrome piramidal (falsa ciática)', facetario:'Síndrome facetario',
+  sacroileitis:'Sacroileítis', pubalgia:'Pubalgia', postcirugia:'Rehabilitación post-cirugía de columna'
+};
+
+const params = new URLSearchParams(window.location.search);
+let codeParam = params.get('code') || '';
+
+function formatCode(el) {
+  let v = el.value.replace(/[^a-zA-Z0-9]/g,'').toUpperCase();
+  if (v.length > 2) v = 'SF-' + v.replace(/^SF-?/i,'').slice(0,4);
+  el.value = v;
+}
+
+async function activarCodigo() {
+  const code = document.getElementById('code-input').value.trim().toUpperCase();
+  const errEl = document.getElementById('error-msg');
+  errEl.style.display = 'none';
+  if (!code || code.length < 7) { errEl.style.display='block'; errEl.textContent='Ingresá el código completo (SF-XXXX)'; return; }
+
+  document.getElementById('activar-btn').disabled = true;
+  document.getElementById('activar-btn').textContent = 'Activando…';
+
+  const { data, error } = await sb.rpc('redeem_invite_code', { p_code: code });
+
+  document.getElementById('activar-btn').disabled = false;
+  document.getElementById('activar-btn').textContent = 'Activar mi acceso';
+
+  if (error) {
+    errEl.style.display = 'block';
+    errEl.textContent = error.message || 'Error al activar el código';
+    return;
+  }
+
+  // Mostrar éxito
+  document.getElementById('code-step').style.display = 'none';
+  const suc = document.getElementById('success-section');
+  suc.style.display = 'block';
+  document.getElementById('suc-pathology').textContent = PATHOLOGY_NAMES[data.pathology] || data.pathology;
+  document.getElementById('suc-days').textContent = `${data.duration_days} días de acceso gratis`;
+}
+
+// Init
+sb.auth.onAuthStateChange((event, session) => {
+  document.getElementById('loading').style.display = 'none';
+  if (!session) {
+    document.getElementById('login-required').style.display = 'block';
+    return;
+  }
+  document.getElementById('code-step').style.display = 'block';
+  if (codeParam) {
+    const input = document.getElementById('code-input');
+    input.value = codeParam.toUpperCase();
+  }
+});
+</script>
+</body>
+</html>

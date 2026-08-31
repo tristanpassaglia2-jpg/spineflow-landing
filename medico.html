@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SpineFlow — Panel Médico</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root{--teal:#18a89f;--teal-dark:#0d8f87;--bg:#f0f4f8;--card:#fff;--text:#1a2332;--muted:#6b7a90;--red:#e53e3e}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+  header{background:var(--teal);color:#fff;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+  header h1{font-size:1.1rem;font-weight:700;letter-spacing:.02em}
+  header span{font-size:.8rem;opacity:.85}
+  .container{max-width:480px;margin:32px auto;padding:0 16px}
+  .card{background:var(--card);border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.08);margin-bottom:20px}
+  h2{font-size:1rem;font-weight:700;margin-bottom:16px;color:var(--teal)}
+  label{display:block;font-size:.85rem;font-weight:600;color:var(--muted);margin-bottom:6px}
+  select,input{width:100%;padding:12px 14px;border:1.5px solid #dde3eb;border-radius:10px;font-size:.95rem;color:var(--text);background:#fff;appearance:none}
+  select:focus,input:focus{outline:none;border-color:var(--teal)}
+  .row{margin-bottom:16px}
+  .btn{display:block;width:100%;padding:14px;background:var(--teal);color:#fff;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;transition:background .2s}
+  .btn:hover{background:var(--teal-dark)}
+  .btn:disabled{background:#b0c4c2;cursor:not-allowed}
+  .tipo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+  .tipo-btn{padding:12px;border:2px solid #dde3eb;border-radius:10px;background:#fff;cursor:pointer;font-size:.85rem;font-weight:600;color:var(--muted);text-align:center;transition:all .2s}
+  .tipo-btn.active{border-color:var(--teal);background:#e8f9f8;color:var(--teal)}
+  .tipo-info{font-size:.8rem;color:var(--muted);margin-top:4px}
+  #qr-section{display:none;text-align:center}
+  #qr-canvas{margin:20px auto;display:flex;justify-content:center}
+  .code-display{font-family:monospace;font-size:2rem;font-weight:900;letter-spacing:.15em;color:var(--teal);margin:12px 0}
+  .timer{font-size:.85rem;color:var(--muted);margin-bottom:16px}
+  .timer b{color:var(--red)}
+  .btn-outline{background:#fff;color:var(--teal);border:2px solid var(--teal)}
+  .btn-outline:hover{background:#e8f9f8}
+  #error-msg{display:none;background:#fff5f5;color:var(--red);border:1px solid #fed7d7;padding:12px;border-radius:10px;font-size:.85rem;margin-top:12px}
+  #login-section{text-align:center;padding:40px 24px}
+  #login-section p{color:var(--muted);margin-bottom:20px;font-size:.9rem}
+  #login-form input{margin-bottom:12px}
+  .historial{margin-top:8px}
+  .historial-item{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eef1f5;font-size:.85rem}
+  .historial-item:last-child{border-bottom:none}
+  .badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.75rem;font-weight:700}
+  .badge-active{background:#e8f9f8;color:var(--teal)}
+  .badge-used{background:#f0f4f8;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🩺 SpineFlow — Panel Médico</h1>
+  <span id="header-user"></span>
+</header>
+
+<!-- LOGIN -->
+<div class="container" id="login-section">
+  <div class="card">
+    <div id="login-form">
+      <h2>Iniciar sesión</h2>
+      <div class="row"><label>Email</label><input type="email" id="email" placeholder="tu@email.com"></div>
+      <div class="row"><label>Contraseña</label><input type="password" id="password" placeholder="••••••••"></div>
+      <div id="error-msg"></div>
+      <button class="btn" onclick="login()">Entrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL PRINCIPAL -->
+<div class="container" id="panel-section" style="display:none">
+
+  <!-- Generar código -->
+  <div class="card">
+    <h2>Generar acceso para paciente</h2>
+
+    <div class="row">
+      <label>Patología</label>
+      <select id="pathology">
+        <option value="">— Seleccioná la patología —</option>
+        <option value="hernia_cervical">Hernia de disco cervical</option>
+        <option value="occipital">Síndrome occipital (Arnold)</option>
+        <option value="cervicalgia_espasmo">Cervicalgia por espasmo</option>
+        <option value="desfiladero">Síndrome del desfiladero torácico</option>
+        <option value="espasmo_dorsal">Espasmo dorsal</option>
+        <option value="escoliosis">Escoliosis</option>
+        <option value="dorsalgia">Dorsalgia</option>
+        <option value="hernia_lumbar">Hernia lumbar con ciatalgia</option>
+        <option value="lumbalgia">Lumbalgia mecánica</option>
+        <option value="piramidal">Síndrome piramidal (falsa ciática)</option>
+        <option value="facetario">Síndrome facetario</option>
+        <option value="sacroileitis">Sacroileítis</option>
+        <option value="pubalgia">Pubalgia</option>
+        <option value="postcirugia">Rehabilitación post-cirugía de columna</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label>Tipo de acceso</label>
+      <div class="tipo-grid">
+        <div class="tipo-btn active" data-tipo="patient" onclick="selectTipo(this)">
+          Paciente<div class="tipo-info">28 días gratis · solo esta patología</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="error-msg-panel" style="display:none;background:#fff5f5;color:var(--red);border:1px solid #fed7d7;padding:12px;border-radius:10px;font-size:.85rem;margin-bottom:12px"></div>
+    <button class="btn" id="gen-btn" onclick="generarCodigo()">Generar código QR</button>
+  </div>
+
+  <!-- QR resultante -->
+  <div class="card" id="qr-section">
+    <h2>Código generado</h2>
+    <div class="code-display" id="code-text"></div>
+    <div id="qr-canvas"></div>
+    <div class="timer" id="timer-txt"></div>
+    <p style="font-size:.8rem;color:var(--muted);margin-bottom:16px">El paciente escanea el QR o tipea el código en spineflow.org/activar</p>
+    <button class="btn btn-outline" onclick="nuevoQR()">Generar otro</button>
+  </div>
+
+  <!-- Historial reciente -->
+  <div class="card">
+    <h2>Últimos códigos</h2>
+    <div class="historial" id="historial-list"><p style="color:var(--muted);font-size:.85rem">Cargando…</p></div>
+  </div>
+
+</div>
+
+<script>
+const SB_URL = 'https://atefklvwshuwrmeasrnq.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0ZWZrbHZ3c2h1d3JtZWFzcm5xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU0MjgxMTQsImV4cCI6MjEwMTAwNDExNH0.R7r_tagPkqAmdxI2JYhkQ_s4Gzt7ZA1Q2QbzvtOi2kI';
+const sb = supabase.createClient(SB_URL, SB_KEY);
+
+let currentTipo = 'patient';
+let timerInterval = null;
+
+function selectTipo(el) {
+  document.querySelectorAll('.tipo-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  currentTipo = el.dataset.tipo;
+}
+
+async function login() {
+  const email = document.getElementById('email').value.trim();
+  const pass  = document.getElementById('password').value;
+  const err   = document.getElementById('error-msg');
+  err.style.display = 'none';
+  const { error } = await sb.auth.signInWithPassword({ email, password: pass });
+  if (error) { err.style.display = 'block'; err.textContent = 'Email o contraseña incorrectos'; return; }
+}
+
+async function generarCodigo() {
+  const pathology = document.getElementById('pathology').value;
+  const errEl = document.getElementById('error-msg-panel');
+  errEl.style.display = 'none';
+  if (!pathology) { errEl.style.display='block'; errEl.textContent='Seleccioná una patología primero'; return; }
+
+  document.getElementById('gen-btn').disabled = true;
+  document.getElementById('gen-btn').textContent = 'Generando…';
+
+  const { data, error } = await sb.rpc('generate_invite_code', {
+    p_pathology: pathology,
+    p_access_type: currentTipo
+  });
+
+  document.getElementById('gen-btn').disabled = false;
+  document.getElementById('gen-btn').textContent = 'Generar código QR';
+
+  if (error) {
+    errEl.style.display = 'block';
+    errEl.textContent = error.message || 'Error al generar código';
+    return;
+  }
+
+  mostrarQR(data);
+  cargarHistorial();
+}
+
+function mostrarQR(code) {
+  document.getElementById('qr-section').style.display = 'block';
+  document.getElementById('code-text').textContent = code;
+
+  const activarUrl = `${window.location.origin}/activar?code=${code}`;
+  const qrBox = document.getElementById('qr-canvas');
+  qrBox.innerHTML = '';
+  new QRCode(qrBox, { text: activarUrl, width: 220, height: 220, colorDark: '#0c2026', colorLight: '#ffffff' });
+
+  // Timer de 10 minutos
+  let secs = 600;
+  clearInterval(timerInterval);
+  const timerEl = document.getElementById('timer-txt');
+  function tick() {
+    const m = Math.floor(secs/60), s = secs % 60;
+    timerEl.innerHTML = `Vence en <b>${m}:${s.toString().padStart(2,'0')}</b>`;
+    if (secs-- <= 0) { clearInterval(timerInterval); timerEl.innerHTML = '<b>Código expirado</b>'; }
+  }
+  tick(); timerInterval = setInterval(tick, 1000);
+}
+
+function nuevoQR() {
+  document.getElementById('qr-section').style.display = 'none';
+  clearInterval(timerInterval);
+}
+
+async function cargarHistorial() {
+  const { data: session } = await sb.auth.getSession();
+  if (!session.session) return;
+  const uid = session.session.user.id;
+  const { data } = await sb.from('invite_codes')
+    .select('code,pathology,access_type,used_at,expires_at')
+    .eq('doctor_id', uid)
+    .order('expires_at', { ascending: false })
+    .limit(8);
+  const el = document.getElementById('historial-list');
+  if (!data || !data.length) { el.innerHTML = '<p style="color:var(--muted);font-size:.85rem">Sin códigos generados aún</p>'; return; }
+  el.innerHTML = data.map(d => {
+    const used = !!d.used_at;
+    const expired = new Date(d.expires_at) < new Date();
+    const estado = used ? '✓ Usado' : expired ? 'Expiró' : 'Activo';
+    const cls = used || expired ? 'badge-used' : 'badge-active';
+    return `<div class="historial-item">
+      <div><strong>${d.code}</strong><br><span style="color:var(--muted)">${d.pathology?.replace(/_/g,' ')}</span></div>
+      <span class="badge ${cls}">${estado}</span>
+    </div>`;
+  }).join('');
+}
+
+// Auth state
+sb.auth.onAuthStateChange(async (event, session) => {
+  if (session) {
+    document.getElementById('login-section').style.display = 'none';
+    document.getElementById('panel-section').style.display = 'block';
+    document.getElementById('header-user').textContent = session.user.email;
+    cargarHistorial();
+  } else {
+    document.getElementById('login-section').style.display = 'block';
+    document.getElementById('panel-section').style.display = 'none';
+    document.getElementById('header-user').textContent = '';
+  }
+});
+</script>
+</body>
+</html>

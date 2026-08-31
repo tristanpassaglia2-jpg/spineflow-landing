@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planes - SpineFlow</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:#f8fafc; color:#0f172a; line-height:1.6; }
+.header { background:#fff; padding:1.5rem 2rem; border-bottom:1px solid #e2e8f0; text-align:center; }
+.header h1 { font-size:1.5rem; color:#0891b2; }
+.header a { color:#64748b; text-decoration:none; font-size:0.9rem; }
+.hero { text-align:center; padding:3rem 1.5rem 2rem; max-width:800px; margin:0 auto; }
+.hero h2 { font-size:2rem; margin-bottom:0.5rem; }
+.hero p { color:#475569; font-size:1.1rem; }
+.planes { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; max-width:1100px; margin:2rem auto; padding:0 1.5rem; }
+.plan { background:#fff; border:2px solid #e2e8f0; border-radius:16px; padding:2rem 1.5rem; text-align:center; display:flex; flex-direction:column; position:relative; }
+.plan.destacado { border-color:#0891b2; box-shadow:0 8px 24px rgba(8,145,178,0.15); }
+.badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:#0891b2; color:#fff; padding:0.3rem 1rem; border-radius:20px; font-size:0.75rem; font-weight:600; }
+.plan h3 { font-size:1.4rem; margin-bottom:0.5rem; }
+.plan .precio { font-size:2.5rem; font-weight:700; margin:1rem 0 0.25rem; }
+.plan .periodo { color:#64748b; font-size:0.95rem; margin-bottom:0.5rem; }
+.plan .equivalencia { color:#475569; font-size:0.85rem; margin-bottom:1.5rem; min-height:1.5rem; }
+.plan ul { list-style:none; text-align:left; margin-bottom:2rem; flex-grow:1; }
+.plan li { padding:0.4rem 0; font-size:0.95rem; padding-left:1.5rem; position:relative; }
+.plan li:before { content:"OK"; color:#059669; font-weight:700; position:absolute; left:0; font-size:0.7rem; }
+.btn { display:block; width:100%; padding:0.9rem 1.5rem; background:#0891b2; color:#fff; border-radius:10px; font-weight:600; font-size:1rem; cursor:pointer; border:none; text-align:center; }
+.btn:hover { background:#0e7490; }
+.info { max-width:800px; margin:2rem auto 4rem; padding:2rem 1.5rem; text-align:center; color:#64748b; font-size:0.95rem; }
+.footer { text-align:center; padding:2rem; color:#94a3b8; font-size:0.85rem; border-top:1px solid #e2e8f0; }
+.footer a { color:#64748b; text-decoration:none; margin:0 0.5rem; }
+.user-info { background:#ecfdf5; border:1px solid #a7f3d0; border-radius:12px; padding:1rem 1.5rem; max-width:600px; margin:2rem auto 0; text-align:center; color:#065f46; font-size:0.95rem; display:none; }
+.modal-bg { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center; padding:1rem; }
+.modal-bg.show { display:flex; }
+.modal { background:#fff; border-radius:16px; padding:2rem; max-width:400px; width:100%; }
+.modal h3 { margin-bottom:1rem; }
+.modal p { color:#475569; margin-bottom:1.5rem; font-size:0.95rem; }
+.modal input { width:100%; padding:0.75rem; border:1px solid #cbd5e1; border-radius:8px; margin-bottom:1rem; font-size:1rem; }
+.modal .btn { margin-bottom:0.75rem; }
+.modal .btn-link { background:none; color:#0891b2; padding:0.5rem; text-decoration:underline; font-size:0.9rem; }
+.modal .close { text-align:right; margin-bottom:-0.5rem; }
+.modal .close button { background:none; border:none; font-size:1.5rem; cursor:pointer; color:#94a3b8; }
+.error { color:#dc2626; font-size:0.85rem; margin-bottom:1rem; min-height:1rem; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <h1>SpineFlow</h1>
+  <a href="/app">Volver al inicio</a>
+</header>
+
+<section class="hero">
+  <h2>Elegí tu plan</h2>
+  <p>Rehabilitación digital para tu columna, guiada por un equipo médico especializado.</p>
+</section>
+
+<div id="userInfo" class="user-info">
+  Estás ingresado como <strong id="userEmail"></strong> - <a href="#" id="linkCerrar" style="color:#0891b2;">Cerrar sesión</a>
+</div>
+
+<section class="planes">
+  <div class="plan">
+    <h3>Mensual</h3>
+    <div class="precio">$9.800</div>
+    <div class="periodo">por mes</div>
+    <div class="equivalencia">Menos que una sesión de kinesiología</div>
+    <ul>
+      <li>Acceso a todas las patologías</li>
+      <li>Programa progresivo de 4 semanas</li>
+      <li>100 ejercicios con voz guiada</li>
+      <li>Historial de dolor y progreso</li>
+      <li>Cancelás cuando quieras</li>
+    </ul>
+    <button class="btn btn-plan" data-plan="a1980c58e40b4c169d742e5b659ab7ff">Suscribirme</button>
+  </div>
+
+  <div class="plan destacado">
+    <div class="badge">MÁS ELEGIDO</div>
+    <h3>Trimestral</h3>
+    <div class="precio">$23.900</div>
+    <div class="periodo">cada 3 meses</div>
+    <div class="equivalencia">Ahorrás $5.500 vs mensual</div>
+    <ul>
+      <li>Todo lo del plan Mensual</li>
+      <li>Precio congelado 3 meses</li>
+      <li>Ideal para completar el programa</li>
+      <li>Renovación automática</li>
+      <li>Cancelás cuando quieras</li>
+    </ul>
+    <button class="btn btn-plan" data-plan="cdd410bdc22a448d82d38b04066e8c45">Suscribirme</button>
+  </div>
+
+  <div class="plan">
+    <h3>Anual</h3>
+    <div class="precio">$69.800</div>
+    <div class="periodo">por año</div>
+    <div class="equivalencia">Ahorrás $47.800 vs mensual</div>
+    <ul>
+      <li>Todo lo del plan Mensual</li>
+      <li>2 meses gratis</li>
+      <li>Precio congelado 12 meses</li>
+      <li>Para uso sostenido en el tiempo</li>
+      <li>Cancelás cuando quieras</li>
+    </ul>
+    <button class="btn btn-plan" data-plan="51c086db731645f4bf447cbd1802a77a">Suscribirme</button>
+  </div>
+</section>
+
+<section class="info">
+  <p><strong>Pago 100% seguro con Mercado Pago.</strong> Aceptamos todas las tarjetas de crédito y débito.</p>
+  <br>
+  <p>Tenés un código de tu médico? <a href="/activar" style="color:#0891b2;font-weight:600;">Activa tu acceso gratuito acá</a></p>
+</section>
+
+<div id="modalLogin" class="modal-bg">
+  <div class="modal">
+    <div class="close"><button id="btnCerrarModal">X</button></div>
+    <h3 id="modalTitulo">Iniciá sesión para suscribirte</h3>
+    <p id="modalTexto">Necesitamos tu cuenta para activar el acceso una vez que pagues.</p>
+    <input type="email" id="modalEmail" placeholder="Tu email">
+    <input type="password" id="modalPassword" placeholder="Contraseña (mínimo 6 caracteres)">
+    <div class="error" id="modalError"></div>
+    <button class="btn" id="btnLogin">Ingresar</button>
+    <button class="btn btn-link" id="btnCambio">¿No tenés cuenta? Registrate acá</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <a href="/terminos.html">Términos</a> |
+  <a href="/privacidad.html">Privacidad</a> |
+  <a href="/aviso-medico.html">Aviso médico</a>
+  <br><br>
+  &copy; 2026 SpineFlow - Desarrollado por cirujanos y kinesiólogos especialistas en patología de columna vertebral
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+<script>
+var SUPABASE_URL = 'https://atefklvwshuwrmeasrnq.supabase.co';
+var SUPABASE_ANON_KEY = 'sb_publishable_QFbwN6DQNY5idxUntqDSqg_EdF7TcSp';
+var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+var modoRegistro = false;
+var planPendiente = null;
+
+function irAlCheckout(userId, planId) {
+  var url = 'https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=' + planId + '&external_reference=' + userId + '&back_url=' + encodeURIComponent('https://spineflow.org/gracias.html');
+  window.location.href = url;
+}
+
+function abrirModal() {
+  document.getElementById('modalLogin').classList.add('show');
+  document.getElementById('modalEmail').focus();
+  document.getElementById('modalError').textContent = '';
+}
+
+function cerrarModal() {
+  document.getElementById('modalLogin').classList.remove('show');
+  document.getElementById('modalEmail').value = '';
+  document.getElementById('modalPassword').value = '';
+  document.getElementById('modalError').textContent = '';
+  planPendiente = null;
+}
+
+function cambiarModo() {
+  modoRegistro = !modoRegistro;
+  if (modoRegistro) {
+    document.getElementById('modalTitulo').textContent = 'Creá tu cuenta';
+    document.getElementById('modalTexto').textContent = 'Con tu cuenta vas a acceder a la app cuando el pago se acredite.';
+    document.getElementById('btnLogin').textContent = 'Crear cuenta';
+    document.getElementById('btnCambio').textContent = '¿Ya tenés cuenta? Ingresá acá';
+  } else {
+    document.getElementById('modalTitulo').textContent = 'Iniciá sesión para suscribirte';
+    document.getElementById('modalTexto').textContent = 'Necesitamos tu cuenta para activar el acceso una vez que pagues.';
+    document.getElementById('btnLogin').textContent = 'Ingresar';
+    document.getElementById('btnCambio').textContent = '¿No tenés cuenta? Registrate acá';
+  }
+}
+
+function traducirError(msg) {
+  if (msg.indexOf('Invalid login') !== -1) return 'Email o contraseña incorrectos.';
+  if (msg.indexOf('already registered') !== -1) return 'Este email ya tiene cuenta. Ingresá con tu contraseña.';
+  if (msg.indexOf('Email') !== -1) return 'Email inválido.';
+  return msg;
+}
+
+function suscribirse(planId) {
+  sb.auth.getSession().then(function(s) {
+    if (s.data.session) {
+      irAlCheckout(s.data.session.user.id, planId);
+    } else {
+      planPendiente = planId;
+      abrirModal();
+    }
+  });
+}
+
+function hacerLogin() {
+  var email = document.getElementById('modalEmail').value.trim();
+  var password = document.getElementById('modalPassword').value;
+  var errorEl = document.getElementById('modalError');
+  var btnEl = document.getElementById('btnLogin');
+  errorEl.textContent = '';
+  if (!email || !password) { errorEl.textContent = 'Completá email y contraseña.'; return; }
+  if (password.length < 6) { errorEl.textContent = 'La contraseña debe tener al menos 6 caracteres.'; return; }
+  btnEl.disabled = true;
+  var promesa = modoRegistro
+    ? sb.auth.signUp({ email: email, password: password })
+    : sb.auth.signInWithPassword({ email: email, password: password });
+  promesa.then(function(result) {
+    if (result.error) {
+      errorEl.textContent = traducirError(result.error.message);
+      btnEl.disabled = false;
+      return;
+    }
+    var userId = result.data.user && result.data.user.id;
+    if (userId && planPendiente) {
+      irAlCheckout(userId, planPendiente);
+    } else {
+      errorEl.textContent = 'Cuenta creada. Volvé a hacer clic en el plan.';
+      btnEl.disabled = false;
+    }
+  }).catch(function() {
+    errorEl.textContent = 'Ocurrió un error. Intentá de nuevo.';
+    btnEl.disabled = false;
+  });
+}
+
+function cerrarSesion() {
+  sb.auth.signOut().then(function() { location.reload(); });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var botones = document.querySelectorAll('.btn-plan');
+  for (var i = 0; i < botones.length; i++) {
+    botones[i].addEventListener('click', function() {
+      suscribirse(this.getAttribute('data-plan'));
+    });
+  }
+  document.getElementById('btnCerrarModal').addEventListener('click', cerrarModal);
+  document.getElementById('btnLogin').addEventListener('click', hacerLogin);
+  document.getElementById('btnCambio').addEventListener('click', cambiarModo);
+  document.getElementById('linkCerrar').addEventListener('click', function(e) {
+    e.preventDefault();
+    cerrarSesion();
+  });
+  sb.auth.getSession().then(function(s) {
+    if (s.data.session) {
+      document.getElementById('userInfo').style.display = 'block';
+      document.getElementById('userEmail').textContent = s.data.session.user.email;
+    }
+  });
+});
+</script>
+
+</body>
+</html>

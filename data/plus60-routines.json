@@ -1,0 +1,29 @@
+{
+  "express_10": {
+    "title": "Rutina Express · 10 minutos",
+    "exercise_count": 3,
+    "exercises": [
+      "s60_01",
+      "s60_11",
+      "s60_13"
+    ],
+    "warmup_minutes": 2,
+    "rest_seconds": "45–60",
+    "hydration": "Tomá pequeños sorbos de agua según necesidad, salvo que tu médico te haya indicado restricción de líquidos."
+  },
+  "complete_20": {
+    "title": "Rutina Completa · 20 minutos",
+    "exercise_count": 6,
+    "exercises": [
+      "s60_03",
+      "s60_04",
+      "s60_06",
+      "s60_08",
+      "s60_12",
+      "s60_14"
+    ],
+    "warmup_minutes": 3,
+    "rest_seconds": "45–90",
+    "hydration": "Pausa de hidratación aproximadamente a mitad de la rutina y al finalizar. Tomá pequeños sorbos según necesidad, salvo restricción médica de líquidos."
+  }
+}

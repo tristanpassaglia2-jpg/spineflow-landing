@@ -1,0 +1,415 @@
+[
+  {
+    "id": "cervical",
+    "label": "Cervical",
+    "icon": "🔵",
+    "color": "#0EA5E9",
+    "light": "#E0F2FE",
+    "subtitle": "Cuello y base del cráneo",
+    "pathologies": [
+      {
+        "id": "hernia_cervical",
+        "title": "Hernia de disco cervical",
+        "desc": "Dolor cervical con posible irradiación al brazo",
+        "ex": [
+          "c1",
+          "c5",
+          "c4",
+          "c3",
+          "c8",
+          "c2",
+          "c6",
+          "c9"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "occipital",
+        "title": "Síndrome occipital (Arnold)",
+        "desc": "Neuralgia occipital / dolor en la base del cráneo",
+        "ex": [
+          "n1",
+          "c6",
+          "c1",
+          "c2",
+          "c7",
+          "g8",
+          "c5",
+          "c9",
+          "c10"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "cervicalgia_espasmo",
+        "title": "Cervicalgia por espasmo",
+        "desc": "Contractura y rigidez cervical",
+        "ex": [
+          "n1",
+          "c6",
+          "c2",
+          "c7",
+          "c1",
+          "g2",
+          "c5",
+          "c9",
+          "c10"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "desfiladero",
+        "title": "Síndrome del desfiladero torácico",
+        "desc": "Compresión neurovascular hombro-cuello",
+        "ex": [
+          "c1",
+          "k8",
+          "c9",
+          "c10",
+          "c11",
+          "n3",
+          "c6",
+          "n2"
+        ],
+        "free_count": 2
+      }
+    ]
+  },
+  {
+    "id": "dorsal",
+    "label": "Dorsal",
+    "icon": "🟢",
+    "color": "#10B981",
+    "light": "#D1FAE5",
+    "subtitle": "Espalda media y torácica",
+    "pathologies": [
+      {
+        "id": "espasmo_dorsal",
+        "title": "Espasmo dorsal",
+        "desc": "Contractura de la musculatura dorsal",
+        "ex": [
+          "l4",
+          "c7",
+          "g6",
+          "g3",
+          "g2",
+          "k8",
+          "bp",
+          "l3",
+          "c9",
+          "k1",
+          "g4"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "escoliosis",
+        "title": "Escoliosis",
+        "desc": "Programa de soporte, fuerza y movilidad",
+        "ex": [
+          "k1",
+          "k4",
+          "k3",
+          "k8",
+          "k5",
+          "cl",
+          "g6",
+          "g4",
+          "l4",
+          "l13"
+        ],
+        "note": "La corrección específica de la curva (métodos Schroth/SEAS) requiere evaluación profesional previa. Este programa es de soporte general: fortalece y da movilidad, pero no reemplaza el diagnóstico del patrón de tu columna.",
+        "free_count": 2
+      },
+      {
+        "id": "dorsalgia",
+        "title": "Dorsalgia",
+        "desc": "Dolor de espalda media",
+        "ex": [
+          "g3",
+          "l4",
+          "g2",
+          "c7",
+          "k8",
+          "g6",
+          "l3",
+          "g4",
+          "c9",
+          "k1"
+        ],
+        "free_count": 2
+      }
+    ]
+  },
+  {
+    "id": "lumbar",
+    "label": "Lumbar",
+    "icon": "🟠",
+    "color": "#F59E0B",
+    "light": "#FEF3C7",
+    "subtitle": "Zona baja de la espalda",
+    "pathologies": [
+      {
+        "id": "hernia_lumbar",
+        "title": "Hernia lumbar con ciatalgia",
+        "desc": "Dolor irradiado hacia la pierna",
+        "ex": [
+          "em",
+          "s3",
+          "s6",
+          "dp",
+          "s2",
+          "l1",
+          "s7",
+          "s4",
+          "l5",
+          "l11",
+          "k1",
+          "l2",
+          "l8"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "lumbalgia",
+        "title": "Lumbalgia mecánica",
+        "desc": "Dolor lumbar por sobrecarga o mala postura",
+        "ex": [
+          "bp",
+          "l2",
+          "l4",
+          "l1",
+          "l7",
+          "k1",
+          "em",
+          "l6",
+          "l3",
+          "l8",
+          "l9",
+          "l10",
+          "l11",
+          "l12",
+          "l13",
+          "l14"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "piramidal",
+        "title": "Síndrome piramidal (falsa ciática)",
+        "desc": "Dolor glúteo por el músculo piriforme",
+        "ex": [
+          "s1",
+          "s8",
+          "n4",
+          "cl",
+          "s5",
+          "s2",
+          "s7",
+          "l5"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "facetario",
+        "title": "Síndrome facetario",
+        "desc": "Dolor de las articulaciones vertebrales",
+        "ex": [
+          "bp",
+          "l1",
+          "l4",
+          "l7",
+          "l2",
+          "k1",
+          "l6",
+          "l3",
+          "l8",
+          "l12"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "sacroileitis",
+        "title": "Sacroileítis",
+        "desc": "Dolor en articulación sacroilíaca / zona lumbar baja",
+        "ex": [
+          "s1",
+          "sac1",
+          "cl",
+          "s5",
+          "s6",
+          "sac2",
+          "sac3",
+          "l4",
+          "bp",
+          "l2"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "pubalgia",
+        "title": "Pubalgia",
+        "desc": "Dolor en la zona del pubis / región inguinal",
+        "ex": [
+          "sac1",
+          "pub2",
+          "s5",
+          "pub3",
+          "k5",
+          "pub4",
+          "l10",
+          "k3",
+          "bp",
+          "l4"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "postcirugia",
+        "title": "Rehabilitación post cirugía de columna",
+        "desc": "Recuperación progresiva post-quirúrgica por fases temporales",
+        "phases": [
+          {
+            "phase": 1,
+            "name": "Fase Aguda",
+            "when": "Día 1-7",
+            "ex": [
+              "p1",
+              "p2",
+              "p3",
+              "p4",
+              "p5"
+            ]
+          },
+          {
+            "phase": 2,
+            "name": "Subaguda temprana",
+            "when": "Semana 2-3",
+            "ex": [
+              "p5",
+              "p9",
+              "p10",
+              "p3",
+              "p11",
+              "p12"
+            ]
+          },
+          {
+            "phase": 3,
+            "name": "Subaguda tardía",
+            "when": "Semana 4-8",
+            "ex": [
+              "p5",
+              "p6",
+              "p13",
+              "p14",
+              "p7",
+              "p15",
+              "p16"
+            ]
+          },
+          {
+            "phase": 4,
+            "name": "Reintegración funcional",
+            "when": ">8 semanas con autorización",
+            "ex": [
+              "p8",
+              "p17",
+              "p18",
+              "p19",
+              "p20"
+            ]
+          }
+        ],
+        "ex": [
+          "p1",
+          "p2",
+          "p3",
+          "p4",
+          "p5",
+          "p6",
+          "p7",
+          "p8",
+          "p9",
+          "p10",
+          "p11",
+          "p12",
+          "p13",
+          "p14",
+          "p15",
+          "p16",
+          "p17",
+          "p18",
+          "p19",
+          "p20"
+        ],
+        "free_count": 2
+      }
+    ]
+  },
+  {
+    "id": "+60",
+    "label": "+60",
+    "icon": "✦",
+    "color": "#7C3AED",
+    "light": "#EDE9FE",
+    "subtitle": "Fuerza, core, equilibrio y postura",
+    "pathologies": [
+      {
+        "id": "plus60_fuerza",
+        "title": "Fuerza funcional",
+        "desc": "Piernas, cadera y pantorrillas para levantarse, caminar y subir escalones.",
+        "ex": [
+          "s60_01",
+          "s60_02",
+          "s60_03",
+          "s60_04",
+          "s60_05",
+          "s60_06",
+          "s60_07",
+          "s60_16",
+          "s60_17",
+          "s60_18",
+          "s60_20",
+          "s60_22"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "plus60_equilibrio",
+        "title": "Equilibrio y marcha",
+        "desc": "Control postural, coordinación y prevención de caídas.",
+        "ex": [
+          "s60_08",
+          "s60_09",
+          "s60_10",
+          "s60_19"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "plus60_core",
+        "title": "Core y estabilidad",
+        "desc": "Estabilidad abdominal y control lumbopélvico.",
+        "ex": [
+          "s60_11",
+          "s60_12",
+          "s60_21",
+          "s60_23"
+        ],
+        "free_count": 2
+      },
+      {
+        "id": "plus60_postura",
+        "title": "Postura y columna dorsal",
+        "desc": "Hombros, escápulas y movilidad torácica.",
+        "ex": [
+          "s60_13",
+          "s60_14",
+          "s60_15"
+        ],
+        "free_count": 2
+      }
+    ]
+  }
+]

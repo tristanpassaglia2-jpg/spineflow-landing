@@ -1,1 +1,589 @@
-<!doctype html><html lang="es-AR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#07151a"><title>SpineFlow</title><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="assets/css/app.css"></head><body><div id="app"><div class="boot"><span class="boot-mark">SF</span><p>Preparando SpineFlow…</p></div></div><script src="assets/js/exercises-json-hotfix.js"></script><script src="assets/js/plus60-loader.js" defer></script><script src="assets/js/rc9-audit-fixes.js" defer></script><script src="assets/js/app.js" defer></script><script src="assets/js/v11-static-sequences.js" defer></script></body></html>
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07151a">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<link rel="icon" href="assets/icons/icon-192.png" type="image/png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SpineFlow">
+<title>SpineFlow — Programa clínico de rehabilitación de columna</title>
+<meta name="description" content="Programa de ejercicios de rehabilitación de columna, indicado por tu médico. 100 ejercicios, 18 programas clínicos, seguimiento clínico real.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,450;9..144,560;9..144,650&family=Inter:wght@400;500;600;650;750;850&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0c2026;--muted:#5c7176;--teal:#087f79;--teal2:#18a89f;--mint:#dff6f2;
+  --cream:#f6f4ee;--white:#fff;--line:#dfe8e6;--nav:#071a20;--nav2:#0d2930;
+  --warn:#a24b2a;--gold:#d8a947;--shadow:0 24px 65px rgba(4,35,41,.14);--radius:22px;
+  --serif:'Fraunces',Georgia,serif;--sans:'Inter',ui-sans-serif,-apple-system,sans-serif;--mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font:inherit;cursor:pointer;border:0;background:none}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:28px}
+h1,h2,h3{font-family:var(--serif);letter-spacing:-.015em;line-height:1.06}
+
+/* ============ SPINE SIGNATURE (elemento distintivo) ============ */
+.spine-rail{position:fixed;left:38px;top:0;bottom:0;width:26px;z-index:5;display:none;pointer-events:none}
+.spine-rail svg{position:absolute;left:8px;top:0;height:100%;width:2px}
+.spine-rail line{stroke:#cfe0dc;stroke-width:2}
+.vertebra{position:absolute;left:0;width:26px;height:26px;border-radius:50%;background:var(--cream);border:2px solid #cfe0dc;transition:border-color .5s ease,background .5s ease,box-shadow .5s ease;display:grid;place-items:center}
+.vertebra:before{content:"";width:6px;height:6px;border-radius:50%;background:#cfe0dc;transition:background .5s ease}
+.vertebra.active{border-color:var(--teal2);background:var(--mint);box-shadow:0 0 0 6px rgba(24,168,159,.12)}
+.vertebra.active:before{background:var(--teal)}
+@media(min-width:1240px){.spine-rail{display:block}}
+
+/* ============ NAV ============ */
+.nav{position:sticky;top:0;z-index:40;background:rgba(246,244,238,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:750;font-size:19px;font-family:var(--sans)}
+.brand-mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(150deg,var(--teal2),#59d3bd);display:grid;place-items:center;color:#052125;font-weight:850;font-size:13px}
+.nav-links{display:flex;gap:34px;font-size:14px;font-weight:650;color:var(--muted)}
+.nav-links a:hover{color:var(--ink)}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.btn{border-radius:13px;padding:12px 20px;font-weight:700;font-size:14.5px;display:inline-flex;align-items:center;gap:8px;transition:.2s transform,.2s box-shadow,.2s background,.2s border-color}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--teal);color:#fff;box-shadow:0 10px 24px rgba(8,127,121,.24)}
+.btn-primary:hover{background:#066d68}
+.btn-ghost{color:var(--ink);font-weight:650}
+.btn-outline{border:1.5px solid var(--line);color:var(--ink)}
+.btn-outline:hover{border-color:var(--teal)}
+@media(max-width:860px){.nav-links{display:none}}
+
+/* ============ HERO ============ */
+.hero{padding:74px 0 60px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;top:-160px;right:-220px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(24,168,159,.14),transparent 68%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:64px;align-items:center;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--teal);background:var(--mint);padding:8px 13px;border-radius:999px;margin-bottom:22px}
+.eyebrow:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal2)}
+.hero h1{font-size:clamp(38px,4.6vw,58px);font-weight:560;max-width:600px;margin-bottom:22px}
+.hero h1 em{font-style:italic;color:var(--teal)}
+.hero p.lede{font-size:18px;color:#3f5459;max-width:490px;margin-bottom:32px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:34px}
+.btn-lg{padding:15px 26px;font-size:15.5px;border-radius:14px}
+.trust-row{display:flex;flex-wrap:wrap;gap:22px;font-size:13px;font-weight:650;color:#516468}
+.trust-row span{display:flex;align-items:center;gap:7px}
+.trust-row span:before{content:"✓";color:var(--teal);font-weight:900}
+
+.hero-visual{position:relative}
+.hero-card{background:var(--nav);border-radius:28px;padding:22px;box-shadow:0 30px 70px rgba(4,20,24,.32);position:relative;overflow:hidden;z-index:1}
+.hero-card-top{display:flex;justify-content:space-between;align-items:center;color:#9fb8bb;font-size:12px;font-weight:650;margin-bottom:16px}
+.hero-phase-img{width:100%;aspect-ratio:.78;border-radius:18px;object-fit:cover;background:linear-gradient(150deg,#0f3d40,#0a2427)}
+.hero-caption{position:absolute;left:38px;bottom:88px;background:rgba(3,18,22,.78);backdrop-filter:blur(8px);color:#fff;padding:9px 13px;border-radius:10px;font-size:12.5px;font-weight:650}
+.hero-dots{display:flex;gap:6px;margin-top:14px}
+.hero-dots span{flex:1;height:4px;border-radius:99px;background:#1d3d42}
+.hero-dots span.on{background:var(--teal2)}
+.floaty{position:absolute;background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:14px 16px;display:flex;align-items:center;gap:11px;z-index:2}
+.floaty-1{top:-18px;left:-30px}
+.floaty-1 .dot{width:10px;height:10px;border-radius:50%;background:#34bd75;box-shadow:0 0 0 5px #daf5e4}
+.floaty-1 strong{display:block;font-size:13px}
+.floaty-1 span{font-size:11.5px;color:var(--muted)}
+.floaty-2{bottom:-16px;right:-24px;flex-direction:column;align-items:flex-start;gap:2px}
+.floaty-2 strong{font-family:var(--serif);font-size:24px;font-weight:560;color:var(--teal)}
+.floaty-2 span{font-size:11.5px;color:var(--muted);font-weight:650}
+@media(max-width:920px){.hero-grid{grid-template-columns:1fr;gap:44px}.hero-visual{order:-1;max-width:380px;margin:0 auto}.floaty{display:none}}
+
+/* ============ PROOF STRIP ============ */
+.proof{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--white)}
+.proof-inner{display:grid;grid-template-columns:repeat(4,1fr);padding:34px 0}
+.proof-item{text-align:center;border-right:1px solid var(--line)}
+.proof-item:last-child{border-right:0}
+.proof-item strong{font-family:var(--serif);font-size:clamp(26px,3vw,34px);font-weight:560;display:block;color:var(--teal)}
+.proof-item span{font-size:12.5px;color:var(--muted);font-weight:650;letter-spacing:.02em}
+@media(max-width:700px){.proof-inner{grid-template-columns:1fr 1fr;gap:22px 0}.proof-item{border-right:0;border-bottom:1px solid var(--line);padding-bottom:18px}.proof-item:nth-child(2),.proof-item:nth-child(4){border-right:0}}
+
+/* ============ SECTION SHELL ============ */
+.section{padding:96px 0}
+.section-head{max-width:620px;margin-bottom:56px}
+.section-head .eyebrow{margin-bottom:16px}
+.section-head h2{font-size:clamp(28px,3.4vw,40px);font-weight:560}
+.section-head p{color:var(--muted);font-size:16.5px;margin-top:14px}
+
+/* ============ CÓMO FUNCIONA ============ */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.step{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:32px 28px;position:relative}
+.step-mark{font-family:var(--serif);font-size:15px;color:var(--teal2);font-weight:650;margin-bottom:18px;display:block}
+.step h3{font-family:var(--sans);font-size:19px;font-weight:750;margin-bottom:10px}
+.step p{color:var(--muted);font-size:14.5px}
+.step-line{position:absolute;top:52px;right:-26px;width:26px;height:1px;background:var(--line)}
+.step:last-child .step-line{display:none}
+@media(max-width:900px){.steps{grid-template-columns:1fr}.step-line{display:none}}
+
+/* ============ SPLIT: pacientes / médicos ============ */
+.split{background:var(--nav);color:#fff}
+.split-inner{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.split-col{padding:76px 48px}
+.split-col:first-child{border-right:1px solid rgba(255,255,255,.09)}
+.split-col .eyebrow{background:rgba(24,168,159,.15);color:#7fd8cf}
+.split-col h3{color:#fff;font-size:27px;font-weight:560;margin:16px 0 14px}
+.split-col p{color:#a9c0c3;font-size:15px;max-width:400px;margin-bottom:26px}
+.split-list{display:grid;gap:12px;margin-bottom:28px}
+.split-list li{list-style:none;display:flex;gap:11px;font-size:14.5px;color:#c4d6d8}
+.split-list li:before{content:"—";color:var(--teal2);flex-shrink:0}
+@media(max-width:900px){.split-inner{grid-template-columns:1fr}.split-col{padding:48px 28px}.split-col:first-child{border-right:0;border-bottom:1px solid rgba(255,255,255,.09)}}
+
+/* ============ PRECIO / ANCLA ============ */
+.anchor-card{background:var(--white);border:1px solid var(--line);border-radius:28px;padding:40px 44px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;margin-bottom:56px;box-shadow:var(--shadow)}
+.anchor-card h3{font-size:24px;font-weight:560;margin-bottom:12px}
+.anchor-card p{color:var(--muted);font-size:15px}
+.anchor-compare{display:flex;gap:18px}
+.compare-box{flex:1;text-align:center;padding:18px 10px;border-radius:16px}
+.compare-box.against{background:var(--cream)}
+.compare-box.for{background:var(--mint)}
+.compare-box small{font-size:11.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.compare-box strong{display:block;font-family:var(--serif);font-size:26px;font-weight:560;margin:6px 0 3px}
+.compare-box.for strong{color:var(--teal)}
+.compare-box span{font-size:11.5px;color:var(--muted)}
+@media(max-width:820px){.anchor-card{grid-template-columns:1fr;padding:30px 26px}}
+
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.plan{background:var(--white);border:1.5px solid var(--line);border-radius:var(--radius);padding:30px 26px;display:flex;flex-direction:column}
+.plan.hero-plan{border-color:var(--teal);box-shadow:0 20px 50px rgba(8,127,121,.16);position:relative}
+.plan-badge{position:absolute;top:-13px;left:26px;background:var(--teal);color:#fff;font-size:11px;font-weight:750;padding:5px 12px;border-radius:999px;letter-spacing:.03em}
+.plan-name{font-size:13px;font-weight:750;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
+.plan-price{font-family:var(--serif);font-size:36px;font-weight:560;margin-bottom:4px}
+.plan-price span{font-size:14px;font-weight:400;color:var(--muted);font-family:var(--sans)}
+.plan-sub{font-size:13px;color:var(--muted);margin-bottom:22px}
+.plan-cta{margin-top:auto}
+@media(max-width:900px){.plans{grid-template-columns:1fr}}
+
+/* ============ AVISO STRIP ============ */
+.aviso{background:#fff7f2;border-top:1px solid #f2d8ca;border-bottom:1px solid #f2d8ca}
+.aviso-inner{display:flex;align-items:center;gap:16px;padding:20px 0;font-size:13.5px;color:#7a3d20}
+.aviso-inner strong{color:var(--warn)}
+.aviso a{text-decoration:underline;font-weight:650}
+
+/* ============ FOOTER ============ */
+footer{background:var(--nav);color:#8fa5a8;padding:56px 0 34px}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:44px}
+.footer-brand{color:#fff;font-weight:750;font-size:18px;display:flex;align-items:center;gap:9px;margin-bottom:14px}
+.footer-brand .brand-mark{width:30px;height:30px;font-size:11px}
+.footer-grid p{font-size:13.5px;line-height:1.7;max-width:280px}
+.footer-col h4{color:#fff;font-size:13px;font-weight:750;margin-bottom:14px;text-transform:uppercase;letter-spacing:.04em}
+.footer-col a{display:block;font-size:13.5px;margin-bottom:10px;color:#9fb4b7}
+.footer-col a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.09);padding-top:22px;font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media(max-width:760px){.footer-grid{grid-template-columns:1fr}}
+
+/* ============ COMPARTIR QR ============ */
+.share-qr{background:var(--white);border-top:1px solid var(--line);padding:56px 0}
+.share-qr-inner{display:flex;align-items:center;justify-content:center;gap:36px;max-width:560px;margin:0 auto;text-align:left}
+.share-qr-img{flex-shrink:0;width:140px;height:140px;border-radius:16px;border:1px solid var(--line);padding:8px;background:var(--cream)}
+.share-qr-img img{width:100%;height:100%;border-radius:8px}
+.share-qr-text h3{font-family:var(--sans);font-size:18px;font-weight:750;margin-bottom:8px}
+.share-qr-text p{color:var(--muted);font-size:14px;line-height:1.6}
+.share-qr-text .share-url{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:13px;color:var(--teal);background:var(--mint);padding:6px 12px;border-radius:8px;user-select:all}
+@media(max-width:600px){.share-qr-inner{flex-direction:column;text-align:center}.share-qr-img{width:120px;height:120px}}
+
+/* ============ INSTALAR APP ============ */
+.btn-install-hero{background:var(--nav);color:#fff}
+.btn-install-hero:hover{background:var(--nav2)}
+.install-sec{background:linear-gradient(160deg,#0a2126,#0d2930);color:#fff;padding:80px 0}
+.install-inner{max-width:820px;margin:0 auto;text-align:center}
+.install-sec .eyebrow{background:rgba(24,168,159,.16);color:#7fd8cf;margin-bottom:18px}
+.install-sec h2{color:#fff;font-size:clamp(28px,3.4vw,38px);font-weight:560;margin-bottom:14px}
+.install-sec p.sub{color:#a9c0c3;font-size:16.5px;max-width:520px;margin:0 auto 40px}
+.install-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:30px}
+.install-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:30px 22px;transition:.2s transform,.2s border-color;cursor:pointer}
+.install-card:hover{transform:translateY(-3px);border-color:var(--teal2)}
+.install-card-ico{width:52px;height:52px;margin:0 auto 16px;display:grid;place-items:center;background:rgba(24,168,159,.16);border-radius:14px;font-size:26px}
+.install-card h3{font-family:var(--sans);color:#fff;font-size:17px;font-weight:750;margin-bottom:6px}
+.install-card p{color:#8fa9ac;font-size:13px;line-height:1.5}
+.install-card .install-go{display:inline-block;margin-top:14px;font-size:13px;font-weight:700;color:#7fd8cf}
+.install-note{color:#7c9498;font-size:13px}
+@media(max-width:760px){.install-cards{grid-template-columns:1fr}}
+/* Modal instrucciones iOS */
+.ios-guide{max-width:360px}
+.ios-guide ol{text-align:left;margin:18px 0;padding-left:0;list-style:none;counter-reset:step}
+.ios-guide li{counter-increment:step;display:flex;gap:12px;align-items:flex-start;margin-bottom:16px;font-size:14.5px;color:var(--ink)}
+.ios-guide li:before{content:counter(step);flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;font-weight:700;font-size:13px;display:grid;place-items:center}
+.ios-guide .ios-ico{font-size:18px;vertical-align:middle}
+</style>
+</head>
+<body>
+
+<div class="spine-rail" id="spineRail"><svg><line x1="1" y1="0" x2="1" y2="100%"/></svg></div>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand"><span class="brand-mark">SF</span>SpineFlow</div>
+    <div class="nav-links">
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#medicos">Para médicos</a>
+      <a href="#precio">Precio</a>
+      <a href="/aviso-medico">Aviso médico</a>
+    </div>
+    <div class="nav-actions">
+      
+      <a href="/app" class="btn btn-primary">Empezá gratis</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Diseñado por médicos y kinesiólogos especialistas en patología de columna vertebral</span>
+      <h1>Rehabilitá tu columna desde tu casa, con <em>guía clínica</em> real</h1>
+      <p class="lede">18 programas progresivos de rehabilitación de columna, indicados por tu médico y guiados paso a paso — <strong>sin moverte de tu casa, solo necesitás una colchoneta</strong>. Cada semana avanza según cómo responde tu cuerpo.</p>
+      <div class="hero-actions">
+        <a href="/app" class="btn btn-primary btn-lg">Empezá gratis</a>
+        <a href="#instalar" class="btn btn-install-hero btn-lg">📲 Instalar app</a>
+      </div>
+      <div class="trust-row">
+        <span>100 ejercicios con imagen real</span>
+        <span>18 programas clínicos</span>
+        <span>En tu casa, con una colchoneta</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="floaty floaty-1"><span class="dot"></span><div><strong>Sesión 1 completa</strong><span>Gratis, para siempre</span></div></div>
+      <div class="hero-card">
+        <div class="hero-card-top"><span>Lumbalgia · Semana 1</span><span>Sesión 2 de 3</span></div>
+        <img class="hero-phase-img" src="media/sequences/l1/02.webp" alt="Báscula pélvica – fase 2" loading="eager">
+        <div class="hero-caption">Báscula pélvica · Fase 2 de 2</div>
+        <div class="hero-dots"><span class="on"></span><span class="on"></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="floaty floaty-2"><strong>4</strong><span>Semanas de programa guiado</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="proof">
+  <div class="wrap proof-inner">
+    <div class="proof-item"><strong>100</strong><span>Ejercicios con foto real</span></div>
+    <div class="proof-item"><strong>18</strong><span>Programas clínicos</span></div>
+    <div class="proof-item"><strong>216</strong><span>Sesiones clínicas</span></div>
+    <div class="proof-item"><strong>4</strong><span>Semanas por programa</span></div>
+  </div>
+</div>
+
+<section class="section" id="como-funciona" data-spine="1">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Cómo funciona</span>
+      <h2>De la consulta a la rutina, sin perder el criterio clínico</h2>
+      <p>SpineFlow no reemplaza a tu médico — lo extiende. El programa que hacés en tu casa es el mismo que él indicaría en el consultorio.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-mark">Empezá</span>
+        <h3>Elegí tu zona y tu patología</h3>
+        <p>Cervical, dorsal, lumbar o +60. Cada módulo tiene sus programas — elegís el tuyo, creás tu cuenta en 30 segundos y arrancás.</p>
+        <div class="step-line"></div>
+      </div>
+      <div class="step">
+        <span class="step-mark">Semana 1</span>
+        <h3>Empezás por el alivio</h3>
+        <p>Respiración, descompresión, movilidad suave. Terminás la primera sesión completa sintiendo la diferencia, sin cargo.</p>
+        <div class="step-line"></div>
+      </div>
+      <div class="step">
+        <span class="step-mark">Semanas 2-4</span>
+        <h3>El programa avanza con vos</h3>
+        <p>Movilidad → activación → fortalecimiento. Cada semana se habilita según cómo amaneciste el día después, no según lo fácil que te resultó.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="split" id="medicos" data-spine="1">
+  <div class="split-inner">
+    <div class="split-col">
+      <span class="eyebrow">Para pacientes</span>
+      <h3>Ejercicio guiado, sin adivinar la postura</h3>
+      <p>Cada ejercicio se ve completo, con secuencia de fases reales y voz que marca el ritmo — pensado para manos que no siempre pueden sostener el celular.</p>
+      <ul class="split-list">
+        <li>Voz guiada a tu ritmo, sin apurar</li>
+        <li>Progresión automática por semana</li>
+        <li>Aviso claro de cuándo parar y consultar</li>
+      </ul>
+    </div>
+    <div class="split-col">
+      <span class="eyebrow">Para médicos y kinesiólogos</span>
+      <h3>Extendé tu indicación fuera del consultorio</h3>
+      <p>Generás el código con la patología ya cargada — el paciente entra directo a lo que vos indicaste, no a un menú suelto que se autodiagnostica.</p>
+      <ul class="split-list">
+        <li>Código de un solo uso, vence en 10 minutos</li>
+        <li>4 semanas del programa completo, gratis para tu paciente</li>
+        <li>Vos ves qué pacientes lo están usando</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="precio" data-spine="1">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Precio</span>
+      <h2>Menos que una sesión de kinesiología, todo el trimestre</h2>
+    </div>
+
+    <div class="anchor-card">
+      <div>
+        <h3>Un trimestre de SpineFlow cuesta lo mismo que una sola sesión particular</h3>
+        <p>Una sesión de kinesiología en Argentina ronda los $20.000-30.000, y necesitás varias por semana. El plan trimestral de SpineFlow te da 12 semanas de programa guiado por el valor de una sola sesión — hecho en tu casa, con una colchoneta, sin depender de turnos.</p>
+      </div>
+      <div class="anchor-compare">
+        <div class="compare-box against"><small>1 sesión particular</small><strong>~$25.000</strong><span>Una sola vez</span></div>
+        <div class="compare-box for"><small>SpineFlow trimestral</small><strong>$23.900</strong><span>12 semanas completas</span></div>
+      </div>
+    </div>
+
+    <div class="plans">
+      <div class="plan">
+        <span class="plan-name">Mensual</span>
+        <div class="plan-price">$9.800<span>/mes</span></div>
+        <p class="plan-sub">Para probar un programa completo</p>
+        <div class="plan-cta"><a href="/planes.html" class="btn btn-outline" style="width:100%;justify-content:center">Elegir plan</a></div>
+      </div>
+      <div class="plan hero-plan">
+        <span class="plan-badge">Más elegido</span>
+        <span class="plan-name">Trimestral</span>
+        <div class="plan-price">$23.900<span>/3 meses</span></div>
+        <p class="plan-sub">Una lumbalgia se rehabilita en 10-12 semanas</p>
+        <div class="plan-cta"><a href="/planes.html" class="btn btn-primary" style="width:100%;justify-content:center">Elegir plan</a></div>
+      </div>
+      <div class="plan">
+        <span class="plan-name">Anual</span>
+        <div class="plan-price">$69.800<span>/año</span></div>
+        <p class="plan-sub">Mantenimiento y progresión a largo plazo</p>
+        <div class="plan-cta"><a href="/planes.html" class="btn btn-outline" style="width:100%;justify-content:center">Elegir plan</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" style="padding:72px 0;background:var(--white)" data-spine="1">
+  <div class="wrap" style="max-width:640px;text-align:center">
+    <span class="eyebrow">Semana 1 gratis, sin tarjeta</span>
+    <h2 style="font-size:clamp(28px,3.4vw,38px);font-weight:560;margin:14px 0 12px">Probá tu programa completo ahora mismo</h2>
+    <p style="color:var(--muted);font-size:16px;margin-bottom:28px">Creá tu cuenta en 30 segundos y empezá la primera semana de tu programa — gratis, sin compromiso.</p>
+    <a href="/app" class="btn btn-primary btn-lg">Empezá gratis</a>
+  </div>
+</section>
+
+
+<section class="install-sec" id="instalar" data-spine="1">
+  <div class="wrap install-inner">
+    <span class="eyebrow">Instalá SpineFlow</span>
+    <h2>Dejá SpineFlow en tu pantalla, como cualquier app</h2>
+    <p class="sub">No ocupa espacio ni pasa por ninguna tienda. Se instala directo desde acá y queda con su ícono, lista para abrir con un toque.</p>
+    <div class="install-cards">
+      <div class="install-card" data-install-android>
+        <div class="install-card-ico">🤖</div>
+        <h3>Android</h3>
+        <p>Un toque y queda instalada. Sin Play Store.</p>
+        <span class="install-go">Instalar ahora →</span>
+      </div>
+      <div class="install-card" data-install-windows>
+        <div class="install-card-ico">💻</div>
+        <h3>Windows</h3>
+        <p>Se instala como programa de escritorio, con su ícono.</p>
+        <span class="install-go">Instalar ahora →</span>
+      </div>
+      <div class="install-card" data-install-ios>
+        <div class="install-card-ico">🍎</div>
+        <h3>iPhone / iPad</h3>
+        <p>Dos toques desde Safari y queda en tu inicio.</p>
+        <span class="install-go">Ver cómo →</span>
+      </div>
+    </div>
+    <p class="install-note">Es una app web: siempre actualizada, sin descargas pesadas.</p>
+  </div>
+</section>
+<section class="share-qr">
+  <div class="wrap share-qr-inner">
+    <div class="share-qr-img">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fspineflow.org&color=087f79&bgcolor=f6f4ee&margin=0" alt="QR spineflow.org" width="124" height="124" loading="lazy">
+    </div>
+    <div class="share-qr-text">
+      <h3>¿Conocés a alguien con dolor de espalda?</h3>
+      <p>Mostrale este código o pasale el enlace. Si está pasando por lo mismo que vos, esto le puede cambiar el día a día.</p>
+      <span class="share-url">spineflow.org</span>
+    </div>
+  </div>
+</section>
+<div class="aviso">
+  <div class="wrap aviso-inner">
+    <span><strong>Importante:</strong> SpineFlow es una guía de ejercicios, no reemplaza la consulta médica. Leé el <a href="/aviso-medico">aviso médico completo</a> antes de empezar.</span>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><span class="brand-mark">SF</span>SpineFlow</div>
+        <p>Programa clínico de rehabilitación de columna, diseñado por médicos y kinesiólogos especialistas en patología de columna vertebral. Córdoba, Argentina.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Producto</h4>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#medicos">Para médicos</a>
+        <a href="#precio">Precio</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/terminos">Términos y condiciones</a>
+        <a href="/privacidad">Política de privacidad</a>
+        <a href="/aviso-medico">Aviso médico</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 VIGIA Apps — SpineFlow</span>
+      <span>vigia24app@gmail.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Spine rail: nodo por sección, se ilumina la sección activa
+(function(){
+  var rail = document.getElementById('spineRail');
+  if(!rail) return;
+  var sections = Array.from(document.querySelectorAll('[data-spine]'));
+  if(!sections.length) return;
+  sections.forEach(function(){
+    var v = document.createElement('div');
+    v.className = 'vertebra';
+    rail.appendChild(v);
+  });
+  var vertebrae = rail.querySelectorAll('.vertebra');
+  function layout(){
+    var railH = rail.clientHeight;
+    var n = sections.length;
+    sections.forEach(function(sec, i){
+      var rect = sec.getBoundingClientRect();
+      var mid = rect.top + rect.height/2 + window.scrollY;
+      var docH = document.documentElement.scrollHeight;
+      var pct = mid / docH;
+      vertebrae[i].style.top = Math.min(96, Math.max(4, pct*100)) + 'vh';
+    });
+  }
+  function onScroll(){
+    var mid = window.scrollY + window.innerHeight*0.4;
+    var active = 0;
+    sections.forEach(function(sec, i){
+      if(sec.offsetTop <= mid) active = i;
+    });
+    vertebrae.forEach(function(v,i){ v.classList.toggle('active', i===active); });
+  }
+  layout();
+  window.addEventListener('resize', layout);
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+
+
+<script>
+/* ============ INSTALADOR PWA (mínima fricción) ============ */
+(function(){
+  var deferredPrompt = null;
+  var installed = false;
+
+  // Registrar el Service Worker: requisito para que el navegador
+  // considere la app "instalable" y dispare beforeinstallprompt.
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/sw.js').catch(function(){});
+  }
+
+  // Capturar el evento de instalación de Android/Windows
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+  window.addEventListener('appinstalled', function(){
+    installed = true; deferredPrompt = null;
+    toast('¡SpineFlow instalada! Buscá su ícono en tu pantalla.');
+  });
+
+  function isIOS(){ return /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1); }
+  function isStandalone(){ return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true; }
+
+  function toast(msg){
+    var t=document.createElement('div');
+    t.textContent=msg;
+    t.style.cssText='position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#0c2026;color:#fff;padding:13px 20px;border-radius:12px;font-size:14px;font-weight:600;z-index:9999;box-shadow:0 10px 30px rgba(0,0,0,.3);max-width:88%;text-align:center';
+    document.body.appendChild(t);
+    setTimeout(function(){t.style.opacity='0';t.style.transition='opacity .4s';setTimeout(function(){t.remove()},400)},3600);
+  }
+
+  function showIOSGuide(){
+    var layer=document.createElement('div');
+    layer.style.cssText='position:fixed;inset:0;background:rgba(5,20,24,.6);backdrop-filter:blur(4px);z-index:9998;display:grid;place-items:center;padding:20px';
+    layer.innerHTML='<div class="modal ios-guide" style="background:#fff;border-radius:22px;padding:30px 26px;max-width:360px;box-shadow:0 30px 70px rgba(0,0,0,.4)">'
+      +'<h2 style="font-family:Fraunces,Georgia,serif;font-size:23px;font-weight:560;color:#0c2026;margin-bottom:6px">Instalar en iPhone</h2>'
+      +'<p style="color:#5c7176;font-size:14px">Dos pasos rápidos desde Safari:</p>'
+      +'<ol>'
+      +'<li><span>Tocá el botón <strong>Compartir</strong> <span class="ios-ico">⎙</span> abajo en la barra de Safari</span></li>'
+      +'<li><span>Elegí <strong>"Agregar a inicio"</strong> <span class="ios-ico">➕</span> y confirmá</span></li>'
+      +'</ol>'
+      +'<button class="btn btn-primary" style="width:100%;justify-content:center;padding:13px;border-radius:13px;background:#087f79;color:#fff;font-weight:700;border:0;cursor:pointer" data-ios-close>Entendido</button>'
+      +'</div>';
+    document.body.appendChild(layer);
+    layer.addEventListener('click',function(e){ if(e.target===layer||e.target.hasAttribute('data-ios-close')) layer.remove(); });
+  }
+
+  function showPlatformGuide(platform){
+    var content = '';
+    if(platform === 'android'){
+      content = '<h2 style="font-family:Fraunces,Georgia,serif;font-size:23px;font-weight:560;color:#0c2026;margin-bottom:6px">Instalar en Android</h2>'
+        +'<p style="color:#5c7176;font-size:14px;margin-bottom:14px">Desde Chrome:</p>'
+        +'<ol>'
+        +'<li><span>Tocá los <strong>tres puntos</strong> ⋮ arriba a la derecha del navegador</span></li>'
+        +'<li><span>Elegí <strong>"Instalar app"</strong> o <strong>"Agregar a pantalla de inicio"</strong></span></li>'
+        +'<li><span>Confirmá <strong>"Instalar"</strong> y listo</span></li>'
+        +'</ol>';
+    } else if(platform === 'windows'){
+      content = '<h2 style="font-family:Fraunces,Georgia,serif;font-size:23px;font-weight:560;color:#0c2026;margin-bottom:6px">Instalar en Windows</h2>'
+        +'<p style="color:#5c7176;font-size:14px;margin-bottom:14px">Desde Chrome o Edge:</p>'
+        +'<ol>'
+        +'<li><span>Mirá la barra de direcciones arriba: a la derecha vas a ver un ícono <strong>⊕</strong> o <strong>💻</strong> de "Instalar"</span></li>'
+        +'<li><span>Tocalo y confirmá <strong>"Instalar"</strong></span></li>'
+        +'<li><span>Si no lo ves, andá al menú (tres puntos ⋮) → <strong>"Instalar SpineFlow"</strong></span></li>'
+        +'</ol>';
+    }
+    var layer=document.createElement('div');
+    layer.style.cssText='position:fixed;inset:0;background:rgba(5,20,24,.6);backdrop-filter:blur(4px);z-index:9998;display:grid;place-items:center;padding:20px';
+    layer.innerHTML='<div class="modal ios-guide" style="background:#fff;border-radius:22px;padding:30px 26px;max-width:380px;box-shadow:0 30px 70px rgba(0,0,0,.4)">'
+      + content
+      +'<button class="btn btn-primary" style="width:100%;justify-content:center;padding:13px;border-radius:13px;background:#087f79;color:#fff;font-weight:700;border:0;cursor:pointer;margin-top:14px" data-modal-close>Entendido</button>'
+      +'</div>';
+    document.body.appendChild(layer);
+    layer.addEventListener('click',function(e){ if(e.target===layer||e.target.hasAttribute('data-modal-close')) layer.remove(); });
+  }
+
+  function triggerInstallForPlatform(platform){
+    if(isStandalone()){ toast('Ya tenés SpineFlow instalada 🎉'); return; }
+    if(deferredPrompt){
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function(){ deferredPrompt=null; });
+      return;
+    }
+    showPlatformGuide(platform);
+  }
+
+  document.querySelectorAll('[data-install-android]').forEach(function(el){
+    el.addEventListener('click', function(){ triggerInstallForPlatform('android'); });
+  });
+  document.querySelectorAll('[data-install-windows]').forEach(function(el){
+    el.addEventListener('click', function(){ triggerInstallForPlatform('windows'); });
+  });
+  document.querySelectorAll('[data-install-ios]').forEach(function(el){
+    el.addEventListener('click', showIOSGuide);
+  });
+})();
+</script>
+</body>
+</html>
