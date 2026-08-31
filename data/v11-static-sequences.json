@@ -420,9 +420,8 @@
   },
   "s1": {
     "name": "Figura 4 (piriforme)",
-    "phases": 3,
+    "phases": 2,
     "files": [
-      "media/sequences/s1/01.webp",
       "media/sequences/s1/02.webp",
       "media/sequences/s1/03.webp"
     ],
