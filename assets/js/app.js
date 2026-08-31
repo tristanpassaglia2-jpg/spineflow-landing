@@ -646,7 +646,7 @@
       + '<div class="eva-value" id="evaValue"><span class="eva-number">5</span><span class="eva-label">/10</span></div>'
       + '</div>'
       + '<div class="modal-actions">'
-      + '<button class="btn btn-primary" id="evaConfirm">Registrar y empezar</button>'
+      + '<button class="btn btn-primary" id="evaConfirm">Guardar dolor y empezar</button>'
       + '<button class="btn btn-light" id="evaSkip">Empezar sin registrar</button>'
       + '</div></div>';
     document.body.append(layer);
@@ -954,3 +954,4 @@
   function toast(message){document.querySelector('.toast')?.remove();const el=document.createElement('div');el.className='toast';el.textContent=message;document.body.append(el);setTimeout(()=>el.remove(),2800)}
   init();
 })();
+
