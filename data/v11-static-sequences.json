@@ -653,13 +653,10 @@
   },
   "s60_01": {
     "name": "Sentarse/levantarse con apoyo",
-    "phases": 3,
-    "files": [
-      "media/sequences/s60_01/01.webp",
-      "media/sequences/s60_01/02.webp",
-      "media/sequences/s60_01/03.webp"
-    ],
-    "status": "ready"
+    "phases": 0,
+    "files": [],
+    "status": "pending_image",
+    "note": "Lámina no coincidía con el texto, removida"
   },
   "s60_02": {
     "name": "Sentarse/levantarse sin manos",
