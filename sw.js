@@ -1,5 +1,5 @@
-const CACHE='spineflow-v13-routing';
-const CORE=['/app','/app.html','/','/index.html','/assets/css/app.css','/assets/js/app.js','/data/exercises.json','/data/regions.json','/data/v11-static-sequences.json','/manifest.webmanifest','/media/coach/mi-profe.webp','/planes.html','/gracias.html'];
+const CACHE='spineflow-v14';
+const CORE=['/','/app','/assets/css/app.css','/assets/js/app.js','/data/exercises.json','/data/regions.json','/data/v11-static-sequences.json','/data/programs.json','/manifest.webmanifest','/media/coach/mi-profe.webp'];
 
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
 
@@ -9,23 +9,22 @@ self.addEventListener('fetch',e=>{
   if(e.request.method!=='GET')return;
   const u=new URL(e.request.url);
 
-  // Nunca interceptar Supabase ni el login: auth siempre va directo a la red.
+  // Nunca interceptar Supabase ni login: auth siempre va directo a la red.
   if(u.hostname.endsWith('supabase.co')||u.pathname==='/login'||u.pathname==='/login.html'){
-    return; // el navegador maneja la petición normalmente
-  }
-
-  const fresh=e.request.mode==='navigate'||u.pathname.startsWith('/assets/js/')||u.pathname.startsWith('/data/');
-
-  if(fresh){
-    e.respondWith(
-      fetch(e.request,{cache:'no-store'}).then(r=>{
-        const copy=r.clone();                                    // clonar ANTES de devolver
-        caches.open(CACHE).then(c=>c.put(e.request,copy));       // guardar el clon
-        return r;                                                 // devolver el original intacto
-      }).catch(()=>caches.match(e.request).then(h=>h||caches.match('/app.html','/','/index.html')))
-    );
     return;
   }
 
-  e.respondWith(caches.match(e.request).then(h=>h||fetch(e.request)));
+  // Imágenes de secuencias: cache-first (pesan y no cambian)
+  if(u.pathname.startsWith('/media/sequences/')){
+    e.respondWith(caches.match(e.request).then(h=>h||fetch(e.request).then(r=>{const c=r.clone();caches.open(CACHE).then(ca=>ca.put(e.request,c));return r;})));
+    return;
+  }
+
+  // Todo lo demás: network-first (CSS, JS, data, HTML, coach, etc.)
+  e.respondWith(
+    fetch(e.request,{cache:'no-store'}).then(r=>{
+      if(r.ok&&!r.redirected){const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));}
+      return r;
+    }).catch(()=>caches.match(e.request))
+  );
 });
