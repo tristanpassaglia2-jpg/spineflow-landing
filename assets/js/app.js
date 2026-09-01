@@ -481,7 +481,7 @@
     return `<button class="btn btn-dark back-button" data-exercise-back>← Volver al programa</button><div class="exercise-layout"><section class="card exercise-main"><div class="exercise-title-row"><div><p class="eyebrow">Ejercicio guiado por Mis profes</p><h1>${ex.name}</h1></div><button class="btn btn-light" data-favorite>${fav?'♥ Guardado':'♡ Favorito'}</button></div><div class="exercise-tags"><span class="pill">${ex.level}</span>${ex.series?`<span class="pill">${ex.series}</span>`:''}${ex.reps?`<span class="pill">${ex.reps}</span>`:''}</div>
       <div class="player"><div class="player-head"><div class="coach-mini"><span class="coach-avatar"><img src="media/coach/mi-profe.webp" alt="Retrato de Mis profes"></span><div><strong>Mis profes</strong><span>Guía de movimiento</span></div></div><span class="speak-badge" id="speakBadge">● GUÍA</span></div>
         <div class="loop-stage" id="loopStage"><div class="loop-layer on" id="loopA"><img src="${firstImg}" alt="${ex.name}" onerror="this.style.opacity=0"></div><div class="loop-layer" id="loopB"><img src="" alt=""></div><div class="loop-dots" id="loopDots"></div></div>
-        <div class="player-controls"><button class="btn btn-light" data-play>Ⅱ Pausar</button><button class="btn btn-light" data-voice>🔊 Voz</button><button class="btn btn-primary" data-complete>✓ Completar</button></div></div><div class="instruction"><small id="stepLabel">Indicación · fase 1</small><p id="stepText">${ex.steps[0]||ex.position||''}</p></div></section>
+        <div class="player-controls"><button class="btn btn-light" data-play>▶ Comenzar</button><button class="btn btn-light" data-voice>🔊 Voz</button><button class="btn btn-primary" data-complete>✓ Completar</button></div></div><div class="instruction"><small id="stepLabel">Indicación · fase 1</small><p id="stepText">${ex.steps[0]||ex.position||''}</p></div></section>
       <aside class="card clinical-panel"><div class="muscle-map"><p class="eyebrow">Lámina clínica</p><h3>Músculos y estructuras implicadas</h3>${muscleChips(ex.muscles)}</div><div class="info-box"><h3>◎ Objetivo terapéutico</h3><p>Mejorar el control del movimiento y la tolerancia funcional respetando el rango indicado.</p></div><div class="info-box"><h3>↗ Consejos del fisioterapeuta</h3><p>${ex.variants}</p></div><div class="info-box"><h3>≋ Respiración</h3><p>${ex.breathing}</p></div><div class="info-box warn"><h3>△ Advertencia clínica</h3><p>${ex.warning}</p></div><div class="info-box"><h3>Pasos completos</h3><div class="steps-list">${ex.steps.map(s=>`<div class="step-item">${s}</div>`).join('')}</div></div></aside></div>`;
   }
   function muscleChips(text) { return text.split(/,|—|\(|\)/).map(x=>x.trim()).filter(Boolean).slice(0,6).map(x=>`<span class="muscle-chip">${x}</span>`).join(''); }
@@ -629,7 +629,15 @@
       }
       startSession(session, week);
     });
-    document.querySelectorAll('[data-open-first]').forEach(b=>b.onclick=()=>{const r=state.regions[0],p=r.pathologies[0];go('exercise',{currentRegion:r.id,currentPath:p.id,currentExercise:p.ex[0],phase:0,seconds:30})});
+    document.querySelectorAll('[data-open-first]').forEach(b=>b.onclick=()=>{
+      let pathId=null;
+      if(state.trialPathologies.length>0) pathId=state.trialPathologies[0];
+      if(!pathId){const z=store.get('onboardingZone',null);if(z&&ONBOARDING_DEFAULTS[z])pathId=ONBOARDING_DEFAULTS[z];}
+      if(!pathId) pathId=state.regions[0]?.pathologies[0]?.id;
+      let regionId=null;
+      for(const r of state.regions){if(r.pathologies.some(p=>p.id===pathId)){regionId=r.id;break;}}
+      if(regionId&&pathId){go('pathology',{currentRegion:regionId,currentPath:pathId});}else{go('modules');}
+    });
     $('[data-exercise-back]')?.addEventListener('click',()=>{ if(state.sessionQueue.length){state.sessionQueue=[];state.sessionIndex=0;state.currentSession=null;} go('pathology'); });
     $('[data-play]')?.addEventListener('click',toggleLoop); $('[data-voice]')?.addEventListener('click',toggleVoice); $('[data-complete]')?.addEventListener('click',completeExercise); $('[data-favorite]')?.addEventListener('click',toggleFavorite);
     // NO iniciar el loop automáticamente — el usuario decide cuándo empezar tocando Pausar/Voz
@@ -836,7 +844,7 @@
   /* ══════ MOTOR DEL REPRODUCTOR EN LOOP (crossfade + voz sincronizada) ══════ */
   const LOOP_MIN_MS = 1800;   // tiempo mínimo por fase
   const LOOP_HOLD_MS = 1200;  // pausa después de la voz (para ejecutar)
-  const LOOP_RATE = 0.85;     // velocidad de voz
+  const LOOP_RATE = 0.80;     // velocidad de voz
   let loopUseA = true, loopToken = 0;
 
   function loopPhases() {
