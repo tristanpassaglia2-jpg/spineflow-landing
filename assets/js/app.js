@@ -70,7 +70,25 @@
   function needsOnboarding() {
     if (store.get('onboardingDone', false)) return false;
     if (state.completedSessions && state.completedSessions.length > 0) return false;
+    if (state.trialPathologies && state.trialPathologies.length > 0) return false;
     return true;
+  }
+
+  // Si el usuario activó una patología por QR médico, llevarlo directo a ella
+  function trialRedirect() {
+    if (!state.trialPathologies || state.trialPathologies.length === 0) return false;
+    const pathId = state.trialPathologies[0];
+    // Encontrar la región de esta patología
+    for (const region of (state.regions || [])) {
+      if ((region.pathologies || []).some(p => p.id === pathId)) {
+        state.currentRegion = region.id;
+        state.currentPath = pathId;
+        state.view = 'pathology';
+        store.set('onboardingDone', true);
+        return true;
+      }
+    }
+    return false;
   }
 
   const phases = ['Posición inicial', 'Movimiento', 'Pausa', 'Retorno', 'Repetición'];
@@ -101,7 +119,7 @@
       try { if (seq && seq.ok) state.sequences = await seq.json(); } catch { state.sequences = {}; }
       try { if (prg && prg.ok) { const p = await prg.json(); state.programs = p.programs || {}; } } catch { state.programs = {}; }
       render();
-      if (state.user && needsOnboarding()) setTimeout(showOnboarding, 400);
+      if (state.user) trialRedirect() ? render() : (needsOnboarding() && setTimeout(showOnboarding, 400));
       if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});
     } catch (error) {
       app.innerHTML = `<div class="boot"><span class="boot-mark">!</span><h2>No pudimos iniciar SpineFlow</h2><p>${error.message}. Usá un servidor local o Vercel, no abras el HTML con doble clic.</p></div>`;
@@ -110,7 +128,9 @@
       if (event === 'SIGNED_IN' && session?.user && !state.user) {
         state.user = session.user;
         loadUserData().then(() => loadPainLog()).then(() => {
-          state.view = 'dashboard'; render();
+          state.view = 'dashboard';
+          if (trialRedirect()) { render(); return; }
+          render();
           if (needsOnboarding()) setTimeout(showOnboarding, 400);
           else toast('¡Bienvenido/a!');
         });
@@ -612,7 +632,8 @@
     document.querySelectorAll('[data-open-first]').forEach(b=>b.onclick=()=>{const r=state.regions[0],p=r.pathologies[0];go('exercise',{currentRegion:r.id,currentPath:p.id,currentExercise:p.ex[0],phase:0,seconds:30})});
     $('[data-exercise-back]')?.addEventListener('click',()=>{ if(state.sessionQueue.length){state.sessionQueue=[];state.sessionIndex=0;state.currentSession=null;} go('pathology'); });
     $('[data-play]')?.addEventListener('click',toggleLoop); $('[data-voice]')?.addEventListener('click',toggleVoice); $('[data-complete]')?.addEventListener('click',completeExercise); $('[data-favorite]')?.addEventListener('click',toggleFavorite);
-    if(state.view==='exercise') startLoop();
+    // NO iniciar el loop automáticamente — el usuario decide cuándo empezar tocando Pausar/Voz
+    if(state.view==='exercise') { state.player = false; state.phase = 0; }
     document.querySelectorAll('[data-score]').forEach(input=>input.oninput=()=>{
       state.scores[input.dataset.score]=Number(input.value);
       store.set('scores',state.scores);
@@ -815,7 +836,7 @@
   /* ══════ MOTOR DEL REPRODUCTOR EN LOOP (crossfade + voz sincronizada) ══════ */
   const LOOP_MIN_MS = 1800;   // tiempo mínimo por fase
   const LOOP_HOLD_MS = 1200;  // pausa después de la voz (para ejecutar)
-  const LOOP_RATE = 0.92;     // velocidad de voz
+  const LOOP_RATE = 0.85;     // velocidad de voz
   let loopUseA = true, loopToken = 0;
 
   function loopPhases() {
@@ -954,4 +975,3 @@
   function toast(message){document.querySelector('.toast')?.remove();const el=document.createElement('div');el.className='toast';el.textContent=message;document.body.append(el);setTimeout(()=>el.remove(),2800)}
   init();
 })();
-
