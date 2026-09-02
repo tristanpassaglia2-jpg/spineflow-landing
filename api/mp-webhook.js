@@ -45,6 +45,11 @@ export default async function handler(req, res) {
     if (!mpRes.ok) {
       const errText = await mpRes.text();
       console.error('MP query failed', mpRes.status, errText);
+      // 404 = suscripción no existe (típico de la simulación de MP con id 123456)
+      // Respondemos 200 para que MP no marque error en el panel
+      if (mpRes.status === 404) {
+        return res.status(200).json({ received: true, unknown_preapproval: resourceId });
+      }
       return res.status(502).json({ error: 'MP query failed', status: mpRes.status });
     }
 
