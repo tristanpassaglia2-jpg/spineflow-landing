@@ -337,6 +337,9 @@ async function doLogin() {
   setLoading('btn-login', false);
 
   if (error) { showMsg('login', translateError(error.message), 'error'); return; }
+  // Si vino del QR con código pendiente, ir a activarlo
+  const pending = localStorage.getItem('sf_pending_code');
+  if (pending) { window.location.href = '/activar?code=' + pending; return; }
   showLoggedView(data.user);
 }
 
@@ -367,6 +370,9 @@ async function doRegister() {
     if (name) {
       await sb.from('profiles').update({ display_name: name }).eq('id', data.user.id);
     }
+    // Si vino del QR con código pendiente, ir a activarlo
+    const pending = localStorage.getItem('sf_pending_code');
+    if (pending) { window.location.href = '/activar?code=' + pending; return; }
     showLoggedView(data.user);
   }
 }
