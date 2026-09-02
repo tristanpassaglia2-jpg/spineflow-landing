@@ -44,7 +44,7 @@
   <!-- Login requerido primero -->
   <div id="login-required">
     <p style="color:var(--muted);font-size:.85rem;margin-bottom:20px">Necesitás estar registrado en SpineFlow para activar tu acceso.</p>
-    <button class="btn" onclick="window.location.href='/login?redirect=/activar' + (codeParam ? '?code='+codeParam : '')">Crear cuenta / Iniciar sesión</button>
+    <button class="btn" onclick="irALogin()">Crear cuenta / Iniciar sesión</button>
   </div>
 
   <!-- Ingresar código -->
@@ -121,17 +121,33 @@ async function activarCodigo() {
   document.getElementById('suc-days').textContent = `${data.duration_days} días de acceso gratis`;
 }
 
+// Helper: ir al login guardando el código pendiente
+function irALogin() {
+  if (codeParam) localStorage.setItem('sf_pending_code', codeParam.toUpperCase());
+  window.location.href = '/login';
+}
+
 // Init
 sb.auth.onAuthStateChange((event, session) => {
   document.getElementById('loading').style.display = 'none';
   if (!session) {
+    // Si venís del QR con code, guardalo y mandate al login directo
+    if (codeParam) {
+      localStorage.setItem('sf_pending_code', codeParam.toUpperCase());
+      window.location.href = '/login';
+      return;
+    }
     document.getElementById('login-required').style.display = 'block';
     return;
   }
   document.getElementById('code-step').style.display = 'block';
-  if (codeParam) {
+  // Si hay code recuperado del QR o localStorage, activar automáticamente
+  const pending = codeParam || localStorage.getItem('sf_pending_code');
+  if (pending) {
+    localStorage.removeItem('sf_pending_code');
     const input = document.getElementById('code-input');
-    input.value = codeParam.toUpperCase();
+    input.value = pending.toUpperCase();
+    setTimeout(activarCodigo, 300);
   }
 });
 </script>
