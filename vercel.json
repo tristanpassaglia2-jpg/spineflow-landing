@@ -1,6 +1,12 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "crons": [
+    {
+      "path": "/api/keep-alive",
+      "schedule": "0 8 */5 * *"
+    }
+  ],
   "redirects": [
     {
       "source": "/landing",
